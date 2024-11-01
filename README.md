@@ -1,4 +1,4 @@
-# Amazon Web Services Basics
+# Microsoft Azure Basics
 
 > *Click &#9733; if you like the project. Your contributions are heartily ♡ welcome.*
 
@@ -6,7 +6,7 @@
 
 ## Table of Contents
 
-* [AWS Multiple Choice Questions](aws-multiple-choice-questions.md)
+* [Azure Multiple Choice Questions](azure-multiple-choice-questions.md)
 
 <br/>
 
