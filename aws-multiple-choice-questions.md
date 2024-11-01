@@ -1,4 +1,4 @@
-# AWS Multiple Choice Questions
+# Azure Multiple Choice Questions
 
 <br/>
 
