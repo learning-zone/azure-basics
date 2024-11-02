@@ -35,15 +35,14 @@
 #### Q. What is Microsoft Azure?
 #### Q. Explain the benefits of using Azure?
 #### Q. Describe the shared responsibility model in Azure?
-#### Q. What are the benefits of cloud computing?
 #### Q. What is the Azure free tier?
 #### Q. Describe the Azure regions and availability zones?
 #### Q. What is Azure Functions?
 #### Q. What is the Azure Resource Manager (ARM)?
 #### Q. What is the purpose of Azure global network?
 #### Q. What is Cloud Computing?
+#### Q. What are the benefits of cloud computing?
 #### Q. What are the differences between a public cloud and a private cloud?
-#### Q. What are the advantages of cloud computing?
 #### Q. What is an Azure Virtual Network (VNet)?
 #### Q. What is Azure Resource Manager (ARM)?
 #### Q. How do you manage resources in Azure?
@@ -54,11 +53,13 @@
 #### Q. What is Azure Table Storage?
 #### Q. What is Azure SQL Database?
 #### Q. What is Azure Virtual Machines (VMs)?
-#### Q. What is Azure Functions?
 #### Q. What is Azure Logic Apps?
 #### Q. What is Azure DevOps?
 #### Q. What is Azure Monitor?
 #### Q. What is Azure Security Center?
+#### Q. Explain the difference between Azure Virtual Machines and Azure App Services?
+#### Q. What are the various cloud deployment models available?
+#### Q. What other kinds of storage services does Azure offer besides blob storage?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -68,7 +69,6 @@
 
 <br/>
 
-#### Q. What is Azure Virtual Machines?
 #### Q. What are the core services offered by Azure?
 #### Q. Explain Azure App Service.
 #### Q. What is Azure Functions and when would you use it?
@@ -80,6 +80,8 @@
 #### Q. What is Azure Cloud Service?
 #### Q. What is Azure Resource Group?
 #### Q. What is a web role?
+#### Q. Explain an Azure role instance?
+#### Q. How many different types of cloud service roles does Azure offer?
 #### Q. What is Azure Redis Cache?
 #### Q. What is Azure Service Fabric?
 #### Q. What is Azure Search?
@@ -103,7 +105,7 @@
 #### Q. What are Azure Management and Governance services, and why are they important?
 #### Q. What is Azure Resource Manager (ARM), and how does it help with resource management?
 #### Q. How do you monitor and manage costs in Azure using Azure Cost Management and Billing?
-
+#### Q. Describe Azure Scheduler and explain how to use it?
 
 
 <div align="right">
@@ -152,6 +154,9 @@
 #### Q. How does Azure Disk Encryption work?
 #### Q. What is Just-In-Time (JIT) VM Access, and why is it important?
 #### Q. How would you implement logging and monitoring for security events in Azure?
+#### Q. How would you ensure the security of resources deployed in Azure?
+#### Q. Define an Azure storage key?
+#### Q. What occurs when the number of unsuccessful tries during Azure ID authentication is reached?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -162,7 +167,6 @@
 <br/>
 
 #### Q. What types of storage options does Azure offer?
-#### Q. Explain Azure Blob Storage.
 #### Q. How do you manage access to Azure Storage accounts?
 #### Q. What types of storage does Azure provide?
 #### Q. Explain Azure Blob Storage and its use cases.
@@ -181,7 +185,6 @@
 #### Q. What is the Azure Data Lake Storage, and how does it differ from Blob Storage?
 #### Q. How do you implement encryption for data in Azure Storage?
 #### Q. What are the different types of storage services provided by Azure?
-#### Q. How does Azure Blob Storage work, and what are its main use cases?
 #### Q. What is the difference between Hot, Cool, and Archive access tiers in Azure Blob Storage?
 #### Q. How do you manage data redundancy and disaster recovery in Azure Storage?
 #### Q. What are Azure Storage accounts, and how do they help in managing storage resources?
@@ -261,6 +264,11 @@
 #### Q. How do you set up a hybrid network between on-premises and Azure?
 #### Q. What are Azure Network Watcher and its key functionalities?
 #### Q. How does Azure Content Delivery Network (CDN) optimize content delivery?
+#### Q. Is it possible to get the Azure Internal Load Balancer\'s public DNS or IP address?
+#### Q. Can a Windows computer running on a separate port be mapped to an Azure load balancer?
+#### Q. When there is no manual help available, which Azure feature can be used to manage heavy application loads?
+#### Q. What types of queues does Azure provide?
+#### Q. What types of backups are available in Azure?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -271,14 +279,12 @@
 <br/>
 
 #### Q. What tools does Azure provide for monitoring resources?
-#### Q. Explain Azure Monitor.
+#### Q. Explain Azure Monitor?
 #### Q. How do you implement Azure Automation?
-#### Q. What is Azure Monitor?
 #### Q. How do you implement Azure Alerts?
 #### Q. Describe Azure Application Insights?
 #### Q. What is Azure Log Analytics?
 #### Q. How do you use Azure Automation?
-#### Q. What is Azure Monitor?
 #### Q. How can you monitor Azure resources using Azure Monitor?
 #### Q. What is the Azure Monitor Agent, and what are its functions?
 #### Q. How do you use Azure Metrics?
@@ -357,7 +363,8 @@
 #### Q. What is the purpose of SQL Elastic Pools in Azure SQL Database?
 #### Q. How does Azure Cosmos DB ensure global distribution and availability?
 #### Q. What are some common use cases for Azure Database Migration Service?
-
+#### Q. A critical database server in Azure fails. How would you recover from this outage?
+#### Q. What does Azure SQL Federation mean?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -489,6 +496,8 @@
 #### Q. What are some key considerations for data migration in terms of latency and throughput?
 #### Q. Can you explain the concept of a hybrid cloud and how it relates to migration?
 #### Q. How do you ensure compliance and security during the migration process?
+#### Q. We need to migrate our on-premises VMs to Azure. Explain the different migration strategies available?
+#### Q. How can connectivity be managed in Azure when the database must be on an on-premise server due to security concerns and the application front end is hosted there?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -643,6 +652,7 @@
 #### Q. What is the purpose of Azure Cost Management and how does it relate to performance optimization?
 #### Q. How do you track and optimize the performance of serverless functions in Azure?
 #### Q. What is Azure Front Door, and how does it improve application performance?
+#### Q. Our web application experiences a sudden spike in traffic. How would you use Azure services to scale the application horizontally?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -736,6 +746,7 @@
 #### Q. How do you troubleshoot network performance issues in Azure?
 #### Q. How do you use Azure Log Analytics to investigate problems?
 #### Q. What are some best practices for troubleshooting security issues in Azure?
+#### Q. What is the purpose of the Azure Diagnostics API?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -844,6 +855,10 @@
 #### Q. What are Azure Managed Identities, and how do they improve application security?
 #### Q. How do you integrate third-party services with Azure applications?
 #### Q. What are some common issues faced during Azure application development, and how do you resolve them?
+#### Q. What is cspack and how does Azure use it?
+#### Q. What are the various causes of a client application getting disconnected from the cache?
+#### Q. Which web apps are compatible with Azure deployment?
+#### Q. What is an Azure cmdlet?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -952,10 +967,9 @@
 <br/>
 
 #### Q. How does Azure pricing work?
-#### Q. What is an SLA (Service Level Agreement) in Azure?
+#### Q. What is an Service Level Agreement(SLA) in Azure?
 #### Q. Describe the Azure free tier.
 #### Q. How does Azure pricing work?
-#### Q. What is a Service Level Agreement (SLA) in Azure?
 #### Q. Explain Azure Cost Management.
 #### Q. How do you estimate costs for Azure resources?
 #### Q. What are Azure reservations?
@@ -1158,6 +1172,7 @@
 #### Q. What is the role of Azure OpenAI Service in developing AI applications?
 #### Q. How do you handle data privacy and compliance in Azure AI services?
 #### Q. What are some common use cases for Azure AI in different industries?
+#### Q. What is Azure Machine Learning's Text Analysis API?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -1171,7 +1186,6 @@
 #### Q. How can you secure your Azure resources?
 #### Q. What are the key components of an Azure Resource Manager (ARM) template?
 #### Q. How does Azure load balancing work?
-#### Q. What are Azure Functions used for?
 #### Q. What is Azure Resource Manager (ARM)?
 #### Q. How do you create and manage ARM templates?
 #### Q. Explain Azure Policy and its use.
@@ -1187,7 +1201,6 @@
 #### Q. Explain the use of IoT in Azure.
 #### Q. What are the benefits of serverless applications?
 #### Q. What is serverless computing?
-#### Q. What is Azure Functions?
 #### Q. How to include external DLL into Azure Function?
 #### Q. What do you know about Azure WebJobs?
 #### Q. What are the different types of Azure subscriptions, and how do they differ?
@@ -1210,6 +1223,7 @@
 #### Q. What are some common use cases for Azure Functions?
 #### Q. How do you integrate Azure with on-premises data sources?
 #### Q. What is the role of Azure DevTest Labs in development and testing environments?
+#### Q. How do Azure Scale Sets and Availability Sets differ from one another?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -1348,6 +1362,9 @@
 #### Q. What is Azure Marketplace, and what can you find there?
 #### Q. How do you estimate and control costs in Azure?
 #### Q. What is Azure Cognitive Services, and how can they be used in applications?
+#### Q. Are you able to create Azure applications that can deal with connection failures?
+#### Q. Which Azure option works best for code execution without a server?
+#### Q. Which Azure function is suggested for a shared file-sharing setup amongst several virtual machines?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
