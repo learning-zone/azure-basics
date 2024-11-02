@@ -60,6 +60,7 @@
 #### Q. Explain the difference between Azure Virtual Machines and Azure App Services?
 #### Q. What are the various cloud deployment models available?
 #### Q. What other kinds of storage services does Azure offer besides blob storage?
+#### Q. Explain the Window Azure platform?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -78,6 +79,7 @@
 #### Q. What are Azure Functions?
 #### Q. Describe Azure Kubernetes Service (AKS).
 #### Q. What is Azure Cloud Service?
+#### Q. State the purpose of the cloud configuration file?
 #### Q. What is Azure Resource Group?
 #### Q. What is a web role?
 #### Q. Explain an Azure role instance?
@@ -93,6 +95,7 @@
 #### Q. What are Azure Networking services, and why are they important?
 #### Q. How do Azure Virtual Networks (VNets) support network isolation and segmentation?
 #### Q. What is Azure Load Balancer, and how does it work?
+#### Q. How do we configure load balancer and why I should have a backend pool for load balancer?
 #### Q. What is Azure Application Gateway, and when would you use it?
 #### Q. How does Azure Content Delivery Network (CDN) improve the performance of web applications?
 #### Q. What are Azure Database services, and what types of databases does Azure support?
@@ -106,7 +109,7 @@
 #### Q. What is Azure Resource Manager (ARM), and how does it help with resource management?
 #### Q. How do you monitor and manage costs in Azure using Azure Cost Management and Billing?
 #### Q. Describe Azure Scheduler and explain how to use it?
-
+#### Q. What is a cloud service deployment?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -157,6 +160,8 @@
 #### Q. How would you ensure the security of resources deployed in Azure?
 #### Q. Define an Azure storage key?
 #### Q. What occurs when the number of unsuccessful tries during Azure ID authentication is reached?
+#### Q. How to deny access for one VM and allow access for one VM?
+#### Q. What is Azure Locks?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -235,7 +240,6 @@
 #### Q. What is Azure DNS, and how is it configured?
 #### Q. What is a subnet, and how is it used in Azure VNet?
 #### Q. How do you implement network peering in Azure?
-#### Q. What are Azure Traffic Manager and its capabilities?
 #### Q. What is a public IP address in Azure, and when would you use it?
 #### Q. What is Azure Bastion, and how does it enhance security?
 #### Q. What are Azure Network Watcher and its features?
@@ -269,6 +273,7 @@
 #### Q. When there is no manual help available, which Azure feature can be used to manage heavy application loads?
 #### Q. What types of queues does Azure provide?
 #### Q. What types of backups are available in Azure?
+#### Q. How do you troubleshoot RDP connections to an Azure virtual machine?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -316,6 +321,7 @@
 #### Q. What is Kusto Query Language (KQL), and how is it used in Azure Monitor?
 #### Q. What are Activity Logs in Azure Monitor, and why are they important?
 #### Q. How would you implement end-to-end monitoring for a multi-tier application using Azure Monitor?
+#### Q. Differentiate between the verbose and minimal monitoring
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -365,6 +371,11 @@
 #### Q. What are some common use cases for Azure Database Migration Service?
 #### Q. A critical database server in Azure fails. How would you recover from this outage?
 #### Q. What does Azure SQL Federation mean?
+#### Q. Differentiate between the repository and the powerhouse server?
+#### Q. What is meant by the enterprise warehousing?
+#### Q. What do you mean by lookup transformation?
+#### Q. What is meant by the connected lookups?
+#### Q. What is meant by the unconnected lookups?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -386,8 +397,11 @@
 #### Q. What is a cloud service role?
 #### Q. What is a worker role?
 #### Q. What is the meaning of application partitions?
+#### Q. Differentiate between the Windows Azure bus queues and Windows Azure queues?
 #### Q. What is the difference between Service Bus Queues and Storage Queues?
+#### Q. What is meant by the DeadLetter queue?
 #### Q. What are special Azure Regions?
+#### Q. What is Azure Geography?
 #### Q. What is Azure API Management, and why is it important?
 #### Q. How do you handle configuration management in Azure applications?
 #### Q. What is Azure Service Bus, and when would you use it?
@@ -507,6 +521,8 @@
 
 <br/>
 
+#### Q. What is Mircosoft Entra ID (formerly known as Azure Active Directory)?
+#### Q. What is MFA in Mircosoft Entra ID?
 #### Q. What is the difference between Azure AD and Active Directory?
 #### Q. How do you implement multi-factor authentication (MFA) in Azure?
 #### Q. Explain the concept of Conditional Access in Azure.
@@ -769,6 +785,7 @@
 #### Q. What is deployment environments?
 #### Q. Do scale sets work with Azure availability sets?
 #### Q. What are virtual machine scale sets in Azure?
+#### Q. What do you mean by a domain?
 #### Q. What are Update Domains?
 #### Q. What are Fault Domains?
 #### Q. What is an Availability Set?
@@ -859,6 +876,8 @@
 #### Q. What are the various causes of a client application getting disconnected from the cache?
 #### Q. Which web apps are compatible with Azure deployment?
 #### Q. What is an Azure cmdlet?
+#### Q. What is meant by the command task?
+#### Q. What are the PowerCenter commands that can be used in Informatica?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -967,7 +986,7 @@
 <br/>
 
 #### Q. How does Azure pricing work?
-#### Q. What is an Service Level Agreement(SLA) in Azure?
+#### Q. What is a Service Level Agreement(SLA) in Azure?
 #### Q. Describe the Azure free tier.
 #### Q. How does Azure pricing work?
 #### Q. Explain Azure Cost Management.
@@ -1001,6 +1020,7 @@
 #### Q. How would you optimize Blob Storage costs for an application that requires high durability but low retrieval frequency?
 #### Q. What are Archive Storage and Cool Storage, and when would you use them?
 #### Q. How would you handle lifecycle management to control storage costs in Azure?
+#### Q. What are the sizes of the Azure VM?
 #### Q. How do you choose the right VM size for balancing performance and cost in Azure?
 #### Q. What are VM Reserved Instances, and how do they compare to pay-as-you-go VM pricing?
 #### Q. How would you use Azure Hybrid Benefit to save costs on VMs?
@@ -1173,6 +1193,8 @@
 #### Q. How do you handle data privacy and compliance in Azure AI services?
 #### Q. What are some common use cases for Azure AI in different industries?
 #### Q. What is Azure Machine Learning's Text Analysis API?
+#### Q. What do you mean by Statistical analytical System (SAS)?
+#### Q. State some features of SAS?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -1365,6 +1387,13 @@
 #### Q. Are you able to create Azure applications that can deal with connection failures?
 #### Q. Which Azure option works best for code execution without a server?
 #### Q. Which Azure function is suggested for a shared file-sharing setup amongst several virtual machines?
+#### Q. State what will you do in case of a drive failure?
+#### Q. State what should be done in case of a service failure?
+#### Q. How do you trouble shoot connectivity issues between VM\'s with in Azure?
+#### Q. What is the difference between standard SSD and premium SSD?
+#### Q. Is there any live stream between on prem ad to azure ad ?
+#### Q. How will you do patching while migrating onprem VM?
+#### Q. What is a break-fix issue?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
