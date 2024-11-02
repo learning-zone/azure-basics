@@ -888,106 +888,106 @@
 #### Q. What new features or services are you excited about in Azure?
 #### Q. How does Azure compare with other cloud providers like AWS or Google Cloud?
 #### Q. What advice would you give someone starting their journey with Azure?
-What is Microsoft Azure, and what are some of its primary uses?
-What is the difference between IaaS, PaaS, and SaaS, and can you give examples of Azure services for each?
-Can you explain the concept of "regions" and "availability zones" in Azure?
-What are resource groups, and how do they help with managing resources in Azure?
-What are some key steps involved in creating and configuring a virtual machine in Azure?
-What are Azure VM scale sets, and when would you use them?
-How would you resize or change the configuration of an existing Azure VM?
-What is the Azure Hybrid Benefit, and how does it help with VM costs?
-What is an Azure Virtual Network (VNet), and how does it support Azure resources?
-How does VNet peering work, and when would you use it?
-Can you explain the difference between a Network Security Group (NSG) and an Application Security Group (ASG)?
-What are ExpressRoute and VPN Gateway, and how do they differ?
-What types of storage services does Azure offer, and what are their use cases?
-Can you explain Blob Storage and its different access tiers?
-What are Azure Storage accounts, and how do they help in managing storage resources?
-What is Azure Files, and how does it differ from Blob Storage?
-What is Azure Active Directory (AAD), and how does it differ from on-premises AD?
-How would you set up Multi-Factor Authentication (MFA) for an Azure application?
-What are role-based access controls (RBAC) in Azure, and how do they work?
-What is Managed Identity in Azure, and how does it improve security for applications?
-What is Azure Resource Manager, and how does it help in managing resources?
-What are ARM templates, and how do they help with infrastructure automation?
-How would you create and deploy a resource using an ARM template?
-What are the advantages of using ARM templates over manual deployment?
-What are some of the main database services available in Azure, and when would you use each?
-How would you choose between Azure SQL Database and Azure SQL Managed Instance?
-What is Cosmos DB, and what are its main use cases?
-What are Read Replicas in Azure Database for MySQL, and how do they help with scalability?
-How does Azure support compliance with data protection regulations like GDPR?
-What is the Azure Security Center, and how does it help with security management?
-How would you implement data encryption at rest and in transit in Azure?
-What are some common security best practices for managing Azure resources?
-What is Azure Monitor, and how does it help with performance monitoring?
-How would you set up alerts and notifications for resource health in Azure?
-What are Log Analytics and Application Insights, and when would you use them?
-How would you handle logging and diagnostics for an application hosted in Azure?
-What tools are available in Azure for monitoring and controlling costs?
-How would you set up a budget and track spending in Azure Cost Management?
-What is the benefit of Reserved Instances, and when would you use them?
-How does the Azure Pricing Calculator help with cost planning?
-What is Azure DevOps, and what are its main components?
-How would you set up a CI/CD pipeline for an application in Azure?
-What is Azure Repos, and how does it support version control?
-How do you handle infrastructure as code (IaC) with Azure DevOps?
-What strategies does Azure offer to ensure high availability of applications?
-How would you implement disaster recovery for an application in Azure?
-What is Azure Site Recovery, and when would you use it?
-What is geo-redundancy, and how does it support disaster recovery in Azure?
-How would you scale an application in Azure to handle increased traffic?
-What is the difference between vertical scaling and horizontal scaling in Azure?
-What is Azure Autoscale, and how does it work with VMs and App Services?
-How would you optimize the performance of an application hosted on Azure App Service?
-What is Azure Kubernetes Service (AKS), and why would you use it?
-How would you deploy and manage a containerized application on AKS?
-What are Helm charts, and how do they help with deploying applications on AKS?
-How would you set up scaling and load balancing for an application on AKS?
-What is Azure API Management, and what problems does it solve?
-How would you secure an API using Azure API Management?
-What are policies in API Management, and how do they enhance API functionality?
-How does API Management integrate with Azure Functions and Logic Apps?
-What is serverless computing, and what are some Azure services that support it?
-How would you implement an event-driven workflow using Azure Functions?
-What is the difference between Azure Functions and Logic Apps?
-When would you choose serverless over traditional compute services in Azure?
-What is Azure Logic Apps, and what are its use cases?
-How would you use Logic Apps to automate workflows between different services?
-What are connectors in Logic Apps, and how do they simplify integrations?
-How does error handling work in Logic Apps, and why is it important?
-What are some key steps in planning a migration to Azure?
-How would you assess and prioritize workloads for migration to Azure?
-What tools does Azure offer for migrating applications and databases?
-What is the Azure Migrate service, and how does it assist with migrations?
-What is Azure Policy, and how does it help with governance?
-How would you use Azure Blueprints to manage resource configurations?
-What are management groups, and how do they help with organizing resources?
-What are some best practices for establishing governance in Azure?
-What is the Azure Marketplace, and what can you find there?
-How would you deploy a third-party application from the Azure Marketplace?
-What are the benefits of using pre-built solutions from the Azure Marketplace?
-How do you manage licensing and costs for Marketplace solutions?
-What is Azure Arc, and how does it support hybrid and multi-cloud environments?
-How would you manage on-premises and multi-cloud resources with Azure tools?
-What are some scenarios where you’d consider using Azure Stack?
-How does Azure support interoperability with AWS and Google Cloud?
-What are some ways to automate tasks in Azure?
-How does Azure Automation work, and what are its common use cases?
-What is the role of Azure Runbooks in automation?
-How would you set up an automated backup strategy using Azure Automation?
-What is Azure Synapse Analytics, and how does it differ from traditional data warehouses?
-How would you use Azure Data Lake for big data storage?
-What is the role of Azure Databricks in big data and analytics?
-How would you implement a data pipeline using Azure Data Factory?
-What compliance certifications does Azure support?
-How does Azure ensure compliance with industry-specific regulations like HIPAA or FedRAMP?
-What is Azure Compliance Manager, and how does it help with compliance requirements?
-How would you configure an Azure environment to meet specific compliance standards?
-What are some best practices for designing highly available applications in Azure?
-How do you handle monitoring, security, and cost optimization as part of Azure best practices?
-What are the considerations for network design in a secure Azure environment?
-How would you use tagging and naming conventions to manage resources effectively?
+#### Q. What is Microsoft Azure, and what are some of its primary uses?
+#### Q. What is the difference between IaaS, PaaS, and SaaS, and can you give examples of Azure services for each?
+#### Q. Can you explain the concept of "regions" and "availability zones" in Azure?
+#### Q. What are resource groups, and how do they help with managing resources in Azure?
+#### Q. What are some key steps involved in creating and configuring a virtual machine in Azure?
+#### Q. What are Azure VM scale sets, and when would you use them?
+#### Q. How would you resize or change the configuration of an existing Azure VM?
+#### Q. What is the Azure Hybrid Benefit, and how does it help with VM costs?
+#### Q. What is an Azure Virtual Network (VNet), and how does it support Azure resources?
+#### Q. How does VNet peering work, and when would you use it?
+#### Q. Can you explain the difference between a Network Security Group (NSG) and an Application Security Group (ASG)?
+#### Q. What are ExpressRoute and VPN Gateway, and how do they differ?
+#### Q. What types of storage services does Azure offer, and what are their use cases?
+#### Q. Can you explain Blob Storage and its different access tiers?
+#### Q. What are Azure Storage accounts, and how do they help in managing storage resources?
+#### Q. What is Azure Files, and how does it differ from Blob Storage?
+#### Q. What is Azure Active Directory (AAD), and how does it differ from on-premises AD?
+#### Q. How would you set up Multi-Factor Authentication (MFA) for an Azure application?
+#### Q. What are role-based access controls (RBAC) in Azure, and how do they work?
+#### Q. What is Managed Identity in Azure, and how does it improve security for applications?
+#### Q. What is Azure Resource Manager, and how does it help in managing resources?
+#### Q. What are ARM templates, and how do they help with infrastructure automation?
+#### Q. How would you create and deploy a resource using an ARM template?
+#### Q. What are the advantages of using ARM templates over manual deployment?
+#### Q. What are some of the main database services available in Azure, and when would you use each?
+#### Q. How would you choose between Azure SQL Database and Azure SQL Managed Instance?
+#### Q. What is Cosmos DB, and what are its main use cases?
+#### Q. What are Read Replicas in Azure Database for MySQL, and how do they help with scalability?
+#### Q. How does Azure support compliance with data protection regulations like GDPR?
+#### Q. What is the Azure Security Center, and how does it help with security management?
+#### Q. How would you implement data encryption at rest and in transit in Azure?
+#### Q. What are some common security best practices for managing Azure resources?
+#### Q. What is Azure Monitor, and how does it help with performance monitoring?
+#### Q. How would you set up alerts and notifications for resource health in Azure?
+#### Q. What are Log Analytics and Application Insights, and when would you use them?
+#### Q. How would you handle logging and diagnostics for an application hosted in Azure?
+#### Q. What tools are available in Azure for monitoring and controlling costs?
+#### Q. How would you set up a budget and track spending in Azure Cost Management?
+#### Q. What is the benefit of Reserved Instances, and when would you use them?
+#### Q. How does the Azure Pricing Calculator help with cost planning?
+#### Q. What is Azure DevOps, and what are its main components?
+#### Q. How would you set up a CI/CD pipeline for an application in Azure?
+#### Q. What is Azure Repos, and how does it support version control?
+#### Q. How do you handle infrastructure as code (IaC) with Azure DevOps?
+#### Q. What strategies does Azure offer to ensure high availability of applications?
+#### Q. How would you implement disaster recovery for an application in Azure?
+#### Q. What is Azure Site Recovery, and when would you use it?
+#### Q. What is geo-redundancy, and how does it support disaster recovery in Azure?
+#### Q. How would you scale an application in Azure to handle increased traffic?
+#### Q. What is the difference between vertical scaling and horizontal scaling in Azure?
+#### Q. What is Azure Autoscale, and how does it work with VMs and App Services?
+#### Q. How would you optimize the performance of an application hosted on Azure App Service?
+#### Q. What is Azure Kubernetes Service (AKS), and why would you use it?
+#### Q. How would you deploy and manage a containerized application on AKS?
+#### Q. What are Helm charts, and how do they help with deploying applications on AKS?
+#### Q. How would you set up scaling and load balancing for an application on AKS?
+#### Q. What is Azure API Management, and what problems does it solve?
+#### Q. How would you secure an API using Azure API Management?
+#### Q. What are policies in API Management, and how do they enhance API functionality?
+#### Q. How does API Management integrate with Azure Functions and Logic Apps?
+#### Q. What is serverless computing, and what are some Azure services that support it?
+#### Q. How would you implement an event-driven workflow using Azure Functions?
+#### Q. What is the difference between Azure Functions and Logic Apps?
+#### Q. When would you choose serverless over traditional compute services in Azure?
+#### Q. What is Azure Logic Apps, and what are its use cases?
+#### Q. How would you use Logic Apps to automate workflows between different services?
+#### Q. What are connectors in Logic Apps, and how do they simplify integrations?
+#### Q. How does error handling work in Logic Apps, and why is it important?
+#### Q. What are some key steps in planning a migration to Azure?
+#### Q. How would you assess and prioritize workloads for migration to Azure?
+#### Q. What tools does Azure offer for migrating applications and databases?
+#### Q. What is the Azure Migrate service, and how does it assist with migrations?
+#### Q. What is Azure Policy, and how does it help with governance?
+#### Q. How would you use Azure Blueprints to manage resource configurations?
+#### Q. What are management groups, and how do they help with organizing resources?
+#### Q. What are some best practices for establishing governance in Azure?
+#### Q. What is the Azure Marketplace, and what can you find there?
+#### Q. How would you deploy a third-party application from the Azure Marketplace?
+#### Q. What are the benefits of using pre-built solutions from the Azure Marketplace?
+#### Q. How do you manage licensing and costs for Marketplace solutions?
+#### Q. What is Azure Arc, and how does it support hybrid and multi-cloud environments?
+#### Q. How would you manage on-premises and multi-cloud resources with Azure tools?
+#### Q. What are some scenarios where you’d consider using Azure Stack?
+#### Q. How does Azure support interoperability with AWS and Google Cloud?
+#### Q. What are some ways to automate tasks in Azure?
+#### Q. How does Azure Automation work, and what are its common use cases?
+#### Q. What is the role of Azure Runbooks in automation?
+#### Q. How would you set up an automated backup strategy using Azure Automation?
+#### Q. What is Azure Synapse Analytics, and how does it differ from traditional data warehouses?
+#### Q. How would you use Azure Data Lake for big data storage?
+#### Q. What is the role of Azure Databricks in big data and analytics?
+#### Q. How would you implement a data pipeline using Azure Data Factory?
+#### Q. What compliance certifications does Azure support?
+#### Q. How does Azure ensure compliance with industry-specific regulations like HIPAA or FedRAMP?
+#### Q. What is Azure Compliance Manager, and how does it help with compliance requirements?
+#### Q. How would you configure an Azure environment to meet specific compliance standards?
+#### Q. What are some best practices for designing highly available applications in Azure?
+#### Q. How do you handle monitoring, security, and cost optimization as part of Azure best practices?
+#### Q. What are the considerations for network design in a secure Azure environment?
+#### Q. How would you use tagging and naming conventions to manage resources effectively?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
