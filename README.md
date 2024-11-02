@@ -40,7 +40,7 @@
 #### Q. Describe the Azure regions and availability zones?
 #### Q. What is Azure Functions?
 #### Q. What is the Azure Resource Manager (ARM)?
-#### Q. What is the purpose of Azure’s global network?
+#### Q. What is the purpose of Azure global network?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -466,10 +466,10 @@
 #### Q. What would you do if a user is unable to sign into an application using Azure AD?
 #### Q. How would you troubleshoot access denied errors for a resource protected by Azure RBAC?
 #### Q. What steps would you take if Multi-Factor Authentication (MFA) is failing for some users?
-#### Q. How would you troubleshoot a conditional access policy that’s preventing a legitimate user from logging in?
+#### Q. How would you troubleshoot a conditional access policy that is preventing a legitimate user from logging in?
 #### Q. What steps would you take if you suspect an Azure resource is compromised?
 #### Q. How would you use Azure Security Center to troubleshoot and respond to security alerts?
-#### Q. How would you diagnose and fix misconfigured firewall rules affecting an application’s accessibility?
+#### Q. How would you diagnose and fix misconfigured firewall rules affecting an application is accessibility?
 #### Q. What is your approach to troubleshooting non-compliant resources in Azure?
 #### Q. How would you troubleshoot unexpected spikes in costs within an Azure subscription?
 #### Q. What steps would you take to identify and resolve resource overprovisioning in Azure?
@@ -539,7 +539,7 @@
 #### Q. What is Azure Kubernetes Service (AKS), and what are its benefits?
 #### Q. How would you deploy and manage containers in AKS?
 #### Q. What are some best practices for managing communication and scaling in a microservices architecture on AKS?
-#### Q. How do you decide between Azure SQL Database, Cosmos DB, and Azure Blob Storage for an application’s data needs?
+#### Q. How do you decide between Azure SQL Database, Cosmos DB, and Azure Blob Storage for an application is data needs?
 #### Q. What is the difference between SQL and NoSQL databases, and when would you use each on Azure?
 #### Q. How would you set up replication and high availability for an Azure SQL Database?
 #### Q. How does Azure Cosmos DB global distribution work, and when is it useful?
@@ -738,7 +738,7 @@
 #### Q. How do you use Azure Cost Management for audit purposes?
 #### Q. How do you track and report cloud spend against budgets for different departments?
 #### Q. What methods would you use to provide cost transparency across teams and projects?
-#### Q. What would you do if there’s a sudden spike in Azure costs?
+#### Q. What would you do if there is a sudden spike in Azure costs?
 #### Q. How would you investigate and identify the source of unexpected costs in Azure?
 #### Q. What tools would you use to get a granular view of cost usage per resource?
 #### Q. How would you communicate unexpected cost changes to stakeholders?
@@ -888,7 +888,6 @@
 #### Q. What new features or services are you excited about in Azure?
 #### Q. How does Azure compare with other cloud providers like AWS or Google Cloud?
 #### Q. What advice would you give someone starting their journey with Azure?
-#### Q. What is Microsoft Azure, and what are some of its primary uses?
 #### Q. What is the difference between IaaS, PaaS, and SaaS, and can you give examples of Azure services for each?
 #### Q. Can you explain the concept of "regions" and "availability zones" in Azure?
 #### Q. What are resource groups, and how do they help with managing resources in Azure?
