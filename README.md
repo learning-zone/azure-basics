@@ -41,6 +41,24 @@
 #### Q. What is Azure Functions?
 #### Q. What is the Azure Resource Manager (ARM)?
 #### Q. What is the purpose of Azure global network?
+#### Q. What is Cloud Computing?
+#### Q. What are the differences between a public cloud and a private cloud?
+#### Q. What are the advantages of cloud computing?
+#### Q. What is an Azure Virtual Network (VNet)?
+#### Q. What is Azure Resource Manager (ARM)?
+#### Q. How do you manage resources in Azure?
+#### Q. What is Azure Active Directory (AAD)?
+#### Q. What is the difference between Azure and AWS?
+#### Q. What are Azure Regions and Availability Zones?
+#### Q. What is Azure Blob Storage?
+#### Q. What is Azure Table Storage?
+#### Q. What is Azure SQL Database?
+#### Q. What is Azure Virtual Machines (VMs)?
+#### Q. What is Azure Functions?
+#### Q. What is Azure Logic Apps?
+#### Q. What is Azure DevOps?
+#### Q. What is Azure Monitor?
+#### Q. What is Azure Security Center?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -51,6 +69,7 @@
 <br/>
 
 #### Q. What is Azure Virtual Machines?
+#### Q. What are the core services offered by Azure?
 #### Q. Explain Azure App Service.
 #### Q. What is Azure Functions and when would you use it?
 #### Q. What are the different types of Azure services?
@@ -65,6 +84,27 @@
 #### Q. What is Azure Service Fabric?
 #### Q. What is Azure Search?
 #### Q. What are Redis databases?
+#### Q. What is Azure Compute, and what are the main compute services in Azure?
+#### Q. Can you explain the difference between Azure Virtual Machines, Azure App Services, and Azure Functions?
+#### Q. What is Azure Storage, and what are the different types of storage available?
+#### Q. How does Azure Blob Storage differ from Azure Disk Storage and Azure Files?
+#### Q. What are Azure Networking services, and why are they important?
+#### Q. How do Azure Virtual Networks (VNets) support network isolation and segmentation?
+#### Q. What is Azure Load Balancer, and how does it work?
+#### Q. What is Azure Application Gateway, and when would you use it?
+#### Q. How does Azure Content Delivery Network (CDN) improve the performance of web applications?
+#### Q. What are Azure Database services, and what types of databases does Azure support?
+#### Q. What is Azure SQL Database, and how does it differ from on-premises SQL Server?
+#### Q. Can you explain Azure Cosmos DB and its use cases?
+#### Q. What is Azure Identity, and how does Azure Active Directory (AAD) support it?
+#### Q. How do you manage identities and access in Azure?
+#### Q. What are Azure Security services, and what features does Azure Security Center offer?
+#### Q. How does Azure Key Vault help with managing secrets and keys?
+#### Q. What are Azure Management and Governance services, and why are they important?
+#### Q. What is Azure Resource Manager (ARM), and how does it help with resource management?
+#### Q. How do you monitor and manage costs in Azure using Azure Cost Management and Billing?
+
+
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -92,6 +132,26 @@
 #### Q. What are the best practices for securing Azure resources?
 #### Q. How does Azure handle compliance and regulatory requirements?
 #### Q. What steps would you take if a security breach occurs in Azure?
+#### Q. What is Azure Security Center, and what are its main features?
+#### Q. How does Azure Key Vault help in managing secrets and keys?
+#### Q. What is the role of Azure Active Directory (AAD) in securing Azure resources?
+#### Q. Can you explain role-based access control (RBAC) in Azure?
+#### Q. What are Azure Network Security Groups (NSGs), and how do they work?
+#### Q. How does Azure DDoS Protection service mitigate threats?
+#### Q. What is Azure Firewall, and when should you use it?
+#### Q. How do you implement Multi-Factor Authentication (MFA) in Azure?
+#### Q. What is the difference between Azure Policy and Azure Blueprints?
+#### Q. How does Azure Sentinel help with security management and threat detection?
+#### Q. What are Managed Identities in Azure, and how do they improve security?
+#### Q. How would you secure a web application hosted on Azure App Service?
+#### Q. What is Azure Information Protection (AIP), and how does it safeguard data?
+#### Q. How can you ensure compliance with industry standards and regulations using Azure?
+#### Q. What tools does Azure provide for monitoring security and compliance?
+#### Q. How would you handle encryption for data at rest and in transit in Azure?
+#### Q. What are some best practices for securing Azure virtual machines (VMs)?
+#### Q. How does Azure Disk Encryption work?
+#### Q. What is Just-In-Time (JIT) VM Access, and why is it important?
+#### Q. How would you implement logging and monitoring for security events in Azure?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -109,7 +169,6 @@
 #### Q. What is Azure File Storage?
 #### Q. How do you manage Azure Storage accounts?
 #### Q. Describe Azure Queue Storage.
-#### Q. What is Azure Blob Storage?
 #### Q. What is a Blob Container?
 #### Q. What is the difference between block blobs, append blobs, and page blobs in Azure Blob Storage?
 #### Q. What is Azure Table Storage, and what are its features?
@@ -121,6 +180,26 @@
 #### Q. What is Azure Storage Explorer, and how is it used?
 #### Q. What is the Azure Data Lake Storage, and how does it differ from Blob Storage?
 #### Q. How do you implement encryption for data in Azure Storage?
+#### Q. What are the different types of storage services provided by Azure?
+#### Q. How does Azure Blob Storage work, and what are its main use cases?
+#### Q. What is the difference between Hot, Cool, and Archive access tiers in Azure Blob Storage?
+#### Q. How do you manage data redundancy and disaster recovery in Azure Storage?
+#### Q. What are Azure Storage accounts, and how do they help in managing storage resources?
+#### Q. What is Azure Files, and how does it differ from Blob Storage?
+#### Q. Can you explain the concept of Azure Disk Storage and its types?
+#### Q. How does Azure Table Storage work, and what are its benefits?
+#### Q. What is Azure Queue Storage, and how does it facilitate message queuing?
+#### Q. How does Azure Storage Explorer help in managing storage resources?
+#### Q. What security measures can you implement to protect data in Azure Storage?
+#### Q. How does data encryption work in Azure Storage?
+#### Q. What is Azure Data Lake Storage, and what are its key features?
+#### Q. How would you implement a backup and restore strategy using Azure Storage?
+#### Q. What are some best practices for optimizing the performance of Azure Storage?
+#### Q. How do you monitor and manage costs associated with Azure Storage?
+#### Q. How would you handle large data migrations to Azure Storage?
+#### Q. What is the role of Azure Content Delivery Network (CDN) in conjunction with Azure Storage?
+#### Q. How would you configure lifecycle management policies for Azure Blob Storage?
+#### Q. What are the benefits and limitations of using Azure Storage as opposed to on-premises storage solutions?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -132,7 +211,6 @@
 
 #### Q. Describe the purpose of Azure ExpressRoute.
 #### Q. How do Network Security Groups (NSGs) work?
-#### Q. What is Azure Virtual Network (VNet)?
 #### Q. What are Network Security Groups (NSGs)?
 #### Q. How does Azure Load Balancer work?
 #### Q. What is a guest operating system?
@@ -163,6 +241,26 @@
 #### Q. How do you set up a site-to-site VPN in Azure?
 #### Q. What are the types of Azure IP address SKUs?
 #### Q. How do you monitor and troubleshoot networking issues in Azure?
+#### Q. What is Azure Virtual Network (VNet), and how does it support Azure resources?
+#### Q. How does VNet peering work, and when would you use it?
+#### Q. What is Azure Load Balancer, and how does it distribute traffic?
+#### Q. Can you explain the difference between Azure Application Gateway and Azure Load Balancer?
+#### Q. What are Network Security Groups (NSGs), and how do they control network traffic?
+#### Q. What is Azure ExpressRoute, and what benefits does it provide?
+#### Q. How does Azure VPN Gateway support secure connections?
+#### Q. What is Azure Traffic Manager, and how does it manage traffic across global regions?
+#### Q. What is the purpose of an Azure Application Gateway?
+#### Q. Can you explain how Azure DDoS Protection works to mitigate attacks?
+#### Q. What is Azure Bastion, and how does it secure RDP and SSH connections?
+#### Q. How do you implement network segmentation in Azure?
+#### Q. What are Application Security Groups (ASGs), and how do they differ from NSGs?
+#### Q. How does Azure Firewall help in securing network traffic?
+#### Q. What is the role of Private Link and Private Endpoints in Azure Networking?
+#### Q. How would you configure a Site-to-Site VPN in Azure?
+#### Q. What are the differences between Public IP, Private IP, and Reserved IP in Azure?
+#### Q. How do you set up a hybrid network between on-premises and Azure?
+#### Q. What are Azure Network Watcher and its key functionalities?
+#### Q. How does Azure Content Delivery Network (CDN) optimize content delivery?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -192,6 +290,26 @@
 #### Q. What is the difference between Azure Monitor and Azure Security Center?
 #### Q. How do you integrate Azure Monitor with third-party tools?
 #### Q. What are the best practices for monitoring Azure resources?
+#### Q. What is Azure Monitor, and what are its key features?
+#### Q. How does Azure Monitor help in managing the performance and availability of applications?
+#### Q. What is Log Analytics, and how does it fit within Azure Monitor?
+#### Q. What are Application Insights, and how do they support monitoring applications?
+#### Q. How do you set up alerts and notifications in Azure Monitor?
+#### Q. What is Azure Monitor Metrics, and how does it differ from Azure Monitor Logs?
+#### Q. Can you explain the difference between Metric Alerts and Log Alerts?
+#### Q. What are diagnostic settings in Azure Monitor, and how do you configure them?
+#### Q. How do you monitor virtual machines (VMs) using Azure Monitor?
+#### Q. What is the role of Network Watcher in monitoring Azure networks?
+#### Q. How would you use Azure Monitor to track resource usage and costs?
+#### Q. What are Azure Monitor Workbooks, and how do they help visualize data?
+#### Q. How does Azure Monitor integrate with other Azure services like Azure Security Center?
+#### Q. What is the importance of Distributed Tracing in Azure Monitor?
+#### Q. How do you handle log retention and archiving in Azure Monitor?
+#### Q. What is Azure Monitor for containers, and how does it help in monitoring AKS clusters?
+#### Q. How do you use Application Insights to monitor web applications for performance issues?
+#### Q. What is Kusto Query Language (KQL), and how is it used in Azure Monitor?
+#### Q. What are Activity Logs in Azure Monitor, and why are they important?
+#### Q. How would you implement end-to-end monitoring for a multi-tier application using Azure Monitor?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -220,6 +338,26 @@
 #### Q. What is the difference between SQL and NoSQL databases?
 #### Q. How do you handle data redundancy and high availability in Azure SQL Database?
 #### Q. What are some common use cases for Azure Databases?
+#### Q. What are the different database services offered by Azure?
+#### Q. Can you explain the difference between Azure SQL Database and SQL Managed Instance?
+#### Q. What is Azure Cosmos DB, and what are its key features?
+#### Q. How would you choose between Azure SQL Database and Azure Cosmos DB for a project?
+#### Q. What is Azure Data Factory, and how does it support data integration?
+#### Q. How does Azure Synapse Analytics (formerly SQL Data Warehouse) work?
+#### Q. What is the purpose of Azure Database for MySQL and PostgreSQL?
+#### Q. Can you explain the benefits of using Azure SQL Database over an on-premises SQL Server?
+#### Q. How do you handle backup and restore operations in Azure SQL Database?
+#### Q. What is Read Scale-Out in Azure SQL Database, and how does it improve performance?
+#### Q. How does Azure manage high availability and disaster recovery for its database services?
+#### Q. What is the role of Azure Data Lake Storage in big data solutions?
+#### Q. Can you explain the difference between Azure Table Storage and Azure SQL Database?
+#### Q. How would you implement data encryption at rest and in transit for Azure databases?
+#### Q. What are the security features available in Azure SQL Database?
+#### Q. How do you monitor and manage performance for Azure databases?
+#### Q. What is the purpose of SQL Elastic Pools in Azure SQL Database?
+#### Q. How does Azure Cosmos DB ensure global distribution and availability?
+#### Q. What are some common use cases for Azure Database Migration Service?
+
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -254,6 +392,31 @@
 #### Q. What are Azure Blueprints, and how do they assist in application governance?
 #### Q. How can you secure applications hosted in Azure?
 #### Q. What is Azure Event Grid, and how does it support event-driven architectures?
+#### Q. What is the Azure Well-Architected Framework, and what are its main pillars?
+#### Q. Can you explain the principles of designing high-availability architectures in Azure?
+#### Q. How would you design a multi-tier architecture in Azure?
+#### Q. What considerations are important for a secure Azure architecture?
+#### Q. How do you implement disaster recovery solutions in Azure?
+#### Q. What is the role of Azure Traffic Manager in designing global applications?
+#### Q. How would you use Azure Application Gateway for web application architecture?
+#### Q. What are some best practices for managing costs in an Azure architecture?
+#### Q. How do you ensure scalability and performance in Azure architectures?
+#### Q. Can you explain the difference between vertical scaling and horizontal scaling in Azure?
+#### Q. What is Azure Service Fabric, and how is it used in microservices architecture?
+#### Q. How would you design a data lake architecture using Azure services?
+#### Q. What is the role of Azure Kubernetes Service (AKS) in a containerized architecture?
+#### Q. How do you integrate Azure DevOps into an Azure architecture?
+#### Q. What is Azure API Management, and how does it fit into an overall architecture?
+#### Q. How would you design a serverless architecture using Azure Functions and Logic Apps?
+#### Q. What are the key considerations for a hybrid cloud architecture in Azure?
+#### Q. How do you implement monitoring and logging in an Azure architecture?
+#### Q. What is the Azure Architecture Center, and how can it help in designing solutions?
+#### Q. How would you use Azure Blueprints to standardize and automate deployments?
+#### Q. What are Azure Resource Manager (ARM) templates, and how do they support infrastructure as code?
+#### Q. How would you design a secure networking architecture using Azure Virtual Network (VNet)?
+#### Q. What are some strategies for optimizing the performance of an Azure architecture?
+#### Q. How do you handle data governance and compliance in Azure?
+#### Q. What are some key aspects of designing a cost-effective architecture in Azure?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -306,6 +469,26 @@
 #### Q. How would you implement governance for workloads in Azure post-migration?
 #### Q. What role do resource groups, management groups, and tags play in managing migrated workloads?
 #### Q. How would you automate resource provisioning and configuration in Azure?
+#### Q. What is Azure Migrate, and what are its main features?
+#### Q. Can you describe the process of migrating on-premises workloads to Azure?
+#### Q. What are some common challenges faced during cloud migration, and how would you address them?
+#### Q. How do you assess and prioritize applications for migration to Azure?
+#### Q. What tools does Azure offer for migrating databases to the cloud?
+#### Q. Can you explain the difference between rehosting, refactoring, rearchitecting, and rebuilding in the context of cloud migration?
+#### Q. What is the role of Azure Site Recovery in disaster recovery and migration?
+#### Q. How would you ensure data consistency and integrity during a migration?
+#### Q. What are some strategies for minimizing downtime during migration?
+#### Q. How do you handle network connectivity and security during the migration process?
+#### Q. What is Azure Database Migration Service, and how does it facilitate database migration?
+#### Q. How do you migrate VMs from on-premises to Azure using Azure Migrate?
+#### Q. Can you explain the process of migrating a large-scale application to Azure?
+#### Q. What are some best practices for testing and validating applications after migration?
+#### Q. How do you manage and monitor workloads post-migration in Azure?
+#### Q. What is the role of Azure ExpressRoute in migration scenarios?
+#### Q. How would you handle application dependencies during migration?
+#### Q. What are some key considerations for data migration in terms of latency and throughput?
+#### Q. Can you explain the concept of a hybrid cloud and how it relates to migration?
+#### Q. How do you ensure compliance and security during the migration process?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -363,7 +546,26 @@
 #### Q. What steps would you take to identify and resolve role assignment conflicts?
 #### Q. How do you handle scenarios where users lose access due to Conditional Access policies?
 #### Q. How would you investigate and resolve issues with self-service password reset or MFA?
-
+#### Q. What is Azure Active Directory (AAD), and what are its main features?
+#### Q. Can you explain the role of Azure AD in managing identities and access?
+#### Q. What are role-based access controls (RBAC) in Azure, and how do they work?
+#### Q. How would you assign roles to users and groups in Azure?
+#### Q. What is the difference between Azure AD and on-premises Active Directory?
+#### Q. How does Azure AD Connect work, and what are its key benefits?
+#### Q. What is Multi-Factor Authentication (MFA), and how do you implement it in Azure?
+#### Q. What are Managed Identities in Azure, and how do they help with access management?
+#### Q. Can you explain the concept of Conditional Access in Azure AD?
+#### Q. How would you configure and enforce Conditional Access policies?
+#### Q. What are Azure AD B2C and B2B, and what are their use cases?
+#### Q. How do you integrate Azure AD with third-party applications?
+#### Q. What is Privileged Identity Management (PIM) in Azure AD, and why is it important?
+#### Q. How do you manage guest users and external collaborators in Azure AD?
+#### Q. What is Azure AD Identity Protection, and how does it help secure identities?
+#### Q. How do you monitor and audit access in Azure?
+#### Q. What is the purpose of Azure AD Application Proxy, and how is it used?
+#### Q. How do you handle access reviews in Azure AD?
+#### Q. Can you explain the use of service principals in Azure AD?
+#### Q. What are some best practices for managing access and identities in Azure?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -421,7 +623,26 @@
 #### Q. What strategies would you recommend for maintaining consistent performance across multiple Azure subscriptions?
 #### Q. How do resource groups and management groups in Azure help with performance monitoring and optimization?
 #### Q. What is Azure Blueprints, and how can it assist in enforcing best practices for performance management?
-
+#### Q. What is Azure Monitor, and how does it help in performance management?
+#### Q. How do you set up alerts for performance metrics in Azure Monitor?
+#### Q. What is the role of Azure Application Insights in monitoring application performance?
+#### Q. How do you use Azure Monitor Logs to analyze performance issues?
+#### Q. What are some best practices for optimizing the performance of Azure Virtual Machines (VMs)?
+#### Q. How does Azure AutoScale help in managing performance under varying loads?
+#### Q. What is Azure Traffic Manager, and how does it contribute to performance management?
+#### Q. How do you use Azure Advisor to improve performance and efficiency?
+#### Q. What tools and techniques can you use to monitor the performance of an Azure SQL Database?
+#### Q. How would you implement a performance monitoring strategy for an application hosted on Azure App Service?
+#### Q. What is the importance of distributed tracing in Azure Monitor for diagnosing performance bottlenecks?
+#### Q. How do you use Azure Load Balancer to manage the performance of your applications?
+#### Q. What are some common performance issues in Azure, and how do you resolve them?
+#### Q. How does Azure Network Watcher assist in monitoring and diagnosing network performance?
+#### Q. What is the role of Azure Log Analytics in performance management?
+#### Q. How do you optimize storage performance in Azure?
+#### Q. How would you handle performance tuning for Azure Kubernetes Service (AKS)?
+#### Q. What is the purpose of Azure Cost Management and how does it relate to performance optimization?
+#### Q. How do you track and optimize the performance of serverless functions in Azure?
+#### Q. What is Azure Front Door, and how does it improve application performance?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -495,6 +716,26 @@
 #### Q. How would you test the recovery of critical applications to ensure business continuity in Azure?
 #### Q. What is your approach to troubleshooting issues with backup and restore operations in Azure?
 #### Q. How would you identify potential failover issues in a multi-region deployment in Azure?
+#### Q. How do you diagnose connectivity issues in an Azure Virtual Network (VNet)?
+#### Q. What steps would you take to troubleshoot a failed deployment in Azure Resource Manager (ARM)?
+#### Q. How do you handle performance issues in Azure SQL Database?
+#### Q. What tools do you use to troubleshoot application performance problems in Azure?
+#### Q. How would you troubleshoot issues with Azure Virtual Machines (VMs) not starting?
+#### Q. Can you explain how to diagnose and fix issues with Azure Storage?
+#### Q. What is Azure Network Watcher, and how does it assist in network troubleshooting?
+#### Q. How do you investigate and resolve service outages in Azure?
+#### Q. What are some common issues with Azure Load Balancer, and how do you troubleshoot them?
+#### Q. How would you troubleshoot Azure AD authentication failures?
+#### Q. What steps do you take to resolve latency issues in Azure Application Gateway?
+#### Q. How do you troubleshoot Azure Functions that are not executing correctly?
+#### Q. What is the role of Azure Monitor in troubleshooting and how do you use it?
+#### Q. How do you handle failed backups in Azure Backup service?
+#### Q. What methods do you use to debug and troubleshoot issues in Azure Kubernetes Service (AKS)?
+#### Q. How would you troubleshoot failed deployments in Azure DevOps?
+#### Q. What is the process for diagnosing and resolving issues with Azure Site Recovery?
+#### Q. How do you troubleshoot network performance issues in Azure?
+#### Q. How do you use Azure Log Analytics to investigate problems?
+#### Q. What are some best practices for troubleshooting security issues in Azure?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -583,6 +824,26 @@
 #### Q. How do you investigate and resolve performance bottlenecks in an Azure application?
 #### Q. How would you use Application Insights to diagnose a memory leak in an Azure app?
 #### Q. What are the common causes of high CPU usage in Azure VMs, and how would you address them?
+#### Q. What is Azure App Service, and how does it support web and mobile app development?
+#### Q. How would you deploy a web application to Azure App Service?
+#### Q. Can you explain the difference between Azure Functions and Azure Logic Apps?
+#### Q. What is Azure DevOps, and how does it support the application development lifecycle?
+#### Q. How do you set up a CI/CD pipeline in Azure DevOps?
+#### Q. What is the role of Azure Kubernetes Service (AKS) in application development?
+#### Q. How do you manage application configurations in Azure?
+#### Q. What are Azure API Management and its benefits for developers?
+#### Q. How would you secure APIs in Azure API Management?
+#### Q. What is the purpose of Azure Key Vault in application development?
+#### Q. How do you handle logging and monitoring for Azure applications?
+#### Q. What are some best practices for developing scalable applications in Azure?
+#### Q. How do you manage database connections in an Azure application?
+#### Q. What is the role of Azure Active Directory (AAD) in application authentication and authorization?
+#### Q. How do you implement serverless computing using Azure Functions?
+#### Q. What is Azure Cosmos DB, and how does it fit into application development?
+#### Q. How would you use Azure SignalR Service for real-time communication in applications?
+#### Q. What are Azure Managed Identities, and how do they improve application security?
+#### Q. How do you integrate third-party services with Azure applications?
+#### Q. What are some common issues faced during Azure application development, and how do you resolve them?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -661,6 +922,26 @@
 #### Q. What role does Azure DevOps play in a multi-cloud or hybrid cloud strategy?
 #### Q. How would you set up notifications and alerts in tools like Slack or Microsoft Teams?
 #### Q. How do you use Azure DevOps REST APIs for custom integrations and automation?
+#### Q. What is Azure DevOps, and what are its key components?
+#### Q. How do you set up a CI/CD pipeline in Azure DevOps?
+#### Q. What is the difference between Azure Pipelines, Azure Repos, and Azure Artifacts?
+#### Q. How do you use Azure Boards to manage projects and track work items?
+#### Q. What are some best practices for source control using Azure Repos?
+#### Q. How do you implement continuous integration using Azure Pipelines?
+#### Q. What is a YAML pipeline, and how does it differ from a classic pipeline in Azure DevOps?
+#### Q. How do you deploy applications to different environments using Azure Pipelines?
+#### Q. What is Azure Test Plans, and how do you use it for test management?
+#### Q. How do you integrate Azure DevOps with other Azure services like AKS, App Service, or Functions?
+#### Q. What are some strategies for managing dependencies in Azure DevOps?
+#### Q. How do you handle secrets and sensitive information in Azure DevOps pipelines?
+#### Q. What are Azure DevOps Extensions, and how can they enhance your pipeline?
+#### Q. How do you implement infrastructure as code (IaC) using Azure DevOps?
+#### Q. What is the role of Azure DevOps in the context of a microservices architecture?
+#### Q. How do you monitor and manage pipelines in Azure DevOps?
+#### Q. What are some common challenges in Azure DevOps, and how do you address them?
+#### Q. How do you automate the deployment of an application using Azure DevOps?
+#### Q. What is Blue-Green deployment, and how would you implement it in Azure DevOps?
+#### Q. Can you explain the role of Azure DevOps in an agile development process?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -746,6 +1027,26 @@
 #### Q. What Azure features are useful for optimizing non-production environment costs?
 #### Q. How would you set up auto-shutdown for resources to reduce costs in dev/test environments?
 #### Q. How can you use Azure Dev/Test Pricing plans to save on costs?
+#### Q. What tools does Azure provide for monitoring and controlling costs?
+#### Q. How do you use Azure Cost Management and Billing to track spending?
+#### Q. What is the benefit of Reserved Instances, and how do they help with cost savings?
+#### Q. How does the Azure Pricing Calculator assist in planning costs?
+#### Q. What are some best practices for optimizing costs in Azure?
+#### Q. How do you implement budgets and alerts in Azure Cost Management?
+#### Q. What are Cost Management scopes, and how do they help in managing costs?
+#### Q. Can you explain the difference between Pay-As-You-Go and Reserved Pricing models?
+#### Q. How do you manage costs for multi-cloud environments using Azure Cost Management?
+#### Q. What is Azure Advisor, and how does it provide cost-saving recommendations?
+#### Q. How do you analyze and interpret cost data using Cost Management + Billing?
+#### Q. What strategies can you use to reduce storage costs in Azure?
+#### Q. How do you ensure cost efficiency when scaling applications in Azure?
+#### Q. How do you manage and optimize costs for Azure Virtual Machines (VMs)?
+#### Q. What role do tagging and resource grouping play in cost management?
+#### Q. How do you leverage Azure Hybrid Benefit for cost savings?
+#### Q. What are some common cost-saving practices for using Azure SQL Database?
+#### Q. How do you optimize the cost of running Azure Kubernetes Service (AKS)?
+#### Q. What are some cost management challenges specific to serverless architectures in Azure?
+#### Q. How do you monitor and manage costs for Azure DevOps pipelines?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -837,6 +1138,26 @@
 #### Q. Can you describe a scenario where you would use both Azure Cognitive Services and Azure Machine Learning together?
 #### Q. How would you use Azure AI to build a fraud detection model for financial transactions?
 #### Q. What Azure AI services would you use to analyze customer feedback and sentiment in real-time?
+#### Q. What are Azure Cognitive Services, and what are their main categories?
+#### Q. Can you explain the difference between Azure Machine Learning and Azure Cognitive Services?
+#### Q. How would you use the Computer Vision API in an application?
+#### Q. What is the Speech-to-Text service, and how can it be implemented?
+#### Q. How do you use the Text Analytics API for sentiment analysis?
+#### Q. What is the Anomaly Detector API, and how does it work?
+#### Q. How would you integrate the Translator Text API into a web application?
+#### Q. What are the key features of the Face API, and how can it be used?
+#### Q. How do you implement the Content Moderator API for content filtering?
+#### Q. What is the role of the Bing Search API in web search applications?
+#### Q. How do you use the Azure Bot Service to create a chatbot?
+#### Q. What is Azure Machine Learning, and how does it support model training and deployment?
+#### Q. How do you use Azure Databricks for data preparation and preprocessing?
+#### Q. What is the purpose of Azure Cognitive Search, and how does it work?
+#### Q. How do you implement a recommendation system using Azure AI?
+#### Q. What are the benefits of using Azure Machine Learning Designer for building models?
+#### Q. How do you monitor and manage AI models in production using Azure Monitor?
+#### Q. What is the role of Azure OpenAI Service in developing AI applications?
+#### Q. How do you handle data privacy and compliance in Azure AI services?
+#### Q. What are some common use cases for Azure AI in different industries?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -869,6 +1190,26 @@
 #### Q. What is Azure Functions?
 #### Q. How to include external DLL into Azure Function?
 #### Q. What do you know about Azure WebJobs?
+#### Q. What are the different types of Azure subscriptions, and how do they differ?
+#### Q. How does Azure support hybrid cloud environments?
+#### Q. What is Azure Stack, and how does it extend Azure capabilities?
+#### Q. What is the Azure Marketplace, and how can it be used by businesses?
+#### Q. How does Azure support DevSecOps practices?
+#### Q. What is the Azure IoT Hub, and what are its main features?
+#### Q. How do you manage compliance requirements in Azure?
+#### Q. Can you explain the concept of Azure Blueprints and their use cases?
+#### Q. How does Azure support artificial intelligence and machine learning?
+#### Q. What are some best practices for cost optimization in Azure?
+#### Q. What is Azure Logic Apps, and how do they simplify workflow automation?
+#### Q. How do you use Azure Event Grid for event-driven architecture?
+#### Q. What is the role of Azure Active Directory B2C for customer identity management?
+#### Q. How would you handle patch management for Azure resources?
+#### Q. What are some key considerations for designing a high availability architecture in Azure?
+#### Q. How do you secure APIs hosted in Azure?
+#### Q. What is Azure Policy, and how does it help with resource governance?
+#### Q. What are some common use cases for Azure Functions?
+#### Q. How do you integrate Azure with on-premises data sources?
+#### Q. What is the role of Azure DevTest Labs in development and testing environments?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -987,6 +1328,26 @@
 #### Q. How do you handle monitoring, security, and cost optimization as part of Azure best practices?
 #### Q. What are the considerations for network design in a secure Azure environment?
 #### Q. How would you use tagging and naming conventions to manage resources effectively?
+#### Q. What is Microsoft Azure, and what are its primary uses?
+#### Q. What are the key benefits of using Azure?
+#### Q. Can you explain the difference between IaaS, PaaS, and SaaS in Azure?
+#### Q. What are Azure Regions and Availability Zones, and why are they important?
+#### Q. How does Azure Resource Manager (ARM) help in managing Azure resources?
+#### Q. What is Azure Active Directory (AAD), and how does it differ from on-premises AD?
+#### Q. What is the difference between Azure Virtual Machines and Azure App Services?
+#### Q. How would you define and use Azure Resource Groups?
+#### Q. What is Azure Storage, and what types of storage does it offer?
+#### Q. How does Azure Load Balancer work, and when would you use it?
+#### Q. What are Azure Virtual Networks (VNets), and why are they important?
+#### Q. What is Azure DevOps, and how does it support the software development lifecycle?
+#### Q. Can you explain the concept of serverless computing and its benefits in Azure?
+#### Q. What is Azure Kubernetes Service (AKS), and how does it support container orchestration?
+#### Q. How does Azure support compliance with data protection regulations like GDPR?
+#### Q. What is the role of Azure Monitoring and how does it help in managing applications?
+#### Q. How do you implement security best practices for Azure resources?
+#### Q. What is Azure Marketplace, and what can you find there?
+#### Q. How do you estimate and control costs in Azure?
+#### Q. What is Azure Cognitive Services, and how can they be used in applications?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
