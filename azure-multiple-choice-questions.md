@@ -302,7 +302,7 @@ C. An AI product by Microsoft
 
 D. A data analysis tool by Microsoft
 
-Answer: B. A cloud computing service by Microsoft
+**Answer:** B. A cloud computing service by Microsoft
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -318,7 +318,7 @@ C. Azure Container
 
 D. Azure Network Vault
 
-Answer: A. Azure Blob Storage
+**Answer:** A. Azure Blob Storage
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -334,7 +334,7 @@ C. Azure Functions
 
 D. Azure Storage
 
-Answer: A. Azure App Service
+**Answer:** A. Azure App Service
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -350,7 +350,7 @@ C. Azure Insights
 
 D. Azure Report
 
-Answer: A. Azure Monitor
+**Answer:** A. Azure Monitor
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -366,7 +366,7 @@ C. Azure File Storage
 
 D. Azure Queue Storage
 
-Answer: B. Azure Blob Storage
+**Answer:** B. Azure Blob Storage
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -382,7 +382,7 @@ C. To provide identity and access management
 
 D. To create websites
 
-Answer: C. To provide identity and access management
+**Answer:** C. To provide identity and access management
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -398,7 +398,7 @@ C. Azure SQL Database
 
 D. Azure Key Vault
 
-Answer: A. Azure Stream Analytics
+**Answer:** A. Azure Stream Analytics
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -414,7 +414,7 @@ C. Protocol as a Service
 
 D. Platform as a Solution
 
-Answer: A. Platform as a Service
+**Answer:** A. Platform as a Service
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -430,7 +430,7 @@ C. Azure Functions
 
 D. Azure Logic Apps
 
-Answer: A. Azure Virtual Machines
+**Answer:** A. Azure Virtual Machines
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -446,7 +446,7 @@ C. Creating virtual machines
 
 D. Monitoring application performance
 
-Answer: A. Organizing and managing related Azure resources
+**Answer:** A. Organizing and managing related Azure resources
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -462,9 +462,9 @@ C. 2010
 
 D. 2001
 
-Answer: C. 2010
+**Answer:** C. 2010
 
-Explanation:
+**Explanation:**
 
 Microsoft Azure came into existence in the year 2010.
 
@@ -482,9 +482,9 @@ C. A platform where you can access the data from a remote server.
 
 D. All of the above
 
-Answer: D. All of the above
+**Answer:** D. All of the above
 
-Explanation:
+**Explanation:**
 
 Cloud computing is a general term that is used to store a huge amount of data over the internet. This is a platform where you can access your data from any remote server.
 
@@ -502,9 +502,9 @@ C. A platform that offers a variety of technologies that are used for cloud serv
 
 D. All of the above
 
-Answer: D. All of the above
+**Answer:** D. All of the above
 
-Explanation:
+**Explanation:**
 
 Microsoft Azure is an open cloud computing service which is created by Microsoft that helps us in the development of an application, hosting an application, testing, managing, and deploying an applications. It provides a variety of services and technologies which can greatly be used for cloud service, mobile app development, etc.
 
@@ -522,9 +522,9 @@ C. 4
 
 D. 5
 
-Answer: A. 3
+**Answer:** A. 3
 
-Explanation:
+**Explanation:**
 
 There are three types of cloud in Azure: PAAS, SAAS, and IASS.
 
@@ -537,9 +537,9 @@ There are three types of cloud in Azure: PAAS, SAAS, and IASS.
 A. A directory where you can manage services, and app users from a distributed location.
 B. A directory where you can manage services, and apps users from a centralized location.
 
-Answer: B. A directory where you can manage services, and apps users from a centralized location.
+**Answer:** B. A directory where you can manage services, and apps users from a centralized location.
 
-Explanation:
+**Explanation:**
 
 Azure active directory is also known as AD. It is a directory that allows you to manage your files, users, services, etc from one central location.
 
@@ -552,9 +552,9 @@ Azure active directory is also known as AD. It is a directory that allows you to
 A. Windows Active directory
 B. Azure active directory
 
-Answer: B. Azure active directory
+**Answer:** B. Azure active directory
 
-Explanation:
+**Explanation:**
 
 Windows active directory is the previous version of Azure active directory.
 
@@ -572,9 +572,9 @@ C. 5
 
 D. 6
 
-Answer: A. 3
+**Answer:** A. 3
 
-Explanation:
+**Explanation:**
 
 There are three types of audiences in the Azure active directory: IT administrators, Application developers, and Online customers.
 
@@ -590,9 +590,9 @@ B. Application developers
 
 C. Online customers.
 
-Answer: A. IT administrators
+**Answer:** A. IT administrators
 
-Explanation:
+**Explanation:**
 
 IT administrators take care of all the sign-in procedures in the Azure active directory and all the work/issues related to authentications.
 
@@ -608,9 +608,9 @@ B. PAAS
 
 C. SAAS
 
-Answer: A. IAAS
+**Answer:** A. IAAS
 
-Explanation:
+**Explanation:**
 
 IAAS (infrastructure as a service) is the foundational cloud platform layer mainly used by IT administrators for processing, storage, and any fundamental computer operation.
 
@@ -626,9 +626,9 @@ B. End users
 
 C. Network architect
 
-Answer: C. Network architect
+**Answer:** C. Network architect
 
-Explanation:
+**Explanation:**
 
 IAAS is used by network architects.
 
@@ -646,9 +646,9 @@ C. IAAS provides us with a monthly operational expense.
 
 D. All of the above
 
-Answer: D. All of the above
+**Answer:** D. All of the above
 
-Explanation:
+**Explanation:**
 
 There are several advantages of IAAS:
 
@@ -670,9 +670,9 @@ B. PAAS
 
 C. SAAS
 
-Answer: B. PAAS
+**Answer:** B. PAAS
 
-Explanation:
+**Explanation:**
 
 PAAS is known as a platform as a service and clients use this to develop and deploy the application.
 
@@ -688,9 +688,9 @@ B. End users
 
 C. Network architect
 
-Answer: A. Developers
+**Answer:** A. Developers
 
-Explanation:
+**Explanation:**
 
 PAAS is used by developers and application providers.
 
@@ -706,9 +706,9 @@ B. End users
 
 C. Network architect
 
-Answer: B. End users
+**Answer:** B. End users
 
-Explanation:
+**Explanation:**
 
 SAAS is used by end users.
 
@@ -724,9 +724,9 @@ B. PAAS
 
 C. SAAS
 
-Answer: C. SAAS
+**Answer:** C. SAAS
 
-Explanation:
+**Explanation:**
 
 SAAS (software as a service) is a cloud computing service model where software is hosted on the cloud and made available to clients.
 
@@ -742,9 +742,9 @@ B. Data center
 
 C. Resources
 
-Answer: A. Regions
+**Answer:** A. Regions
 
-Explanation:
+**Explanation:**
 
 The term region refers to a geographical location or area.
 
@@ -760,9 +760,9 @@ B. Closer distance
 
 C. Moderate distance
 
-Answer: B. Closer distance
+**Answer:** B. Closer distance
 
-Explanation:
+**Explanation:**
 
 It is suggested to choose a region that is closer to the customer, as it helps us to reduce the latency in network requests.
 
@@ -780,9 +780,9 @@ C. Data center
 
 D. Resource groups
 
-Answer: C. Data center
+**Answer:** C. Data center
 
-Explanation:
+**Explanation:**
 
 Data centers are physical buildings located in specific geographical regions.
 
@@ -800,9 +800,9 @@ C. Resource manager templates
 
 D. Resource groups
 
-Answer: B. Azure portal
+**Answer:** B. Azure portal
 
-Explanation:
+**Explanation:**
 
 Creating, managing, and removing Azure resources and services is done through the Azure portal, which is a web-based application.
 
@@ -816,9 +816,9 @@ A. Yes
 
 B. No
 
-Answer: B. NO
+**Answer:** B. NO
 
-Explanation:
+**Explanation:**
 
 Azure resources are billable objects whereas the services are something that is needed to be performed.
 
@@ -834,9 +834,9 @@ B. Resource Group
 
 C. Azure portal
 
-Answer: B. Resource Group
+**Answer:** B. Resource Group
 
-Explanation:
+**Explanation:**
 
 An Azure resource group is a container that holds related resources for an Azure solution.
 
@@ -850,9 +850,9 @@ A. Yes
 
 B. No
 
-Answer: B. NO
+**Answer:** B. NO
 
-Explanation:
+**Explanation:**
 
 No, Azure CLI and Azure PowerShell are two different tools, and according to the task appropriate tool is decided.
 
@@ -866,9 +866,9 @@ A. Azure PowerShell
 
 B. Azure CLI
 
-Answer: A. Azure PowerShell
+**Answer:** A. Azure PowerShell
 
-Explanation:
+**Explanation:**
 
 PowerShell is a set of modules that offer cmdlets to manage Azure.
 
@@ -886,9 +886,9 @@ C. Azure fabric controller
 
 D. Azure orchestrator
 
-Answer: C. Azure fabric controller
+**Answer:** C. Azure fabric controller
 
-Explanation:
+**Explanation:**
 
 Azure fabric controllers act as the kernel of Azure Service Platform in managing the hardware resources. It mainly manages and monitors the allocation of computing resources.
 
@@ -906,9 +906,9 @@ C. Authentication servers
 
 D. Azure orchestrator
 
-Answer: D. Azure orchestrator
+**Answer:** D. Azure orchestrator
 
-Explanation:
+**Explanation:**
 
 Azure fabric controller is connected to Azure orchestrator, which includes web services and REST API.
 
@@ -926,9 +926,9 @@ C. 5
 
 D. 6
 
-Answer: A. 3
+**Answer:** A. 3
 
-Explanation:
+**Explanation:**
 
 There are three categories of Microsoft certifications: Azure administrator, Azure developer, and Azure solution architect.
 
@@ -946,9 +946,9 @@ C. 3
 
 D. 6
 
-Answer: C. 3
+**Answer:** C. 3
 
-Explanation:
+**Explanation:**
 
 There are three types of cloud computing: Private cloud, public cloud and Hybrid cloud.
 
@@ -964,9 +964,9 @@ B. Private Cloud
 
 C. Hybrid cloud
 
-Answer: A. Public cloud
+**Answer:** A. Public cloud
 
-Explanation:
+**Explanation:**
 
 In the public cloud resources are owned and operated by a third-party cloud service provider.
 
@@ -982,9 +982,9 @@ B. Private Cloud
 
 C. Hybrid cloud
 
-Answer: B. Private Cloud
+**Answer:** B. Private Cloud
 
-Explanation:
+**Explanation:**
 
 A private cloud is a collection of resources that are used exclusively within a business or organization.
 
@@ -1004,9 +1004,9 @@ D. Azure table storage
 
 E. Azure Archive storage
 
-Answer: C. Azure table storage
+**Answer:** C. Azure table storage
 
-Explanation:
+**Explanation:**
 
 Azure blob storage is used to store huge amounts of unstructured data in Azure, here you can store any type of text or binary data, such as a document, or media file.
 
@@ -1026,9 +1026,9 @@ D. Azure table storage
 
 E.Azure Archive storage
 
-Answer: B. Azure File storage
+**Answer:** B. Azure File storage
 
-Explanation:
+**Explanation:**
 
 Azure file storage is used when one wants to share files between two servers so that they can be accessible on both servers.
 
@@ -1048,9 +1048,9 @@ D. Azure table storage
 
 E. Azure Archive storage
 
-Answer: A. Azure queue storage
+**Answer:** A. Azure queue storage
 
-Explanation:
+**Explanation:**
 
 Azure queue storage in Azure provides us with the feature of cloud messaging.
 
@@ -1070,9 +1070,9 @@ D. Azure table storage
 
 E. Azure Archive storage
 
-Answer: E. Azure Archive storage
+**Answer:** E. Azure Archive storage
 
-Explanation:
+**Explanation:**
 
 Azure archive storage is used for rarely accessed files with cost-effective plans in Azure.
 
@@ -1092,9 +1092,9 @@ D. Azure table storage
 
 E. Azure Archive storage
 
-Answer: D. Azure table storage
+**Answer:** D. Azure table storage
 
-Explanation:
+**Explanation:**
 
 Azure table storage is used to store the NoSQL data with a schema less design.
 
@@ -1112,9 +1112,9 @@ C. Azure disk storage
 
 D. Azure data box
 
-Answer: C. Azure disk storage
+**Answer:** C. Azure disk storage
 
-Explanation:
+**Explanation:**
 
 With Azure disk storage Windows and Linux can use shared cloud block storage at the same time.
 
@@ -1132,9 +1132,9 @@ C. Azure disk storage
 
 D. Azure data box
 
-Answer: A. Azure StorSimple
+**Answer:** A. Azure StorSimple
 
-Explanation:
+**Explanation:**
 
 Azure StorSimple is basically a hybrid cloud storage.
 
@@ -1152,9 +1152,9 @@ C. Azure disk storage
 
 D. Azure data box
 
-Answer: B. Azure site recovery
+**Answer:** B. Azure site recovery
 
-Explanation:
+**Explanation:**
 
 Azure site recovery is used for retrieval and replication of workloads in Azure in case of disaster.
 
@@ -1172,9 +1172,9 @@ C. Azure disk storage
 
 D. Azure data box
 
-Answer: D. Azure data box
+**Answer:** D. Azure data box
 
-Explanation:
+**Explanation:**
 
 Azure data service is used to transfer huge amounts of data in terabytes in Azure.
 
@@ -1188,9 +1188,9 @@ A. Yes
 
 B. No
 
-Answer: B. NO
+**Answer:** B. NO
 
-Explanation:
+**Explanation:**
 
 No, they are not the same. Both are really very different as Azure backup is used to protect the data whereas Azure site recovery service is used when your data center goes down.
 
@@ -1204,9 +1204,9 @@ A. Yes
 
 B. No
 
-Answer: A. YES
+**Answer:** A. YES
 
-Explanation:
+**Explanation:**
 
 Yes, Azure monitor is responsible for monitoring all the storage services.
 
@@ -1224,9 +1224,9 @@ C. Content delivery network
 
 D. Content dominates network
 
-Answer: C. Content delivery network
+**Answer:** C. Content delivery network
 
-Explanation:
+**Explanation:**
 
 CDN stands for content delivery network.
 
@@ -1244,9 +1244,9 @@ C. 3
 
 D. 9
 
-Answer: C. 3
+**Answer:** C. 3
 
-Explanation:
+**Explanation:**
 
 There are three types of storage accounts in Azure: General purpose V2, General purpose V1, and Blob storage.
 
@@ -1262,9 +1262,9 @@ B. General purpose V1
 
 C. Blob storage.
 
-Answer: C. Blob storage.
+**Answer:** C. Blob storage.
 
-Explanation:
+**Explanation:**
 
 Blob storage supports the standard performance tier whereas the other two storage account types support both the standard and premium performance tiers.
 
@@ -1282,9 +1282,9 @@ C. 4
 
 D. 5
 
-Answer: B. 2
+**Answer:** B. 2
 
-Explanation:
+**Explanation:**
 
 There are two types of performance tiers: standard performance and premium storage performance.
 
@@ -1298,9 +1298,9 @@ A. Standard performance
 
 B. Premium storage performance.
 
-Answer: B. Premium storage performance.
+**Answer:** B. Premium storage performance.
 
-Explanation:
+**Explanation:**
 
 Premium storage performance type of performance tier that offers consistency and low latency performance.
 
@@ -1315,9 +1315,9 @@ B. 5
 C. 4
 D. 6
 
-Answer: C. 4
+**Answer:** C. 4
 
-Explanation:
+**Explanation:**
 
 There are four types of access tiers: Premium Storage (preview), Hot storage, Cool Storage, and Archive Storage.
 
@@ -1331,9 +1331,9 @@ A. Cold storage tier
 
 B. Hot storage tier
 
-Answer: A. Cold storage tier
+**Answer:** A. Cold storage tier
 
-Explanation:
+**Explanation:**
 
 The cool tier has lower storage costs and higher access costs compared to the hot tier.
 
@@ -1349,9 +1349,9 @@ B. Hot storage tier
 
 C. Archive storage tier
 
-Answer: B. Hot storage tier
+**Answer:** B. Hot storage tier
 
-Explanation:
+**Explanation:**
 
 Hot storage tier is augmented for storing data that is accessed frequently.
 
@@ -1365,9 +1365,9 @@ A. Cold storage tier
 
 B. Hot storage tier
 
-Answer: B. Hot storage tier
+**Answer:** B. Hot storage tier
 
-Explanation:
+**Explanation:**
 
 In terms of storage, the hot storage tier is more expensive than the cold storage tier.
 
@@ -1385,9 +1385,9 @@ C. 4
 
 D. 8
 
-Answer: C. 4
+**Answer:** C. 4
 
-Explanation:
+**Explanation:**
 
 The four types of replication strategies are provided by Azure: locally-redundant storage, zone-redundant storage, geo-redundant storage, and read-access geo-redundant storage.
 
@@ -1405,9 +1405,9 @@ C. Geo-Redundant Storage
 
 D. Read-Access Geo-Redundant Storage.
 
-Answer: A. Locally-Redundant Storage
+**Answer:** A. Locally-Redundant Storage
 
-Explanation:
+**Explanation:**
 
 In Locally-Redundant Storage, data is replicated three times within a single data center.
 
@@ -1425,9 +1425,9 @@ C. Geo-Redundant Storage
 
 D. Read-Access Geo-Redundant Storage.
 
-Answer: B. Zone-Redundant Storage
+**Answer:** B. Zone-Redundant Storage
 
-Explanation:
+**Explanation:**
 
 In the zone redundant replication strategy of Azure, data is replicated across data centers but within the region.
 
@@ -1445,9 +1445,9 @@ C. Geo-Redundant Storage
 
 D. Read-Access Geo-Redundant Storage.
 
-Answer: C. Geo-Redundant Storage
+**Answer:** C. Geo-Redundant Storage
 
-Explanation:
+**Explanation:**
 
 In the Geo-redundant storage replication strategy our data is copied synchronously three times using LRS.
 
@@ -1461,9 +1461,9 @@ A. Yes
 
 B. No
 
-Answer: B. NO
+**Answer:** B. NO
 
-Explanation:
+**Explanation:**
 
 Geo-redundant storage and read access geo-redundant storage are not the same.
 
@@ -1481,9 +1481,9 @@ C. Azure resource groups
 
 D. Azure resource manager
 
-Answer: A. Azure activity log
+**Answer:** A. Azure activity log
 
-Explanation:
+**Explanation:**
 
 Azure activity log service provides the record of events that have been carried out on a specific resource.
 
@@ -1501,9 +1501,9 @@ C. Cross-origin resource service
 
 D. Combine origin resource service
 
-Answer: C. Cross-origin resource service
+**Answer:** C. Cross-origin resource service
 
-Explanation:
+**Explanation:**
 
 CORS stands for cross-origin resource service.
 
@@ -1521,9 +1521,9 @@ C. Shared authentication system
 
 D. Shared access signature
 
-Answer: D. Shared access signature
+**Answer:** D. Shared access signature
 
-Explanation:
+**Explanation:**
 
 SAS stands for Shared access signature.
 
@@ -1541,9 +1541,9 @@ C. Shared authentication system
 
 D. Shared access signature
 
-Answer: D. Shared access signature
+**Answer:** D. Shared access signature
 
-Explanation:
+**Explanation:**
 
 SAS Azure Storage service provides restricted access rights to Azure Storage resources using a URI.
 
@@ -1561,9 +1561,9 @@ C. 1000GB
 
 D. Unlimited
 
-Answer: B. 200 GB
+**Answer:** B. 200 GB
 
-Explanation:
+**Explanation:**
 
 The maximum size of a block blob is 200 GB.
 
@@ -1581,9 +1581,9 @@ C. 4
 
 D. 3
 
-Answer: D. 3
+**Answer:** D. 3
 
-Explanation:
+**Explanation:**
 
 Azure provides us with three types of blobs: Block blob, Append blob, and Page blob.
 
@@ -1599,9 +1599,9 @@ B. Append blob
 
 C. Page blob
 
-Answer: A. Block blob
+**Answer:** A. Block blob
 
-Explanation:
+**Explanation:**
 
 Block blob can be managed individually and store text and binary data in Azure.
 
@@ -1617,9 +1617,9 @@ B. Append blob
 
 C. Page blob
 
-Answer: B. Append blob
+**Answer:** B. Append blob
 
-Explanation:
+**Explanation:**
 
 Append blob is ideal for an application like logging data from virtual machines.
 
@@ -1635,9 +1635,9 @@ B. Append blob
 
 C. Page blob
 
-Answer: C. Page blob
+**Answer:** C. Page blob
 
-Explanation:
+**Explanation:**
 
 Page blobs can store files up to 8 TB, these blobs are created by default.
 
@@ -1651,9 +1651,9 @@ A. Yes
 
 B. No
 
-Answer: B. NO
+**Answer:** B. NO
 
-Explanation:
+**Explanation:**
 
 No, blob and container aren't the same things because blobs are used to store discrete pieces of data whereas containers store applications, services, and workloads.
 
@@ -1667,9 +1667,9 @@ A. Yes
 
 B. No
 
-Answer: B. NO
+**Answer:** B. NO
 
-Explanation:
+**Explanation:**
 
 Container name always starts from a number or a letter and can only contain a dash with numbers and letters.
 
@@ -1687,9 +1687,9 @@ C. 6
 
 D. 7
 
-Answer: B. 5
+**Answer:** B. 5
 
-Explanation:
+**Explanation:**
 
 Azure storage security is divided into 5 areas: Management plane security, Data place security, Encryption in transit, Encryption in rest, and cross-origin resource sharing.
 
@@ -1709,9 +1709,9 @@ D. Encryption in rest
 
 E. cross-origin resource sharing.
 
-Answer: A. Management plane security
+**Answer:** A. Management plane security
 
-Explanation:
+**Explanation:**
 
 Management plane storage security refers to the process that affects the storage account itself
 
@@ -1731,9 +1731,9 @@ D. Encryption in rest
 
 E. cross-origin resource sharing.
 
-Answer: B. Data place security
+**Answer:** B. Data place security
 
-Explanation:
+**Explanation:**
 
 Data place security in Azure denotes the approaches used to protect the data objects.
 
@@ -1751,9 +1751,9 @@ C. 6
 
 D. 3
 
-Answer: D. 3
+**Answer:** D. 3
 
-Explanation:
+**Explanation:**
 
 Three ways can be used to control the access to the data within the storage account in Microsoft Azure: Azure active directory Storage account keys, Shared Access Signatures.
 
@@ -1771,9 +1771,9 @@ C. AzCopy
 
 D. Snap logic
 
-Answer: A. Robocopy
+**Answer:** A. Robocopy
 
-Explanation:
+**Explanation:**
 
 Robocopy tool in Azure is known for file copy and is best suited for migrations.
 
@@ -1791,9 +1791,9 @@ C. AzCopy
 
 D. Snap logic
 
-Answer: C. AzCopy
+**Answer:** C. AzCopy
 
-Explanation:
+**Explanation:**
 
 AzCopy is the command utility tool in Azure that aids us in copying the data like blobs or files.
 
@@ -1807,9 +1807,9 @@ A. Structured data
 
 B. Unstructured data
 
-Answer: A. Structured data
+**Answer:** A. Structured data
 
-Explanation:
+**Explanation:**
 
 The Azure table stores structured forms of data.
 
@@ -1827,9 +1827,9 @@ C. Azure service bus queue
 
 D. None
 
-Answer: C. Azure service bus queue
+**Answer:** C. Azure service bus queue
 
-Explanation:
+**Explanation:**
 
 Azure service bus queue is the advanced version of the Azure queue storage service.
 
@@ -1847,9 +1847,9 @@ C. 5
 
 D. 2
 
-Answer: D. 2
+**Answer:** D. 2
 
-Explanation:
+**Explanation:**
 
 Two types of disk storage are provided by Azure: Managed disk and unmanaged disk.
 
@@ -1863,9 +1863,9 @@ A. Managed disk
 
 B. Unmanaged disk.
 
-Answer: B. Unmanaged disk.
+**Answer:** B. Unmanaged disk.
 
-Explanation:
+**Explanation:**
 
 Unmanaged disks are the type of disk which are known to be the outmoded type of disk and commonly used by VMs.
 
@@ -1879,9 +1879,9 @@ A. Managed disk
 
 B. Unmanaged disk.
 
-Answer: A. Managed disk
+**Answer:** A. Managed disk
 
-Explanation:
+**Explanation:**
 
 Managed disk is the type of disk, in which we do not have to care about the scalability limits of the storage account, it handles all the formation in the background.
 
@@ -1899,9 +1899,9 @@ C. 4
 
 D. 5
 
-Answer: A. 2
+**Answer:** A. 2
 
-Explanation:
+**Explanation:**
 
 The two types of capabilities which are present in Azure for storage monitoring are: Continuous monitoring and logging.
 
@@ -1917,9 +1917,9 @@ B. Azure storage analytics services
 
 C. Azure compute services
 
-Answer: B. Azure storage analytics services
+**Answer:** B. Azure storage analytics services
 
-Explanation:
+**Explanation:**
 
 Azure storage analytics services Azure is a kind of service that accomplishes logging and offers metrics data for a storage account.
 
@@ -1937,9 +1937,9 @@ C. 2
 
 D. 6
 
-Answer: C. 2
+**Answer:** C. 2
 
-Explanation:
+**Explanation:**
 
 The two types of metrics which are offered by Azure under storage analytics metrics are: transaction metrics and capacity metrics.
 
@@ -1953,9 +1953,9 @@ A. Transaction metrics
 
 B. Capacity metrics.
 
-Answer: B. Capacity metrics.
+**Answer:** B. Capacity metrics.
 
-Explanation:
+**Explanation:**
 
 Capacity metric is the type of metric in Azure that records day-to-day storage account Blob service, containers, etc.
 
@@ -1969,9 +1969,9 @@ A. Transaction metrics
 
 B. Capacity metrics.
 
-Answer: A. Transaction metrics
+**Answer:** A. Transaction metrics
 
-Explanation:
+**Explanation:**
 
 Transaction metrics are a type of metrics in which aggregated data is recorded hourly or minute.
 
@@ -1987,9 +1987,9 @@ B. Azure storage emulator
 
 C. Azure test application
 
-Answer: B. Azure storage emulator
+**Answer:** B. Azure storage emulator
 
-Explanation:
+**Explanation:**
 
 Azure storage emulator is a type of service on which we can test our application against the storage services locally without spending any cost.
 
@@ -2005,9 +2005,9 @@ B. Azure storage emulator
 
 C. Azure test application
 
-Answer: A. Azure storage explorer
+**Answer:** A. Azure storage explorer
 
-Explanation:
+**Explanation:**
 
 Azure storage explorer service in Azure permits us to proficiently work with Azure Storage data on Windows, macOS, and Linux.
 
@@ -2025,9 +2025,9 @@ C. Azure network interface
 
 D. Azure storage emulator
 
-Answer: A. Azure virtual network
+**Answer:** A. Azure virtual network
 
-Explanation:
+**Explanation:**
 
 Azure virtual networks are supposed to be known as the fundamental building block of Azure network services.
 
@@ -2045,9 +2045,9 @@ C. Azure DDoS protection
 
 D. Azure Firewall protection
 
-Answer: C. Azure DDoS protection
+**Answer:** C. Azure DDoS protection
 
-Explanation:
+**Explanation:**
 
 Azure DDoS protection service protects the workload in the virtual network from DDoS attacks in Azure.
 
@@ -2061,9 +2061,9 @@ A. Azure virtual network
 
 B. Azure Firewall protection
 
-Answer: B. Azure Firewall protection
+**Answer:** B. Azure Firewall protection
 
-Explanation:
+**Explanation:**
 
 Azure Firewall protection is used when we need network security.
 
@@ -2079,9 +2079,9 @@ B. Network system group
 
 C. Network security group
 
-Answer: C. Network security group
+**Answer:** C. Network security group
 
-Explanation:
+**Explanation:**
 
 NSG stands for Network security group.
 
@@ -2095,9 +2095,9 @@ A. Network security group
 
 B. Firewall
 
-Answer: B. Firewall
+**Answer:** B. Firewall
 
-Explanation:
+**Explanation:**
 
 A firewall is quite expensive than NSG.
 
@@ -2115,9 +2115,9 @@ C. Firewall
 
 D. Load balancer
 
-Answer: B. Traffic manager
+**Answer:** B. Traffic manager
 
-Explanation:
+**Explanation:**
 
 Traffic manager is a kind of service in Azure that controls the circulation of user stream of traffic for service endpoints in diverse regions.
 
@@ -2135,9 +2135,9 @@ C. Firewall
 
 D. Load balancer
 
-Answer: D. Load balancer
+**Answer:** D. Load balancer
 
-Explanation:
+**Explanation:**
 
 Load balancer service in Azure aids us to distribute the stream of traffic evenly between application servers.
 
@@ -2150,9 +2150,9 @@ Load balancer service in Azure aids us to distribute the stream of traffic evenl
 A. Yes
 B. No
 
-Answer: B. NO
+**Answer:** B. NO
 
-Explanation:
+**Explanation:**
 
 The name of the network should be unique within the network security group.
 
@@ -2170,9 +2170,9 @@ C. Firewall
 
 D. Azure network interface
 
-Answer: D. Azure network interface
+**Answer:** D. Azure network interface
 
-Explanation:
+**Explanation:**
 
 Azure network interface acts as an interconnection between a virtual machine and the underlying software network.
 
@@ -2190,9 +2190,9 @@ C. 4
 
 D. 5
 
-Answer: A. 2
+**Answer:** A. 2
 
-Explanation:
+**Explanation:**
 
 There are two types of IP addresses: Private IP addresses and Public IP addresses.
 
@@ -2210,9 +2210,9 @@ C. Global peering
 
 D. VNet
 
-Answer: B. VNet peering
+**Answer:** B. VNet peering
 
-Explanation:
+**Explanation:**
 
 VNet peering allows us to connect two VNet in the same or across regions.
 
@@ -2230,9 +2230,9 @@ C. Global peering
 
 D. VNet
 
-Answer: A. VPN gateway
+**Answer:** A. VPN gateway
 
-Explanation:
+**Explanation:**
 
 VPN Gateway Azure service acts as a middleman on both sides of the virtual networks.
 
@@ -2250,9 +2250,9 @@ C. 4
 
 D. 3
 
-Answer: D. 3
+**Answer:** D. 3
 
-Explanation:
+**Explanation:**
 
 Azure compute service can be divided broadly into three categories: Infrastructure as a service, Platform as a service, and Serverless services.
 
@@ -2266,9 +2266,9 @@ A. PAAS
 
 B. IAAS
 
-Answer: B. IAAS
+**Answer:** B. IAAS
 
-Explanation:
+**Explanation:**
 
 In Azure, the VM's are IAAS i.e., infrastructure as a service.
 
@@ -2284,9 +2284,9 @@ B. Azure Virtual machines
 
 C. Azure service fabric
 
-Answer: A. Azure App service
+**Answer:** A. Azure App service
 
-Explanation:
+**Explanation:**
 
 App service in Azure is used for hosting web applications, REST APIs, and mobile backends.
 
@@ -2300,9 +2300,9 @@ A. PAAS
 
 B. IAAS
 
-Answer: A. PAAS
+**Answer:** A. PAAS
 
-Explanation:
+**Explanation:**
 
 Azure app service is a platform as a service (PAAS).
 
@@ -2320,9 +2320,9 @@ C. Azure service fabric
 
 D. Azure Kubernetes service
 
-Answer: D. Azure Kubernetes service
+**Answer:** D. Azure Kubernetes service
 
-Explanation:
+**Explanation:**
 
 Azure Kubernetes service offers the rapidest method to start developing and deploying cloud-native apps in Azure.
 
@@ -2340,9 +2340,9 @@ C. Key Vault
 
 D. All of the above
 
-Answer: D. All of the above
+**Answer:** D. All of the above
 
-Explanation:
+**Explanation:**
 
 The three key services that are related to Azure compute services are: Azure security center, Active Directory, and Key Vault.
 
@@ -2358,9 +2358,9 @@ B. Temporary disk
 
 D. Data disk
 
-Answer: B. Temporary disk
+**Answer:** B. Temporary disk
 
-Explanation:
+**Explanation:**
 
 Temporary disk in a virtual machine in Azure offers temporary/ short-term storage for applications and processes.
 
@@ -2374,9 +2374,9 @@ A. Server-side encryption
 
 B. Azure Disk encryption
 
-Answer: A. Server-side encryption
+**Answer:** A. Server-side encryption
 
-Explanation:
+**Explanation:**
 
 Server-side encryption is a type of disk encryption in Azure that is allowed by default for all Managed Disks, Snapshots, and Images in every single region.
 
@@ -2390,9 +2390,9 @@ A. Server-side encryption
 
 B. Azure Disk encryption
 
-Answer: B. Azure Disk encryption
+**Answer:** B. Azure Disk encryption
 
-Explanation:
+**Explanation:**
 
 Azure disk encryption is a type of disk encryption in Azure that permits you to encrypt the OS and Data disks used by an IaaS Virtual Machine.
 
@@ -2406,9 +2406,9 @@ A. Azure machine auto-scaling
 
 B. Azure virtual machine scale set
 
-Answer: B. Azure virtual machine scale set
+**Answer:** B. Azure virtual machine scale set
 
-Explanation:
+**Explanation:**
 
 Azure virtual machine scale set service of Azure lets you create and manage a collection of loaded balanced VMs.
 
@@ -2426,9 +2426,9 @@ C. 3
 
 D. 2
 
-Answer: D. 2
+**Answer:** D. 2
 
-Explanation:
+**Explanation:**
 
 Mainly there are two types of scaling in Azure: Vertical scaling and horizontal scaling.
 
@@ -2442,9 +2442,9 @@ A. Vertical scaling
 
 B. Horizontal scaling.
 
-Answer: B. Horizontal scaling.
+**Answer:** B. Horizontal scaling.
 
-Explanation:
+**Explanation:**
 
 Horizontal scaling type scaling is suggested in Azure when you want to run a large number of VMs to handle the load.
 
@@ -2458,9 +2458,9 @@ A. Vertical scaling
 
 B. Horizontal scaling.
 
-Answer: A. Vertical scaling
+**Answer:** A. Vertical scaling
 
-Explanation:
+**Explanation:**
 
 Vertical scaling is a type of scaling in Azure which provides more capacity in terms of memory.
 
@@ -2478,9 +2478,9 @@ C. 4
 
 D. 5
 
-Answer: C. 4
+**Answer:** C. 4
 
-Explanation:
+**Explanation:**
 
 Four types of metrics are offered by Azure in terms of autoscaling:
 
@@ -2499,9 +2499,9 @@ A. Azure service health
 
 B. Azure resource health
 
-Answer: A. Azure service health
+**Answer:** A. Azure service health
 
-Explanation:
+**Explanation:**
 
 Azure service health service in Azure delivers timely and tailored information when difficulties in Azure services impact your services.
 
@@ -2515,9 +2515,9 @@ A. Azure service health
 
 B. Azure resource health
 
-Answer: B. Azure resource health
+**Answer:** B. Azure resource health
 
-Explanation:
+**Explanation:**
 
 Azure resource health service in Azure aids us to detect and get support when an Azure issue affects our resources.
 
@@ -2535,9 +2535,9 @@ C. 3
 
 D. 5
 
-Answer: C. 3
+**Answer:** C. 3
 
-Explanation:
+**Explanation:**
 
 Azure cloud service consists of 3 components: ServiceDefenition.csdef, ServiceConfiguration.cscfg, Service package. Cspkg.
 
@@ -2553,9 +2553,9 @@ B. ServiceConfiguration.cscfg
 
 C. Service package. Cspkg.
 
-Answer: C. Service package. Cspkg.
+**Answer:** C. Service package. Cspkg.
 
-Explanation:
+**Explanation:**
 
 Service package. Cspkg. Cloud service component in Azure used to deploy the application as a cloud service.
 
@@ -2571,9 +2571,9 @@ B. ServiceConfiguration.cscfg
 
 C. Service package. Cspkg.
 
-Answer: B. ServiceConfiguration.cscfg
+**Answer:** B. ServiceConfiguration.cscfg
 
-Explanation:
+**Explanation:**
 
 ServiceConfiguration.cscfg cloud service component comprises the values which are used to regulate the configuration of settings for the cloud service.
 
@@ -2591,9 +2591,9 @@ C. 4
 
 D. 5
 
-Answer: A. 2
+**Answer:** A. 2
 
-Explanation:
+**Explanation:**
 
 The two types of hosting environments that are present within Azure service are: the App Service plan and App Service environment.
 
@@ -2607,9 +2607,9 @@ A. App Service plan
 
 B. App Service environment
 
-Answer: A. App Service plan
+**Answer:** A. App Service plan
 
-Explanation:
+**Explanation:**
 
 App Service plan service provides compute resources for running a web app.
 
@@ -2623,9 +2623,9 @@ A. Yes
 
 B. No
 
-Answer: B. NO
+**Answer:** B. NO
 
-Explanation:
+**Explanation:**
 
 Hosting apps in an App Service is what makes up a Web App whereas Managed services that enable you to deploy web applications in Azure include the App Service.
 
@@ -2641,9 +2641,9 @@ B. Azure app service
 
 C. Azure mobile app
 
-Answer: C. Azure mobile app
+**Answer:** C. Azure mobile app
 
-Explanation:
+**Explanation:**
 
 Azure mobile app service in Azure is also known as the Microsoft Data sync Framework.
 
@@ -2661,9 +2661,9 @@ C. Azure mobile app
 
 D. Mobile offline data sync
 
-Answer: D. Mobile offline data sync
+**Answer:** D. Mobile offline data sync
 
-Explanation:
+**Explanation:**
 
 Mobile offline data sync is an SDK characteristic of Azure Mobile Apps.
 
@@ -2683,9 +2683,9 @@ D. Mobile offline data sync
 
 E. Azure Notification Hubs
 
-Answer: E. Azure Notification Hubs
+**Answer:** E. Azure Notification Hubs
 
-Explanation:
+**Explanation:**
 
 With the help of Azure Notification Hubs services, we can send notifications to users via mobile push notifications.
 
@@ -2703,9 +2703,9 @@ C. Vibrant set of delivery patterns.
 
 D. All of the above
 
-Answer: D. All of the above
+**Answer:** D. All of the above
 
-Explanation:
+**Explanation:**
 
 Following are the advantages of Azure notification hubs:
 
@@ -2727,9 +2727,9 @@ C. 2
 
 D. 5
 
-Answer: C. 2
+**Answer:** C. 2
 
-Explanation:
+**Explanation:**
 
 The two ways are provided by Azure to scale up the app service: scale up and scale out.
 
@@ -2743,9 +2743,9 @@ A. Scale up
 
 B. Scale-out
 
-Answer: A. Scale up
+**Answer:** A. Scale up
 
-Explanation:
+**Explanation:**
 
 Scale-up in Azure app services provides us with more CPU, memory, disc space, dedicated virtual machines, etc.
 
@@ -2759,9 +2759,9 @@ A. Scale up
 
 B. Scale-out
 
-Answer: B. Scale-out
+**Answer:** B. Scale-out
 
-Explanation:
+**Explanation:**
 
 Scale-out in Azure app service Upsurge the number of VM instances that run your app.
 
@@ -2779,9 +2779,9 @@ C. Quota
 
 D. Metrics
 
-Answer: C. Quota
+**Answer:** C. Quota
 
-Explanation:
+**Explanation:**
 
 Quota in Azure is defined as the Consumption limits for user subscriptions.
 
@@ -2799,9 +2799,9 @@ C. Quota
 
 D. Metrics
 
-Answer: D. Metrics
+**Answer:** D. Metrics
 
-Explanation:
+**Explanation:**
 
 Metrics in Azure give information about how an app or App Service plan behaves.
 
@@ -2819,9 +2819,9 @@ C. AssetsFile
 
 D. Channel
 
-Answer: B. Access policy
+**Answer:** B. Access policy
 
-Explanation:
+**Explanation:**
 
 Access policy specifies how long an asset can be accessed and by whom.
 
@@ -2841,9 +2841,9 @@ D. Channel
 
 E. Locators
 
-Answer: E. Locators
+**Answer:** E. Locators
 
-Explanation:
+**Explanation:**
 
 A locator is an entry point and permits you to access the files stored in an asset.
 
@@ -2863,9 +2863,9 @@ D. Program
 
 E. Locators
 
-Answer: C. Job
+**Answer:** C. Job
 
-Explanation:
+**Explanation:**
 
 The job processed an audio or video presentation in Azure media service.
 
@@ -2881,9 +2881,9 @@ B. Azure data sync
 
 C. SQL stretch database
 
-Answer: A. Azure data migration service
+**Answer:** A. Azure data migration service
 
-Explanation:
+**Explanation:**
 
 Azure data migration service is a tool in Azure that simplifies, guides, and automates the migration of your databases to Azure.
 
@@ -2899,9 +2899,9 @@ B. Azure data sync
 
 C. SQL stretch database
 
-Answer: B. Azure data sync
+**Answer:** B. Azure data sync
 
-Explanation:
+**Explanation:**
 
 Azure data sync aids us in replicating the data from our on-premises database into Azure.
 
@@ -2917,9 +2917,9 @@ B. Azure data sync
 
 C. SQL stretch database
 
-Answer: C. SQL stretch database
+**Answer:** C. SQL stretch database
 
-Explanation:
+**Explanation:**
 
 SQL stretch database service in Azure works as a hybrid database i.e., cold data and hot data.
 
@@ -2937,9 +2937,9 @@ C. SQL stretch database
 
 D. Data factory
 
-Answer: D. Data factory
+**Answer:** D. Data factory
 
-Explanation:
+**Explanation:**
 
 Data factory organizes data movement and transforms data at scale with data-driven workflows.
 
@@ -2953,9 +2953,9 @@ A. A type of data that is kept on premises in a data center.
 
 B. A type of data that is kept on Azure.
 
-Answer: A. A type of data that is kept on premises in a data center.
+**Answer:** A. A type of data that is kept on premises in a data center.
 
-Explanation:
+**Explanation:**
 
 Hot data is a type of data that is kept on premises in a data center.
 
@@ -2969,9 +2969,9 @@ A. A type of data that is kept on premises in a data center.
 
 B. A type of data that is kept on Azure.
 
-Answer: B. A type of data that is kept on Azure.
+**Answer:** B. A type of data that is kept on Azure.
 
-Explanation:
+**Explanation:**
 
 Cold data is a type of data that is kept on Azure.
 
@@ -2985,9 +2985,9 @@ A. NoSQL DB
 
 B. SQL DB
 
-Answer: A. NoSQL DB
+**Answer:** A. NoSQL DB
 
-Explanation:
+**Explanation:**
 
 Cosmos DB in Azure is a kind of NoSQL DB, which is designed with extremely low latency.
 
@@ -3003,9 +3003,9 @@ B. Azure SQL DB
 
 C. Azure Cosmos DB
 
-Answer: B. Azure Cosmos DB
+**Answer:** B. Azure Cosmos DB
 
-Explanation:
+**Explanation:**
 
 Azure SQL DB is the database for all kinds of relational data, including JSON, spatial, and XML in Azure.
 
@@ -3023,9 +3023,9 @@ C. 5
 
 D. 6
 
-Answer: A. 3
+**Answer:** A. 3
 
-Explanation:
+**Explanation:**
 
 There are three ways in which you can implement/execute the SQL database in Azure: Managed instance, single database, and elastic Pool.
 
@@ -3041,9 +3041,9 @@ B. Single database
 
 C. Elastic Pool.
 
-Answer: A. Managed Instance
+**Answer:** A. Managed Instance
 
-Explanation:
+**Explanation:**
 
 Managed instances in Azure are ideal when you have SQL server instances in your on-premises data center and you are wishing to migrate that instance into Azure with the expectation of the lowest charges and supreme compatibility.
 
@@ -3059,9 +3059,9 @@ B. Single database
 
 C. Elastic Pool.
 
-Answer: B. Single database
+**Answer:** B. Single database
 
-Explanation:
+**Explanation:**
 
 Single database resource types create databases in Azure SQL Database that comprise their resources and are accomplished by servers.
 
@@ -3077,9 +3077,9 @@ B. Single database
 
 C. Elastic Pool.
 
-Answer: C. Elastic Pool
+**Answer:** C. Elastic Pool
 
-Explanation:
+**Explanation:**
 
 Elastic Pool is a simple and cost-effective option when you want to manage numerous databases with fluctuating and erratic usage demands.
 
@@ -3097,9 +3097,9 @@ C. 5
 
 D. 2
 
-Answer: D. 2
+**Answer:** D. 2
 
-Explanation:
+**Explanation:**
 
 There are two types of purchasing models that are provided by the Azure SQL server: the VCore purchasing model, and the DTU model.
 
@@ -3113,9 +3113,9 @@ A. VCore purchasing model
 
 B. DTU model.
 
-Answer: A. VCore purchasing model
+**Answer:** A. VCore purchasing model
 
-Explanation:
+**Explanation:**
 
 VCore purchasing model in the Azure SQL server allows you to select a generation of hardware.
 
@@ -3129,9 +3129,9 @@ A. VCore purchasing model
 
 B. DTU model.
 
-Answer: B. DTU model.
+**Answer:** B. DTU model.
 
-Explanation:
+**Explanation:**
 
 DTU model purchasing model in Azure SQL server is finest for patrons who want simple, pre-configured resource options.
 
@@ -3147,9 +3147,9 @@ B. Failover Groups
 
 C. Database Groups
 
-Answer: A. Geolocations
+**Answer:** A. Geolocations
 
-Explanation:
+**Explanation:**
 
 Using geo-replication, you can synchronize a primary database with a secondary database that is continuously readable
 
@@ -3163,9 +3163,9 @@ A. VCore purchasing model
 
 B. DTU model.
 
-Answer: A. VCore purchasing model
+**Answer:** A. VCore purchasing model
 
-Explanation:
+**Explanation:**
 
 SQL-managed instance is based upon the VCore purchasing model.
 
@@ -3183,9 +3183,9 @@ C. 3
 
 D. 6
 
-Answer: D. 6
+**Answer:** D. 6
 
-Explanation:
+**Explanation:**
 
 Pipeline, Activity, Datasets, Linked Services, Triggers, and Control flows are the six components of a data factory.
 
@@ -3203,9 +3203,9 @@ C. Datasets
 
 D. Linked Services
 
-Answer: A. Pipeline
+**Answer:** A. Pipeline
 
-Explanation:
+**Explanation:**
 
 The pipeline component of a data factory refers to the logical grouping of activities that complete a particular task.
 
@@ -3225,9 +3225,9 @@ D. Linked Services
 
 E. Control Flows
 
-Answer: E. Control Flows
+**Answer:** E. Control Flows
 
-Explanation:
+**Explanation:**
 
 The control flow component of the data factory is known as the orchestration of pipeline actions which comprise chaining activities in a sequence.
 
@@ -3247,9 +3247,9 @@ D. Linked Services
 
 E. Control Flows
 
-Answer: C. Datasets
+**Answer:** C. Datasets
 
-Explanation:
+**Explanation:**
 
 Dataset component of the data factory characterizes data structures within the data stores.
 
@@ -3265,9 +3265,9 @@ B. Azure DevOps
 
 C. Azure app service
 
-Answer: B. Azure DevOps
+**Answer:** B. Azure DevOps
 
-Explanation:
+**Explanation:**
 
 In Azure DevOps service developers provide support to the support team, planning work, collaborating on code development, and building and deploying applications.
 
@@ -3285,9 +3285,9 @@ C. Azure DevOps repository
 
 D. Azure app service
 
-Answer: C. Azure DevOps repository
+**Answer:** C. Azure DevOps repository
 
-Explanation:
+**Explanation:**
 
 In the Azure DevOps repository you can manage your code with version control tools.
 
@@ -3305,9 +3305,9 @@ C. 5
 
 D. 2
 
-Answer: D. 2
+**Answer:** D. 2
 
-Explanation:
+**Explanation:**
 
 There are two types of version controls in Azure repo: Git, and Team Foundation Version Control.
 
@@ -3323,9 +3323,9 @@ B. Team Foundation Version Control.
 
 C. Both
 
-Answer: A. Git
+**Answer:** A. Git
 
-Explanation:
+**Explanation:**
 
 Git is a distributed version control.
 
@@ -3341,9 +3341,9 @@ B. Team Foundation Version Control.
 
 C. Both
 
-Answer: B. Team Foundation Version Control.
+**Answer:** B. Team Foundation Version Control.
 
-Explanation:
+**Explanation:**
 
 Team Foundation Version Control is centralized version control.
 
@@ -3361,9 +3361,9 @@ C. Repository
 
 D. Fork
 
-Answer: A. Branch
+**Answer:** A. Branch
 
-Explanation:
+**Explanation:**
 
 Branch in Azure Repos, is an easy way to keep track of commit histories and isolate work for a particular feature from the master branch.
 
@@ -3381,9 +3381,9 @@ C. Repository
 
 D. Fork
 
-Answer: B. Branch policies
+**Answer:** B. Branch policies
 
-Explanation:
+**Explanation:**
 
 In Azure repo, branch policy is known to be an indispensable part of the Git workflow.
 
@@ -3401,9 +3401,9 @@ C. Repository
 
 D. Fork
 
-Answer: D. Fork
+**Answer:** D. Fork
 
-Explanation:
+**Explanation:**
 
 In the Azure repo, Fork is a complete replica of a repository.
 
@@ -3417,9 +3417,9 @@ A. Hot tier
 
 B. Cold tier
 
-Answer: A. Hot tier
+**Answer:** A. Hot tier
 
-Explanation:
+**Explanation:**
 
 Hot tier has the highest storage cost but at the same time lowest access costs.
 
@@ -3437,9 +3437,9 @@ C. Cohesity
 
 D. Commvault
 
-Answer: C. Cohesity
+**Answer:** C. Cohesity
 
-Explanation:
+**Explanation:**
 
 Cohesity is the first Hyperconverged storage platform in Azure for enterprise data.
 
@@ -3455,9 +3455,9 @@ B. Electronic transformation loading
 
 C. Extract transform load
 
-Answer: C. Extract transform load
+**Answer:** C. Extract transform load
 
-Explanation:
+**Explanation:**
 
 ETL stands for extract transform load.
 
@@ -3473,9 +3473,9 @@ B. Transform
 
 C. Load
 
-Answer: A. Extract
+**Answer:** A. Extract
 
-Explanation:
+**Explanation:**
 
 Extract is the first stage of the ETL process, where data is retrieved from the source before being relocated to a new location.
 
@@ -3491,9 +3491,9 @@ B. Transform
 
 C. Load
 
-Answer: B. Transform
+**Answer:** B. Transform
 
-Explanation:
+**Explanation:**
 
 Transform is the second stage of the ETL process, here quality of data is being maintained.
 
@@ -3509,9 +3509,9 @@ B. Transform
 
 C. Load
 
-Answer: C. Load
+**Answer:** C. Load
 
-Explanation:
+**Explanation:**
 
 Load is the third and last stage of the ETL process, here altered data is loaded into a new destination.
 
@@ -3529,9 +3529,9 @@ C. HD insights
 
 D. Orchestration
 
-Answer: D. Orchestration
+**Answer:** D. Orchestration
 
-Explanation:
+**Explanation:**
 
 Orchestration is used at every stage of the ETL pipeline.
 
@@ -3549,9 +3549,9 @@ C. Orchestration
 
 D. Apache Oozie
 
-Answer: D. Apache Oozie
+**Answer:** D. Apache Oozie
 
-Explanation:
+**Explanation:**
 
 Apache Oozie framework acts as a workflow and synchronizes the system that accomplishes Hadoop jobs.
 
@@ -3569,9 +3569,9 @@ C. Azure data lake storage
 
 D. Azure data lake service
 
-Answer: C. Azure data lake storage
+**Answer:** C. Azure data lake storage
 
-Explanation:
+**Explanation:**
 
 ADLS stands for Azure data lake storage.
 
@@ -3589,9 +3589,9 @@ C. Azure data lake storage
 
 D. Azure data lake service
 
-Answer: C. Azure data lake storage
+**Answer:** C. Azure data lake storage
 
-Explanation:
+**Explanation:**
 
 ADLS service is managed, hyper scale analytics data store from which the data is stored.
 
@@ -3609,9 +3609,9 @@ C. Apache Sqoop
 
 D. Azure Synapse analytics
 
-Answer: B. Apache HBase
+**Answer:** B. Apache HBase
 
-Explanation:
+**Explanation:**
 
 Apache HBase service is present in the Azure HDInsight and stores the data in key-value format.
 
@@ -3629,9 +3629,9 @@ C. 5
 
 D. 6
 
-Answer: A. 3
+**Answer:** A. 3
 
-Explanation:
+**Explanation:**
 
 Three PaaS relational databases available in Azure:
 
@@ -3653,9 +3653,9 @@ C. Apache Sqoop
 
 D. Azure Synapse analytics
 
-Answer: C. Apache Sqoop
+**Answer:** C. Apache Sqoop
 
-Explanation:
+**Explanation:**
 
 Apache Sqoop tool in Azure is used for moving data across structured, semi-structured, and unstructured data sources quickly and efficiently.
 
@@ -3673,9 +3673,9 @@ C. 5
 
 D. 2
 
-Answer: D. 2
+**Answer:** D. 2
 
-Explanation:
+**Explanation:**
 
 Two types of instances are provided by Azure: Reserved instances and shared instances.
 
@@ -3693,9 +3693,9 @@ C. Apache Sqoop
 
 D. Azure Databricks
 
-Answer: D. Azure Databricks
+**Answer:** D. Azure Databricks
 
-Explanation:
+**Explanation:**
 
 Azure data bricks service effortlessly unites with open-source libraries and also offers the newest version of Apache spark.
 
@@ -3715,9 +3715,9 @@ D. Azure Databricks
 
 E. Azure notebook
 
-Answer: E. Azure notebook
+**Answer:** E. Azure notebook
 
-Explanation:
+**Explanation:**
 
 Azure notebook service consists of a web-based interface for an executable document, as well as graphic animations and narrative text.
 
@@ -3730,9 +3730,9 @@ Azure notebook service consists of a web-based interface for an executable docum
 Azure resources
 Azure resource groups
 Azure resources manager
-Answer: C. Azure resources manager
+**Answer:** C. Azure resources manager
 
-Explanation:
+**Explanation:**
 
 Azure resource manager is the resource management and deployment is handled by this service.
 
@@ -3750,9 +3750,9 @@ C. Azure resources manager
 
 D. Azure lighthouse
 
-Answer: D. Azure lighthouse
+**Answer:** D. Azure lighthouse
 
-Explanation:
+**Explanation:**
 
 Azure lighthouse service provides enhanced governance across resources, multi-tenant scalability, and higher automation.
 
@@ -3770,9 +3770,9 @@ C. Privileged access management
 
 D. Privileged access method
 
-Answer: C. Privileged access management
+**Answer:** C. Privileged access management
 
-Explanation:
+**Explanation:**
 
 PAM stands for Privileged access management.
 
@@ -3790,9 +3790,9 @@ C. Azure lighthouse
 
 D. Azure Notebook
 
-Answer: B. Privileged access management
+**Answer:** B. Privileged access management
 
-Explanation:
+**Explanation:**
 
 PAM service recovers control of a hacked Active Directory environment.
 
@@ -3808,9 +3808,9 @@ B. PAAS
 
 C. SAAS
 
-Answer: C. SAAS
+**Answer:** C. SAAS
 
-Explanation:
+**Explanation:**
 
 Azure DevOps is a kind of SAAS i.e., software as a service.
 
