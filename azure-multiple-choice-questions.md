@@ -326,7 +326,7 @@ Answer: B. Azure Blob Storage
     <b><a href="#">↥ back to top</a></b>
 </div>
 
-## Q. What is the primary purpose of Azure Active Directory (Azure AD.?
+## Q. What is the primary purpose of Azure Active Directory (Azure AD)?
 
 A. To store user data
 B. To manage virtual machines
