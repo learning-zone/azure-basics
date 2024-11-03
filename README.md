@@ -213,6 +213,7 @@
 #### Q. What is Instant Restore and soft delete in Azure Backup?
 #### Q. What is the default size of the OS disk for Windows and Linux Virtual Machines (VMs) in Azure?
 #### Q. What is the use of the AZCopy tool in Azure?
+#### Q. What are the options available in Azure for data storage?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -279,6 +280,10 @@
 #### Q. What types of queues does Azure provide?
 #### Q. What types of backups are available in Azure?
 #### Q. How do you troubleshoot RDP connections to an Azure virtual machine?
+#### Q. How to create a new storage account and container using Power Shell?
+#### Q. What are the various power states of a VM?
+#### Q. How can you stop a VM using Power Shell?
+#### Q. We need to migrate our on-premises VMs to Azure. Explain the different migration strategies available?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -326,7 +331,7 @@
 #### Q. What is Kusto Query Language (KQL), and how is it used in Azure Monitor?
 #### Q. What are Activity Logs in Azure Monitor, and why are they important?
 #### Q. How would you implement end-to-end monitoring for a multi-tier application using Azure Monitor?
-#### Q. Differentiate between the verbose and minimal monitoring
+#### Q. Differentiate between the verbose and minimal monitoring?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -381,6 +386,8 @@
 #### Q. What do you mean by lookup transformation?
 #### Q. What is meant by the connected lookups?
 #### Q. What is meant by the unconnected lookups?
+#### Q. How many types of datasets are supported in Azure Data Factory?
+#### Q. How do you manage and store data in Azure, and what tools do you use?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -517,6 +524,8 @@
 #### Q. How do you ensure compliance and security during the migration process?
 #### Q. We need to migrate our on-premises VMs to Azure. Explain the different migration strategies available?
 #### Q. How can connectivity be managed in Azure when the database must be on an on-premise server due to security concerns and the application front end is hosted there?
+#### Q. What is Integration Runtime? What are the different types of integration runtimes?
+#### Q. Explain the Migration Assistant tool in Microsoft Azure?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -677,6 +686,8 @@
 #### Q. What is Azure Front Door, and how does it improve application performance?
 #### Q. Our web application experiences a sudden spike in traffic. How would you use Azure services to scale the application horizontally?
 #### Q. Explain what host cache (host caching) is in Azure?
+#### Q. How can you make a SQL Azure Database perform better?
+#### Q. How is the performance of pipelines optimized in Azure Data Factory?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -772,6 +783,10 @@
 #### Q. What are some best practices for troubleshooting security issues in Azure?
 #### Q. What is the purpose of the Azure Diagnostics API?
 #### Q. Explain the difference between Failover and Failback?
+#### Q. What do you need to do when drive failure occurs?
+#### Q. Is it possible to design applications that handle connection failure in Azure?
+#### Q. You have an application running on the On-Prem Server and have backup on Azure East US region. Now, On-Prem server application access fails. Is it possible to access the application via the Azure environment?
+#### Q. What feature of Azure can be used to stop the issue of high load on the application in cases of no man support on the flow?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -887,6 +902,9 @@
 #### Q. What is an Azure cmdlet?
 #### Q. What is meant by the command task?
 #### Q. What are the PowerCenter commands that can be used in Informatica?
+#### Q. Consider a scenario where an application front end hosting is done on Azure but the customer needs the database hosting to be done on on-premise server due to security concerns. What are the ways to handle the connectivity in Azure for this scenario?
+#### Q. What steps would you consider to create a multi-region Azure deployment for a global application?
+#### Q. What are the two kinds of Azure Web Service roles?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -1202,7 +1220,7 @@
 #### Q. What is the role of Azure OpenAI Service in developing AI applications?
 #### Q. How do you handle data privacy and compliance in Azure AI services?
 #### Q. What are some common use cases for Azure AI in different industries?
-#### Q. What is Azure Machine Learning's Text Analysis API?
+#### Q. What is Azure Machine Learning\'s Text Analysis API?
 #### Q. What do you mean by Statistical analytical System (SAS)?
 #### Q. State some features of SAS?
 
@@ -1266,6 +1284,7 @@
 <br/>
 
 #### Q. Why do you want to work with Azure?
+#### Q. How do you generate a basic web application using Azure?
 #### Q. Describe a challenging Azure project you worked on.
 #### Q. How do you stay updated with Azure developments?
 #### Q. What certifications do you have related to Azure?
