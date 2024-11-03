@@ -32,35 +32,18 @@
 
 <br/>
 
-#### Q. What is Microsoft Azure?
-#### Q. Explain the benefits of using Azure?
-#### Q. Describe the shared responsibility model in Azure?
-#### Q. What is the Azure free tier?
-#### Q. Describe the Azure regions and availability zones?
-#### Q. What is Azure Functions?
-#### Q. What is the Azure Resource Manager (ARM)?
-#### Q. What is the purpose of Azure global network?
 #### Q. What is Cloud Computing?
 #### Q. What are the benefits of cloud computing?
+#### Q. What is Microsoft Azure?
+#### Q. Describe the shared responsibility model in Azure?
+#### Q. What is the purpose of Azure global network?
 #### Q. What are the differences between a public cloud and a private cloud?
-#### Q. What is an Azure Virtual Network (VNet)?
-#### Q. What is Azure Resource Manager (ARM)?
 #### Q. How do you manage resources in Azure?
-#### Q. What is Azure Active Directory (AAD)?
 #### Q. What is the difference between Azure and AWS?
-#### Q. What are Azure Regions and Availability Zones?
-#### Q. What is Azure Blob Storage?
-#### Q. What is Azure Table Storage?
-#### Q. What is Azure SQL Database?
-#### Q. What is Azure Virtual Machines (VMs)?
-#### Q. What is Azure Logic Apps?
-#### Q. What is Azure DevOps?
-#### Q. What is Azure Monitor?
-#### Q. What is Azure Security Center?
-#### Q. Explain the difference between Azure Virtual Machines and Azure App Services?
 #### Q. What are the various cloud deployment models available?
-#### Q. What other kinds of storage services does Azure offer besides blob storage?
 #### Q. Explain the Window Azure platform?
+#### Q. What are the core components of Microsoft Azure architecture?
+#### Q. Can you explain the differences between Platform as a Service (PaaS) and Infrastructure as a Service (IaaS) in Azure, and when you would choose each?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -74,9 +57,9 @@
 #### Q. Explain Azure App Service.
 #### Q. What is Azure Functions and when would you use it?
 #### Q. What are the different types of Azure services?
-#### Q. Explain Azure Virtual Machines (VMs).
+#### Q. Explain Azure Virtual Machines (VMs)?
+#### Q. What are the different types of Azure Virtual Machines available and how do you choose one?
 #### Q. What is Azure App Service?
-#### Q. What are Azure Functions?
 #### Q. Describe Azure Kubernetes Service (AKS).
 #### Q. What is Azure Cloud Service?
 #### Q. State the purpose of the cloud configuration file?
@@ -110,6 +93,7 @@
 #### Q. How do you monitor and manage costs in Azure using Azure Cost Management and Billing?
 #### Q. Describe Azure Scheduler and explain how to use it?
 #### Q. What is a cloud service deployment?
+#### Q. Explain the purpose of Azure Batch service?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -121,12 +105,9 @@
 
 #### Q. What is Azure Active Directory?
 #### Q. How do you implement role-based access control (RBAC) in Azure?
-#### Q. What is the Azure Security Center?
-#### Q. What is Azure Active Directory (Azure AD)?
 #### Q. Explain role-based access control (RBAC) in Azure.
 #### Q. How do you secure an Azure Storage account?
 #### Q. What is Azure Key Vault?
-#### Q. What is Azure Security Center?
 #### Q. What are the different authentication methods available in Azure?
 #### Q. Explain the concept of Conditional Access in Azure?
 #### Q. What is Azure Policy, and how is it used?
@@ -171,6 +152,8 @@
 
 <br/>
 
+#### Q. What is Azure Blob Storage?
+#### Q. What is Azure Table Storage?
 #### Q. What types of storage options does Azure offer?
 #### Q. How do you manage access to Azure Storage accounts?
 #### Q. What types of storage does Azure provide?
@@ -344,7 +327,6 @@
 #### Q. What is Azure SQL Database?
 #### Q. Describe the differences between Azure SQL Database and Azure Cosmos DB.
 #### Q. What options are available for managing databases in Azure?
-#### Q. What is Azure SQL Database?
 #### Q. What are the differences between SQL and NoSQL databases?
 #### Q. How do you implement backup and restore in Azure SQL Database?
 #### Q. What is Azure Database Migration Service?
@@ -818,7 +800,6 @@
 #### Q. Explain Azure NSG?
 #### Q. How would you decide which Azure services to use for building a scalable web application?
 #### Q. What are some design patterns you’d use for a cloud-native application on Azure?
-#### Q. Can you explain the differences between Platform as a Service (PaaS) and Infrastructure as a Service (IaaS) in Azure, and when you’d choose each?
 #### Q. How would you design a multi-tier application architecture in Azure?
 #### Q. What is Azure App Service, and what are its main features?
 #### Q. How would you deploy a web application to Azure App Service?
@@ -917,7 +898,6 @@
 #### Q. What is Azure DevOps?
 #### Q. Explain CI/CD in the context of Azure.
 #### Q. How do you deploy applications to Azure?
-#### Q. What are Azure Logic Apps?
 #### Q. Describe Azure Functions with an example?
 #### Q. What is Azure DevOps, and how does it support the DevOps lifecycle?
 #### Q. Can you explain the differences between Azure DevOps and GitHub Actions?
@@ -1236,7 +1216,6 @@
 #### Q. How can you secure your Azure resources?
 #### Q. What are the key components of an Azure Resource Manager (ARM) template?
 #### Q. How does Azure load balancing work?
-#### Q. What is Azure Resource Manager (ARM)?
 #### Q. How do you create and manage ARM templates?
 #### Q. Explain Azure Policy and its use.
 #### Q. What is Azure Blueprints?
@@ -1289,7 +1268,6 @@
 #### Q. How do you stay updated with Azure developments?
 #### Q. What certifications do you have related to Azure?
 #### Q. How would you explain Azure to a non-technical stakeholder?
-#### Q. What trends do you see shaping the future of cloud computing?
 #### Q. How do you think Azure will evolve in the coming years?
 #### Q. What new features or services are you excited about in Azure?
 #### Q. How does Azure compare with other cloud providers like AWS or Google Cloud?
@@ -1356,7 +1334,6 @@
 #### Q. How would you implement an event-driven workflow using Azure Functions?
 #### Q. What is the difference between Azure Functions and Logic Apps?
 #### Q. When would you choose serverless over traditional compute services in Azure?
-#### Q. What is Azure Logic Apps, and what are its use cases?
 #### Q. How would you use Logic Apps to automate workflows between different services?
 #### Q. What are connectors in Logic Apps, and how do they simplify integrations?
 #### Q. How does error handling work in Logic Apps, and why is it important?
@@ -1392,8 +1369,6 @@
 #### Q. How do you handle monitoring, security, and cost optimization as part of Azure best practices?
 #### Q. What are the considerations for network design in a secure Azure environment?
 #### Q. How would you use tagging and naming conventions to manage resources effectively?
-#### Q. What is Microsoft Azure, and what are its primary uses?
-#### Q. What are the key benefits of using Azure?
 #### Q. Can you explain the difference between IaaS, PaaS, and SaaS in Azure?
 #### Q. What are Azure Regions and Availability Zones, and why are they important?
 #### Q. How does Azure Resource Manager (ARM) help in managing Azure resources?
@@ -1422,6 +1397,7 @@
 #### Q. Is there any live stream between on prem ad to azure ad ?
 #### Q. How will you do patching while migrating onprem VM?
 #### Q. What is a break-fix issue?
+#### Q. When should you choose Azure Functions over Azure App Service?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
