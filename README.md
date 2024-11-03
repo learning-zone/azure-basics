@@ -208,6 +208,11 @@
 #### Q. What is the role of Azure Content Delivery Network (CDN) in conjunction with Azure Storage?
 #### Q. How would you configure lifecycle management policies for Azure Blob Storage?
 #### Q. What are the benefits and limitations of using Azure Storage as opposed to on-premises storage solutions?
+#### Q. What are the Replication Options in Azure Storage?
+#### Q. What is Azure Files, and how does it differ from Blob Storage?
+#### Q. What is Instant Restore and soft delete in Azure Backup?
+#### Q. What is the default size of the OS disk for Windows and Linux Virtual Machines (VMs) in Azure?
+#### Q. What is the use of the AZCopy tool in Azure?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -523,6 +528,7 @@
 
 #### Q. What is Mircosoft Entra ID (formerly known as Azure Active Directory)?
 #### Q. What is MFA in Mircosoft Entra ID?
+#### Q. How do you add a custom domain to Mircosoft Entra ID?
 #### Q. What is the difference between Azure AD and Active Directory?
 #### Q. How do you implement multi-factor authentication (MFA) in Azure?
 #### Q. Explain the concept of Conditional Access in Azure.
@@ -591,6 +597,7 @@
 #### Q. How do you handle access reviews in Azure AD?
 #### Q. Can you explain the use of service principals in Azure AD?
 #### Q. What are some best practices for managing access and identities in Azure?
+#### Q. What are password hash synchronization and pass-through authentication in Entra ID?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -669,6 +676,7 @@
 #### Q. How do you track and optimize the performance of serverless functions in Azure?
 #### Q. What is Azure Front Door, and how does it improve application performance?
 #### Q. Our web application experiences a sudden spike in traffic. How would you use Azure services to scale the application horizontally?
+#### Q. Explain what host cache (host caching) is in Azure?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -763,6 +771,7 @@
 #### Q. How do you use Azure Log Analytics to investigate problems?
 #### Q. What are some best practices for troubleshooting security issues in Azure?
 #### Q. What is the purpose of the Azure Diagnostics API?
+#### Q. Explain the difference between Failover and Failback?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -1081,6 +1090,7 @@
 #### Q. How do you optimize the cost of running Azure Kubernetes Service (AKS)?
 #### Q. What are some cost management challenges specific to serverless architectures in Azure?
 #### Q. How do you monitor and manage costs for Azure DevOps pipelines?
+#### Q. What are Azure tags, and how can they benefit resource management?
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -1279,7 +1289,6 @@
 #### Q. What types of storage services does Azure offer, and what are their use cases?
 #### Q. Can you explain Blob Storage and its different access tiers?
 #### Q. What are Azure Storage accounts, and how do they help in managing storage resources?
-#### Q. What is Azure Files, and how does it differ from Blob Storage?
 #### Q. What is Azure Active Directory (AAD), and how does it differ from on-premises AD?
 #### Q. How would you set up Multi-Factor Authentication (MFA) for an Azure application?
 #### Q. What are role-based access controls (RBAC) in Azure, and how do they work?
