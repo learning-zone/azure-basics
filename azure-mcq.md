@@ -1,3819 +1,1516 @@
-# Azure Multiple Choice Questions
+# Azure Scenario-Based MCQ
 
-<br/>
+> Scenario-based multiple choice questions covering core Microsoft Azure topics.
 
-## Q. What role is an instance that runs Microsoft IIS Web Server for accepting and responding to HTTP/HTTPS requests?
+<br>
 
-A. Server
+## Table of Contents
 
-B. Worker
+1. [Azure Fundamentals](#1-azure-fundamentals)
+2. [Compute Services](#2-compute-services)
+3. [Azure Storage](#3-azure-storage)
+4. [Networking](#4-networking)
+5. [Security and Identity](#5-security-and-identity)
+6. [Databases](#6-databases)
+7. [Monitoring and Diagnostics](#7-monitoring-and-diagnostics)
+8. [Azure App Service and Functions](#8-azure-app-service-and-functions)
+9. [Containers and Kubernetes](#9-containers-and-kubernetes)
+10. [DevOps and CI/CD](#10-devops-and-cicd)
+11. [Cost Management](#11-cost-management)
+12. [High Availability and Disaster Recovery](#12-high-availability-and-disaster-recovery)
+13. [Migration](#13-migration)
+14. [AI and Cognitive Services](#14-ai-and-cognitive-services)
+15. [Governance and Compliance](#15-governance-and-compliance)
+16. [AZ-900: Azure Fundamentals Certification](#16-az-900-azure-fundamentals-certification)
+17. [AZ-104: Azure Administrator Certification](#17-az-104-azure-administrator-certification)
+18. [AZ-204: Azure Developer Certification](#18-az-204-azure-developer-certification)
+19. [AZ-305: Azure Solutions Architect Certification](#19-az-305-azure-solutions-architect-certification)
+20. [AZ-400: Azure DevOps Engineer Certification](#20-az-400-azure-devops-engineer-certification)
 
-C. Admin
+<br>
 
-D. Web
+## 1. Azure Fundamentals
 
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. What are the service components of Azure Cognitive Services?
-
-A. Language, Translation, Vision, Knowledge, and Audio
+**Q.** A startup wants to host a web application on Azure. The development team is new to Azure and wants to avoid managing virtual machines, OS patching, or server scaling. Which service model best fits their requirement?
 
-B. Speech, Language, Search, Video and Translation
+- A) Infrastructure as a Service (IaaS)
+- B) Platform as a Service (PaaS)
+- C) Software as a Service (SaaS)
+- D) Function as a Service (FaaS)
 
-C. Vision, Speech, Language, Search and Decision
+> **Answer: B**  
+> PaaS abstracts the underlying infrastructure (VMs, OS, networking) so developers focus only on application code and data. Azure App Service is a prime example. IaaS (Azure VMs) requires OS management; SaaS is a ready-made application (like Microsoft 365); FaaS (Azure Functions) is event-driven serverless, a subset of PaaS.
 
-D. Knowledge, Translation, Audio, Visual, and Speech
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. Which Azure service helps to deploy and manage enterprise-level applications with hybrid cloud architecture?
 
-A. Azure Hybrid
+**Q.** A company deploys resources across three Azure subscriptions for Dev, Test, and Production. The security team needs to apply the same Azure Policy across all three subscriptions from a single place. What is the most efficient approach?
 
-B. Azure Pack
+- A) Assign the policy to each subscription individually.
+- B) Create a Management Group that contains all three subscriptions, then assign the policy to the Management Group.
+- C) Use Azure Blueprints on each subscription separately.
+- D) Tag all resources and create a policy based on tags.
 
-C. Azure Blob
+> **Answer: B**  
+> Management Groups are a governance scope above subscriptions. Policies assigned to a Management Group automatically apply to all subscriptions and resource groups beneath it, eliminating per-subscription repetition.
 
-D. Azure Stack
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. Select the correct roles in Azure.
 
-A. Admin Role, Web Role, OS Role
+**Q.** A developer is choosing between an Azure Region and an Azure Availability Zone for deploying a mission-critical application. What is the primary difference?
 
-B. Web Role, Worker Role, VM Role
+- A) Regions are free; Availability Zones cost extra.
+- B) A Region is a geographic area with multiple datacenters; Availability Zones are physically separate datacenters within the same region, each with independent power, cooling, and networking.
+- C) Availability Zones are located in different countries; Regions are in the same country.
+- D) Regions provide disaster recovery; Availability Zones provide load balancing only.
 
-C. Worker Role, Read Role, Write Role
+> **Answer: B**  
+> An Azure Region is a set of datacenters deployed within a latency-defined perimeter. Within each region, Availability Zones are physically isolated datacenters connected by high-speed private fiber. Deploying across AZs protects against single-datacenter failures within the same region.
 
-D. None of the Above
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
-## Q. True or False - Azure cloud provides serverless capabilities.
+**Q.** Your team uses Azure Resource Manager (ARM) templates to deploy infrastructure. A colleague says the same template is deployed to three environments (dev, staging, prod) but with different parameter files. After a production deployment, you discover the wrong parameter file was used. Which ARM feature helps prevent this mistake in the future?
 
-A. True
+- A) Use linked templates stored in different storage containers.
+- B) Use Azure Blueprints to lock templates per environment.
+- C) Use deployment stacks with deny assignments to prevent manual overrides, and integrate the parameter file selection into a CI/CD pipeline with environment-specific steps.
+- D) Use resource tags to separate environments.
 
-B. False
+> **Answer: C**  
+> Deployment stacks manage a set of resources as a unit and can apply deny assignments to prevent out-of-band changes. Integrating parameter file selection into a CI/CD pipeline (e.g., Azure DevOps environment stages) eliminates manual file selection errors.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. Azure storage services and VMs belong to which cloud computing models?
 
-A. PaaS
+**Q.** An organization has two Azure subscriptions managed under the same Microsoft Entra tenant. Resources in Subscription A need to communicate with resources in Subscription B. Which statement about cross-subscription resource access is correct?
 
-B. IaaS
+- A) Resources in different subscriptions cannot communicate because subscriptions are fully isolated networks.
+- B) Cross-subscription communication requires a separate Azure ExpressRoute circuit per subscription.
+- C) Virtual Network Peering and Role-Based Access Control can be configured across subscriptions within the same tenant, allowing secure resource sharing.
+- D) You must merge both subscriptions into one to allow cross-subscription resource access.
 
-C. SaaS
+> **Answer: C**  
+> VNet Peering supports cross-subscription connectivity within the same Entra tenant. RBAC can grant principals from one subscription access to resources in another. Subscriptions share the same identity plane within a tenant.
 
-D. All the above
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. Azure storage is similar to what component of AWS (Amazon Web Services)?
 
-A. EC2
+## 2. Compute Services
 
-B. EC3
+**Q.** A company runs a batch processing workload that is highly CPU-intensive and runs once a day for about 2 hours. The workload is stateless and can tolerate interruptions. Which Azure compute option gives the lowest cost?
 
-C. S3
+- A) Azure Virtual Machines (pay-as-you-go)
+- B) Azure Spot Virtual Machines
+- C) Azure Reserved Virtual Machine Instances (1-year)
+- D) Azure Dedicated Hosts
 
-D. No similarities between Azure storage and any component of AWS at all.
+> **Answer: B**  
+> Azure Spot VMs use unused Azure capacity at up to 90% discount. Since the workload is stateless and can tolerate eviction (it can be restarted), Spot VMs are the cheapest option. Reserved Instances save money for always-on workloads, not sporadic 2-hour jobs. Dedicated Hosts are the most expensive option.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
-## Q. What role does the task of running background tasks and applications that don’t need IIS?
+**Q.** A web application is deployed across 10 Azure Virtual Machines behind an Azure Load Balancer. During a planned maintenance event, Azure reboots two VMs simultaneously. The application becomes unavailable. What configuration would have prevented this?
 
-A. Web
+- A) Use a larger VM size so fewer VMs are needed.
+- B) Place the VMs in an Availability Set, which groups VMs into fault domains and update domains.
+- C) Use Azure Traffic Manager with geographic routing.
+- D) Enable VM auto-shutdown schedules.
 
-B. Worker
+> **Answer: B**  
+> Availability Sets place VMs across multiple update domains (UDs) and fault domains (FDs). During planned maintenance, Azure respects UD boundaries — only one UD is rebooted at a time — ensuring at least some VMs remain online.
 
-C. VM
-
-D. None of the Above
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. Which among the following Azure tool is used for enterprise-level key management?
-
-A. Azure Key Vault
 
-B. Azure Guard
+**Q.** An e-commerce platform experiences a 5x traffic spike every Black Friday. The team wants the application to automatically scale out additional web server VMs when CPU exceeds 70% and scale in when it drops below 30%, without manual intervention. Which Azure feature enables this?
 
-C. Azure Key Sessions
+- A) Azure Autoscale on a Virtual Machine Scale Set (VMSS)
+- B) Azure Traffic Manager with performance routing
+- C) Azure Load Balancer health probes
+- D) Azure Advisor right-sizing recommendations
 
-D. Azure Blob
+> **Answer: A**  
+> Virtual Machine Scale Sets with Azure Autoscale rules allow automatic horizontal scaling based on metrics (CPU, memory, queue depth, custom metrics). Traffic Manager and Load Balancer distribute traffic but do not add or remove VMs. Azure Advisor provides recommendations but does not auto-scale.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
-## Q. What kind of web applications can be deployed on azure?
+**Q.** A developer needs to run a one-off data transformation script that takes 45 minutes. The script is containerized. The team does not want to manage VM infrastructure, and the job should be billed only for the duration it runs. Which Azure service is most appropriate?
 
-A. PHP
+- A) Azure Kubernetes Service (AKS)
+- B) Azure Container Instances (ACI)
+- C) Azure App Service (container deployment)
+- D) Azure Virtual Machines with Docker installed
 
-B. ASP.NET
+> **Answer: B**  
+> Azure Container Instances runs containers on-demand with per-second billing, no cluster management, and no idle costs. AKS requires a node pool that incurs costs whether or not workloads are running. App Service is for long-running web apps. VMs require manual OS management.
 
-C. WCFD
-
-D. All of the Above
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. You are a developer at a company that needs to deploy an application using Elastic Beanstalk. There is a requirement to place a healthcheck.config file for the environment. In which of the following location should this config file be placed to ensure that it is part of the elastic beanstalk environment?
-
-A. In the application root folder
 
-B. In the config folder
+**Q.** Your company\'s on-premises application writes files to a local network share and reads them back sequentially. You are lifting-and-shifting this application to Azure VMs. Which Azure storage service should replace the on-premises network share?
 
-C. In the packages folder
+- A) Azure Blob Storage
+- B) Azure Files (SMB share)
+- C) Azure Table Storage
+- D) Azure Queue Storage
 
-D. In the .ebextenstion folder
+> **Answer: B**  
+> Azure Files provides fully managed SMB and NFS file shares accessible from Azure VMs and on-premises machines. Applications that rely on the file system path and SMB protocol work without code changes. Blob Storage is object storage accessed via HTTP/SDK, not via file system paths.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
-## Q. What is Azure?
+## 3. Azure Storage
 
-A. A cloud computing service
+**Q.** A media company stores large video files that are accessed frequently for the first 30 days after upload and then rarely accessed afterward. They want to minimize storage costs automatically without deleting the files. What Azure Storage feature should they configure?
 
-B. A type of operating system
+- A) Azure Blob Storage with Lifecycle Management policies to transition blobs from Hot to Cool (or Archive) tier after 30 days.
+- B) Azure Queue Storage with time-to-live (TTL) settings.
+- C) Azure Table Storage with automatic data expiry.
+- D) Azure File Sync with cloud tiering enabled.
 
-C. A web browser
+> **Answer: A**  
+> Blob Storage Lifecycle Management policies can automatically transition blobs between Hot, Cool, Cold, and Archive tiers (or delete them) based on the number of days since last modification or creation. This minimizes cost without manual intervention.
 
-D. A programming language
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. Which Azure service is used for serverless computing?
 
-A. Azure Functions
+**Q.** An auditing requirement states that files stored in Azure Blob Storage must not be modified or deleted for 7 years after creation. Which feature enforces this at the storage level?
 
-B. Azure VMs
+- A) Azure Storage firewall with IP restrictions
+- B) Soft delete for blobs
+- C) Immutable Blob Storage with a time-based retention policy (WORM)
+- D) Azure Backup for storage accounts
 
-C. Azure Blob Storage
+> **Answer: C**  
+> Immutable Blob Storage with a locked time-based retention policy implements WORM (Write Once, Read Many) compliance. Once locked, even subscription admins cannot delete or overwrite blobs until the retention period expires. Soft delete only protects against accidental deletion with a short window.
 
-D. Azure SQL Database
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. What does Azure Active Directory provide?
 
-A. Network security
+**Q.** A developer needs to grant temporary read access to a private blob in Azure Storage to an external partner for exactly 24 hours, without making the container public or sharing storage account keys. What is the correct approach?
 
-B. Identity and access management
+- A) Change the container access level to "Blob (anonymous read)" and revert it after 24 hours.
+- B) Generate a Shared Access Signature (SAS) token with read permission and an expiry of 24 hours.
+- C) Share the storage account access key and ask the partner to delete it after use.
+- D) Use Azure AD guest user access and assign Storage Blob Data Reader role.
 
-C. Data storage
+> **Answer: B**  
+> A SAS token grants scoped, time-limited access to specific resources without exposing the account key. It can be restricted to read-only, specific containers/blobs, and a 24-hour window. Sharing the account key grants full storage account access and cannot be scoped.
 
-D. Virtual machines
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. Which Azure service is primarily used for big data analytics?
 
-A. Azure Data Lake
+**Q.** A storage account in East US replicates data to West US. During a regional disaster in East US, the secondary region in West US becomes read-only. The operations team needs to restore full read/write access as quickly as possible. Which replication option supports a customer-initiated failover to make the secondary region the new primary?
 
-B. Azure Cosmos DB
+- A) Locally Redundant Storage (LRS)
+- B) Zone-Redundant Storage (ZRS)
+- C) Geo-Redundant Storage (GRS) with customer-managed failover
+- D) Read-Access Geo-Redundant Storage (RA-GRS) — failover is not possible in this tier.
 
-C. Azure SQL Database
+> **Answer: C**  
+> GRS (and RA-GRS) replicate data to a secondary region. Microsoft now supports customer-initiated account failover, which promotes the secondary to primary for read-write access. LRS and ZRS do not replicate to a secondary region.
 
-D. Azure Blob Storage
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. What is the primary purpose of Azure Resource Manager (ARM)?
 
-A. To manage virtual machines
+**Q.** A company wants to store semi-structured session data for millions of users with fast key-value lookups, minimal operational overhead, and automatic scaling. Which Azure storage service is most appropriate?
 
-B. To organize and deploy resources
+- A) Azure SQL Database
+- B) Azure Table Storage
+- C) Azure Blob Storage
+- D) Azure Files
 
-C. To store files
+> **Answer: B**  
+> Azure Table Storage is a NoSQL key-value store designed for fast, cost-effective storage of large amounts of semi-structured data. It scales automatically and is accessed via a simple REST/SDK API. For even more advanced NoSQL features, Azure Cosmos DB would be considered, but Table Storage meets the stated requirements with minimal cost.
 
-D. To monitor application performance
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. Which of the following is a relational database service in Azure?
 
-A. Azure Blob Storage
+## 4. Networking
 
-B. Azure SQL Database
+**Q.** Two Azure Virtual Networks in different regions need to communicate privately without traffic going over the public internet. Each VNet has non-overlapping address spaces. What should you configure?
 
-C. Azure Queue Storage
+- A) Azure VPN Gateway with Site-to-Site connection
+- B) Azure ExpressRoute between the two VNets
+- C) Global VNet Peering
+- D) Azure Traffic Manager with private endpoints
 
-D. Azure Table Storage
+> **Answer: C**  
+> Global VNet Peering connects VNets in different Azure regions over Microsoft\'s backbone network — not the public internet — with low latency and no bandwidth limits beyond subscription quotas. VPN Gateway introduces encryption overhead and uses public IPs. ExpressRoute connects on-premises to Azure, not VNet-to-VNet.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. What is the function of Azure DevOps?
-
-A. Virtual machine management
 
-B. Software development lifecycle management
+**Q.** An application tier (VMs) must only accept inbound traffic from the web tier subnet (10.0.1.0/24) on port 443, and deny all other inbound traffic. Which Azure resource enforces this rule?
 
-C. Data backup
+- A) Azure Firewall with DNAT rules
+- B) A Network Security Group (NSG) attached to the application subnet with an inbound rule allowing TCP 443 from 10.0.1.0/24 and a lower-priority deny-all rule.
+- C) Azure DDoS Protection Standard
+- D) Route Table with a blackhole route for all other traffic
 
-D. Network configuration
+> **Answer: B**  
+> NSGs are stateful packet filters applied at the subnet or NIC level. An inbound rule with source `10.0.1.0/24`, destination port `443`, action `Allow`, and a lower-priority `Deny` catch-all rule achieves the required segmentation. Azure Firewall operates at a higher level and is used for hub-spoke architectures. DDoS Protection defends against volumetric attacks, not access control.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
-## Q. Which service would you use for building machine learning models on Azure?
+**Q.** A company is migrating from on-premises to Azure and requires a dedicated, private connection with consistent bandwidth (not over the public internet) between their datacenter and Azure, with 99.95% SLA. Which service should they use?
 
-A. Azure Machine Learning
+- A) Azure VPN Gateway (Site-to-Site IPsec)
+- B) Azure ExpressRoute
+- C) Azure Bastion
+- D) Azure Virtual WAN
 
-B. Azure Cognitive Services
+> **Answer: B**  
+> Azure ExpressRoute provides a private, dedicated connection to Azure through a connectivity provider, bypassing the public internet. It offers up to 100 Gbps bandwidth, consistent latency, and a 99.95% SLA. VPN Gateway uses encrypted tunnels over the public internet and has lower guaranteed bandwidth.
 
-C. Azure Databricks
-
-D. All of the above
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. What is the use of Azure Blob Storage?
-
-A. To store structured data
 
-B. To store unstructured data
+**Q.** A web application hosted in Azure needs to distribute HTTPS traffic across multiple backend VMs based on URL path (`/api/*` → API servers, `/static/*` → CDN servers). Layer 7 SSL termination is also required. Which Azure load-balancing service should be used?
 
-C. For hosting web applications
+- A) Azure Load Balancer (Standard)
+- B) Azure Traffic Manager
+- C) Azure Application Gateway
+- D) Azure Front Door (basic tier)
 
-D. For managing virtual networks
+> **Answer: C**  
+> Azure Application Gateway is a Layer 7 load balancer that supports URL path-based routing, SSL termination, Web Application Firewall (WAF), session affinity, and header rewrites. Azure Load Balancer operates at Layer 4 (TCP/UDP) and cannot inspect URLs. Traffic Manager uses DNS-based routing and does not terminate SSL.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
-## Q. What is the benefit of using Azure Virtual Network?
+**Q.** A company deploys Azure VMs without public IP addresses in a locked-down VNet. Operations staff needs to RDP and SSH into these VMs securely without opening inbound ports 3389/22 to the internet. Which Azure service enables this?
 
-A. Data storage
+- A) Azure VPN Gateway with Point-to-Site VPN
+- B) Azure Bastion
+- C) Just-In-Time (JIT) VM access via Microsoft Defender for Cloud
+- D) Azure Private Link
 
-B. Provides isolation and secure communication
+> **Answer: B**  
+> Azure Bastion provides secure, browser-based RDP and SSH access to VMs directly in the Azure portal over TLS port 443, without requiring a public IP or opening RDP/SSH ports to the internet. JIT VM access temporarily opens ports on-demand but does expose them to specific IPs, while Bastion never exposes those ports.
 
-C. Virtual machine creation
-
-D. Web hosting
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. What is Microsoft Azure?
-
-A. A cloud computing service by Google
 
-B. A cloud computing service by Microsoft
+## 5. Security and Identity
 
-C. An AI product by Microsoft
+**Q.** A developer\'s application running on an Azure VM needs to access secrets stored in Azure Key Vault. The team wants to avoid storing any credentials (client secrets or certificates) in the application code or configuration. What is the recommended approach?
 
-D. A data analysis tool by Microsoft
+- A) Store the Key Vault access key in an environment variable on the VM.
+- B) Create a service principal and embed its client secret in the application\'s `appsettings.json`.
+- C) Assign a System-Assigned Managed Identity to the VM and grant it the Key Vault Secrets User role.
+- D) Use a shared access signature (SAS) token to authenticate to Key Vault.
 
-**Answer:** B. A cloud computing service by Microsoft
+> **Answer: C**  
+> Managed Identities eliminate the need to manage credentials. A system-assigned managed identity creates an Azure AD identity for the VM; the application acquires a token from the Instance Metadata Service (IMDS) endpoint automatically. RBAC then grants that identity access to Key Vault. No secrets are stored anywhere in the code or config.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
-## Q. Which of the following is a core component of Microsoft Azure?
+**Q.** A security audit finds that a junior developer was accidentally assigned the Owner role on the production subscription 3 months ago. The role was never used. Your task is to prevent such excessive privilege assignments in the future using the principle of least privilege. Which combination of features best addresses this?
 
-A. Azure Blob Storage
+- A) Use Azure Policy to deny Owner role assignments at the subscription scope; use Azure AD Privileged Identity Management (PIM) for time-bound, approval-required role activations.
+- B) Create a custom role with all permissions and assign it to everyone.
+- C) Enable Multi-Factor Authentication (MFA) for all users.
+- D) Move all resources to a separate subscription so junior developers cannot access them.
 
-B. Azure Storage SQL
+> **Answer: A**  
+> Azure Policy can deny broad role assignments (like Owner) at sensitive scopes. PIM enforces just-in-time access: users must request activation of privileged roles, require approval, and the access auto-expires. Together these enforce least privilege and provide a full audit trail. MFA alone does not restrict what users can do once authenticated.
 
-C. Azure Container
-
-D. Azure Network Vault
-
-**Answer:** A. Azure Blob Storage
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. Which Azure service is primarily used for hosting websites and web applications?
 
-A. Azure App Service
+**Q.** A financial services company requires that any user accessing their Azure-hosted banking application from outside corporate networks must complete MFA, while users on the corporate network are trusted. Which Azure feature implements this location-based conditional access?
 
-B. Azure SQL Database
+- A) Azure AD Password Protection
+- B) Microsoft Entra ID Conditional Access with Named Locations
+- C) Azure Firewall application rules
+- D) Microsoft Defender for Identity
 
-C. Azure Functions
+> **Answer: B**  
+> Conditional Access policies in Microsoft Entra ID can evaluate sign-in conditions including network location (Named Locations defined by IP ranges). A policy granting access only after MFA when the sign-in is not from the corporate IP range implements the requirement. Firewall rules operate at the network layer and do not integrate with identity-aware policies.
 
-D. Azure Storage
-
-**Answer:** A. Azure App Service
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. Which Azure tool is best for monitoring and analyzing the performance of applications?
-
-A. Azure Monitor
 
-B. Azure Analytics
+**Q.** Your application uses a connection string to connect to Azure SQL Database. This connection string is currently stored in `appsettings.json` committed to Git. The security team flags this as a critical vulnerability. What is the correct remediation?
 
-C. Azure Insights
+- A) Base64-encode the connection string before committing to Git.
+- B) Move the connection string to an environment variable on the build server.
+- C) Store the connection string in Azure Key Vault and have the application retrieve it at startup using a Managed Identity.
+- D) Encrypt `appsettings.json` with a symmetric key stored in the same repository.
 
-D. Azure Report
+> **Answer: C**  
+> Azure Key Vault is the dedicated secret store for connection strings, API keys, and certificates. Combined with a Managed Identity, the application fetches the secret at runtime with no credentials embedded in code or Git history. Base64 encoding is not encryption. Storing secrets in environment variables on build servers is an improvement but not the recommended Azure pattern.
 
-**Answer:** A. Azure Monitor
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. Which Azure storage service is ideal for storing large amounts of unstructured data?
-
-A. Azure SQL Database
-
-B. Azure Blob Storage
 
-C. Azure File Storage
+**Q.** A team wants to audit all operations performed on an Azure Key Vault — specifically who accessed which secret and when — for compliance purposes. Which service provides this audit trail?
 
-D. Azure Queue Storage
+- A) Azure Monitor Metrics
+- B) Azure Key Vault Diagnostic Logs sent to a Log Analytics workspace
+- C) Microsoft Defender for Key Vault alerts only
+- D) Azure Activity Log at the subscription level
 
-**Answer:** B. Azure Blob Storage
+> **Answer: B**  
+> Key Vault Diagnostic Logs (specifically the `AuditEvent` category) record every data-plane operation: who accessed which secret, key, or certificate, and at what time. These logs are sent to a Log Analytics workspace, Event Hub, or Storage Account. The Activity Log records control-plane operations (create/delete vault) but not secret access.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
-## Q. What is the primary purpose of Azure Active Directory (Azure AD)?
+## 6. Databases
 
-A. To store user data
+**Q.** An application needs a globally distributed database with single-digit millisecond reads, multiple write regions, and five consistency level options from strong to eventual. Which Azure database service should you choose?
 
-B. To manage virtual machines
+- A) Azure SQL Database Hyperscale
+- B) Azure Database for PostgreSQL — Flexible Server
+- C) Azure Cosmos DB
+- D) Azure Cache for Redis
 
-C. To provide identity and access management
+> **Answer: C**  
+> Azure Cosmos DB is a globally distributed, multi-model NoSQL database with turnkey multi-region writes, five consistency levels (Strong, Bounded Staleness, Session, Consistent Prefix, Eventual), and guaranteed single-digit millisecond latency at the 99th percentile. Azure SQL Database is relational and does not offer multi-region writes natively.
 
-D. To create websites
-
-**Answer:** C. To provide identity and access management
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. Which of these Azure services is used for data processing and transformation?
-
-A. Azure Stream Analytics
 
-B. Azure Data Lake
+**Q.** A company\'s Azure SQL Database experiences performance degradation during month-end reporting. The reports involve complex analytical queries over 3 years of transactional data. The OLTP workload must not be impacted. What is the recommended architectural solution?
 
-C. Azure SQL Database
+- A) Upgrade the Azure SQL Database to a Business Critical tier.
+- B) Add an Azure Cache for Redis layer in front of the SQL Database.
+- C) Use Azure Synapse Analytics (dedicated SQL pool) for the analytical queries, and replicate data from Azure SQL via Synapse Link or ADF pipelines.
+- D) Use Read Replicas on Azure SQL Database and run reports on the replica.
 
-D. Azure Key Vault
+> **Answer: C**  
+> Separating OLTP (Azure SQL) from OLAP (Azure Synapse Analytics) is the recommended pattern. Synapse is optimized for massive parallel analytical queries. Azure Synapse Link for SQL provides near-real-time data replication from Azure SQL to Synapse without impacting the OLTP workload. Read replicas reduce read load on the primary but don\'t provide the analytical query performance of a columnar MPP engine.
 
-**Answer:** A. Azure Stream Analytics
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. What does PaaS stand for in the context of Azure services?
-
-A. Platform as a Service
-
-B. Product as a Solution
 
-C. Protocol as a Service
+**Q.** A SaaS platform serves 500 tenants, each with their own Azure SQL Database. Managing 500 individual databases is operationally expensive. The databases have variable and unpredictable usage patterns — some are busy while others are mostly idle. What Azure SQL feature reduces cost and management overhead in this scenario?
 
-D. Platform as a Solution
+- A) Azure SQL Managed Instance
+- B) Azure SQL Elastic Pools
+- C) SQL Server on Azure VM
+- D) Azure SQL Database Hyperscale
 
-**Answer:** A. Platform as a Service
+> **Answer: B**  
+> Elastic Pools allow multiple databases to share a pool of eDTUs or vCores. Databases with different peak times share resources cost-effectively — idle databases consume minimal resources while busy ones burst. This is the canonical multi-tenant SaaS architecture for Azure SQL.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
-## Q. Which of the following is an example of Infrastructure as a Service (IaaS. on Azure?
+**Q.** An application queries an Azure SQL Database for the same product catalog data millions of times per day. The catalog changes once per hour. Database CPU and DTU consumption is high despite the data being mostly static. What is the most effective optimization?
 
-A. Azure Virtual Machines
+- A) Scale up the Azure SQL Database to a higher service tier permanently.
+- B) Add a read replica and route all reads to it.
+- C) Place Azure Cache for Redis in front of the database; cache product catalog results with a 1-hour TTL.
+- D) Enable Query Store on Azure SQL Database to identify slow queries.
 
-B. Azure SQL Database
+> **Answer: C**  
+> Caching static or slow-changing data in Redis dramatically reduces database load. With a 1-hour TTL matching the catalog update frequency, the application serves millions of reads from in-memory cache at sub-millisecond latency, reducing SQL DTU consumption significantly. Scaling up permanently is expensive for a caching problem.
 
-C. Azure Functions
-
-D. Azure Logic Apps
-
-**Answer:** A. Azure Virtual Machines
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. In Azure, what is a Resource Group used for?
 
-A. Organizing and managing related Azure resources
+**Q.** Your team is migrating an on-premises SQL Server 2019 instance with SQL Agent jobs, linked servers, and CLR objects to Azure. The requirement is minimal code changes and full SQL Server compatibility. Which Azure SQL option should you choose?
 
-B. Providing identity management
+- A) Azure SQL Database (single database)
+- B) Azure SQL Database Hyperscale
+- C) Azure SQL Managed Instance
+- D) SQL Server on Azure Virtual Machines
 
-C. Creating virtual machines
+> **Answer: C**  
+> Azure SQL Managed Instance provides near-100% compatibility with SQL Server on-premises, including SQL Agent, CLR, linked servers, cross-database queries, Service Broker, and Database Mail — features not available in Azure SQL Database. SQL Server on Azure VM provides full SQL Server control but requires OS management.
 
-D. Monitoring application performance
-
-**Answer:** A. Organizing and managing related Azure resources
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. When Microsoft Azure came into existence?
-
-A. 2004
 
-B. 2002
+## 7. Monitoring and Diagnostics
 
-C. 2010
+**Q.** An operations team receives alerts about an Azure App Service application being slow, but by the time they investigate, the performance data is already gone. What should they configure to persist performance data for retrospective analysis?
 
-D. 2001
+- A) Enable Application Insights with a 90-day retention period and configure Continuous Export to Azure Storage.
+- B) Increase the App Service plan to a Premium tier.
+- C) Enable Azure Service Health alerts.
+- D) Configure Azure Monitor Metrics with a 5-minute granularity.
 
-**Answer:** C. 2010
+> **Answer: A**  
+> Application Insights collects detailed telemetry (requests, dependencies, exceptions, performance counters). With a retention period up to 90 days (730 days on a workspace) and Continuous Export (or Diagnostic Settings to Log Analytics), all data persists for retrospective investigation. Azure Monitor Metrics retains 93 days but without the rich application-level detail of Application Insights.
 
-**Explanation:**
-
-Microsoft Azure came into existence in the year 2010.
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. What do you mean by cloud computing? Select the best answer.
-
-A. A term referring to storing data over the internet
 
-B. A platform where you can access huge amounts of data without having a hard disk.
+**Q.** A developer writes the following KQL query in Log Analytics:
 
-C. A platform where you can access the data from a remote server.
+```kql
+AzureActivity
+| where OperationNameValue contains "delete"
+| where ActivityStatusValue == "Success"
+| project TimeGenerated, Caller, ResourceGroup, OperationNameValue
+| order by TimeGenerated desc
+```
 
-D. All of the above
+What does this query return?
 
-**Answer:** D. All of the above
+- A) All failed delete operations across all Azure resources.
+- B) A list of successful delete operations sorted by most recent first, showing who performed them and on which resource group.
+- C) All operations performed by a specific caller in the last 24 hours.
+- D) All Azure activity log entries containing errors.
 
-**Explanation:**
+> **Answer: B**  
+> The query filters the `AzureActivity` table for rows where the operation name includes "delete" and the status is "Success". It projects four columns and orders results newest-first, giving an audit trail of successful delete operations.
 
-Cloud computing is a general term that is used to store a huge amount of data over the internet. This is a platform where you can access your data from any remote server.
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. What is Microsoft Azure? Select the best answer.
-
-A. An open platform that aids in development, service hosting
-
-B. A cloud computing service created by Microsoft which helps in testing, deploying, and managing the application.
 
-C. A platform that offers a variety of technologies that are used for cloud service, mobile apps, etc.
+**Q.** An SRE team wants to be notified by SMS and email within 5 minutes if the average CPU of their Azure VM exceeds 90% for more than 3 minutes. What Azure Monitor components should they configure?
 
-D. All of the above
+- A) A Service Health alert with a webhook to send an email.
+- B) A Metric Alert on the VM\'s `Percentage CPU` metric with a 3-minute evaluation window, threshold of 90%, and an Action Group configured with email and SMS contacts.
+- C) A Log Analytics scheduled query that runs every 5 minutes and sends an email.
+- D) Azure Advisor cost recommendations with email notifications enabled.
 
-**Answer:** D. All of the above
+> **Answer: B**  
+> Azure Monitor Metric Alerts evaluate metric conditions at near-real-time. A metric alert on `Percentage CPU > 90%` with a 3-minute aggregation window triggers an Action Group, which sends notifications via email, SMS, voice call, webhook, or Logic Apps. Log Analytics alerts have higher latency due to ingestion delays.
 
-**Explanation:**
-
-Microsoft Azure is an open cloud computing service which is created by Microsoft that helps us in the development of an application, hosting an application, testing, managing, and deploying an applications. It provides a variety of services and technologies which can greatly be used for cloud service, mobile app development, etc.
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. How many types of clouds are there in Microsoft Azure?
-
-A. 3
 
-B. 2
+**Q.** A microservices application spans Azure Functions, Azure Service Bus, Azure SQL, and Azure App Service. The support team cannot trace a slow customer request end-to-end across all services. Which Application Insights feature provides distributed tracing across all these components?
 
-C. 4
+- A) Application Insights Availability Tests
+- B) Application Insights Application Map and distributed tracing with correlation IDs
+- C) Azure Monitor Workbooks
+- D) Azure Network Watcher Connection Monitor
 
-D. 5
+> **Answer: B**  
+> Application Insights propagates correlation IDs (W3C TraceContext standard) across service calls. The Application Map visualizes the entire call chain and highlights slow or failing dependencies. Each service (Functions, App Service) is instrumented with the Application Insights SDK or auto-instrumentation, enabling end-to-end distributed tracing.
 
-**Answer:** A. 3
-
-**Explanation:**
-
-There are three types of cloud in Azure: PAAS, SAAS, and IASS.
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. What is the Azure active directory?
 
-A. A directory where you can manage services, and app users from a distributed location.
-B. A directory where you can manage services, and apps users from a centralized location.
+**Q.** A company wants to verify that their Azure-hosted e-commerce website is available and responding correctly from locations across Europe, Asia, and the Americas every 5 minutes, and receive an alert if availability drops below 99%. Which Azure Monitor feature enables this?
 
-**Answer:** B. A directory where you can manage services, and apps users from a centralized location.
+- A) Azure Service Health
+- B) Application Insights Availability Tests (Standard or Multi-step tests)
+- C) Azure Monitor Metrics — HTTP response time metric
+- D) Azure Front Door health probes
 
-**Explanation:**
+> **Answer: B**  
+> Application Insights Availability Tests (URL ping, Standard, or Multi-step) run synthetic HTTP requests from Azure test nodes worldwide at configurable intervals. Alerts trigger when availability drops below the configured threshold. Service Health reports Azure platform issues, not application-level availability from multiple geographic vantage points.
 
-Azure active directory is also known as AD. It is a directory that allows you to manage your files, users, services, etc from one central location.
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. Among Windows active directory and Azure active directory which is known to be the oldest version?
 
-A. Windows Active directory
-B. Azure active directory
+## 8. Azure App Service and Functions
 
-**Answer:** B. Azure active directory
+**Q.** A team wants to deploy a new version of their App Service web application for testing by 10% of production traffic, while the remaining 90% continues to use the stable version. No infrastructure changes should be required. Which feature achieves this?
 
-**Explanation:**
+- A) Azure Traffic Manager weighted routing
+- B) App Service Deployment Slots with Traffic Routing percentage
+- C) Azure Application Gateway with path-based routing
+- D) Azure Front Door with origin groups
 
-Windows active directory is the previous version of Azure active directory.
+> **Answer: B**  
+> App Service Deployment Slots allow traffic splitting between named slots (e.g., production and staging). The Traffic Routing percentage setting directs a configurable fraction of requests to the staging slot, enabling canary releases and A/B testing with a single App Service plan — no extra infrastructure.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. How many types of audiences are there in the Azure active directory?
-
-A. 3
 
-B. 4
+**Q.** An Azure Function is triggered by messages on an Azure Service Bus queue. During peak load, 10,000 messages arrive per minute. The function takes 2 seconds to process each message. The team is concerned about throughput and scaling. Which hosting plan supports unlimited automatic scale-out at no fixed cost for compute?
 
-C. 5
+- A) App Service Plan (Standard S2)
+- B) Azure Functions Consumption Plan
+- C) Azure Functions Premium Plan
+- D) Azure Functions Dedicated (App Service) Plan
 
-D. 6
+> **Answer: B**  
+> The Consumption Plan scales out automatically — adding new instances based on queue depth — with no fixed monthly charge for compute. You pay only per execution and GB-seconds of memory used. The Premium Plan also auto-scales but includes a minimum warm instance with a fixed cost. App Service Plan requires manual or autoscale configuration within fixed plan limits.
 
-**Answer:** A. 3
-
-**Explanation:**
-
-There are three types of audiences in the Azure active directory: IT administrators, Application developers, and Online customers.
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. Which type of audience takes care of all the sign-in procedures in the Azure active directory?
 
-A. IT administrators
+**Q.** An Azure Function using the Consumption plan starts processing a large file upload but fails intermittently after 5 minutes with a timeout error. What is the most likely cause, and what is the solution?
 
-B. Application developers
+- A) The function ran out of memory. Increase the memory allocation in `host.json`.
+- B) The Consumption plan has a maximum execution timeout of 5 minutes (default); increase it to up to 10 minutes in `host.json`, or migrate to the Premium or Dedicated plan for longer executions.
+- C) The Azure Storage trigger has a polling delay. Switch to an Event Grid trigger.
+- D) The function is not retrying on failure. Enable retry policies in `host.json`.
 
-C. Online customers.
+> **Answer: B**  
+> The default timeout for Azure Functions on the Consumption plan is 5 minutes, configurable up to 10 minutes via `functionTimeout` in `host.json`. For operations exceeding 10 minutes, the Premium or Dedicated plan (with no timeout limit, or up to 60 minutes configured) is required. The Durable Functions pattern (async orchestration) is the recommended approach for very long-running workflows.
 
-**Answer:** A. IT administrators
-
-**Explanation:**
-
-IT administrators take care of all the sign-in procedures in the Azure active directory and all the work/issues related to authentications.
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. Which is the foundational cloud platform layer?
 
-A. IAAS
+**Q.** An App Service web application needs to read a secret from Azure Key Vault without storing credentials. The application is deployed in a Standard tier App Service. What is the simplest way to achieve this?
 
-B. PAAS
+- A) Add the Key Vault access key to the App Service Application Settings.
+- B) Enable the System-Assigned Managed Identity on the App Service, grant it Key Vault Secrets User RBAC, and reference the secret via a Key Vault reference in Application Settings: `@Microsoft.KeyVault(SecretUri=...)`.
+- C) Download the secret from Key Vault during the CI/CD pipeline and inject it as a build artifact.
+- D) Use Azure API Management to proxy Key Vault requests from the App Service.
 
-C. SAAS
+> **Answer: B**  
+> App Service supports Key Vault references natively. When a Managed Identity is enabled and has the Key Vault Secrets User role, you set an App Setting value to `@Microsoft.KeyVault(SecretUri=https://vault.vault.azure.net/secrets/mySecret/)`. The App Service runtime resolves the secret at startup automatically — no SDK code required.
 
-**Answer:** A. IAAS
-
-**Explanation:**
-
-IAAS (infrastructure as a service) is the foundational cloud platform layer mainly used by IT administrators for processing, storage, and any fundamental computer operation.
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. Who are the main users of IAAS?
 
-A. Developers
+**Q.** A team uses Azure Durable Functions to orchestrate a multi-step workflow: Step 1 calls an external payment API, Step 2 sends a confirmation email, and Step 3 updates a database. The external payment API is occasionally slow (up to 3 minutes). How does Durable Functions handle this without blocking a thread?
 
-B. End users
+- A) Durable Functions runs each step on a separate thread pool with a 5-minute timeout per thread.
+- B) The orchestrator function suspends at each `await` call and persists its state to Azure Storage. The thread is freed. When the activity completes, the orchestrator replays to resume from the saved checkpoint.
+- C) Durable Functions allocates a dedicated VM for each orchestration instance.
+- D) The orchestrator polls the activity function every 30 seconds until it completes.
 
-C. Network architect
+> **Answer: B**  
+> Durable Functions uses an event sourcing / checkpointing pattern. When the orchestrator awaits an activity, it serializes its state to Azure Storage and releases the thread. When the activity completes, the runtime replays the orchestrator function from the beginning, fast-forwarding through completed steps using the event history, until it reaches the next pending await. This enables long-running workflows without holding threads.
 
-**Answer:** C. Network architect
-
-**Explanation:**
-
-IAAS is used by network architects.
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. Which of the following are the advantages of using IAAS?
 
-A. IAAS provides dynamic scaling.
+## 9. Containers and Kubernetes
 
-B. IAAS enables instant recovery from outages.
+**Q.** A DevOps team has just deployed a new container image to their AKS cluster. After the deployment, some pods are crashing with status `CrashLoopBackOff`. What is the first command they should run to diagnose the issue?
 
-C. IAAS provides us with a monthly operational expense.
+- A) `kubectl delete pod <pod-name>`
+- B) `kubectl logs <pod-name> --previous`
+- C) `kubectl scale deployment <name> --replicas=0`
+- D) `az aks upgrade --kubernetes-version`
 
-D. All of the above
+> **Answer: B**  
+> `kubectl logs <pod-name> --previous` retrieves the logs from the previous (crashed) container instance, which usually contains the error that caused the crash. `kubectl describe pod <pod-name>` also reveals events and resource constraints. Deleting the pod restarts it but loses current diagnostic data.
 
-**Answer:** D. All of the above
-
-**Explanation:**
-
-There are several advantages of IAAS:
-
-* IAAS provides dynamic scaling.
-* IAAS enables instant recovery from outages.
-* IAAS provides us the monthly operational expense
-* IAAS provides pay for what you use metrics
-* It can be accessed via a simple internet connection.
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. Which of the following platforms is used by clients to develop and deploy the application?
-
-A. IAAS
-
-B. PAAS
-
-C. SAAS
 
-**Answer:** B. PAAS
+**Q.** An AKS-hosted microservice needs to autoscale the number of pods based on the number of messages in an Azure Service Bus queue — not based on CPU or memory. Which AKS feature supports this?
 
-**Explanation:**
+- A) Horizontal Pod Autoscaler (HPA) with a custom CPU metric
+- B) Vertical Pod Autoscaler (VPA)
+- C) KEDA (Kubernetes Event-Driven Autoscaling) with an Azure Service Bus scaler
+- D) AKS Cluster Autoscaler
 
-PAAS is known as a platform as a service and clients use this to develop and deploy the application.
+> **Answer: C**  
+> KEDA is a CNCF project integrated into AKS that scales pods based on external event sources including Azure Service Bus queue/topic depth, Azure Storage queues, Event Hubs, and 50+ other scalers. HPA can only scale on CPU/memory or custom Kubernetes metrics, not external Azure queue depth natively.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
-## Q. Who are the main users of PAAS?
+**Q.** A company stores container images in Azure Container Registry (ACR). Only the AKS cluster should be able to pull images from this private registry, with no long-lived credentials stored in the cluster. What is the recommended configuration?
 
-A. Developers
+- A) Create a Kubernetes `imagePullSecret` with the ACR admin username and password.
+- B) Make the ACR registry public so no credentials are needed.
+- C) Attach the ACR to the AKS cluster using `az aks update --attach-acr`, which grants the cluster\'s managed identity the AcrPull role on the ACR.
+- D) Store the ACR access token in an Azure Key Vault secret and reference it in pod specs.
 
-B. End users
+> **Answer: C**  
+> `az aks update --attach-acr <acr-name>` grants the AKS cluster\'s managed identity (kubelet identity) the `AcrPull` role on the ACR. Pods can then pull images without any imagePullSecret. No passwords or tokens are stored in the cluster. Admin credentials in imagePullSecrets are a security anti-pattern.
 
-C. Network architect
-
-**Answer:** A. Developers
-
-**Explanation:**
-
-PAAS is used by developers and application providers.
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. Who are the main users of SAAS?
-
-A. Developers
-
-B. End users
-
-C. Network architect
 
-**Answer:** B. End users
+**Q.** Your AKS workload processes sensitive financial data. A security requirement states that no pod should run as root, all file systems should be read-only unless explicitly required, and privilege escalation must be blocked. Which Kubernetes mechanism enforces these constraints cluster-wide?
 
-**Explanation:**
+- A) Kubernetes Network Policies
+- B) Azure Policy for AKS with built-in Pod Security Standards (Restricted profile)
+- C) AKS node pool taints
+- D) Resource Quotas and LimitRanges
 
-SAAS is used by end users.
+> **Answer: B**  
+> Azure Policy for AKS integrates with the OPA Gatekeeper admission controller to enforce Pod Security Standards at the cluster level. The Restricted profile enforces: no root users, read-only root filesystems, no privilege escalation, no host namespaces. Network Policies control network traffic, not container security context. Taints control pod scheduling placement, not security posture.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
-## Q. In which cloud computing service model software is hosted on the cloud and made available to clients?
+**Q.** A team wants to minimize AKS node pool costs for a batch workload that runs for 4 hours each night. The nodes should not exist (and not incur cost) outside of the batch window. Which AKS feature supports this?
 
-A. IAAS
+- A) AKS Cluster Autoscaler with a minimum node count of 0
+- B) AKS node pool with `--node-count 0` and start/stop the cluster via `az aks start/stop`
+- C) Use Azure Container Instances for the batch workload instead of AKS.
+- D) AKS Spot node pools with automatic eviction
 
-B. PAAS
+> **Answer: B**  
+> AKS supports stopping and starting the entire cluster or individual user node pools. When stopped, you pay only for the persistent storage (OS disks, etcd) but not for VM compute. Combined with a scheduled automation (Logic Apps or Azure Automation), the cluster starts before the batch window and stops after, eliminating idle VM costs.
 
-C. SAAS
-
-**Answer:** C. SAAS
-
-**Explanation:**
-
-SAAS (software as a service) is a cloud computing service model where software is hosted on the cloud and made available to clients.
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
-## Q. The term ____refers to a geographical location or area?
+## 10. DevOps and CI/CD
 
-A. Regions
+**Q.** A development team uses Azure DevOps pipelines to build and deploy a .NET application. The pipeline currently deploys directly to production on every merge to `main`. The team wants to add a manual approval gate before the production deployment. Which Azure DevOps feature implements this?
 
-B. Data center
+- A) Pipeline branch filters
+- B) Azure DevOps Environment with a required approval check
+- C) Repository branch protection rules
+- D) YAML template parameters
 
-C. Resources
+> **Answer: B**  
+> Azure DevOps Environments support pre-deployment checks including manual approvals and required reviewers. When a deployment stage targets an environment with an approval check, the pipeline pauses and sends a notification to approvers before proceeding. Branch filters control when the pipeline triggers, not deployment approval.
 
-**Answer:** A. Regions
-
-**Explanation:**
-
-The term region refers to a geographical location or area.
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. To reduce the latency in network requests, you should select a region that is at ____to most of the customers.
 
-A. Far distance
+**Q.** A team\'s Azure DevOps pipeline needs to deploy to Azure using a Service Principal. Currently the Client Secret is stored as a pipeline variable in plain text. The security team requires secrets to never be stored in Azure DevOps. What is the recommended approach?
 
-B. Closer distance
+- A) Store the secret in a pipeline variable group marked as secret.
+- B) Use an Azure Resource Manager Service Connection (with Workload Identity Federation / OIDC), which does not require storing a client secret in Azure DevOps at all.
+- C) Rotate the client secret every 30 days automatically.
+- D) Encode the client secret in Base64 before storing it in the pipeline variable.
 
-C. Moderate distance
+> **Answer: B**  
+> Workload Identity Federation (OIDC) for Azure DevOps ARM Service Connections uses short-lived tokens issued by Azure DevOps, validated by Microsoft Entra ID — no client secret is stored anywhere. The pipeline authenticates to Azure using federated identity without any long-lived credential. This is the current Microsoft-recommended approach.
 
-**Answer:** B. Closer distance
-
-**Explanation:**
-
-It is suggested to choose a region that is closer to the customer, as it helps us to reduce the latency in network requests.
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q.  ____ are physical buildings located in specific geographical regions?
-
-A. Resources
-
-B. Regions
-
-C. Data center
-
-D. Resource groups
 
-**Answer:** C. Data center
+**Q.** A company wants to enforce that all Azure resources deployed through their CI/CD pipeline are tagged with `CostCenter`, `Environment`, and `Owner` tags. Resources deployed without these tags should be automatically rejected. Which approach enforces this at the Azure control plane level?
 
-**Explanation:**
+- A) Add a pipeline script step that checks tags before deployment.
+- B) Assign an Azure Policy with the `deny` effect that requires the specified tags on all resource creation/update operations.
+- C) Use Azure Blueprints to tag resources after deployment.
+- D) Enable Microsoft Defender for Cloud resource compliance.
 
-Data centers are physical buildings located in specific geographical regions.
+> **Answer: B**  
+> Azure Policy with `deny` effect blocks any resource deployment that does not include the required tags, regardless of how the deployment is triggered (portal, CLI, pipeline, Terraform). Pipeline-level checks can be bypassed by out-of-band deployments. Policy enforcement at the ARM control plane is authoritative.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
-## Q. Creating, managing, and removing Azure resources and services is done through the ____, which is a web-based application?
+**Q.** A team manages Azure infrastructure with Bicep templates stored in a Git repository. They want to automatically validate and deploy changes to infrastructure when a pull request is merged to `main`. Which pipeline structure is most appropriate?
 
-A. Resources
+- A) A single stage pipeline that runs `az deployment group create` on every commit to every branch.
+- B) A multi-stage YAML pipeline: Stage 1 (PR) runs `az deployment group validate` and `az deployment group what-if`; Stage 2 (merge to main) runs `az deployment group create` with environment approval.
+- C) Use Azure Blueprints to auto-deploy on repository changes.
+- D) A release pipeline triggered by a build artifact containing the Bicep files.
 
-B. Azure portal
+> **Answer: B**  
+> The recommended IaC pipeline pattern: validate (syntax check) and what-if (preview changes) on PRs to catch errors before merge; deploy to production after merge with an environment approval gate. This provides safety, visibility, and auditability without deploying untested changes automatically.
 
-C. Resource manager templates
-
-D. Resource groups
-
-**Answer:** B. Azure portal
-
-**Explanation:**
-
-Creating, managing, and removing Azure resources and services is done through the Azure portal, which is a web-based application.
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. Are Azure resources and Azure services the same?
-
-A. Yes
-
-B. No
 
-**Answer:** B. NO
+**Q.** A GitHub Actions workflow deploys to Azure App Service on every push to `main`. The team wants the deployment to roll back automatically if the App Service health check fails after deployment. Which GitHub Actions feature supports this?
 
-**Explanation:**
+- A) GitHub Actions `continue-on-error: true` flag
+- B) The `azure/webapps-deploy` action with slot swap and App Service Health Check configured on the staging slot; if the health check fails, the swap does not proceed.
+- C) GitHub Dependabot auto-merge
+- D) GitHub Environment protection rules with a required status check
 
-Azure resources are billable objects whereas the services are something that is needed to be performed.
+> **Answer: B**  
+> Deploying to a staging slot and using slot swap (with Auto swap or a manual swap step in the pipeline) combined with App Service Health Check means Azure validates the new version on the staging slot before swapping to production. If the health check fails, the slot remains at staging and production is unaffected — providing automatic rollback without additional tooling.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
-## Q. An Azure ____ is a container that holds related resources for an Azure solution.
+## 11. Cost Management
 
-A. Resources
+**Q.** A company\'s Azure bill is unexpectedly 40% higher than the previous month. The finance team asks you to investigate. Which is the most direct first step?
 
-B. Resource Group
+- A) Delete all resources in non-production resource groups immediately.
+- B) Open Azure Cost Management + Billing → Cost Analysis, filter by time period, group by Service and Resource Group to identify which service and resource group drove the increase.
+- C) Scale down all VM sizes to the smallest available SKU.
+- D) Enable Azure Advisor and wait for recommendations to appear.
 
-C. Azure portal
+> **Answer: B**  
+> Cost Analysis in Azure Cost Management provides a visual breakdown of costs by service, resource group, resource, tag, and location. Grouping by service and resource group quickly identifies the source of unexpected spend. Taking destructive actions before diagnosing the root cause risks business disruption.
 
-**Answer:** B. Resource Group
-
-**Explanation:**
-
-An Azure resource group is a container that holds related resources for an Azure solution.
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. Is Azure CLI and Azure PowerShell the same thing?
 
-A. Yes
+**Q.** A production workload runs 24/7 on 10 Azure D8s_v5 VMs in East US. The workload has been stable for 18 months with no plans to change VM size or region. What is the most cost-effective purchasing option?
 
-B. No
+- A) Pay-as-you-go pricing
+- B) 3-year Azure Reserved VM Instance with no upfront payment
+- C) 3-year Azure Reserved VM Instance with all-upfront payment
+- D) Azure Spot VMs
 
-**Answer:** B. NO
+> **Answer: C**  
+> For stable, long-running 24/7 workloads, 3-year Reserved Instances with all-upfront payment provide the maximum discount (up to 72% vs pay-as-you-go). The all-upfront option has a larger discount than the monthly payment option. Spot VMs can be evicted and are inappropriate for production workloads. Pay-as-you-go is the most expensive for constant usage.
 
-**Explanation:**
-
-No, Azure CLI and Azure PowerShell are two different tools, and according to the task appropriate tool is decided.
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. ____ is a set of modules that offer cmdlets to manage Azure.
-
-A. Azure PowerShell
 
-B. Azure CLI
+**Q.** A development team leaves 15 development VMs running overnight and on weekends when no one is working. How can you automatically shut down these VMs during off-hours to reduce cost without deleting them?
 
-**Answer:** A. Azure PowerShell
+- A) Use Azure Policy to deny VM creation outside business hours.
+- B) Enable Auto-shutdown on each VM (or via Azure Automation runbooks with schedules) to stop them at 7 PM on weekdays and restart at 8 AM.
+- C) Move the VMs to Azure Spot to reduce cost when idle.
+- D) Enable Azure Advisor and configure it to shut down idle VMs.
 
-**Explanation:**
+> **Answer: B**  
+> Azure VMs support a built-in Auto-shutdown feature configurable per VM. Azure Automation with PowerShell runbooks and schedules can manage start/stop at scale across all dev VMs. Stopped (deallocated) VMs do not incur compute charges. Azure Advisor recommends but does not automatically shut down resources.
 
-PowerShell is a set of modules that offer cmdlets to manage Azure.
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. Which of the following act as the kernel of Azure Service Platform in managing the hardware resources?
-
-A. Azure PowerShell
-
-B. Azure CLI
 
-C. Azure fabric controller
+**Q.** A company has Windows Server 2022 VMs running SQL Server Enterprise on-premises with active Software Assurance licenses. They are migrating to Azure VMs. Which Azure benefit allows them to reuse existing licenses and avoid paying for new Azure licensing costs?
 
-D. Azure orchestrator
+- A) Azure Hybrid Benefit
+- B) Azure Reserved Instances
+- C) Azure Dev/Test pricing
+- D) Azure Spot pricing
 
-**Answer:** C. Azure fabric controller
+> **Answer: A**  
+> Azure Hybrid Benefit allows customers with active Software Assurance on Windows Server and SQL Server licenses to run those workloads on Azure VMs at a reduced rate (paying only compute, not the OS or SQL Server license again). This can save up to 85% compared to pay-as-you-go pricing with included licenses.
 
-**Explanation:**
-
-Azure fabric controllers act as the kernel of Azure Service Platform in managing the hardware resources. It mainly manages and monitors the allocation of computing resources.
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. Azure Fabric controller in Azure is connected to which software?
-
-A. Azure PowerShell
 
-B. REST API
+**Q.** A FinOps team wants to alert the Finance team automatically when monthly Azure spending in the Production subscription exceeds $50,000, so corrective action can be taken before the end of the month. Which feature enables this?
 
-C. Authentication servers
+- A) Azure Monitor metric alert on billing metrics
+- B) Azure Cost Management Budget with an alert action group configured to email the Finance team when 80% and 100% of the $50,000 budget is reached.
+- C) Azure Policy with a cost threshold deny effect
+- D) Microsoft Defender for Cloud cost recommendations
 
-D. Azure orchestrator
+> **Answer: B**  
+> Azure Cost Management Budgets allow you to define a spending threshold (e.g., $50,000/month) and trigger alerts at configurable percentages (e.g., 80%, 100%) via email or action groups. Budgets also support forecast-based alerts (when Azure predicts you'll exceed the budget). Azure Policy cannot block spending; it controls resource configurations.
 
-**Answer:** D. Azure orchestrator
-
-**Explanation:**
-
-Azure fabric controller is connected to Azure orchestrator, which includes web services and REST API.
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. How many certification categories does Microsoft Azure provide?
 
-A. 3
+## 12. High Availability and Disaster Recovery
 
-B. 4
+**Q.** A company\'s Azure SQL Database in East US experiences an outage. They have a failover group configured with a secondary in West US. The application connection string uses the failover group listener endpoint. What happens to the application during a database failover?
 
-C. 5
+- A) The application must be redeployed with the secondary database connection string.
+- B) The failover group listener endpoint automatically resolves to the new primary (West US) after failover; the application reconnects without a connection string change.
+- C) The application must manually trigger failover via the Azure portal.
+- D) The connection string becomes invalid and must be updated with the secondary endpoint.
 
-D. 6
+> **Answer: B**  
+> Failover group listener endpoints (read-write and read-only) are DNS names that remain constant. After failover, the DNS record is updated to point to the new primary. Applications using the listener endpoint reconnect transparently after a brief reconnection retry — no connection string change required.
 
-**Answer:** A. 3
-
-**Explanation:**
-
-There are three categories of Microsoft certifications: Azure administrator, Azure developer, and Azure solution architect.
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. How many types of cloud computing are there?
 
-A. 8
+**Q.** A company needs their Azure-hosted application to have an RTO (Recovery Time Objective) of less than 15 minutes and RPO (Recovery Point Objective) of less than 5 minutes in the event of a full region failure. Which design best meets both objectives?
 
-B. 4
+- A) Daily backup of VMs to Azure Backup in the same region.
+- B) Active-passive multi-region deployment: primary region runs the workload; Azure Site Recovery continuously replicates VMs to a secondary region (RPO ~1 min); Azure Traffic Manager fails over DNS to the secondary region (RTO ~5–15 min).
+- C) Weekly geo-redundant backup with manual restore in the secondary region.
+- D) Azure Backup with cross-region restore (CRR) enabled.
 
-C. 3
+> **Answer: B**  
+> Azure Site Recovery with continuous replication achieves RPO of approximately 1 minute. Azure Traffic Manager with health probes detects the primary region failure and reroutes traffic to the pre-warmed secondary region in minutes, meeting the 15-minute RTO. Daily or weekly backups cannot meet a 5-minute RPO. Cross-region restore with Azure Backup takes hours.
 
-D. 6
-
-**Answer:** C. 3
-
-**Explanation:**
-
-There are three types of cloud computing: Private cloud, public cloud and Hybrid cloud.
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. In which of the following cloud computing resources are owned and operated by a third-party cloud service provider?
-
-A. Public cloud
-
-B. Private Cloud
-
-C. Hybrid cloud
 
-**Answer:** A. Public cloud
+**Q.** A developer asks: "What is the difference between RTO and RPO?" Which answer is correct?
 
-**Explanation:**
+- A) RTO is the maximum data loss tolerated; RPO is the maximum downtime tolerated.
+- B) RTO (Recovery Time Objective) is the maximum acceptable downtime — how long it takes to restore service; RPO (Recovery Point Objective) is the maximum acceptable data loss — how old the most recent backup/replica can be.
+- C) RTO applies to databases only; RPO applies to VMs only.
+- D) RTO and RPO are the same thing measured in different units.
 
-In the public cloud resources are owned and operated by a third-party cloud service provider.
+> **Answer: B**  
+> RTO answers "how long can the system be down?" — a 15-minute RTO means service must be restored within 15 minutes. RPO answers "how much data can we afford to lose?" — a 5-minute RPO means the data can be at most 5 minutes old at the time of recovery. Both are business requirements that drive the choice of DR solution.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
-## Q. A ____ is a collection of resources that are used exclusively within a business or organization.
+**Q.** An e-commerce application needs 99.99% monthly uptime SLA. It is currently deployed on a single Azure App Service in one region. What architectural change is required to achieve the 99.99% SLA?
 
-A. Public cloud
+- A) Upgrade to the App Service Premium v3 tier in the same region.
+- B) Deploy the App Service to two Azure regions, place Azure Front Door in front with health probes, and use a geo-replicated database backend. The combined SLA of redundant components exceeds 99.99%.
+- C) Enable App Service Always-On setting and increase the instance count to 3.
+- D) Configure App Service with ZRS storage for the content share.
 
-B. Private Cloud
+> **Answer: B**  
+> A single-region App Service has a maximum SLA of 99.95%. Achieving 99.99% requires multi-region active-active or active-passive deployment with a global load balancer (Azure Front Door, 99.99% SLA) routing traffic. The composite SLA of independent redundant components (A AND B fail = 0.05% × 0.05% = 0.0025%) far exceeds 99.99%.
 
-C. Hybrid cloud
-
-**Answer:** B. Private Cloud
-
-**Explanation:**
-
-A private cloud is a collection of resources that are used exclusively within a business or organization.
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
-## Q. Which storage is used to store huge amounts of unstructured data in Azure?
+**Q.** A company runs a 3-tier application (web, app, database) on Azure VMs. They want to protect against a full datacentre failure within the same Azure region (not a full region failure). Which redundancy configuration achieves this?
 
-A. Azure queue storage
+- A) Deploy all VMs in the same Availability Set.
+- B) Deploy each tier\'s VMs across multiple Availability Zones within the same region (zone-redundant deployment).
+- C) Deploy VMs in a single Availability Set in one fault domain.
+- D) Use Azure Backup with cross-region restore.
 
-B. Azure File storage
+> **Answer: B**  
+> Availability Zones are physically separate datacentres within an Azure region with independent power, cooling, and networking. Deploying each tier across 2–3 AZs ensures that a single datacentre failure does not bring down the application. Availability Sets protect against rack-level failures within a single datacentre but not datacentre-level failures.
 
-C. Azure blob storage
-
-D. Azure table storage
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
 
-E. Azure Archive storage
+## 13. Migration
 
-**Answer:** C. Azure table storage
+**Q.** A company wants to migrate 200 on-premises VMs to Azure. Before committing to migration, they need an assessment of which VMs are ready for Azure, the recommended Azure VM sizes, and the estimated monthly cost. Which tool provides this?
 
-**Explanation:**
+- A) Azure Cost Management pricing calculator
+- B) Azure Migrate: Discovery and Assessment
+- C) Azure Site Recovery
+- D) Azure Database Migration Service
 
-Azure blob storage is used to store huge amounts of unstructured data in Azure, here you can store any type of text or binary data, such as a document, or media file.
+> **Answer: B**  
+> Azure Migrate: Discovery and Assessment deploys a lightweight appliance on-premises that discovers VMs (VMware, Hyper-V, or physical servers), collects performance data, and produces an Azure readiness report with recommended VM SKUs and estimated costs. Azure Site Recovery performs the actual replication/migration, not the assessment.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. Which storage is used in Azure when one wants to share the files between two servers so that they can be accessible on both servers?
 
-A. Azure queue storage
+**Q.** A company is migrating a 10 TB on-premises SQL Server 2019 database to Azure SQL Managed Instance with minimal downtime (less than 30 minutes). Which migration approach achieves this?
 
-B. Azure File storage
+- A) Take a full backup, restore it to Azure SQL MI (offline migration — downtime equals restore time, likely hours).
+- B) Use Azure Database Migration Service (DMS) in online mode with Log Shipping / Change Data Capture to sync changes continuously, then perform a cutover during a short maintenance window.
+- C) Export to BACPAC, import into Azure SQL MI (BACPAC is unsupported for MI at scale).
+- D) Use Azure Data Factory to copy all tables row-by-row to Azure SQL MI.
 
-C. Azure blob storage
+> **Answer: B**  
+> DMS online mode uses log shipping (for SQL Server) to continuously sync transaction log changes to the target MI after the initial full backup restore. When the lag is near-zero, the team schedules a short cutover window (typically <30 minutes) to stop writes on the source, let the final logs drain, and redirect the application to the new endpoint. Offline migration requires the source database to be taken offline for the entire restore duration.
 
-D. Azure table storage
-
-E.Azure Archive storage
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
 
-**Answer:** B. Azure File storage
+**Q.** A company needs to transfer 500 TB of on-premises archive data to Azure Blob Storage. Their internet connection is 1 Gbps and is shared with production traffic. Over the network, this transfer would take over 6 weeks. Which Azure service provides the fastest path?
 
-**Explanation:**
+- A) AzCopy with parallel threads over ExpressRoute
+- B) Azure Data Box Heavy (1 PB capacity physical device shipped to the datacenter)
+- C) Azure Import/Export service with standard HDDs shipped by the customer
+- D) Azure Data Factory with self-hosted Integration Runtime
 
-Azure file storage is used when one wants to share files between two servers so that they can be accessible on both servers.
+> **Answer: B**  
+> Azure Data Box Heavy is a ruggedized 1 PB storage device shipped by Microsoft. The team copies data locally (up to 1 Gbps USB), ships the device back, and Microsoft uploads data directly into Azure Storage at datacenter speeds. For 500 TB, this is orders of magnitude faster than a 1 Gbps internet connection shared with production traffic.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. Which storage in Azure provides us with the feature of cloud messaging?
 
-A. Azure queue storage
+**Q.** A legacy .NET Framework 4.7 web application runs on IIS on Windows Server 2012. The team wants to lift-and-shift to Azure with minimal changes. Which Azure service is most appropriate?
 
-B. Azure File storage
+- A) Azure App Service (Windows) — .NET Framework 4.7 is supported
+- B) Azure Kubernetes Service with a Windows node pool
+- C) Azure Virtual Machines running Windows Server — migrate the VM as-is using Azure Migrate
+- D) Azure Functions with .NET Framework isolated worker
 
-C. Azure blob storage
+> **Answer: C**  
+> For a true lift-and-shift with minimal changes, Azure Migrate replicates the on-premises IIS/Windows Server VM to an Azure VM. No code changes are required. Azure App Service supports .NET Framework but may require configuration changes (no IIS configuration file support for all features). AKS requires containerization. Azure Functions does not support full IIS-hosted apps.
 
-D. Azure table storage
-
-E. Azure Archive storage
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
 
-**Answer:** A. Azure queue storage
+**Q.** During a cloud migration, a company discovers that their application connects to a third-party on-premises API that cannot be moved to Azure due to a vendor contract. The Azure-hosted application must securely call this on-premises API. What is the recommended connectivity approach?
 
-**Explanation:**
+- A) Expose the on-premises API on the public internet and restrict by IP.
+- B) Establish an Azure VPN Gateway Site-to-Site or ExpressRoute connection to the on-premises network, allowing the Azure application to call the private on-premises API endpoint securely.
+- C) Use Azure API Management with a self-hosted gateway deployed on-premises.
+- D) Both B and C are valid approaches — B for network connectivity, C for API management features like throttling, auth, and caching at the edge.
 
-Azure queue storage in Azure provides us with the feature of cloud messaging.
+> **Answer: D**  
+> B (VPN/ExpressRoute) establishes the private network path from Azure to on-premises. C (API Management self-hosted gateway) deploys the gateway component on-premises close to the backend API, adding management features (rate limiting, auth, caching, logging) without requiring the API to be on the internet. Both can be combined for a complete solution.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. Which storage is used for rarely accessed files with cost-effective plans in Azure?
 
-A. Azure queue storage
+## 14. AI and Cognitive Services
 
-B. Azure File storage
+**Q.** A development team wants to add natural language search capabilities to their Azure-hosted product catalog so users can query in plain English (e.g., "red running shoes under $100"). Which Azure service combination implements this?
 
-C. Azure blob storage
+- A) Azure Cognitive Search with semantic search + Azure OpenAI Service for query understanding
+- B) Azure SQL Database full-text search
+- C) Azure Table Storage with wildcard queries
+- D) Azure Bot Service with LUIS (Language Understanding)
 
-D. Azure table storage
+> **Answer: A**  
+> Azure AI Search (formerly Cognitive Search) with semantic ranking understands query intent beyond keyword matching. Combined with Azure OpenAI Service (e.g., GPT-4o for query enrichment or vector embeddings for semantic similarity search), it enables natural language product discovery. Azure SQL full-text search is keyword-based and does not understand query semantics.
 
-E. Azure Archive storage
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
 
-**Answer:** E. Azure Archive storage
+**Q.** A company wants to build a chatbot grounded in their own internal documentation (PDFs, Word files, SharePoint content) using Azure OpenAI Service. The chatbot must only answer from their documents and cite sources. Which Azure pattern implements this?
 
-**Explanation:**
+- A) Fine-tune a GPT model with the company\'s documents.
+- B) Retrieval Augmented Generation (RAG): index documents in Azure AI Search (with vector embeddings), retrieve relevant chunks for each user query, and pass them as context to Azure OpenAI\'s chat completion API.
+- C) Store all documents in Azure Blob Storage and pass the entire storage account URL to the OpenAI API.
+- D) Use Azure Cognitive Services Text Analytics to extract key phrases and feed them to a rule-based chatbot.
 
-Azure archive storage is used for rarely accessed files with cost-effective plans in Azure.
+> **Answer: B**  
+> RAG is the recommended pattern for grounding LLM responses in enterprise documents. Documents are chunked and vectorized (using OpenAI Ada embeddings or other models) and indexed in Azure AI Search. At query time, the most relevant chunks are retrieved and injected into the OpenAI prompt as context. This is more cost-effective and up-to-date than fine-tuning, and avoids hallucinations by grounding responses in retrieved text.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. Which data storage in Azure has a schema-less design and is used to store the NoSQL data?
-
-A. Azure queue storage
 
-B. Azure File storage
+**Q.** An application calls Azure OpenAI Service for completions and occasionally receives HTTP 429 (Too Many Requests) errors during peak hours. The team has a provisioned throughput deployment (PTU). What is the recommended way to handle this without losing requests?
 
-C. Azure blob storage
+- A) Catch the 429 error and immediately retry with a fixed 1-second delay.
+- B) Implement exponential backoff with jitter on retry, and consider overflow to a pay-as-you-go deployment when PTU capacity is exhausted.
+- C) Switch from PTU to pay-as-you-go to avoid rate limits entirely.
+- D) Increase the `max_tokens` parameter to reduce the number of API calls.
 
-D. Azure table storage
+> **Answer: B**  
+> Azure OpenAI recommends exponential backoff with jitter for 429 errors to avoid retry storms. For PTU deployments, overflow routing to a PAYG endpoint handles burst traffic beyond provisioned capacity. Fixed-interval retries worsen the problem under sustained load. Increasing `max_tokens` increases per-call cost/latency but does not reduce the rate of calls.
 
-E. Azure Archive storage
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
 
-**Answer:** D. Azure table storage
+**Q.** A healthcare company wants to extract structured information (patient name, diagnosis, medication, dosage) from unstructured clinical notes stored in Azure Blob Storage. Which Azure AI service is purpose-built for healthcare NLP?
 
-**Explanation:**
+- A) Azure OpenAI Service with a custom prompt
+- B) Azure AI Language — Text Analytics for Health
+- C) Azure Form Recognizer (Document Intelligence)
+- D) Azure Cognitive Search with custom skills
 
-Azure table storage is used to store the NoSQL data with a schema less design.
+> **Answer: B**  
+> Azure AI Language\'s **Text Analytics for Health** is a pre-trained NLP model specifically designed to extract and structure healthcare entities (conditions, medications, dosages, anatomy, test results) from clinical text in compliance with healthcare standards. Form Recognizer extracts structured fields from forms/documents by layout, not by healthcare-specific NLP.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
-## Q. With which storage service in Azure, Windows, and Linux can use shared cloud block storage at the same time?
+**Q.** A company trains a custom image classification model using Azure Machine Learning. After training, they want to expose the model as a REST API endpoint that auto-scales based on request volume and has no idle compute cost. Which Azure ML deployment target achieves this?
 
-A. Azure StorSimple
+- A) Azure Machine Learning Managed Online Endpoint with Kubernetes compute
+- B) Azure Machine Learning Serverless Online Endpoint (pay-per-call)
+- C) Azure Container Instances with the model Docker image
+- D) Deploy the model to Azure Functions as a Python function
 
-B. Azure site recovery
+> **Answer: B**  
+> Azure Machine Learning Serverless Online Endpoints (in preview/GA 2025) provide fully managed, auto-scaling inference with per-call billing — no idle compute charges. Managed Online Endpoints with dedicated compute incur costs even when idle. ACI is non-managed and does not auto-scale. Azure Functions imposes memory and timeout limits unsuitable for large ML models.
 
-C. Azure disk storage
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
 
-D. Azure data box
+## 15. Governance and Compliance
 
-**Answer:** C. Azure disk storage
+**Q.** An organization wants to ensure that all new Azure resources are created only in approved regions (East US and West Europe) and that resource groups without a required `Owner` tag cannot be created. Which Azure service enforces these constraints declaratively at the control plane?
 
-**Explanation:**
+- A) Azure Role-Based Access Control (RBAC)
+- B) Azure Policy with `deny` effect definitions
+- C) Azure Blueprints
+- D) Azure Advisor recommendations
 
-With Azure disk storage Windows and Linux can use shared cloud block storage at the same time.
+> **Answer: B**  
+> Azure Policy with `deny` effect prevents non-compliant resource creation or updates at the ARM control plane. Built-in policies exist for allowed locations and required tags. RBAC controls who can perform operations but not what resource configurations are allowed. Blueprints orchestrate policy assignment but the enforcement mechanism is still Policy.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
-## Q. Which is the hybrid storage in Azure?
+**Q.** A security team discovers that a storage account is publicly accessible (blob public access enabled). They remediate it manually, but the same misconfiguration keeps reappearing. Which Azure Policy capability automatically remediates non-compliant resources without manual intervention?
 
-A. Azure StorSimple
+- A) Azure Policy `audit` effect with email notifications
+- B) Azure Policy `deployIfNotExists` or `modify` effect with a remediation task and a managed identity.
+- C) Microsoft Defender for Cloud security recommendations
+- D) Azure Advisor security score improvements
 
-B. Azure site recovery
+> **Answer: B**  
+> Azure Policy with `modify` effect can automatically correct resource properties (like setting `allowBlobPublicAccess: false`) on existing non-compliant resources via a remediation task. `deployIfNotExists` deploys a companion resource if missing. The policy is assigned a managed identity with the appropriate RBAC to make the change. `audit` only flags the issue without fixing it.
 
-C. Azure disk storage
-
-D. Azure data box
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
 
-**Answer:** A. Azure StorSimple
+**Q.** An enterprise has 5 business units, each with multiple subscriptions. The security team needs to apply consistent policies and RBAC across all 50+ subscriptions from a single location, with different policies for Production vs Non-Production subscriptions. What management structure achieves this?
 
-**Explanation:**
+- A) Assign policies to each subscription individually.
+- B) Create a Management Group hierarchy: Root → Production MG → [prod subscriptions]; Root → Non-Production MG → [non-prod subscriptions]. Assign policies at each MG level; they inherit down.
+- C) Use Azure Blueprints on each subscription separately.
+- D) Create a single subscription with resource group-based separation.
 
-Azure StorSimple is basically a hybrid cloud storage.
+> **Answer: B**  
+> Management Group hierarchies enable governance at scale. Policies and RBAC assigned to a Management Group automatically inherit to all child Management Groups and subscriptions. The Production and Non-Production MGs can have different policy sets (e.g., stricter network policies in Production), with shared baseline policies assigned at the Root MG.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. Which storage is used for retrieval and replicating the workloads in Azure in case of disaster?
 
-A. Azure StorSimple
+**Q.** An organization must demonstrate SOC 2 Type II compliance for their Azure-hosted SaaS application. They need a centralized dashboard showing which Azure controls are compliant and which have gaps. Which tool provides this?
 
-B. Azure site recovery
+- A) Azure Cost Management compliance reports
+- B) Microsoft Defender for Cloud with Regulatory Compliance dashboard (SOC 2 standard)
+- C) Azure Monitor Workbooks with compliance queries
+- D) Azure Service Health compliance certificates
 
-C. Azure disk storage
+> **Answer: B**  
+> Microsoft Defender for Cloud includes a Regulatory Compliance dashboard that maps Azure security controls to compliance standards including SOC 2, ISO 27001, PCI DSS, HIPAA, CIS, and NIST. It shows compliant vs non-compliant controls in real-time and provides remediation guidance, supporting audit evidence collection.
 
-D. Azure data box
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
 
-**Answer:** B. Azure site recovery
+**Q.** A team accidentally deleted a critical Azure resource group containing production resources. Which Azure feature would have prevented this, and which feature could help with recovery if prevention was not in place?
 
-**Explanation:**
+- A) Prevention: Azure Backup; Recovery: Azure Site Recovery
+- B) Prevention: Azure Resource Locks (`CanNotDelete` lock on the resource group); Recovery: Azure Resource Graph query to find deleted resources + restore from Azure Backup snapshots.
+- C) Prevention: Azure Policy `deny` effect; Recovery: redeploy from ARM templates.
+- D) Prevention: RBAC removing delete permissions; Recovery: Azure Activity Log replay.
 
-Azure site recovery is used for retrieval and replication of workloads in Azure in case of disaster.
+> **Answer: B**  
+> A `CanNotDelete` resource lock prevents deletion of a resource or resource group even by subscription Owners, until the lock is explicitly removed. For recovery, Azure Backup point-in-time restore (for VMs, SQL, blobs) restores data. Azure Resource Graph can identify what was in the deleted resource group from historical data. The Activity Log records the delete event for audit purposes.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. Which service is used to transfer huge amounts of data terabytes in Azure?
-
-A. Azure StorSimple
 
-B. Azure site recovery
+## 16. AZ-900: Azure Fundamentals Certification
 
-C. Azure disk storage
+> *AZ-900 validates foundational cloud concepts and core Azure services. No technical prerequisites required.*
 
-D. Azure data box
+**Q.** The AZ-900 exam tests understanding of the shared responsibility model. In an IaaS deployment, which of the following is the **customer\'s** responsibility?
 
-**Answer:** D. Azure data box
+- A) Physical datacenter security
+- B) Hypervisor and host OS patching
+- C) Guest OS patching and application security
+- D) Network fabric and cooling
 
-**Explanation:**
+> **Answer: C**  
+> In IaaS, Microsoft manages the physical infrastructure (datacenter, hardware, hypervisor, host OS). The customer is responsible for the guest OS (patching, configuration), middleware, runtime, applications, and data. In PaaS, the customer responsibility shrinks further to application and data only.
 
-Azure data service is used to transfer huge amounts of data in terabytes in Azure.
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. Is Azure backup and Azure site recovery service both the same?
-
-A. Yes
-
-B. No
 
-**Answer:** B. NO
+**Q.** A small business owner asks: "What is the primary financial benefit of moving from on-premises to the Azure cloud?" Which AZ-900 concept best describes the benefit?
 
-**Explanation:**
+- A) Replacing Capital Expenditure (CapEx) with Operational Expenditure (OpEx) — pay only for what you use.
+- B) Replacing Operational Expenditure (OpEx) with Capital Expenditure (CapEx) — buy infrastructure upfront.
+- C) Eliminating all IT costs permanently.
+- D) Guaranteeing 100% uptime for all workloads.
 
-No, they are not the same. Both are really very different as Azure backup is used to protect the data whereas Azure site recovery service is used when your data center goes down.
+> **Answer: A**  
+> Cloud computing converts the large upfront capital investment in hardware (CapEx) into a predictable, usage-based operational expense (OpEx). This improves cash flow and reduces the risk of over-provisioning or under-provisioning infrastructure.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
-## Q. Does Azure provide us with the service to monitor all the storage services?
+**Q.** Which Azure service provides a **guarantee** of minimum uptime (SLA) for a virtual machine deployed across **two or more Availability Zones**?
 
-A. Yes
+- A) 99.9% SLA — same as a single VM with Premium SSD
+- B) 99.99% SLA — the highest VM SLA, requiring zone-redundant deployment
+- C) 99.95% SLA — same as an Availability Set
+- D) 100% SLA — Azure guarantees no downtime with Availability Zones
 
-B. No
+> **Answer: B**  
+> Microsoft\'s SLA for a single VM with Premium SSD is 99.9%. For VMs in an Availability Set it is 99.95%. For VMs deployed across two or more Availability Zones it is 99.99%. No cloud provider guarantees 100% uptime.
 
-**Answer:** A. YES
-
-**Explanation:**
-
-Yes, Azure monitor is responsible for monitoring all the storage services.
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. What does CDN for in Azure?
 
-A. Command dictionary network
+**Q.** A company wants to estimate the monthly cost of running an Azure Virtual Machine and Azure SQL Database before provisioning them. Which free Azure tool provides this estimate?
 
-B. Common dictionary network
+- A) Azure Cost Management + Billing (for existing resources)
+- B) Azure Pricing Calculator (pricing.azure.com)
+- C) Azure Advisor cost recommendations
+- D) Azure Total Cost of Ownership (TCO) Calculator
 
-C. Content delivery network
+> **Answer: B**  
+> The **Azure Pricing Calculator** lets you configure hypothetical Azure services (VM size, region, OS, hours per month) and get an estimated monthly cost before provisioning anything. The **TCO Calculator** compares on-premises costs to Azure — different use case. Azure Cost Management tracks actual spend on existing resources.
 
-D. Content dominates network
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
 
-**Answer:** C. Content delivery network
+**Q.** According to AZ-900 concepts, which statement about Azure Availability Zones and Azure Region Pairs is **correct**?
 
-**Explanation:**
+- A) Availability Zones protect against full region failures; Region Pairs protect against rack-level failures.
+- B) Availability Zones are physically separate datacenters within one region, protecting against datacenter failures; Region Pairs are two regions hundreds of miles apart, protecting against region-wide disasters.
+- C) Region Pairs and Availability Zones provide identical levels of redundancy.
+- D) Availability Zones are only available in the US; Region Pairs are a global feature.
 
-CDN stands for content delivery network.
+> **Answer: B**  
+> Availability Zones = intra-region redundancy (datacenter-level protection). Region Pairs = inter-region redundancy (geographic disaster protection, e.g., East US ↔ West US). Azure prioritizes recovering one region in a pair first during a platform-wide outage, and ensures updates are not rolled out to both regions simultaneously.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. What are the types of storage accounts in Azure?
-
-A. 4
 
-B. 7
+## 17. AZ-104: Azure Administrator Certification
 
-C. 3
+> *AZ-104 (which replaced the retired AZ-102) validates skills in implementing, managing, and monitoring Azure environments for enterprise organizations.*
 
-D. 9
+**Q.** An Azure Administrator needs to move a virtual machine from resource group **rg-dev** to resource group **rg-prod** within the same subscription. What happens to the VM\'s resource ID after the move?
 
-**Answer:** C. 3
+- A) The resource ID remains unchanged.
+- B) The resource ID changes to reflect the new resource group name.
+- C) The move is not supported — VMs cannot be moved between resource groups.
+- D) The VM is deleted and must be recreated in the new resource group.
 
-**Explanation:**
+> **Answer: B**  
+> When you move a resource between resource groups (or subscriptions), its resource ID changes because the resource group name is part of the ID path (`/subscriptions/.../resourceGroups/rg-prod/...`). The VM\'s public/private IPs, disks, and configuration are preserved, but any hardcoded references to the old resource ID (in scripts, RBAC assignments, policy scopes) must be updated.
 
-There are three types of storage accounts in Azure: General purpose V2, General purpose V1, and Blob storage.
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. Which of the following storage account types support only the standard performance tier?
-
-A. General purpose V2
-
-B. General purpose V1
 
-C. Blob storage.
+**Q.** An Administrator needs to allow a specific external vendor\'s application to access an Azure Storage account using its own identity — not a user account. No passwords should be stored. Which identity type in Microsoft Entra ID is appropriate?
 
-**Answer:** C. Blob storage.
+- A) User account with a guest invitation (Azure AD B2B)
+- B) Service Principal with certificate-based authentication or Workload Identity Federation
+- C) Managed Identity assigned to the vendor\'s application
+- D) Shared Access Signature stored in the vendor\'s app config
 
-**Explanation:**
+> **Answer: B**  
+> A **Service Principal** is an application identity in Entra ID. For external vendor apps running outside Azure, a service principal with **certificate authentication** (avoiding client secrets) or **Workload Identity Federation** (OIDC) is the secure pattern. Managed Identities are only for Azure-hosted workloads. SAS tokens grant storage access but are not identity-based.
 
-Blob storage supports the standard performance tier whereas the other two storage account types support both the standard and premium performance tiers.
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. How many types of performance tiers are there?
 
-A. 3
+**Q.** An Azure Administrator runs the following command and receives an error:
 
-B. 2
+```bash
+az vm create --resource-group rg-prod --name vm-web01 \
+  --image Ubuntu2204 --size Standard_D4s_v5 \
+  --location eastus
+```
 
-C. 4
+Error: `The subscription does not have enough quota for cores in region eastus.`
 
-D. 5
+What is the correct resolution?
 
-**Answer:** B. 2
+- A) Choose a different VM size that uses fewer cores.
+- B) Request a quota increase via the Azure portal (Subscriptions → Usage + Quotas → Request Increase) or deploy in a different region with available quota.
+- C) Delete other VMs to free quota — Azure does not allow quota increases.
+- D) Upgrade the subscription from Pay-as-you-go to Enterprise Agreement.
 
-**Explanation:**
+> **Answer: B**  
+> Azure subscriptions have per-region vCPU quotas. When the quota is exhausted, new VMs cannot be deployed in that region for that VM family. Administrators request quota increases through the portal or support ticket. Alternatively, deploying in a different region (with available quota) is an immediate workaround.
 
-There are two types of performance tiers: standard performance and premium storage performance.
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. Which type of performance tier offers consistency and low latency performance?
 
-A. Standard performance
+**Q.** An Administrator needs to ensure that all Azure VMs in the production subscription have the Azure Monitor Agent installed and are sending logs to a specific Log Analytics workspace. New VMs provisioned in the future must also comply automatically. Which approach achieves this at scale?
 
-B. Premium storage performance.
+- A) Manually install the agent on each VM after provisioning.
+- B) Assign an Azure Policy Initiative (e.g., "Enable Azure Monitor for VMs") with `deployIfNotExists` effect, scoped to the production subscription. Create a remediation task for existing non-compliant VMs.
+- C) Create an Azure Automation runbook that checks for the agent weekly.
+- D) Use an ARM template to deploy the agent alongside each VM.
 
-**Answer:** B. Premium storage performance.
+> **Answer: B**  
+> Azure Policy with `deployIfNotExists` automatically installs the Azure Monitor Agent on VMs that don\'t have it, triggered at deployment time (for new VMs) and via remediation tasks (for existing VMs). This ensures continuous compliance without manual intervention. The built-in "Enable Azure Monitor for VMs" initiative includes the relevant policy definitions.
 
-**Explanation:**
-
-Premium storage performance type of performance tier that offers consistency and low latency performance.
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
-## Q. How many types of access tiers are there in Microsoft Azure?
+**Q.** An Azure Administrator configures a Network Security Group with the following inbound rules:
 
-A. 3
-B. 5
-C. 4
-D. 6
+| Priority | Source | Port | Action |
+|----------|--------|------|--------|
+| 100 | 10.0.1.0/24 | 443 | Allow |
+| 200 | * | 443 | Deny |
+| 300 | * | * | Deny |
 
-**Answer:** C. 4
+A VM in subnet 10.0.2.0/24 tries to connect to the protected VM on port 443. What is the result?
 
-**Explanation:**
+- A) The connection is allowed because port 443 is in both rules 100 and 200.
+- B) The connection is denied — the source 10.0.2.0/24 does not match rule 100\'s source (10.0.1.0/24), so rule 200 (deny all on 443) applies.
+- C) The connection is allowed because Azure allows HTTPS traffic by default.
+- D) The connection hits rule 300 and is denied regardless.
 
-There are four types of access tiers: Premium Storage (preview), Hot storage, Cool Storage, and Archive Storage.
+> **Answer: B**  
+> NSG rules are evaluated in priority order (lowest number first). The source 10.0.2.0/24 does not match rule 100 (which only allows 10.0.1.0/24). Rule 200 matches (any source, port 443, Deny) and blocks the connection. Rule 300 is never reached because rule 200 already matched. NSGs do not have any built-in "allow HTTPS" default — all unlisted traffic follows the default deny-all rule.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
-## Q. Among the cold storage tier and hot storage tier which have lower storage costs and higher access costs?
+## 18. AZ-204: Azure Developer Certification
 
-A. Cold storage tier
+> *AZ-204 validates skills in designing, building, testing, and maintaining cloud applications and services on Azure.*
 
-B. Hot storage tier
+**Q.** A developer is building an Azure Function that must process each message from an Azure Service Bus queue **exactly once**, even if the function fails mid-processing and the message is retried. Which Service Bus feature ensures exactly-once processing?
 
-**Answer:** A. Cold storage tier
+- A) Set `maxDeliveryCount` to 1 so messages are never retried.
+- B) Use Service Bus sessions with a session-aware receiver to enforce FIFO ordering per session.
+- C) Enable duplicate detection on the queue with a detection window that covers the maximum processing time, and make the function idempotent.
+- D) Use PeekLock mode combined with message deduplication and an idempotent processing logic that checks a processed-message store (e.g., Azure Table Storage) before acting.
 
-**Explanation:**
+> **Answer: D**  
+> Service Bus PeekLock holds the message invisible to other consumers until explicitly completed or abandoned. However, if the function crashes after processing but before completing the lock, the message reappears. True exactly-once semantics require idempotent processing: check a durable store (Table Storage, Redis, SQL) whether the message ID was already processed before acting, then complete the lock. Duplicate detection prevents the *same message from being enqueued twice*, not from being processed twice after delivery.
 
-The cool tier has lower storage costs and higher access costs compared to the hot tier.
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. Which storage tier is augmented for storing data that is accessed frequently?
 
-A. Cold storage tier
+**Q.** A developer implements the following code pattern in a .NET Azure Function:
 
-B. Hot storage tier
+```csharp
+var credential = new DefaultAzureCredential();
+var client = new SecretClient(new Uri(keyVaultUrl), credential);
+var secret = await client.GetSecretAsync("ConnectionString");
+```
 
-C. Archive storage tier
+What authentication method does `DefaultAzureCredential` use when running in Azure App Service with a system-assigned Managed Identity enabled?
 
-**Answer:** B. Hot storage tier
+- A) It prompts the developer for username/password.
+- B) It reads credentials from a `.env` file in the project root.
+- C) It automatically uses the Managed Identity token from the Azure Instance Metadata Service (IMDS), requiring no stored credentials.
+- D) It falls back to the Azure CLI logged-in account.
 
-**Explanation:**
+> **Answer: C**  
+> `DefaultAzureCredential` tries multiple credential sources in order. In App Service/Functions with a Managed Identity, it uses `ManagedIdentityCredential`, which fetches a token from the IMDS endpoint (`169.254.169.254`) using the assigned managed identity — no client secrets, certificates, or stored credentials required. The Azure CLI fallback is used only in local development environments.
 
-Hot storage tier is augmented for storing data that is accessed frequently.
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. In terms of storage, which of the following tier is expensive?
-
-A. Cold storage tier
-
-B. Hot storage tier
 
-**Answer:** B. Hot storage tier
+**Q.** A developer registers an application in Microsoft Entra ID to call the Microsoft Graph API and read users' profiles. The app runs as a background service (no user interaction). Which OAuth 2.0 flow should the developer use?
 
-**Explanation:**
+- A) Authorization Code Flow with PKCE
+- B) Client Credentials Flow
+- C) Device Authorization Flow
+- D) On-Behalf-Of (OBO) Flow
 
-In terms of storage, the hot storage tier is more expensive than the cold storage tier.
+> **Answer: B**  
+> The **Client Credentials Flow** is for daemon/service applications that run without a signed-in user. The app authenticates with its own identity (client ID + secret or certificate) and receives an access token scoped to application permissions. Authorization Code Flow requires user interaction. OBO is used when a service calls another service on behalf of a signed-in user.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
-## Q. How many types of replication strategies does Azure provide us?
+**Q.** A developer needs to cache the results of expensive database queries in Azure Cache for Redis. The cache should automatically expire entries after 10 minutes and handle cache misses gracefully. Which pattern should be implemented?
 
-A. 5
+- A) Write-through cache: write to Redis and the database simultaneously on every request.
+- B) Cache-Aside (Lazy Loading): on a cache miss, read from the database, write the result to Redis with a 10-minute TTL, and return the result.
+- C) Read-through cache: configure Redis to query the database automatically on a miss.
+- D) Write-behind cache: write to Redis first and asynchronously sync to the database.
 
-B. 6
+> **Answer: B**  
+> **Cache-Aside** (also called Lazy Loading) is the recommended pattern with Azure Cache for Redis for read-heavy workloads. The application checks the cache first; on a miss, it fetches from the database, stores the result in Redis with a TTL (`SETEX key 600 value`), and returns the data. Azure Cache for Redis does not natively support read-through or write-behind without additional infrastructure.
 
-C. 4
-
-D. 8
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
 
-**Answer:** C. 4
+**Q.** A developer is publishing messages to Azure Event Hubs from an IoT application. The consumer application must process messages from the **same device** (same partition key) in strict order. What should the developer configure?
 
-**Explanation:**
+- A) Use multiple consumer groups, one per device.
+- B) Set the `PartitionKey` on each event to the device ID when publishing; consumers reading from the same partition receive events in order.
+- C) Use Event Hub Capture to write to Azure Storage and process files in order.
+- D) Enable geo-replication on the Event Hub namespace.
 
-The four types of replication strategies are provided by Azure: locally-redundant storage, zone-redundant storage, geo-redundant storage, and read-access geo-redundant storage.
+> **Answer: B**  
+> Azure Event Hubs guarantees message ordering **within a partition**. By setting `PartitionKey = deviceId`, all messages from the same device are routed to the same partition and delivered in arrival order to consumers. Different devices can be on different partitions, enabling parallel processing. Consumer groups provide independent read positions for different consumer applications, not ordering guarantees.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. In which replication strategy of Azure data replicated three times within a single data center?
 
-A. Locally-Redundant Storage
+## 19. AZ-305: Azure Solutions Architect Certification
 
-B. Zone-Redundant Storage
+> *AZ-305 validates skills in designing cloud and hybrid solutions including compute, network, storage, monitoring, identity, and governance at enterprise scale.*
 
-C. Geo-Redundant Storage
+**Q.** An architect is designing a multi-region active-active web application. Each region has its own Azure SQL Database. Users in Asia write data to the Asia region, but reads must reflect data written by any region within 5 seconds. Which Azure SQL Database feature supports this?
 
-D. Read-Access Geo-Redundant Storage.
+- A) Azure SQL Database geo-replication (asynchronous, no multi-region writes)
+- B) Azure SQL Database Hyperscale with named replicas
+- C) Azure Cosmos DB with Session consistency (SQL API) — not Azure SQL
+- D) Azure SQL Database Hyperscale does not support multi-region writes; use Cosmos DB multi-master with Bounded Staleness consistency (max 5-second lag) for this scenario.
 
-**Answer:** A. Locally-Redundant Storage
+> **Answer: D**  
+> Azure SQL Database does not support multi-region active-active writes natively. For true multi-region write with bounded replication lag (e.g., 5 seconds), **Azure Cosmos DB** with **Bounded Staleness** consistency is the correct choice. Bounded Staleness guarantees reads lag behind writes by no more than K operations or T seconds (configurable). This is a common AZ-305 architecture decision point — choosing the right database for multi-region write requirements.
 
-**Explanation:**
-
-In Locally-Redundant Storage, data is replicated three times within a single data center.
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
-## Q. In which replication strategy of Azure, data is replicated across data centers but within the region?
+**Q.** An architect must design a solution where 50 branch offices each connect to Azure with a private connection, and all inter-branch traffic is routed through Azure. The solution must minimize the number of VPN tunnels and provide a hub-and-spoke topology that is easy to manage. Which Azure networking service is purpose-built for this?
 
-A. Locally-Redundant Storage
+- A) 50 separate VNet Peerings between branch VNets and a hub VNet
+- B) Azure Virtual WAN (vWAN) with branch office VPN connections
+- C) 50 Site-to-Site VPN Gateways, one per branch
+- D) Azure ExpressRoute with 50 circuits
 
-B. Zone-Redundant Storage
+> **Answer: B**  
+> **Azure Virtual WAN** is a managed, global transit network service that provides hub-spoke connectivity for branches, remote users, VNets, and ExpressRoute circuits from a single control plane. It automatically manages routing between all connected sites (any-to-any via the vWAN hub), supports thousands of branches, and eliminates the operational burden of managing individual VPN tunnels or peerings.
 
-C. Geo-Redundant Storage
-
-D. Read-Access Geo-Redundant Storage.
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
 
-**Answer:** B. Zone-Redundant Storage
+**Q.** An architect is designing a solution where an Azure Function needs to call an Azure SQL Database. The database is in a private VNet with no public endpoint. The Function is on the Consumption plan. How should the architect design network connectivity?
 
-**Explanation:**
+- A) Enable the SQL Database public endpoint and restrict by Azure Function outbound IPs.
+- B) Upgrade the Function to a Premium or Dedicated plan, enable VNet Integration on the Function App, and configure a private endpoint for the SQL Database in the same VNet.
+- C) Use Azure API Management as a proxy between the Function and SQL Database.
+- D) Consumption plan Functions cannot access private VNet resources under any circumstance.
 
-In the zone redundant replication strategy of Azure, data is replicated across data centers but within the region.
+> **Answer: B**  
+> Azure Functions **VNet Integration** (outbound) is supported on Premium and Dedicated plans (not Consumption). It allows Functions to make outbound calls into a VNet where a private endpoint for Azure SQL is configured. The SQL Database\'s private endpoint exposes a private IP in the VNet, and the Function routes to it via the integrated VNet. This is a frequently tested AZ-305 network design pattern.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. In which replication strategy of Azure, our data is copied synchronously three times using LRS?
 
-A. Locally-Redundant Storage
+**Q.** An architect needs to design a solution where legacy on-premises applications authenticate using Kerberos/NTLM (Windows Integrated Authentication) but users are managed in Microsoft Entra ID (no on-premises AD). Which Azure service bridges this gap?
 
-B. Zone-Redundant Storage
+- A) Microsoft Entra ID Connect (Azure AD Connect) — requires on-premises AD
+- B) Azure AD Domain Services (Microsoft Entra Domain Services) — provides managed Kerberos/NTLM authentication from Entra ID without on-premises AD
+- C) Microsoft Entra External ID (B2B)
+- D) Azure Active Directory Federation Services (ADFS)
 
-C. Geo-Redundant Storage
+> **Answer: B**  
+> **Microsoft Entra Domain Services** (formerly Azure AD Domain Services) provides managed domain services — LDAP, Kerberos, NTLM, Group Policy — backed by Microsoft Entra ID without deploying or managing domain controllers. Legacy apps that require Kerberos/NTLM can join the managed domain and authenticate using Entra ID users. This eliminates the need for on-premises AD while supporting legacy authentication protocols.
 
-D. Read-Access Geo-Redundant Storage.
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
 
-**Answer:** C. Geo-Redundant Storage
+**Q.** An architect is designing a data pipeline that ingests 1 million events per second from IoT devices, processes them in real-time for anomaly detection, and stores raw events for 90-day historical analysis. Which Azure architecture best fits this?
 
-**Explanation:**
+- A) Azure Queue Storage → Azure Functions → Azure SQL Database
+- B) Azure Event Hubs (ingestion, 90-day retention) → Azure Stream Analytics (real-time processing, anomaly detection) → Azure Data Lake Storage Gen2 (historical storage) + Azure Synapse Analytics (batch analysis)
+- C) Azure Service Bus Premium → Azure Logic Apps → Azure Blob Storage
+- D) Azure API Management → Azure Cache for Redis → Azure Cosmos DB
 
-In the Geo-redundant storage replication strategy our data is copied synchronously three times using LRS.
+> **Answer: B**  
+> This is the classic **Lambda/Kappa architecture** on Azure: Event Hubs handles massive throughput ingestion with configurable retention (up to 90 days with Event Hubs Premium). Stream Analytics provides real-time processing with built-in anomaly detection ML functions. Data Lake Gen2 stores raw events cheaply at scale, and Synapse Analytics enables historical batch queries. Service Bus is for reliable message delivery, not high-throughput event streaming.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
-## Q. Is Geo-redundant storage and Read-access Geo-redundant storage the same concept?
+## 20. AZ-400: Azure DevOps Engineer Certification
 
-A. Yes
+> *AZ-400 validates skills in designing and implementing DevOps practices including source control, CI/CD, infrastructure as code, monitoring, and security integration.*
 
-B. No
+**Q.** A DevOps engineer needs to implement a branching strategy that supports multiple versions of a product in production simultaneously (e.g., v1.x still receiving security patches while v2.x is in active development). Which Git branching strategy is most appropriate?
 
-**Answer:** B. NO
+- A) Trunk-Based Development with feature flags
+- B) Git Flow with `main`, `develop`, `release/v1.x`, `release/v2.x`, `hotfix/*`, and `feature/*` branches
+- C) GitHub Flow with a single `main` branch and short-lived feature branches
+- D) Feature Branch Workflow with one branch per developer
 
-**Explanation:**
+> **Answer: B**  
+> **Git Flow** explicitly supports parallel version maintenance through long-lived release branches (`release/v1.x`, `release/v2.x`). Hotfixes can be cherry-picked to both. Trunk-Based Development and GitHub Flow work best for teams deploying a single version continuously — they do not naturally support simultaneous multi-version maintenance without complexity.
 
-Geo-redundant storage and read access geo-redundant storage are not the same.
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. Which Azure service provides the record of events that have been carried out on a specific resource?
-
-A. Azure activity log
-
-B. Azure resources
 
-C. Azure resource groups
+**Q.** A DevOps engineer wants to prevent secrets from being committed to the Azure Repos Git repository. Which mechanism detects secrets **before** they are pushed to the remote repository?
 
-D. Azure resource manager
+- A) Azure DevOps branch policies with a required build validation pipeline
+- B) A pre-commit hook (e.g., `git-secrets`, `detect-secrets`, or `gitleaks`) installed on developers' machines, combined with a pipeline secret-scanning step as a second line of defense
+- C) Azure Key Vault with access policies for the repository
+- D) Microsoft Defender for DevOps repository scanning (post-push only)
 
-**Answer:** A. Azure activity log
+> **Answer: B**  
+> Pre-commit hooks run locally before a commit is created, catching secrets before they ever enter Git history. Tools like `gitleaks`, `detect-secrets`, or `git-secrets` scan staged files for patterns. A pipeline scanning step (Defender for DevOps, GitHub Advanced Security for ADO) acts as a second gate after the push. Defender for DevOps scans the remote repo — it does not prevent the push from occurring.
 
-**Explanation:**
-
-Azure activity log service provides the record of events that have been carried out on a specific resource.
-
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
-## Q. What does CORS stand for in Azure?
+**Q.** A DevOps engineer is designing a release pipeline for a microservices application on AKS. The team requires that a new version is deployed to 10% of users first, monitored for error rate increases, and automatically promoted to 100% if healthy or rolled back if error rate exceeds 1%. Which deployment strategy implements this?
 
-A. Combine oriented relation system
+- A) Blue-Green deployment
+- B) Canary release with automated progressive delivery (e.g., using Argo Rollouts or Azure DevOps + Application Insights release gates)
+- C) Rolling update with `maxSurge: 1`
+- D) Recreate deployment strategy (scale old to 0, deploy new)
 
-B. Combine object relation service
+> **Answer: B**  
+> **Canary release with automated progressive delivery** routes a small percentage of traffic to the new version, monitors metrics (error rate, latency) against defined thresholds, and automatically promotes or rolls back. Azure DevOps release gates integrate with Application Insights to query metrics before promoting between stages. Argo Rollouts on AKS provides native Kubernetes canary with metric-based analysis. Blue-Green switches 100% at once; rolling updates don\'t support traffic percentage control natively.
 
-C. Cross-origin resource service
-
-D. Combine origin resource service
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
 
-**Answer:** C. Cross-origin resource service
+**Q.** An AZ-400 engineer is setting up a dependency management strategy. The team uses internal NuGet packages shared across 15 microservices. They want a central repository for internal packages with access control, versioning, and upstream proxy to nuget.org. Which Azure service provides this?
 
-**Explanation:**
+- A) Azure Blob Storage with a custom NuGet feed URL
+- B) Azure Artifacts with a NuGet feed (supports upstreaming, access control, versioning, and retention policies)
+- C) GitHub Packages with a public registry
+- D) Azure Container Registry (for NuGet packages)
 
-CORS stands for cross-origin resource service.
+> **Answer: B**  
+> **Azure Artifacts** is the package management service in Azure DevOps that supports NuGet, npm, Maven, Python (PyPI), and Cargo feeds. It supports upstream sources (proxying nuget.org so all package traffic routes through Artifacts), RBAC for feed access, semantic versioning, and retention policies to control storage. ACR is for container images, not NuGet packages.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
-
-## Q. What is the full form of SAS in Azure?
-
-A. Shared authentication service
-
-B. Shared access service
-
-C. Shared authentication system
-
-D. Shared access signature
-
-**Answer:** D. Shared access signature
-
-**Explanation:**
-
-SAS stands for Shared access signature.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. In Azure Storage, which service acts as a URI that grants limited access rights?
-
-A. IAM
-
-B. Encryption
-
-C. Shared authentication system
-
-D. Shared access signature
-
-**Answer:** D. Shared access signature
-
-**Explanation:**
-
-SAS Azure Storage service provides restricted access rights to Azure Storage resources using a URI.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. The maximum size of a block blob is____?
-
-A. 12 TB
-
-B. 200 GB
-
-C. 1000GB
-
-D. Unlimited
-
-**Answer:** B. 200 GB
-
-**Explanation:**
-
-The maximum size of a block blob is 200 GB.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. How many types of Blobs are provided by Azure?
-
-A. 6
-
-B. 7
-
-C. 4
-
-D. 3
-
-**Answer:** D. 3
-
-**Explanation:**
-
-Azure provides us with three types of blobs: Block blob, Append blob, and Page blob.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which type of blob can be managed individually and store text and binary data in Azure?
-
-A. Block blob
-
-B. Append blob
-
-C. Page blob
-
-**Answer:** A. Block blob
-
-**Explanation:**
-
-Block blob can be managed individually and store text and binary data in Azure.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which type of blob ideal is for an application like logging data from virtual machines?
-
-A. Block blob
-
-B. Append blob
-
-C. Page blob
-
-**Answer:** B. Append blob
-
-**Explanation:**
-
-Append blob is ideal for an application like logging data from virtual machines.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which type of blob can store files up to 8 TB?
-
-A. Block blob
-
-B. Append blob
-
-C. Page blob
-
-**Answer:** C. Page blob
-
-**Explanation:**
-
-Page blobs can store files up to 8 TB, these blobs are created by default.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Is blob and container the same thing?
-
-A. Yes
-
-B. No
-
-**Answer:** B. NO
-
-**Explanation:**
-
-No, blob and container aren't the same things because blobs are used to store discrete pieces of data whereas containers store applications, services, and workloads.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Can you write special characters while naming the container?
-
-A. Yes
-
-B. No
-
-**Answer:** B. NO
-
-**Explanation:**
-
-Container name always starts from a number or a letter and can only contain a dash with numbers and letters.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Azure storage security is divided into how many areas?
-
-A. 4
-
-B. 5
-
-C. 6
-
-D. 7
-
-**Answer:** B. 5
-
-**Explanation:**
-
-Azure storage security is divided into 5 areas: Management plane security, Data place security, Encryption in transit, Encryption in rest, and cross-origin resource sharing.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which storage security refers to the process that affects the storage account itself?
-
-A. Management plane security
-
-B. Data place security
-
-C. Encryption in transit
-
-D. Encryption in rest
-
-E. cross-origin resource sharing.
-
-**Answer:** A. Management plane security
-
-**Explanation:**
-
-Management plane storage security refers to the process that affects the storage account itself
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which storage security in Azure denotes the approaches used to protect the data objects?
-
-A. Management plane security
-
-B. Data place security
-
-C. Encryption in transit
-
-D. Encryption in rest
-
-E. cross-origin resource sharing.
-
-**Answer:** B. Data place security
-
-**Explanation:**
-
-Data place security in Azure denotes the approaches used to protect the data objects.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. How many ways can be used to control access to the data within the storage account in Microsoft Azure?
-
-A. 4
-
-B. 5
-
-C. 6
-
-D. 3
-
-**Answer:** D. 3
-
-**Explanation:**
-
-Three ways can be used to control the access to the data within the storage account in Microsoft Azure: Azure active directory Storage account keys, Shared Access Signatures.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which tool in Azure is known for file copy and best suited for migrations?
-
-A. Robocopy
-
-B. Data Pipeline
-
-C. AzCopy
-
-D. Snap logic
-
-**Answer:** A. Robocopy
-
-**Explanation:**
-
-Robocopy tool in Azure is known for file copy and is best suited for migrations.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which of the following is the command utility tool in Azure that aids us in copying the data like blob or files?
-
-A. Robocopy
-
-B. Data Pipeline
-
-C. AzCopy
-
-D. Snap logic
-
-**Answer:** C. AzCopy
-
-**Explanation:**
-
-AzCopy is the command utility tool in Azure that aids us in copying the data like blobs or files.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. In Azure storage services, the Azure table stores which form of data?
-
-A. Structured data
-
-B. Unstructured data
-
-**Answer:** A. Structured data
-
-**Explanation:**
-
-The Azure table stores structured forms of data.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which of the following is the more advanced version of queue storage service in Azure?
-
-A. Azure table service
-
-B. Azure advance queue service
-
-C. Azure service bus queue
-
-D. None
-
-**Answer:** C. Azure service bus queue
-
-**Explanation:**
-
-Azure service bus queue is the advanced version of the Azure queue storage service.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. How many types of disk storage are provided by Azure?
-
-A. 3
-
-B. 4
-
-C. 5
-
-D. 2
-
-**Answer:** D. 2
-
-**Explanation:**
-
-Two types of disk storage are provided by Azure: Managed disk and unmanaged disk.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which type of disk is known to be the outmoded type of disk and is commonly used by VMs?
-
-A. Managed disk
-
-B. Unmanaged disk.
-
-**Answer:** B. Unmanaged disk.
-
-**Explanation:**
-
-Unmanaged disks are the type of disk which are known to be the outmoded type of disk and commonly used by VMs.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. In which type of disk, do we not have to worry about the scalability limits of the storage account?
-
-A. Managed disk
-
-B. Unmanaged disk.
-
-**Answer:** A. Managed disk
-
-**Explanation:**
-
-Managed disk is the type of disk, in which we do not have to care about the scalability limits of the storage account, it handles all the formation in the background.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. How many types of capabilities are present inside Azure for storage monitoring?
-
-A. 2
-
-B. 3
-
-C. 4
-
-D. 5
-
-**Answer:** A. 2
-
-**Explanation:**
-
-The two types of capabilities which are present in Azure for storage monitoring are: Continuous monitoring and logging.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which service in Azure accomplishes logging and offers metrics data for a storage account?
-
-A. Azure Storage services
-
-B. Azure storage analytics services
-
-C. Azure compute services
-
-**Answer:** B. Azure storage analytics services
-
-**Explanation:**
-
-Azure storage analytics services Azure is a kind of service that accomplishes logging and offers metrics data for a storage account.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. How many types of storage analytics metrics are offered by Azure?
-
-A. 3
-
-B. 4
-
-C. 2
-
-D. 6
-
-**Answer:** C. 2
-
-**Explanation:**
-
-The two types of metrics which are offered by Azure under storage analytics metrics are: transaction metrics and capacity metrics.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which type of metric in Azure records day-to-day storage accounts' Blob service, containers, etc?
-
-A. Transaction metrics
-
-B. Capacity metrics.
-
-**Answer:** B. Capacity metrics.
-
-**Explanation:**
-
-Capacity metric is the type of metric in Azure that records day-to-day storage account Blob service, containers, etc.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. In which type of metric accumulated data is recorded on an hourly or minute basis?
-
-A. Transaction metrics
-
-B. Capacity metrics.
-
-**Answer:** A. Transaction metrics
-
-**Explanation:**
-
-Transaction metrics are a type of metrics in which aggregated data is recorded hourly or minute.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. On which Azure service can we test our application against the storage services locally without spending any cost?
-
-A. Azure storage explorer
-
-B. Azure storage emulator
-
-C. Azure test application
-
-**Answer:** B. Azure storage emulator
-
-**Explanation:**
-
-Azure storage emulator is a type of service on which we can test our application against the storage services locally without spending any cost.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which Azure service permits us to proficiently work with Azure Storage data on Windows, macOS, and Linux?
-
-A. Azure storage explorer
-
-B. Azure storage emulator
-
-C. Azure test application
-
-**Answer:** A. Azure storage explorer
-
-**Explanation:**
-
-Azure storage explorer service in Azure permits us to proficiently work with Azure Storage data on Windows, macOS, and Linux.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. What is known to be the fundamental building block of Azure network services?
-
-A. Azure virtual network
-
-B. Azure network security
-
-C. Azure network interface
-
-D. Azure storage emulator
-
-**Answer:** A. Azure virtual network
-
-**Explanation:**
-
-Azure virtual networks are supposed to be known as the fundamental building block of Azure network services.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which Azure service protects the workload in the virtual network from DDoS attacks in Azure?
-
-A. Azure virtual network
-
-B. Azure network security
-
-C. Azure DDoS protection
-
-D. Azure Firewall protection
-
-**Answer:** C. Azure DDoS protection
-
-**Explanation:**
-
-Azure DDoS protection service protects the workload in the virtual network from DDoS attacks in Azure.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which Azure service is used when we need network security?
-
-A. Azure virtual network
-
-B. Azure Firewall protection
-
-**Answer:** B. Azure Firewall protection
-
-**Explanation:**
-
-Azure Firewall protection is used when we need network security.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. What is the full form of NSG in Azure?
-
-A. Network service group
-
-B. Network system group
-
-C. Network security group
-
-**Answer:** C. Network security group
-
-**Explanation:**
-
-NSG stands for Network security group.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Among NSG and Firewall, which is more expensive in Azure?
-
-A. Network security group
-
-B. Firewall
-
-**Answer:** B. Firewall
-
-**Explanation:**
-
-A firewall is quite expensive than NSG.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which service in Azure controls the circulation of the user stream of traffic for service endpoints in diverse regions?
-
-A. Network service group
-
-B. Traffic manager
-
-C. Firewall
-
-D. Load balancer
-
-**Answer:** B. Traffic manager
-
-**Explanation:**
-
-Traffic manager is a kind of service in Azure that controls the circulation of user stream of traffic for service endpoints in diverse regions.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which service in Azure aids us to distribute the stream of traffic evenly between application servers?
-
-A. Network service group
-
-B. Traffic manager
-
-C. Firewall
-
-D. Load balancer
-
-**Answer:** D. Load balancer
-
-**Explanation:**
-
-Load balancer service in Azure aids us to distribute the stream of traffic evenly between application servers.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Can you have two same names of networks within the network security group?
-
-A. Yes
-B. No
-
-**Answer:** B. NO
-
-**Explanation:**
-
-The name of the network should be unique within the network security group.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which service in Azure acts as an interconnection between a Virtual Machine and the underlying software network?
-
-A. Network service group
-
-B. Traffic manager
-
-C. Firewall
-
-D. Azure network interface
-
-**Answer:** D. Azure network interface
-
-**Explanation:**
-
-Azure network interface acts as an interconnection between a virtual machine and the underlying software network.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. How many types of IP addresses are there in Azure?
-
-A. 2
-
-B. 3
-
-C. 4
-
-D. 5
-
-**Answer:** A. 2
-
-**Explanation:**
-
-There are two types of IP addresses: Private IP addresses and Public IP addresses.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which Azure service allows us to connect two VNet in the same or across regions?
-
-A. Network service group
-
-B. VNet peering
-
-C. Global peering
-
-D. VNet
-
-**Answer:** B. VNet peering
-
-**Explanation:**
-
-VNet peering allows us to connect two VNet in the same or across regions.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which Azure service acts as a middleman on both sides of the virtual networks?
-
-A. VPN gateway
-
-B. VNet peering
-
-C. Global peering
-
-D. VNet
-
-**Answer:** A. VPN gateway
-
-**Explanation:**
-
-VPN Gateway Azure service acts as a middleman on both sides of the virtual networks.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. How many categories are there of Azure compute services?
-
-A. 6
-
-B. 5
-
-C. 4
-
-D. 3
-
-**Answer:** D. 3
-
-**Explanation:**
-
-Azure compute service can be divided broadly into three categories: Infrastructure as a service, Platform as a service, and Serverless services.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. In Azure the Virtual machines are PAAS or IAAS?
-
-A. PAAS
-
-B. IAAS
-
-**Answer:** B. IAAS
-
-**Explanation:**
-
-In Azure, the VM's are IAAS i.e., infrastructure as a service.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which service of Azure is used for hosting web applications, REST APIs, and mobile backends?
-
-A. Azure App service
-
-B. Azure Virtual machines
-
-C. Azure service fabric
-
-**Answer:** A. Azure App service
-
-**Explanation:**
-
-App service in Azure is used for hosting web applications, REST APIs, and mobile backends.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Is Azure app service a PAAS or IAAS?
-
-A. PAAS
-
-B. IAAS
-
-**Answer:** A. PAAS
-
-**Explanation:**
-
-Azure app service is a platform as a service (PAAS).
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which Azure service offers the rapidest method to start developing and deploying cloud-native apps in Azure?
-
-A. Azure App service
-
-B. Azure Virtual machines
-
-C. Azure service fabric
-
-D. Azure Kubernetes service
-
-**Answer:** D. Azure Kubernetes service
-
-**Explanation:**
-
-Azure Kubernetes service offers the rapidest method to start developing and deploying cloud-native apps in Azure.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which of the following are the key services that are associated with Azure compute services?
-
-A. Azure security center
-
-B. Active Directory
-
-C. Key Vault
-
-D. All of the above
-
-**Answer:** D. All of the above
-
-**Explanation:**
-
-The three key services that are related to Azure compute services are: Azure security center, Active Directory, and Key Vault.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which disk in a virtual machine in Azure offers temporary storage for applications and processes?
-
-A. Operating system disk
-
-B. Temporary disk
-
-D. Data disk
-
-**Answer:** B. Temporary disk
-
-**Explanation:**
-
-Temporary disk in a virtual machine in Azure offers temporary/ short-term storage for applications and processes.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which type of disk encryption in Azure is allowed by default for all Managed Disks, Snapshots, and Images in every single region?
-
-A. Server-side encryption
-
-B. Azure Disk encryption
-
-**Answer:** A. Server-side encryption
-
-**Explanation:**
-
-Server-side encryption is a type of disk encryption in Azure that is allowed by default for all Managed Disks, Snapshots, and Images in every single region.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which type of disk encryption in Azure permits you to encrypt the OS and Data disks used by an IaaS Virtual Machine?
-
-A. Server-side encryption
-
-B. Azure Disk encryption
-
-**Answer:** B. Azure Disk encryption
-
-**Explanation:**
-
-Azure disk encryption is a type of disk encryption in Azure that permits you to encrypt the OS and Data disks used by an IaaS Virtual Machine.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which service of Azure lets you create and manage a collection of loaded balanced VMs?
-
-A. Azure machine auto-scaling
-
-B. Azure virtual machine scale set
-
-**Answer:** B. Azure virtual machine scale set
-
-**Explanation:**
-
-Azure virtual machine scale set service of Azure lets you create and manage a collection of loaded balanced VMs.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. How many types of scaling are provided by Azure?
-
-A. 5
-
-B. 4
-
-C. 3
-
-D. 2
-
-**Answer:** D. 2
-
-**Explanation:**
-
-Mainly there are two types of scaling in Azure: Vertical scaling and horizontal scaling.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which type of scaling is suggested in Azure when you want to run a large number of VMs to handle the load?
-
-A. Vertical scaling
-
-B. Horizontal scaling.
-
-**Answer:** B. Horizontal scaling.
-
-**Explanation:**
-
-Horizontal scaling type scaling is suggested in Azure when you want to run a large number of VMs to handle the load.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which type of scaling in Azure, provides more capacity in terms of memory?
-
-A. Vertical scaling
-
-B. Horizontal scaling.
-
-**Answer:** A. Vertical scaling
-
-**Explanation:**
-
-Vertical scaling is a type of scaling in Azure which provides more capacity in terms of memory.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. How many types of metrics are offered by Azure in terms of autoscaling?
-
-A. 2
-
-B. 3
-
-C. 4
-
-D. 5
-
-**Answer:** C. 4
-
-**Explanation:**
-
-Four types of metrics are offered by Azure in terms of autoscaling:
-
-* Compute metrics for Resource Manager-based VMs.
-* Commonly used App Service (server farm) metrics.
-* Commonly used Storage metrics.
-* Commonly used Service Bus metrics.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which service in Azure delivers timely and tailored information when difficulties in Azure services impact your services?
-
-A. Azure service health
-
-B. Azure resource health
-
-**Answer:** A. Azure service health
-
-**Explanation:**
-
-Azure service health service in Azure delivers timely and tailored information when difficulties in Azure services impact your services.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which service in Azure aids us to detect and get support when an Azure issue affects our resources?
-
-A. Azure service health
-
-B. Azure resource health
-
-**Answer:** B. Azure resource health
-
-**Explanation:**
-
-Azure resource health service in Azure aids us to detect and get support when an Azure issue affects our resources.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. How many components does Azure cloud service have?
-
-A. 2
-
-B. 4
-
-C. 3
-
-D. 5
-
-**Answer:** C. 3
-
-**Explanation:**
-
-Azure cloud service consists of 3 components: ServiceDefenition.csdef, ServiceConfiguration.cscfg, Service package. Cspkg.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which cloud service component in Azure is used to deploy the application as a cloud service?
-
-A. ServiceDefenition.csdef
-
-B. ServiceConfiguration.cscfg
-
-C. Service package. Cspkg.
-
-**Answer:** C. Service package. Cspkg.
-
-**Explanation:**
-
-Service package. Cspkg. Cloud service component in Azure used to deploy the application as a cloud service.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which cloud service component comprises the values which are used to regulate the configuration of settings for the cloud service?
-
-A. ServiceDefenition.csdef
-
-B. ServiceConfiguration.cscfg
-
-C. Service package. Cspkg.
-
-**Answer:** B. ServiceConfiguration.cscfg
-
-**Explanation:**
-
-ServiceConfiguration.cscfg cloud service component comprises the values which are used to regulate the configuration of settings for the cloud service.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. How many types of hosting environments are there within Azure App Service?
-
-A. 2
-
-B. 3
-
-C. 4
-
-D. 5
-
-**Answer:** A. 2
-
-**Explanation:**
-
-The two types of hosting environments that are present within Azure service are: the App Service plan and App Service environment.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which Azure service provides compute resources for running a web app?
-
-A. App Service plan
-
-B. App Service environment
-
-**Answer:** A. App Service plan
-
-**Explanation:**
-
-App Service plan service provides compute resources for running a web app.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Is Azure Web App and Azure App Service the same?
-
-A. Yes
-
-B. No
-
-**Answer:** B. NO
-
-**Explanation:**
-
-Hosting apps in an App Service is what makes up a Web App whereas Managed services that enable you to deploy web applications in Azure include the App Service.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which service in Azure also known as the Microsoft Data sync Framework?
-
-A. Azure web app
-
-B. Azure app service
-
-C. Azure mobile app
-
-**Answer:** C. Azure mobile app
-
-**Explanation:**
-
-Azure mobile app service in Azure is also known as the Microsoft Data sync Framework.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which service of Azure is an SDK characteristic of Azure Mobile Apps?
-
-A. Azure web app
-
-B. Azure app service
-
-C. Azure mobile app
-
-D. Mobile offline data sync
-
-**Answer:** D. Mobile offline data sync
-
-**Explanation:**
-
-Mobile offline data sync is an SDK characteristic of Azure Mobile Apps.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Can you state which Azure services we can use to send notifications to users via mobile push notifications?
-
-A. Azure web app
-
-B. Azure app service
-
-C. Azure mobile app
-
-D. Mobile offline data sync
-
-E. Azure Notification Hubs
-
-**Answer:** E. Azure Notification Hubs
-
-**Explanation:**
-
-With the help of Azure Notification Hubs services, we can send notifications to users via mobile push notifications.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which of the following are the advantages of Azure Notification Hubs?
-
-A. Provide the functionality of multiplatform
-
-B. Provide better scaling
-
-C. Vibrant set of delivery patterns.
-
-D. All of the above
-
-**Answer:** D. All of the above
-
-**Explanation:**
-
-Following are the advantages of Azure notification hubs:
-
-* Provide the functionality of multiplatform
-* Provide better scaling
-* Vibrant set of delivery patterns.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. How many ways are provided by Azure to scale up the app services?
-
-A. 3
-
-B. 4
-
-C. 2
-
-D. 5
-
-**Answer:** C. 2
-
-**Explanation:**
-
-The two ways are provided by Azure to scale up the app service: scale up and scale out.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which type of scale in Azure app services provides us more CPU, memory, disc space, dedicated virtual machines, etc?
-
-A. Scale up
-
-B. Scale-out
-
-**Answer:** A. Scale up
-
-**Explanation:**
-
-Scale-up in Azure app services provides us with more CPU, memory, disc space, dedicated virtual machines, etc.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which type of scale in Azure app service Upsurge the number of VM instances that run your app?
-
-A. Scale up
-
-B. Scale-out
-
-**Answer:** B. Scale-out
-
-**Explanation:**
-
-Scale-out in Azure app service Upsurge the number of VM instances that run your app.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which of the following terms defines the Consumption limits for user subscriptions?
-
-A. Scale up
-
-B. Scale-out
-
-C. Quota
-
-D. Metrics
-
-**Answer:** C. Quota
-
-**Explanation:**
-
-Quota in Azure is defined as the Consumption limits for user subscriptions.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which Azure service gives information about how an app or App Service plan behaves?
-
-A. Scale up
-
-B. Scale-out
-
-C. Quota
-
-D. Metrics
-
-**Answer:** D. Metrics
-
-**Explanation:**
-
-Metrics in Azure give information about how an app or App Service plan behaves.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which of the following specifies how long an asset can be accessed and by whom?
-
-A. Assets
-
-B. Access policy
-
-C. AssetsFile
-
-D. Channel
-
-**Answer:** B. Access policy
-
-**Explanation:**
-
-Access policy specifies how long an asset can be accessed and by whom.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which of the following is an entry point and permits you to access the files stored in an asset?
-
-A. Assets
-
-B. Access policy
-
-C. AssetsFile
-
-D. Channel
-
-E. Locators
-
-**Answer:** E. Locators
-
-**Explanation:**
-
-A locator is an entry point and permits you to access the files stored in an asset.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which of the following terms processed an audio or video presentation?
-
-A. Assets
-
-B. Access policy
-
-C. Job
-
-D. Program
-
-E. Locators
-
-**Answer:** C. Job
-
-**Explanation:**
-
-The job processed an audio or video presentation in Azure media service.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which of the following tools in Azure simplifies, guides, and automates the migration of your databases to Azure?
-
-A. Azure data migration service
-
-B. Azure data sync
-
-C. SQL stretch database
-
-**Answer:** A. Azure data migration service
-
-**Explanation:**
-
-Azure data migration service is a tool in Azure that simplifies, guides, and automates the migration of your databases to Azure.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which of the following aids us to replicate the data from our on-premises database into Azure?
-
-A. Azure data migration service
-
-B. Azure data sync
-
-C. SQL stretch database
-
-**Answer:** B. Azure data sync
-
-**Explanation:**
-
-Azure data sync aids us in replicating the data from our on-premises database into Azure.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which of the following database services in Azure works as a hybrid database i.e., cold data and hot data?
-
-A. Azure data migration service
-
-B. Azure data sync
-
-C. SQL stretch database
-
-**Answer:** C. SQL stretch database
-
-**Explanation:**
-
-SQL stretch database service in Azure works as a hybrid database i.e., cold data and hot data.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which of the following in Azure, organizes data movement and transforms data at scale with data-driven workflows?
-
-A. Azure data migration service
-
-B. Azure data sync
-
-C. SQL stretch database
-
-D. Data factory
-
-**Answer:** D. Data factory
-
-**Explanation:**
-
-Data factory organizes data movement and transforms data at scale with data-driven workflows.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. What is hot data in Azure?
-
-A. A type of data that is kept on premises in a data center.
-
-B. A type of data that is kept on Azure.
-
-**Answer:** A. A type of data that is kept on premises in a data center.
-
-**Explanation:**
-
-Hot data is a type of data that is kept on premises in a data center.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. What is cold data in Azure?
-
-A. A type of data that is kept on premises in a data center.
-
-B. A type of data that is kept on Azure.
-
-**Answer:** B. A type of data that is kept on Azure.
-
-**Explanation:**
-
-Cold data is a type of data that is kept on Azure.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Cosmos DB in Azure is for NoSQL DB or SQL DB?
-
-A. NoSQL DB
-
-B. SQL DB
-
-**Answer:** A. NoSQL DB
-
-**Explanation:**
-
-Cosmos DB in Azure is a kind of NoSQL DB, which is designed with extremely low latency.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which is the database for all kinds of relational data, including JSON, spatial, and XML in Azure?
-
-A. Azure NoSQL DB
-
-B. Azure SQL DB
-
-C. Azure Cosmos DB
-
-**Answer:** B. Azure Cosmos DB
-
-**Explanation:**
-
-Azure SQL DB is the database for all kinds of relational data, including JSON, spatial, and XML in Azure.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. In how many ways can you implement the SQL database in Azure?
-
-A. 3
-
-B. 4
-
-C. 5
-
-D. 6
-
-**Answer:** A. 3
-
-**Explanation:**
-
-There are three ways in which you can implement/execute the SQL database in Azure: Managed instance, single database, and elastic Pool.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which of the following ways will you use when you have an SQL server instance in your on-premises data center and you are wishing to migrate that instance into Azure with the expectation of lowest charges and supreme compatibility?
-
-A. Managed Instance
-
-B. Single database
-
-C. Elastic Pool.
-
-**Answer:** A. Managed Instance
-
-**Explanation:**
-
-Managed instances in Azure are ideal when you have SQL server instances in your on-premises data center and you are wishing to migrate that instance into Azure with the expectation of the lowest charges and supreme compatibility.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which of the following database resource types create databases in Azure SQL Database that comprise their resources and are accomplished by servers?
-
-A. Managed Instance
-
-B. Single database
-
-C. Elastic Pool.
-
-**Answer:** B. Single database
-
-**Explanation:**
-
-Single database resource types create databases in Azure SQL Database that comprise their resources and are accomplished by servers.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. When you want to manage numerous databases with fluctuating and erratic usage demands, which of the following will you use that will provide a simple and cost-effective option?
-
-A. Managed Instance
-
-B. Single database
-
-C. Elastic Pool.
-
-**Answer:** C. Elastic Pool
-
-**Explanation:**
-
-Elastic Pool is a simple and cost-effective option when you want to manage numerous databases with fluctuating and erratic usage demands.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. How many types of purchasing models are provided by the Azure SQL server?
-
-A. 3
-
-B. 4
-
-C. 5
-
-D. 2
-
-**Answer:** D. 2
-
-**Explanation:**
-
-There are two types of purchasing models that are provided by the Azure SQL server: the VCore purchasing model, and the DTU model.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which of the following purchasing models in Azure SQL server allows you to select a generation of hardware?
-
-A. VCore purchasing model
-
-B. DTU model.
-
-**Answer:** A. VCore purchasing model
-
-**Explanation:**
-
-VCore purchasing model in the Azure SQL server allows you to select a generation of hardware.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which purchasing model in Azure SQL server is the finest for patrons who want simple, pre-configured resource options?
-
-A. VCore purchasing model
-
-B. DTU model.
-
-**Answer:** B. DTU model.
-
-**Explanation:**
-
-DTU model purchasing model in Azure SQL server is finest for patrons who want simple, pre-configured resource options.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Using ____, you can synchronize a primary database with a secondary database that is continuously readable.
-
-A. Geolocations
-
-B. Failover Groups
-
-C. Database Groups
-
-**Answer:** A. Geolocations
-
-**Explanation:**
-
-Using geo-replication, you can synchronize a primary database with a secondary database that is continuously readable
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. SQL-managed instance is based upon which purchasing model?
-
-A. VCore purchasing model
-
-B. DTU model.
-
-**Answer:** A. VCore purchasing model
-
-**Explanation:**
-
-SQL-managed instance is based upon the VCore purchasing model.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. How many components does a data factory have?
-
-A. 4
-
-B. 5
-
-C. 3
-
-D. 6
-
-**Answer:** D. 6
-
-**Explanation:**
-
-Pipeline, Activity, Datasets, Linked Services, Triggers, and Control flows are the six components of a data factory.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which component of a data factory refers to the logical grouping of activities that complete a particular task?
-
-A. Pipeline
-
-B. Activity
-
-C. Datasets
-
-D. Linked Services
-
-**Answer:** A. Pipeline
-
-**Explanation:**
-
-The pipeline component of a data factory refers to the logical grouping of activities that complete a particular task.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which component of the data factory is known as the orchestration of pipeline actions that comprise chaining activities?
-
-A. Triggers
-
-B. Activity
-
-C. Datasets
-
-D. Linked Services
-
-E. Control Flows
-
-**Answer:** E. Control Flows
-
-**Explanation:**
-
-The control flow component of the data factory is known as the orchestration of pipeline actions which comprise chaining activities in a sequence.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which component of the data factory characterizes data structures within the data stores?
-
-A. Triggers
-
-B. Activity
-
-C. Datasets
-
-D. Linked Services
-
-E. Control Flows
-
-**Answer:** C. Datasets
-
-**Explanation:**
-
-Dataset component of the data factory characterizes data structures within the data stores.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. In which Azure service developers provide support to the support team, planning work, collaborating on code development, and building and deploying applications?
-
-A. Azure cloud service
-
-B. Azure DevOps
-
-C. Azure app service
-
-**Answer:** B. Azure DevOps
-
-**Explanation:**
-
-In Azure DevOps service developers provide support to the support team, planning work, collaborating on code development, and building and deploying applications.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Using ____, you can manage your code with version control tools.
-
-A. Azure cloud service
-
-B. Azure DevOps
-
-C. Azure DevOps repository
-
-D. Azure app service
-
-**Answer:** C. Azure DevOps repository
-
-**Explanation:**
-
-In the Azure DevOps repository you can manage your code with version control tools.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. How many types of version controls are there in the Azure repository?
-
-A. 3
-
-B. 4
-
-C. 5
-
-D. 2
-
-**Answer:** D. 2
-
-**Explanation:**
-
-There are two types of version controls in Azure repo: Git, and Team Foundation Version Control.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which type of version in Azure repo is distributed version control?
-
-A. Git
-
-B. Team Foundation Version Control.
-
-C. Both
-
-**Answer:** A. Git
-
-**Explanation:**
-
-Git is a distributed version control.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which type of version in Azure repo is centralized version control?
-
-A. Git
-
-B. Team Foundation Version Control.
-
-C. Both
-
-**Answer:** B. Team Foundation Version Control.
-
-**Explanation:**
-
-Team Foundation Version Control is centralized version control.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which of the following Azure Repos concept is an easy way to keep track of commit histories and isolate work for a particular feature from the master branch?
-
-A. Branch
-
-B. Branch policies
-
-C. Repository
-
-D. Fork
-
-**Answer:** A. Branch
-
-**Explanation:**
-
-Branch in Azure Repos, is an easy way to keep track of commit histories and isolate work for a particular feature from the master branch.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which Azure repo concept is known to be an indispensable part of the Git workflow?
-
-A. Git
-
-B. Branch policies
-
-C. Repository
-
-D. Fork
-
-**Answer:** B. Branch policies
-
-**Explanation:**
-
-In Azure repo, branch policy is known to be an indispensable part of the Git workflow.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which Azure repo concept is a complete replica of a repository?
-
-A. Git
-
-B. Project
-
-C. Repository
-
-D. Fork
-
-**Answer:** D. Fork
-
-**Explanation:**
-
-In the Azure repo, Fork is a complete replica of a repository.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Among the hot tier and cold tier which tier has the highest storage cost but at the same time the lowest access costs?
-
-A. Hot tier
-
-B. Cold tier
-
-**Answer:** A. Hot tier
-
-**Explanation:**
-
-Hot tier has the highest storage cost but at the same time lowest access costs.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which of the following is the first Hyperconverged storage platform in Azure for enterprise data?
-
-A. Veritas
-
-B. SoftNAS
-
-C. Cohesity
-
-D. Commvault
-
-**Answer:** C. Cohesity
-
-**Explanation:**
-
-Cohesity is the first Hyperconverged storage platform in Azure for enterprise data.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. What is the full form of ETL?
-
-A. Exact transform load
-
-B. Electronic transformation loading
-
-C. Extract transform load
-
-**Answer:** C. Extract transform load
-
-**Explanation:**
-
-ETL stands for extract transform load.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. In which stage of ETL, data is retrieved from the source before being relocated to a new location?
-
-A. Extract
-
-B. Transform
-
-C. Load
-
-**Answer:** A. Extract
-
-**Explanation:**
-
-Extract is the first stage of the ETL process, where data is retrieved from the source before being relocated to a new location.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. At which stage of ETL, the quality of data is being maintained?
-
-A. Extract
-
-B. Transform
-
-C. Load
-
-**Answer:** B. Transform
-
-**Explanation:**
-
-Transform is the second stage of the ETL process, here quality of data is being maintained.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. In which stage of ETL, altered data is loaded into a new destination?
-
-A. Extract
-
-B. Transform
-
-C. Load
-
-**Answer:** C. Load
-
-**Explanation:**
-
-Load is the third and last stage of the ETL process, here altered data is loaded into a new destination.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. ____is used at every stage of the ETL pipeline.
-
-A. App service
-
-B. Transformation function
-
-C. HD insights
-
-D. Orchestration
-
-**Answer:** D. Orchestration
-
-**Explanation:**
-
-Orchestration is used at every stage of the ETL pipeline.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which framework acts as a workflow and synchronizes the system that accomplishes Hadoop jobs?
-
-A. Transformation function
-
-B. HD insights
-
-C. Orchestration
-
-D. Apache Oozie
-
-**Answer:** D. Apache Oozie
-
-**Explanation:**
-
-Apache Oozie framework acts as a workflow and synchronizes the system that accomplishes Hadoop jobs.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. What is the full form of ADLS in Azure?
-
-A. Azure data load service
-
-B. Azure data load storage
-
-C. Azure data lake storage
-
-D. Azure data lake service
-
-**Answer:** C. Azure data lake storage
-
-**Explanation:**
-
-ADLS stands for Azure data lake storage.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which Azure service is managed, hyper scale analytics data store from which the data is stored?
-
-A. Azure data factory
-
-B. Azure Synapse analytics
-
-C. Azure data lake storage
-
-D. Azure data lake service
-
-**Answer:** C. Azure data lake storage
-
-**Explanation:**
-
-ADLS service is managed, hyper scale analytics data store from which the data is stored.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which Azure service is present in the Azure HDInsight and stores the data in key-value format?
-
-A. Azure data factory
-
-B. Apache HBase
-
-C. Apache Sqoop
-
-D. Azure Synapse analytics
-
-**Answer:** B. Apache HBase
-
-**Explanation:**
-
-Apache HBase service is present in the Azure HDInsight and stores the data in key-value format.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. How many PaaS relational databases are available in Azure?
-
-A. 3
-
-B. 4
-
-C. 5
-
-D. 6
-
-**Answer:** A. 3
-
-**Explanation:**
-
-Three PaaS relational databases available in Azure:
-
-* Azure SQL Database
-* Oracle MySQL
-* Microsoft Azure Database
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which tool in Azure is used for moving data across structured, semi-structured, and unstructured data sources quickly and efficiently?
-
-A. Azure data factory
-
-B. Apache HBase
-
-C. Apache Sqoop
-
-D. Azure Synapse analytics
-
-**Answer:** C. Apache Sqoop
-
-**Explanation:**
-
-Apache Sqoop tool in Azure is used for moving data across structured, semi-structured, and unstructured data sources quickly and efficiently.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. How many types of instances are provided by Azure?
-
-A. 4
-
-B. 3
-
-C. 5
-
-D. 2
-
-**Answer:** D. 2
-
-**Explanation:**
-
-Two types of instances are provided by Azure: Reserved instances and shared instances.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which Azure service effortlessly unites with open-source libraries and also offers the newest version of Apache spark?
-
-A. Azure data factory
-
-B. Apache HBase
-
-C. Apache Sqoop
-
-D. Azure Databricks
-
-**Answer:** D. Azure Databricks
-
-**Explanation:**
-
-Azure data bricks service effortlessly unites with open-source libraries and also offers the newest version of Apache spark.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which Azure service consists of a web-based interface for an executable document, as well as graphic animations and narrative text?
-
-A. Azure data factory
-
-B. Apache HBase
-
-C. Apache Sqoop
-
-D. Azure Databricks
-
-E. Azure notebook
-
-**Answer:** E. Azure notebook
-
-**Explanation:**
-
-Azure notebook service consists of a web-based interface for an executable document, as well as graphic animations and narrative text.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Azure resource management and deployment are handled by this service?
-
-Azure resources
-Azure resource groups
-Azure resources manager
-**Answer:** C. Azure resources manager
-
-**Explanation:**
-
-Azure resource manager is the resource management and deployment is handled by this service.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which Azure service provides enhanced governance across resources, multi-tenant scalability, and higher automation?
-
-A. Azure resources
-
-B. Azure resource groups
-
-C. Azure resources manager
-
-D. Azure lighthouse
-
-**Answer:** D. Azure lighthouse
-
-**Explanation:**
-
-Azure lighthouse service provides enhanced governance across resources, multi-tenant scalability, and higher automation.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. What is the full form of PAM in Azure?
-
-A. Public access method
-
-B. Private access method
-
-C. Privileged access management
-
-D. Privileged access method
-
-**Answer:** C. Privileged access management
-
-**Explanation:**
-
-PAM stands for Privileged access management.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which Azure service recovers control of a hacked Active Directory environment?
-
-A. Public access method
-
-B. Privileged access management
-
-C. Azure lighthouse
-
-D. Azure Notebook
-
-**Answer:** B. Privileged access management
-
-**Explanation:**
-
-PAM service recovers control of a hacked Active Directory environment.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-## Q. Which type of service is provided by DevOps?
-
-A. IAAS
-
-B. PAAS
-
-C. SAAS
 
-**Answer:** C. SAAS
+**Q.** A DevOps engineer implements a Continuous Integration pipeline. A code review policy requires that all builds pass before a PR can be merged. However, the full test suite takes 45 minutes. What technique reduces the feedback loop without removing test coverage?
 
-**Explanation:**
+- A) Remove integration tests from the CI pipeline entirely.
+- B) Implement test parallelization (split tests across multiple agents) and test impact analysis (run only tests affected by changed files), targeting a sub-10-minute PR validation pipeline.
+- C) Increase the pipeline agent\'s VM size to speed up the build.
+- D) Merge without tests and run the full suite nightly.
 
-Azure DevOps is a kind of SAAS i.e., software as a service.
+> **Answer: B**  
+> **Test parallelization** distributes test execution across multiple agents simultaneously (Azure DevOps supports parallel jobs with `strategy: parallel`). **Test Impact Analysis** (TIA) — supported in Visual Studio Test task — identifies which tests are affected by code changes and runs only those, skipping unrelated tests. Together these techniques reduce PR feedback time from 45 minutes to under 10 minutes while maintaining coverage. Nightly-only testing is a risk management failure.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
