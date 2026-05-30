@@ -2,35 +2,57 @@
 
 > *Click &#9733; if you like the project. Your contributions are heartily ♡ welcome.*
 
-<br/>
+<br>
 
 ## Table of Contents
 
-* [Azure Fundamentals](#-1-azure-fundamentals)
-* [Core Services](#-2-core-services)
-* [Security](#-3-security)
-* [Azure Storage](#-4-azure-storage)
-* [Networking](#-5-networking)
-* [Monitoring](#-6-monitoring)
-* [Databases](#-7-databases)
-* [Architecture](#-8-architecture)
-* [Migration](#-9-migration)
-* [Access Management](#-10-access-management)
-* [Performance Management](#-11-performance-management)
-* [Troubleshooting](#-12-troubleshooting)
-* [Application Development](#-13-application-development)
-* [DevOps](#-14-devops)
-* [Cost Management](#-15-cost-management)
-* [AI Services](#-16-ai-services)
-* [Miscellaneous](#-17-miscellaneous)
-* [General Questions](#-18-general-questions)
-* [Azure Multiple Choice Questions](azure-mcq.md)
+## L1: Cloud Foundations (Entry-Level / Cloud Practitioner)
+Focus: Core Azure concepts, cloud models, resource management, and fundamental services.
 
-<br/>
+* [Azure Fundamentals](#-1-azure-fundamentals): Azure components, shared responsibility, cloud models, and resource management.
+* [Core Services](#-2-core-services): Compute (VMs, App Service, AKS, Functions), Service Bus, Redis, API Management, and Batch.
+
+## L2: Infrastructure (Associate Level)
+Focus: Storage, networking, and security essentials for building and securing Azure infrastructure.
+
+* [Security](#-3-security): Entra ID, RBAC, Key Vault, Managed Identities, Defender for Cloud, DDoS, JIT Access.
+* [Azure Storage](#-4-azure-storage): Blob, access tiers, lifecycle management, replication options, SDK, and AzCopy.
+* [Networking](#-5-networking): VNet, NSG, Load Balancer, Application Gateway, ExpressRoute, Bastion, VNet Peering.
+
+## L3: Operations (Cloud Administrator / Developer)
+Focus: Monitoring observability, databases, access governance, and operational management.
+
+* [Monitoring](#-6-monitoring): Azure Monitor, KQL, Application Insights, alerts, distributed tracing, and sampling.
+* [Databases](#-7-databases): Azure SQL, Cosmos DB, consistency models, Elastic Pools, PostgreSQL, and Redis.
+* [Access Management](#-10-access-management): Entra ID Connect, Conditional Access, PIM, Managed Identities, B2B/B2C.
+
+## L4: Architecture & Migration (Solutions Architect)
+Focus: Cloud architecture patterns, disaster recovery, infrastructure as code, and migration strategies.
+
+* [Architecture](#-8-architecture): Well-Architected Framework, multi-region HA, messaging services, ARM/Bicep, and DR.
+* [Migration](#-9-migration): Azure Migrate, 6 R\'s, Database Migration Service, Data Box, Data Factory, and Integration Runtime.
+
+## L5: Development & DevOps (Cloud Developer / DevOps Engineer)
+Focus: Application development, CI/CD pipelines, performance optimization, and troubleshooting.
+
+* [Application Development](#-13-application-development): Deployment slots, Azure Functions, Logic Apps, Event Grid, Service Bus, and AKS.
+* [DevOps](#-14-devops): Azure DevOps YAML pipelines, GitHub Actions, Terraform, and container registries.
+* [Performance Management](#-11-performance-management): Autoscaling, CDN, Front Door, Redis caching, SQL tuning, and VM right-sizing.
+* [Troubleshooting](#-12-troubleshooting): Network Watcher, App Service diagnostics, AKS pods, VM connectivity, and failed deployments.
+
+## L6: Expert (Cloud Architect / Lead)
+Focus: Cost governance, AI integration, advanced patterns, and enterprise-scale decisions.
+
+* [Cost Management](#-15-cost-management): Pricing models, Azure Advisor, Reserved Instances, Budgets, and Cost Analysis.
+* [AI Services](#-16-ai-services): Azure OpenAI, Cognitive Services, AI Search, and Machine Learning.
+* [Miscellaneous](#-17-miscellaneous): Advanced topics, best practices, and specialized Azure scenarios.
+* [General Questions](#-18-general-questions): Cross-cutting questions covering real-world Azure architecture and operations.
+
+<br>
 
 ## # 1. AZURE FUNDAMENTALS
 
-<br/>
+<br>
 
 ## Q. What is Microsoft Azure and what are its core components?
 
@@ -77,7 +99,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2023-05-01' = {
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. Describe the shared responsibility model in Azure.
@@ -89,18 +111,18 @@ The shared responsibility model defines which security tasks are handled by Micr
 |----------------------------------------------------------------------|
 |                | On-Prem | IaaS    | PaaS    | SaaS    |
 |----------------|---------|---------|---------|---------|
-| Data           | ✅ You  | ✅ You  | ✅ You  | ✅ You  |
-| Identity/Access | ✅ You  | ✅ You  | ✅ You  | ✅ You  |
-| Application    | ✅ You  | ✅ You  | ✅ You  | 🔵 MS   |
-| OS & Runtime   | ✅ You  | ✅ You  | 🔵 MS   | 🔵 MS   |
-| Networking     | ✅ You  | Shared  | 🔵 MS   | 🔵 MS   |
-| Physical/DC    | ✅ You  | 🔵 MS   | 🔵 MS   | 🔵 MS   |
+| Data           | Yes  | Yes  | Yes  | Yes  |
+| Identity/Access | Yes  | Yes  | Yes  | Yes  |
+| Application    | Yes  | Yes  | Yes  | MS   |
+| OS & Runtime   | Yes  | Yes  | MS   | MS   |
+| Networking     | Yes  | Shared  | MS   | MS   |
+| Physical/DC    | Yes  | MS   | MS   | MS   |
 ```
 
 **Key principle:** Microsoft always owns physical security, hardware, and the hypervisor. The customer always owns their data and identity configuration regardless of service type. For IaaS (VMs), the customer patches the OS. For PaaS (App Service), Microsoft patches the OS and runtime.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What are the various cloud deployment models and service models in Azure?
@@ -134,7 +156,7 @@ SaaS — Microsoft 365, Dynamics 365, Azure DevOps
 - **SaaS** → Productivity tools; no infrastructure management at all.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What are the benefits of cloud computing with Azure?
@@ -151,7 +173,7 @@ SaaS — Microsoft 365, Dynamics 365, Azure DevOps
 | **DevOps integration** | Azure DevOps, GitHub Actions, Azure Pipelines native integration |
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. How do you manage resources in Azure?
@@ -197,12 +219,338 @@ New-AzResourceGroupDeployment `
 **5. Azure Cloud Shell** — browser-based bash/PowerShell with pre-installed tools at `shell.azure.com`.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. What is Microsoft Azure and why do companies use it?
+
+**Microsoft Azure** is a public cloud computing platform by Microsoft offering on-demand resources (compute, storage, networking, AI, databases) over the internet on a pay-as-you-go model.
+
+**Reasons companies adopt Azure:**
+
+| Reason | Explanation |
+|--------|-------------|
+| **Cost savings** | No upfront hardware capital; pay only for what you use |
+| **Scalability** | Scale up or out in minutes to handle traffic spikes |
+| **Global reach** | 60+ regions worldwide; deploy close to end users |
+| **Security & compliance** | ISO, SOC, HIPAA, FedRAMP certifications built-in |
+| **Integrated ecosystem** | Deep integration with Microsoft 365, Teams, Windows Server |
+| **Hybrid support** | Azure Arc and Azure Stack extend cloud to on-premises |
+
+```bash
+# Check available Azure regions
+az account list-locations --output table
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. What is the difference between a Region and an Availability Zone in Azure?
+
+| Concept | Definition | Example |
+|---------|-----------|---------|
+| **Region** | A geographic cluster of one or more datacenters (e.g., East US, West Europe) | `eastus`, `westeurope` |
+| **Availability Zone (AZ)** | Physically separate datacenters inside a region, each with independent power/cooling/networking | Zone 1, Zone 2, Zone 3 in East US |
+| **Region Pair** | Two paired regions for disaster recovery (automatically fail over certain services) | East US ↔ West US |
+
+**Key points:**
+- Resources deployed across AZs survive a single datacenter failure.
+- Not all regions have AZs; check with `az account list-locations`.
+- Services like Azure SQL, Storage, and VMs offer zone-redundant SKUs.
+
+```bash
+# Deploy a zone-redundant public IP across AZs
+az network public-ip create \
+  --name pip-webapp \
+  --resource-group rg-demo \
+  --sku Standard \
+  --zone 1 2 3
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. What is a Resource Group and why is it important?
+
+A **Resource Group** is a logical container that holds related Azure resources sharing the same lifecycle, permissions, and billing context.
+
+**Rules:**
+- Every resource must belong to exactly one resource group.
+- Deleting a resource group deletes all resources inside it.
+- Resources in different regions can belong to the same resource group.
+- RBAC and policies can be applied at the resource group scope.
+
+```bash
+# Create a resource group
+az group create \
+  --name rg-webapp-prod \
+  --location eastus \
+  --tags Environment=Production Owner=DevTeam
+
+# List all resource groups
+az group list --output table
+
+# Delete a resource group (and all resources inside it)
+az group delete --name rg-webapp-prod --yes --no-wait
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. What is the difference between a Subscription and a Management Group?
+
+| Concept | Purpose | Scope |
+|---------|---------|-------|
+| **Subscription** | Billing boundary; groups resources under a single bill | All resources inside a subscription |
+| **Management Group** | Governance boundary; applies policies/RBAC to multiple subscriptions | One or many subscriptions |
+| **Tenant (Root)** | The top-level Azure Active Directory (Entra ID) organization | All subscriptions and management groups |
+
+```
+Tenant (Entra ID)
+└── Root Management Group
+    ├── Management Group: Production
+    │   ├── Subscription: App-Team-A
+    │   └── Subscription: App-Team-B
+    └── Management Group: Development
+        └── Subscription: Dev-Sandbox
+```
+
+```bash
+# Create a management group
+az account management-group create --name "mg-production" --display-name "Production"
+
+# Move a subscription into a management group
+az account management-group subscription add \
+  --name "mg-production" \
+  --subscription "<subscription-id>"
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. What is Azure Virtual Machine (VM) and when should you use it?
+
+An **Azure VM** is an IaaS (Infrastructure as a Service) offering — a virtual computer in the cloud running Windows or Linux. You manage the OS, runtime, and application; Azure manages the physical host.
+
+**When to use a VM:**
+- Lift-and-shift of on-premises applications.
+- Custom OS configuration requirements.
+- Running software that cannot run on PaaS services.
+- Legacy applications not compatible with containers.
+
+```bash
+# Create a Linux VM (Ubuntu)
+az vm create \
+  --name vm-webserver \
+  --resource-group rg-demo \
+  --image Ubuntu2204 \
+  --size Standard_B2s \
+  --admin-username azureuser \
+  --generate-ssh-keys \
+  --public-ip-sku Standard
+
+# Start / Stop / Deallocate a VM
+az vm start  --name vm-webserver --resource-group rg-demo
+az vm stop   --name vm-webserver --resource-group rg-demo
+az vm deallocate --name vm-webserver --resource-group rg-demo  # stops billing for compute
+```
+
+> **Tip:** Deallocate (not just stop) a VM to stop compute charges. A stopped-but-allocated VM still incurs compute costs.
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. What is Azure App Service and what are its main features?
+
+**Azure App Service** is a fully managed PaaS for hosting web applications, REST APIs, and mobile backends. No OS or server management required.
+
+| Feature | Detail |
+|---------|--------|
+| Supported runtimes | .NET, Node.js, Python, Java, PHP, Ruby |
+| Deployment | Git, GitHub Actions, Azure DevOps, ZIP deploy |
+| Built-in SSL | Automatic HTTPS with custom domains |
+| Auto-scaling | Scale out/in based on CPU, memory, or schedules |
+| Deployment slots | Blue-green deployments with zero downtime |
+| Managed Identity | Built-in identity — no credentials in code |
+
+```bash
+# Create an App Service Plan (hosting infrastructure)
+az appservice plan create \
+  --name asp-webapp \
+  --resource-group rg-demo \
+  --sku B1 \
+  --is-linux
+
+# Create a web app on the plan
+az webapp create \
+  --name mywebapp-demo2025 \
+  --resource-group rg-demo \
+  --plan asp-webapp \
+  --runtime "NODE:20-lts"
+
+# Deploy from a ZIP file
+az webapp deploy \
+  --name mywebapp-demo2025 \
+  --resource-group rg-demo \
+  --src-path ./dist.zip \
+  --type zip
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. What are the main Azure Storage types and when do you use each?
+
+| Storage Type | Description | Use Case |
+|-------------|-------------|----------|
+| **Blob Storage** | Object storage for unstructured data | Images, videos, backups, logs |
+| **File Storage** | Managed SMB/NFS file shares | Shared drives, lift-and-shift NAS |
+| **Queue Storage** | Message queue (max 64 KB/message) | Decoupling app components |
+| **Table Storage** | Key-value NoSQL store | Semi-structured data, telemetry |
+| **Disk Storage** | Managed disks for VMs | OS and data disks for Azure VMs |
+
+```bash
+# Create a storage account
+az storage account create \
+  --name stmydemo2025 \
+  --resource-group rg-demo \
+  --location eastus \
+  --sku Standard_LRS \
+  --kind StorageV2
+
+# Create a blob container and upload a file
+az storage container create \
+  --name uploads \
+  --account-name stmydemo2025 \
+  --auth-mode login
+
+az storage blob upload \
+  --account-name stmydemo2025 \
+  --container-name uploads \
+  --name myfile.txt \
+  --file ./myfile.txt \
+  --auth-mode login
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. What is a Virtual Network (VNet) and a Subnet in Azure?
+
+A **Virtual Network (VNet)** is an isolated private network in Azure. Resources inside a VNet can communicate with each other by default but are isolated from other VNets and the internet unless explicitly configured otherwise.
+
+A **Subnet** divides the VNet address space into smaller segments, allowing you to apply separate security rules (NSGs) and route tables to different resource tiers (web, app, database).
+
+```bash
+# Create a VNet with address space 10.0.0.0/16
+az network vnet create \
+  --name vnet-demo \
+  --resource-group rg-demo \
+  --address-prefix 10.0.0.0/16
+
+# Add a web-tier subnet
+az network vnet subnet create \
+  --name snet-web \
+  --vnet-name vnet-demo \
+  --resource-group rg-demo \
+  --address-prefix 10.0.1.0/24
+
+# Add a database-tier subnet
+az network vnet subnet create \
+  --name snet-db \
+  --vnet-name vnet-demo \
+  --resource-group rg-demo \
+  --address-prefix 10.0.2.0/24
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. What is an SLA and what is the SLA for Azure VMs?
+
+An **SLA (Service Level Agreement)** is Microsoft\'s commitment to uptime and connectivity for each Azure service. If the SLA is breached, customers receive service credits.
+
+| Azure Service | SLA |
+|--------------|-----|
+| Single VM with Premium SSD | **99.9%** |
+| VMs across 2+ Availability Zones | **99.99%** |
+| Azure App Service (Standard+) | **99.95%** |
+| Azure SQL Database (Business Critical) | **99.99%** |
+| Azure Blob Storage (RA-GRS) | **99.99%** read, **99.9%** write |
+
+**Downtime calculations:**
+- 99.9% SLA = ~8.7 hours downtime per year
+- 99.99% SLA = ~52 minutes downtime per year
+- 99.999% SLA = ~5 minutes downtime per year
+
+> **Tip:** Combining services in series multiplies the SLAs: `0.999 × 0.999 = 0.998` (composite SLA). Always use zone-redundant or geo-redundant deployments for production workloads.
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. What is the difference between IaaS, PaaS, and SaaS in Azure?
+
+| Model | You Manage | Azure Manages | Azure Example |
+|-------|-----------|--------------|---------------|
+| **IaaS** (Infrastructure as a Service) | OS, runtime, app, data | Hardware, network, hypervisor | Azure VMs, Azure Disk |
+| **PaaS** (Platform as a Service) | App code, data | OS, runtime, middleware, infrastructure | App Service, Azure SQL, AKS |
+| **SaaS** (Software as a Service) | User access and data | Everything | Microsoft 365, Dynamics 365 |
+
+```
+On-premises → IaaS → PaaS → SaaS
+More control ←──────────────→ Less management
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. What Azure pricing models are available and how do you estimate cost?
+
+| Model | Description | Best For |
+|-------|-------------|----------|
+| **Pay-as-you-go** | Billed per second/hour of usage; no commitment | Dev/test, variable workloads |
+| **Reserved Instances** | 1- or 3-year commitment; up to 72% savings | Predictable, steady-state production |
+| **Spot VMs** | Use spare Azure capacity at up to 90% discount; can be evicted | Batch jobs, fault-tolerant workloads |
+| **Azure Hybrid Benefit** | Use existing Windows/SQL Server licenses on Azure | Customers with on-prem Microsoft licenses |
+| **Dev/Test pricing** | Discounted rates for non-production subscriptions | Developer sandboxes |
+
+```bash
+# Use Azure Pricing Calculator (web): https://azure.microsoft.com/pricing/calculator/
+
+# View current spending in CLI
+az consumption usage list \
+  --start-date 2025-05-01 \
+  --end-date 2025-05-31 \
+  --output table
+
+# Create a budget alert at $500/month
+az consumption budget create \
+  --budget-name monthly-budget \
+  --amount 500 \
+  --category Cost \
+  --time-grain Monthly \
+  --start-date 2025-05-01 \
+  --end-date 2026-05-01 \
+  --notification-threshold 80
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## # 2. CORE SERVICES
 
-<br/>
+<br>
 
 ## Q. What are the main compute services in Azure and when do you choose each?
 
@@ -254,7 +602,7 @@ public async Task<HttpResponseData> Run(
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What is Azure Kubernetes Service (AKS) and how do you deploy to it?
@@ -329,7 +677,7 @@ kubectl get service myapp-api-svc
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What is Azure Service Bus and when would you use it over Azure Storage Queues?
@@ -340,9 +688,9 @@ kubectl get service myapp-api-svc
 |---------|-------------|----------------|
 | Max message size | 100 MB (Premium) | 64 KB |
 | Message ordering | Sessions (FIFO) | Best-effort |
-| Dead-letter queue | ✅ Built-in | ❌ |
-| Publish-Subscribe | ✅ Topics | ❌ |
-| Transactions | ✅ | ❌ |
+| Dead-letter queue | Built-in | No |
+| Publish-Subscribe | Topics | No |
+| Transactions | Yes | No |
 | Max TTL | Unlimited | 7 days |
 | Throughput | Millions/sec (Premium) | Very high |
 
@@ -383,7 +731,7 @@ await processor.StartProcessingAsync();
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What is Azure Redis Cache and what are its use cases?
@@ -433,7 +781,7 @@ public async Task<Product?> GetProductAsync(int id)
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What is Azure API Management and what are its benefits?
@@ -480,7 +828,7 @@ public async Task<Product?> GetProductAsync(int id)
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What is Azure Batch and how does it support large-scale parallel workloads?
@@ -516,12 +864,451 @@ az batch task create \
 **Use cases:** genomic sequencing, financial risk modelling, rendering, ML hyperparameter tuning, video transcoding.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. When should you choose App Service vs Azure VM vs Azure Functions?
+
+| Criteria | Azure VM | App Service | Azure Functions |
+|----------|----------|-------------|-----------------|
+| Control | Full OS control | Managed runtime | No infrastructure |
+| Scaling | Manual or VMSS | Auto-scale (min 1) | Auto-scale to 0 |
+| Billing | Per hour (even idle) | Per App Service Plan | Per execution (Consumption) |
+| Best for | Legacy apps, custom OS | Web apps, REST APIs | Event-driven, short tasks |
+| Cold start | No | No | Yes (Consumption plan) |
+| Max execution | Unlimited | Unlimited | 10 min default (Consumption) |
+
+**Example: Azure Function with HTTP trigger (.NET 8 isolated)**
+
+```csharp
+[Function("GetProduct")]
+public IActionResult Run(
+    [HttpTrigger(AuthorizationLevel.Function, "get", Route = "products/{id}")] HttpRequest req,
+    int id)
+{
+    var product = _catalog.GetById(id);
+    return product is null ? new NotFoundResult() : new OkObjectResult(product);
+}
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. What are Azure Function triggers and bindings? Give examples.
+
+**Triggers** define how a Function is invoked (one trigger per function). **Bindings** are declarative connections to data sources/sinks (input and output) — no manual SDK calls needed.
+
+| Trigger | Invoked by |
+|---------|-----------|
+| `HttpTrigger` | HTTP request |
+| `TimerTrigger` | CRON schedule |
+| `BlobTrigger` | New blob in a container |
+| `ServiceBusTrigger` | Message on Service Bus queue/topic |
+| `EventGridTrigger` | Event from Event Grid |
+| `CosmosDBTrigger` | Change feed in Cosmos DB |
+
+```csharp
+// Blob trigger → reads new file → writes to Cosmos DB (output binding)
+[Function("ProcessUpload")]
+[CosmosDBOutput("mydb", "processed", Connection = "CosmosConnection", CreateIfNotExists = true)]
+public FileRecord Run(
+    [BlobTrigger("uploads/{name}", Connection = "AzureWebJobsStorage")] Stream blobStream,
+    string name,
+    ILogger log)
+{
+    log.LogInformation($"Processing blob: {name}, Size: {blobStream.Length}");
+    return new FileRecord { Id = name, ProcessedAt = DateTime.UtcNow, SizeBytes = blobStream.Length };
+}
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. What are Blob Storage tiers and when would you use each?
+
+| Tier | Access Frequency | Latency | Cost | Min Duration |
+|------|-----------------|---------|------|-------------|
+| **Hot** | Frequent | Milliseconds | Highest storage | None |
+| **Cool** | Infrequent (~once/month) | Milliseconds | ~50% less storage | 30 days |
+| **Cold** | Rare (~once/quarter) | Milliseconds | ~60% less storage | 90 days |
+| **Archive** | Almost never (compliance) | Hours (rehydrate first) | Lowest storage | 180 days |
+
+```bash
+# Set access tier when uploading
+az storage blob upload \
+  --account-name stmydemo2025 \
+  --container-name backups \
+  --name archive/backup-2024.zip \
+  --file backup-2024.zip \
+  --tier Cool
+
+# Change tier of an existing blob
+az storage blob set-tier \
+  --account-name stmydemo2025 \
+  --container-name backups \
+  --name archive/backup-2024.zip \
+  --tier Archive
+
+# Rehydrate from Archive (takes hours — set priority)
+az storage blob set-tier \
+  --account-name stmydemo2025 \
+  --container-name backups \
+  --name archive/backup-2024.zip \
+  --tier Hot \
+  --rehydrate-priority High
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. What is a SAS token and how do you generate one?
+
+A **Shared Access Signature (SAS)** is a URI that grants restricted, time-limited access to Azure Storage resources without exposing the account key. You can scope it to specific resources, permissions, and time windows.
+
+**Types of SAS:**
+- **Account SAS** — access across services (Blob, File, Queue, Table)
+- **Service SAS** — access to a specific service resource
+- **User Delegation SAS** — signed with Microsoft Entra credentials (most secure)
+
+```bash
+# Generate a Blob SAS token (read-only, 1-hour expiry)
+az storage blob generate-sas \
+  --account-name stmydemo2025 \
+  --container-name uploads \
+  --name report.pdf \
+  --permissions r \
+  --expiry $(date -u -d '+1 hour' '+%Y-%m-%dT%H:%MZ') \
+  --output tsv
+
+# Generate a User Delegation SAS (recommended — no account key needed)
+az storage blob generate-sas \
+  --account-name stmydemo2025 \
+  --container-name uploads \
+  --name report.pdf \
+  --permissions r \
+  --expiry 2025-06-01T00:00Z \
+  --as-user \
+  --auth-mode login
+```
+
+```csharp
+// .NET: Generate SAS URI using SDK (User Delegation — best practice)
+var delegationKey = await blobServiceClient.GetUserDelegationKeyAsync(
+    DateTimeOffset.UtcNow, DateTimeOffset.UtcNow.AddHours(1));
+
+var sasBuilder = new BlobSasBuilder(BlobSasPermissions.Read, DateTimeOffset.UtcNow.AddHours(1))
+{
+    BlobContainerName = "uploads",
+    BlobName = "report.pdf",
+    Resource = "b"
+};
+
+var sasUri = blobClient.GenerateSasUri(sasBuilder);
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. What is Managed Identity and how does it remove the need to store credentials?
+
+A **Managed Identity** is an Azure AD identity automatically created and managed by Azure for a resource (VM, App Service, Function, AKS pod). Other services can grant it access via RBAC — no passwords, connection strings, or secrets needed in code.
+
+```csharp
+// Access Key Vault using Managed Identity — zero credentials in code
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
+
+var client = new SecretClient(
+    new Uri("https://kv-myapp.vault.azure.net/"),
+    new DefaultAzureCredential());   // Uses MI when running in Azure
+
+var secret = await client.GetSecretAsync("DbConnectionString");
+Console.WriteLine(secret.Value.Value);
+```
+
+```bash
+# Enable system-assigned MI on an App Service
+az webapp identity assign \
+  --name mywebapp-demo2025 \
+  --resource-group rg-demo
+
+# Grant the app\'s identity access to Key Vault secrets
+az keyvault set-policy \
+  --name kv-myapp \
+  --object-id $(az webapp identity show \
+      --name mywebapp-demo2025 \
+      --resource-group rg-demo \
+      --query principalId -o tsv) \
+  --secret-permissions get list
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. What is Application Insights and how do you add it to a .NET app?
+
+**Application Insights** is the APM (Application Performance Monitoring) service inside Azure Monitor. It collects HTTP requests, dependency calls (SQL, HTTP, Redis), exceptions, custom events, and performance counters.
+
+```csharp
+// Program.cs (.NET 8)
+builder.Services.AddApplicationInsightsTelemetry(options =>
+{
+    options.ConnectionString = builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"];
+    options.EnableAdaptiveSampling = true;
+    options.EnableQuickPulseMetricStream = true;  // Live Metrics
+});
+
+// Custom event and metric tracking
+public class OrderService(TelemetryClient telemetry)
+{
+    public async Task PlaceOrderAsync(Order order)
+    {
+        telemetry.TrackEvent("OrderPlaced", new Dictionary<string, string>
+        {
+            ["OrderId"] = order.Id,
+            ["CustomerId"] = order.CustomerId
+        });
+
+        telemetry.GetMetric("order.total").TrackValue((double)order.Total);
+    }
+}
+```
+
+```bash
+# Create Application Insights resource
+az monitor app-insights component create \
+  --app ai-myapp \
+  --resource-group rg-demo \
+  --location eastus \
+  --application-type web
+
+# Get connection string
+az monitor app-insights component show \
+  --app ai-myapp \
+  --resource-group rg-demo \
+  --query connectionString -o tsv
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. What is an NSG (Network Security Group) and how does it work?
+
+An **NSG** is a stateful L4 firewall applied to a subnet or NIC. It contains inbound and outbound rules evaluated by priority (100–4096; lower = higher priority). A default **DenyAll** rule at priority 65500 blocks all unmatched traffic.
+
+```bash
+# Create NSG and allow HTTPS inbound
+az network nsg create \
+  --name nsg-webapp \
+  --resource-group rg-demo
+
+az network nsg rule create \
+  --nsg-name nsg-webapp \
+  --resource-group rg-demo \
+  --name Allow-HTTPS \
+  --priority 100 \
+  --direction Inbound \
+  --protocol Tcp \
+  --destination-port-range 443 \
+  --source-address-prefixes Internet \
+  --access Allow
+
+az network nsg rule create \
+  --nsg-name nsg-webapp \
+  --resource-group rg-demo \
+  --name Allow-HTTP \
+  --priority 110 \
+  --direction Inbound \
+  --protocol Tcp \
+  --destination-port-range 80 \
+  --source-address-prefixes Internet \
+  --access Allow
+
+# Attach NSG to subnet
+az network vnet subnet update \
+  --name snet-web \
+  --vnet-name vnet-demo \
+  --resource-group rg-demo \
+  --network-security-group nsg-webapp
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. What is Azure Key Vault and how do you store and retrieve a secret?
+
+**Azure Key Vault** is a cloud service for securely storing and managing secrets (passwords, API keys), encryption keys, and TLS certificates. Access is controlled via RBAC or Key Vault access policies.
+
+```bash
+# Create a Key Vault
+az keyvault create \
+  --name kv-myapp-demo \
+  --resource-group rg-demo \
+  --location eastus \
+  --sku standard \
+  --enable-rbac-authorization true   # use RBAC instead of legacy access policies
+
+# Store a secret
+az keyvault secret set \
+  --vault-name kv-myapp-demo \
+  --name "DbPassword" \
+  --value "SuperSecret@2025"
+
+# Retrieve a secret
+az keyvault secret show \
+  --vault-name kv-myapp-demo \
+  --name "DbPassword" \
+  --query value -o tsv
+```
+
+```csharp
+// .NET: Load all Key Vault secrets as configuration (no code changes needed per secret)
+builder.Configuration.AddAzureKeyVault(
+    new Uri("https://kv-myapp-demo.vault.azure.net/"),
+    new DefaultAzureCredential());
+
+// Access like any config value
+var dbPassword = builder.Configuration["DbPassword"];
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. What is Azure DevOps and what are its main components?
+
+**Azure DevOps** is Microsoft\'s end-to-end DevOps platform providing source control, CI/CD pipelines, agile planning, and artifact management.
+
+| Component | Purpose |
+|-----------|---------|
+| **Azure Repos** | Git or TFVC source control |
+| **Azure Pipelines** | CI/CD automation for build, test, deploy |
+| **Azure Boards** | Agile planning (Epics, Stories, Tasks, Bugs) |
+| **Azure Artifacts** | Package management (NuGet, npm, Maven, PyPI) |
+| **Azure Test Plans** | Manual and exploratory testing management |
+
+**Basic CI pipeline (azure-pipelines.yml):**
+
+```yaml
+trigger:
+  - main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  buildConfiguration: Release
+
+steps:
+  - task: UseDotNet@2
+    inputs:
+      packageType: sdk
+      version: '8.x'
+
+  - script: dotnet restore
+    displayName: Restore packages
+
+  - script: dotnet build --configuration $(buildConfiguration)
+    displayName: Build
+
+  - script: dotnet test --configuration $(buildConfiguration) --no-build
+    displayName: Test
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathToPublish: '$(Build.ArtifactStagingDirectory)'
+      artifactName: drop
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. What is an ARM Template and what is Bicep?
+
+**ARM (Azure Resource Manager) templates** are JSON files that declare Azure resources. **Bicep** is a DSL that compiles to ARM JSON — it has cleaner syntax, type safety, and IDE intellisense.
+
+```bicep
+// main.bicep — deploy a storage account
+param storageAccountName string = 'stmydemo${uniqueString(resourceGroup().id)}'
+param location string = resourceGroup().location
+param skuName string = 'Standard_LRS'
+
+resource storageAccount 'Microsoft.Storage/storageAccounts@2023-05-01' = {
+  name: storageAccountName
+  location: location
+  sku: { name: skuName }
+  kind: 'StorageV2'
+  properties: {
+    supportsHttpsTrafficOnly: true
+    minimumTlsVersion: 'TLS1_2'
+    allowBlobPublicAccess: false
+  }
+}
+
+output storageAccountId string = storageAccount.id
+output blobEndpoint string = storageAccount.properties.primaryEndpoints.blob
+```
+
+```bash
+# Deploy a Bicep template
+az deployment group create \
+  --resource-group rg-demo \
+  --template-file main.bicep \
+  --parameters skuName=Standard_GRS
+
+# Validate without deploying
+az deployment group validate \
+  --resource-group rg-demo \
+  --template-file main.bicep
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. What is the difference between Azure Load Balancer and Application Gateway?
+
+| Feature | Azure Load Balancer | Azure Application Gateway |
+|---------|--------------------|-----------------------------|
+| OSI Layer | Layer 4 (TCP/UDP) | Layer 7 (HTTP/HTTPS) |
+| Routing | IP + Port hash | URL path, host header, query string |
+| SSL Termination | No | Yes |
+| WAF (Web App Firewall) | No | Yes (WAF v2 SKU) |
+| Session Affinity | Source IP | Cookie-based |
+| Use case | Non-HTTP, internal VM load balancing | Web apps, API gateway, microservices |
+
+```bash
+# Create an Application Gateway with WAF
+az network application-gateway create \
+  --name agw-webapp \
+  --resource-group rg-demo \
+  --location eastus \
+  --sku WAF_v2 \
+  --capacity 2 \
+  --vnet-name vnet-demo \
+  --subnet snet-agw \
+  --public-ip-address pip-agw \
+  --frontend-port 443 \
+  --http-settings-port 80 \
+  --http-settings-protocol Http \
+  --routing-rule-type Basic
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## # 3. SECURITY
 
-<br/>
+<br>
 
 ## Q. What is Microsoft Entra ID (formerly Azure Active Directory) and what are its key features?
 
@@ -554,7 +1341,7 @@ az role assignment create \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. How do you implement Role-Based Access Control (RBAC) in Azure?
@@ -608,7 +1395,7 @@ az role assignment create \
 - Use **PIM** for privileged roles — require justification and approval.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What is Azure Key Vault and how do you use it to manage secrets?
@@ -658,7 +1445,7 @@ az keyvault set-policy \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What are Managed Identities in Azure and how do they improve security?
@@ -701,7 +1488,7 @@ var blobClient = new BlobServiceClient(
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What is Azure Defender for Cloud and how does it monitor security?
@@ -744,7 +1531,7 @@ az policy assignment create \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What is Azure DDoS Protection and how does it work?
@@ -777,7 +1564,7 @@ resource vnet 'Microsoft.Network/virtualNetworks@2023-09-01' = {
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What is Just-In-Time (JIT) VM Access and why is it important?
@@ -806,12 +1593,12 @@ az security jit-policy initiate \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## # 4. AZURE STORAGE
 
-<br/>
+<br>
 
 ## Q. What storage services does Azure offer and when do you use each?
 
@@ -840,7 +1627,7 @@ az storage account create \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What are the access tiers in Azure Blob Storage and how do you use lifecycle management?
@@ -893,7 +1680,7 @@ az storage account management-policy create \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What are the replication options in Azure Storage?
@@ -911,7 +1698,7 @@ az storage account management-policy create \
 - Use **GZRS** for mission-critical data requiring regional failover.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. How do you upload and download blobs using the Azure SDK (.NET)?
@@ -952,7 +1739,7 @@ var sasUrl = blobClient.GenerateSasUri(sasBuilder);
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What is the AzCopy tool and how is it used for data migration?
@@ -986,12 +1773,12 @@ azcopy copy \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## # 5. NETWORKING
 
-<br/>
+<br>
 
 ## Q. What is an Azure Virtual Network (VNet) and how does it support resource isolation?
 
@@ -1033,7 +1820,7 @@ az network vnet subnet create \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What are Network Security Groups (NSGs) and how do you configure them?
@@ -1092,7 +1879,7 @@ az network vnet subnet update \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What is the difference between Azure Load Balancer and Azure Application Gateway?
@@ -1101,11 +1888,11 @@ az network vnet subnet update \
 |--------|--------------------|-----------------------------|
 | OSI Layer | Layer 4 (TCP/UDP) | Layer 7 (HTTP/HTTPS) |
 | Routing | IP + Port hash | URL path, host header, cookies |
-| SSL Termination | ❌ | ✅ |
-| WAF | ❌ | ✅ (WAF SKU) |
+| SSL Termination | No | Yes |
+| WAF | No | Yes (WAF SKU) |
 | Health probes | TCP/HTTP | HTTP/HTTPS |
 | Session affinity | IP-based | Cookie-based |
-| Autoscaling | ❌ (Standard) | ✅ (v2) |
+| Autoscaling | No (Standard) | Yes (v2) |
 | Cost | Lower | Higher |
 | Use case | Non-HTTP, VM scale sets | Web apps, APIs, microservices |
 
@@ -1136,7 +1923,7 @@ resource appGateway 'Microsoft.Network/applicationGateways@2023-09-01' = {
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What is Azure ExpressRoute and how does it differ from VPN Gateway?
@@ -1166,7 +1953,7 @@ az network vnet-gateway create \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What is Azure Bastion and how does it enhance VM security?
@@ -1203,7 +1990,7 @@ az network bastion create \
 - Standard SKU supports native client (Windows Terminal, PuTTY).
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What is VNet peering and when do you use it?
@@ -1237,12 +2024,12 @@ az network vnet peering create \
 **Hub-and-spoke topology** — a central hub VNet (with shared services: firewall, VPN gateway, Bastion) peers to multiple spoke VNets (one per application/environment).
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## # 6. MONITORING
 
-<br/>
+<br>
 
 ## Q. What is Azure Monitor and what are its key components?
 
@@ -1278,7 +2065,7 @@ az monitor diagnostic-settings create \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. How do you write Kusto Query Language (KQL) queries in Log Analytics?
@@ -1319,7 +2106,7 @@ AppExceptions
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What is Application Insights and how do you instrument a .NET application?
@@ -1375,7 +2162,7 @@ public class OrderService(TelemetryClient telemetry)
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. How do you set up alerts and action groups in Azure Monitor?
@@ -1416,7 +2203,7 @@ az monitor scheduled-query create \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What is Azure Service Health and how does it differ from Azure Monitor?
@@ -1439,12 +2226,460 @@ az monitor activity-log alert create \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. How do you use Application Insights for distributed tracing in a microservices architecture?
+
+**Distributed tracing** correlates telemetry across multiple services using a shared `operation_Id`. Application Insights propagates the `traceparent` header (W3C Trace Context) automatically when using the SDK, so a single end-to-end transaction can be visualized in the **Transaction Diagnostics** blade even across Azure Functions, App Service, and external HTTP calls.
+
+```csharp
+// ASP.NET Core — correlation headers are forwarded automatically by HttpClient
+// registered via AddHttpClient()
+builder.Services.AddApplicationInsightsTelemetry();
+builder.Services.AddHttpClient<OrderServiceClient>(); // correlation headers auto-propagated
+
+// Manually enrich a span with extra properties (useful in background workers)
+public class InventoryWorker(TelemetryClient telemetry)
+{
+    public async Task ProcessAsync(string orderId)
+    {
+        using var op = telemetry.StartOperation<RequestTelemetry>("ProcessInventory");
+        op.Telemetry.Properties["OrderId"] = orderId;
+
+        try
+        {
+            await ReserveStockAsync(orderId);
+            op.Telemetry.Success = true;
+        }
+        catch (Exception ex)
+        {
+            telemetry.TrackException(ex);
+            op.Telemetry.Success = false;
+            throw;
+        }
+    }
+}
+
+// Azure Functions — enable distributed tracing with isolated worker
+// In Program.cs:
+services.AddApplicationInsightsTelemetryWorkerService();
+services.ConfigureFunctionsApplicationInsights();
+```
+
+```bash
+# Enable distributed tracing in Application Insights (connection string approach)
+az monitor app-insights component create \
+  --app ai-myapp \
+  --resource-group rg-prod \
+  --location eastus \
+  --application-type web
+
+# Retrieve connection string (use this — not the deprecated instrumentation key)
+az monitor app-insights component show \
+  --app ai-myapp \
+  --resource-group rg-prod \
+  --query connectionString -o tsv
+```
+
+**KQL — End-to-end trace for a single operation:**
+```kusto
+// Find all telemetry items for one operation (distributed trace)
+union requests, dependencies, exceptions, traces, customEvents
+| where operation_Id == "abc123def456"
+| project timestamp, itemType, name, duration, success, message, operation_ParentId
+| order by timestamp asc
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. How do you configure availability tests in Application Insights?
+
+**Availability tests** (URL ping or multi-step web tests) run from Azure-hosted test agents worldwide, alerting when your endpoint returns an error or exceeds a response-time threshold.
+
+| Test type | Description |
+|-----------|-------------|
+| **Standard (URL ping)** | Single GET/POST request; checks status code, response body, SSL expiry |
+| **Custom TrackAvailability** | Code-based test — supports authentication, multi-step logic, and custom assertions |
+
+```bash
+# Create a standard URL ping test via Azure CLI
+az monitor app-insights web-test create \
+  --resource-group rg-prod \
+  --app-insights-name ai-myapp \
+  --name "Homepage Availability" \
+  --location eastus \
+  --defined-web-test-type Standard \
+  --http-verb GET \
+  --request-url "https://myapp.azurewebsites.net/health" \
+  --enabled true \
+  --frequency 300 \
+  --timeout 30 \
+  --locations "['us-va-ash-azr','emea-nl-ams-azr','apac-sg-sin-azr']"
+```
+
+```csharp
+// Custom availability test using TrackAvailability (e.g., run as Azure Function on a timer)
+public class AvailabilityTestFunction(TelemetryClient telemetry, HttpClient http)
+{
+    [Function("AvailabilityTest")]
+    public async Task Run([TimerTrigger("0 */5 * * * *")] TimerInfo timer)
+    {
+        var testName = "LoginFlowTest";
+        var runLocation = "East US";
+        var startTime = DateTimeOffset.UtcNow;
+        var stopwatch = Stopwatch.StartNew();
+        bool success = false;
+        string message = string.Empty;
+
+        try
+        {
+            // Step 1: Get login page
+            var loginPage = await http.GetAsync("https://myapp.com/login");
+            loginPage.EnsureSuccessStatusCode();
+
+            // Step 2: Submit credentials
+            var loginResult = await http.PostAsJsonAsync("https://myapp.com/api/auth/login",
+                new { username = "testuser@contoso.com", password = Environment.GetEnvironmentVariable("TEST_PASSWORD") });
+
+            loginResult.EnsureSuccessStatusCode();
+            var token = (await loginResult.Content.ReadFromJsonAsync<LoginResponse>())?.Token;
+
+            success = !string.IsNullOrEmpty(token);
+            message = success ? "Login flow completed successfully" : "No token returned";
+        }
+        catch (Exception ex)
+        {
+            message = ex.Message;
+        }
+        finally
+        {
+            stopwatch.Stop();
+            telemetry.TrackAvailability(testName, startTime, stopwatch.Elapsed, runLocation, success, message);
+        }
+    }
+}
+```
+
+**Alert on availability drop:**
+```bash
+az monitor metrics alert create \
+  --name "Availability < 100%" \
+  --resource-group rg-prod \
+  --scopes $(az monitor app-insights component show --app ai-myapp --resource-group rg-prod --query id -o tsv) \
+  --condition "avg availabilityResults/availabilityPercentage < 100" \
+  --window-size 5m \
+  --evaluation-frequency 1m \
+  --severity 1 \
+  --action ag-oncall
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. How do you configure sampling in Application Insights to control data volume and cost?
+
+**Sampling** reduces the volume of telemetry sent to Application Insights without losing statistical accuracy. Application Insights supports three sampling strategies:
+
+| Strategy | How it works | Best for |
+|----------|-------------|---------|
+| **Adaptive** (default) | SDK auto-adjusts rate to stay within a target volume | Most apps — self-tuning |
+| **Fixed-rate** | SDK + portal agree on a fixed percentage; correlated items sampled together | Consistent rate requirement |
+| **Ingestion** | Applied at the portal after data is received — does NOT reduce SDK bandwidth | Legacy / no SDK access |
+
+```csharp
+// ASP.NET Core — configure adaptive sampling with limits
+builder.Services.AddApplicationInsightsTelemetry(options =>
+{
+    options.ConnectionString = config["APPLICATIONINSIGHTS_CONNECTION_STRING"];
+    options.EnableAdaptiveSampling = true;
+});
+
+// Override adaptive sampling settings
+builder.Services.Configure<TelemetryConfiguration>(config =>
+{
+    var builder = config.DefaultTelemetrySink.TelemetryProcessorChainBuilder;
+    builder.UseAdaptiveSampling(maxTelemetryItemsPerSecond: 5, excludedTypes: "Exception");
+    // Exceptions are always captured (not sampled out)
+    builder.Build();
+});
+
+// Fixed-rate sampling (5% of requests sampled)
+builder.Services.Configure<TelemetryConfiguration>(config =>
+{
+    config.DefaultTelemetrySink.TelemetryProcessorChainBuilder
+        .UseSampling(5.0)  // 5 percent
+        .Build();
+});
+```
+
+```json
+// appsettings.json — configure via ApplicationInsights section
+{
+  "ApplicationInsights": {
+    "ConnectionString": "<connection-string>",
+    "EnableAdaptiveSampling": true,
+    "AdaptiveSamplingSettings": {
+      "MaxTelemetryItemsPerSecond": 5,
+      "ExcludedTypes": "Exception;Event"
+    }
+  }
+}
+```
+
+> **Tip:** Always exclude `Exception` type from sampling so 100% of exceptions are captured regardless of overall sample rate.
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. How do you use Application Insights Application Map and Live Metrics?
+
+**Application Map** is an auto-generated topology diagram showing all components (services, dependencies, databases, external calls) with failure rates and response times on each edge — making bottlenecks and failure points immediately visible.
+
+**Live Metrics** (QuickPulse) streams real-time telemetry (requests/sec, failure rate, CPU, memory) with sub-second latency — useful during deployments and incident response.
+
+```csharp
+// Enable Live Metrics in Program.cs
+builder.Services.AddApplicationInsightsTelemetry(options =>
+{
+    options.EnableQuickPulseMetricStream = true;  // Live Metrics
+});
+
+// Custom health metric reported to Live Metrics
+public class LiveMetricsReporter(TelemetryClient telemetry) : BackgroundService
+{
+    protected override async Task ExecuteAsync(CancellationToken ct)
+    {
+        while (!ct.IsCancellationRequested)
+        {
+            var queueDepth = await GetQueueDepthAsync();
+            telemetry.GetMetric("OrderQueueDepth").TrackValue(queueDepth);
+            await Task.Delay(TimeSpan.FromSeconds(10), ct);
+        }
+    }
+}
+```
+
+```bash
+# Enable Live Metrics via the portal or by ensuring the SDK is configured
+# The QuickPulse endpoint is: https://rt.services.visualstudio.com/QuickPulseService.svc
+
+# Query Application Map data via KQL (dependencies table)
+# Run in Log Analytics workspace linked to the Application Insights resource:
+```
+
+```kusto
+// Application Map: failure rates per dependency
+dependencies
+| where timestamp >= ago(1h)
+| summarize
+    Calls = count(),
+    Failures = countif(success == false),
+    AvgDurationMs = avg(duration)
+  by target, type
+| extend FailureRate = round(100.0 * Failures / Calls, 2)
+| order by Failures desc
+
+// Identify slowest downstream dependencies
+dependencies
+| where timestamp >= ago(1h)
+| summarize P95Duration = percentile(duration, 95) by target, name
+| order by P95Duration desc
+| take 20
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. How do you use the Snapshot Debugger and Profiler in Application Insights?
+
+**Application Insights Profiler** captures CPU flame graphs from production traffic to identify hot code paths — without attaching a debugger or modifying the app.
+
+**Snapshot Debugger** automatically captures a memory snapshot (with local variable values and call stack) when an unhandled exception occurs in production — eliminating the need to reproduce the bug locally.
+
+| Tool | Purpose | Overhead |
+|------|---------|---------|
+| **Profiler** | CPU profiling — find slow methods | < 5% CPU for 2-minute sessions |
+| **Snapshot Debugger** | Capture variable state at exception site | Minimal — triggered only on exceptions |
+
+```bash
+# Enable Profiler on an App Service (via site extension)
+az webapp config appsettings set \
+  --name app-mywebapp \
+  --resource-group rg-prod \
+  --settings \
+    APPINSIGHTS_INSTRUMENTATIONKEY=$(az monitor app-insights component show --app ai-myapp --resource-group rg-prod --query instrumentationKey -o tsv) \
+    APPLICATIONINSIGHTS_CONNECTION_STRING=$(az monitor app-insights component show --app ai-myapp --resource-group rg-prod --query connectionString -o tsv) \
+    ApplicationInsightsAgent_EXTENSION_VERSION=~3 \
+    DiagnosticServices_EXTENSION_VERSION=~3   # enables Profiler + Snapshot Debugger
+```
+
+```csharp
+// .NET: Enable Snapshot Debugger via NuGet package
+// Install: Microsoft.ApplicationInsights.SnapshotCollector
+
+// appsettings.json
+{
+  "SnapshotCollectorConfiguration": {
+    "IsEnabled": true,
+    "ThresholdForSnapshotting": 1,
+    "MaximumSnapshotsRequired": 3,
+    "MaximumCollectionPlanSize": 50,
+    "ReconnectInterval": "00:15:00",
+    "ProblemCounterResetInterval": "1.00:00:00",
+    "SnapshotsPerTenMinutesLimit": 1,
+    "SnapshotsPerDayLimit": 30,
+    "SnapshotInLowPriorityThread": true,
+    "ProvideAnonymousTelemetry": true,
+    "FailedRequestLimit": 3
+  }
+}
+```
+
+```csharp
+// Program.cs — wire up the snapshot collector
+builder.Services.AddSnapshotCollector(config =>
+    builder.Configuration.Bind(nameof(SnapshotCollectorConfiguration), config));
+```
+
+> **Security note:** Snapshots may contain sensitive data (PII, secrets in memory). Enable Snapshot Debugger only in environments where you control access to the Application Insights resource. Use RBAC to restrict snapshot viewing.
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. How do you use Application Insights workbooks and dashboards for operational monitoring?
+
+**Workbooks** are interactive reports in Azure Monitor that combine KQL queries, text, parameters, and charts into shareable, parameterized analytical documents. **Dashboards** pin individual tiles (charts, metrics, KQL results) for at-a-glance monitoring.
+
+```kusto
+-- Workbook query 1: Request volume and failure rate over time
+requests
+| where timestamp >= ago({TimeRange:value})
+| summarize
+    RequestCount = count(),
+    FailedCount = countif(success == false)
+  by bin(timestamp, {Granularity:value})
+| extend FailureRate = round(100.0 * FailedCount / RequestCount, 2)
+
+-- Workbook query 2: Top 10 slowest pages/APIs (P95 latency)
+requests
+| where timestamp >= ago({TimeRange:value})
+| summarize
+    P50 = percentile(duration, 50),
+    P95 = percentile(duration, 95),
+    P99 = percentile(duration, 99),
+    Count = count()
+  by name
+| order by P95 desc
+| take 10
+
+-- Workbook query 3: Exception frequency by type
+exceptions
+| where timestamp >= ago({TimeRange:value})
+| summarize ExceptionCount = count() by type, outerMessage
+| order by ExceptionCount desc
+| take 20
+
+-- Workbook query 4: Dependency failure heatmap
+dependencies
+| where timestamp >= ago({TimeRange:value})
+| where success == false
+| summarize FailureCount = count() by target, bin(timestamp, 1h)
+| render heatmap
+```
+
+```bash
+# Create an Application Insights dashboard via Azure CLI (ARM template)
+az portal dashboard create \
+  --resource-group rg-prod \
+  --name "AppInsights-Ops-Dashboard" \
+  --input-path dashboard-template.json \
+  --location eastus
+
+# Export existing dashboard to JSON (for version control)
+az portal dashboard show \
+  --resource-group rg-prod \
+  --name "AppInsights-Ops-Dashboard" > dashboard-export.json
+```
+
+**Pinning to Azure Dashboard:**
+- From any Application Insights chart → **Pin to dashboard** → select shared dashboard
+- Key tiles to pin: Live Metrics, Failed Requests, Server Response Time, Availability, Exceptions
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. How do you integrate Application Insights with Azure Log Analytics workspace?
+
+**Workspace-based Application Insights** (the current model) stores all telemetry in an Azure Log Analytics workspace — enabling cross-resource queries, unified RBAC, longer retention, and data export.
+
+```bash
+# Create Log Analytics workspace
+az monitor log-analytics workspace create \
+  --name law-myapp \
+  --resource-group rg-prod \
+  --location eastus \
+  --retention-time 90  # days (default 30, max 730)
+
+# Create workspace-based Application Insights resource
+az monitor app-insights component create \
+  --app ai-myapp \
+  --resource-group rg-prod \
+  --location eastus \
+  --application-type web \
+  --workspace $(az monitor log-analytics workspace show --workspace-name law-myapp --resource-group rg-prod --query id -o tsv)
+
+# Migrate a classic Application Insights resource to workspace-based
+az monitor app-insights component update \
+  --app ai-myapp-classic \
+  --resource-group rg-prod \
+  --workspace $(az monitor log-analytics workspace show --workspace-name law-myapp --resource-group rg-prod --query id -o tsv)
+```
+
+```kusto
+// Cross-resource query: correlate App Service HTTP logs with Application Insights requests
+// Run in Log Analytics workspace
+AppRequests
+| where TimeGenerated >= ago(1h)
+| join kind=leftouter (
+    AzureDiagnostics
+    | where ResourceType == "SITES"
+    | where Category == "AppServiceHTTPLogs"
+    | project TimeGenerated, csUriStem, scStatus, timeTaken, csUserAgent
+) on $left.url == $right.csUriStem
+| project TimeGenerated, name, duration, resultCode, scStatus, timeTaken
+
+// Set data retention per table (granular control)
+// In portal: Log Analytics workspace → Tables → AppRequests → Manage table
+// Or via CLI:
+az monitor log-analytics workspace table update \
+  --resource-group rg-prod \
+  --workspace-name law-myapp \
+  --name AppRequests \
+  --retention-time 180
+
+// Configure continuous export to Storage Account for long-term archival
+az monitor diagnostic-settings create \
+  --name "ai-export" \
+  --resource $(az monitor app-insights component show --app ai-myapp --resource-group rg-prod --query id -o tsv) \
+  --storage-account $(az storage account show --name starchive --resource-group rg-prod --query id -o tsv) \
+  --logs '[{"category":"AppRequests","enabled":true},{"category":"AppExceptions","enabled":true}]'
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## # 7. DATABASES
 
-<br/>
+<br>
 
 ## Q. What are the main database services in Azure and when do you choose each?
 
@@ -1459,7 +2694,7 @@ az monitor activity-log alert create \
 | **Azure Cache for Redis** | Redis | In-memory cache, pub/sub, session state |
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What is Azure SQL Database and how does it differ from on-premises SQL Server?
@@ -1475,7 +2710,7 @@ az monitor activity-log alert create \
 | Backup | Automatic PITR (1–35 days) | Manual or SQL Agent |
 | Scaling | Elastic, vCore or serverless | Hardware replacement |
 | Cross-DB queries | Limited (Elastic Query) | Full cross-DB support |
-| SQL Agent | ✅ (Managed Instance only for full Agent) | ✅ |
+| SQL Agent | Yes (Managed Instance only for full Agent) | Yes |
 | Pricing | Per second/vCore | License + hardware |
 
 **Create and connect to Azure SQL Database:**
@@ -1521,7 +2756,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What is Azure Cosmos DB and what are its key features?
@@ -1574,7 +2809,7 @@ while (query.HasMoreResults)
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What are the consistency models in Azure Cosmos DB?
@@ -1590,7 +2825,7 @@ Cosmos DB offers 5 well-defined consistency levels as a slider between strongest
 | **Eventual** | No ordering guarantees | Lowest latency | Metrics, counts |
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What are SQL Elastic Pools in Azure SQL Database?
@@ -1620,12 +2855,627 @@ az sql db create \
 **Best for:** SaaS multi-tenant applications where each tenant has a dedicated database.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## # 8. ARCHITECTURE
 
-<br/>
+<br>
+
+## Q. How do you design a highly available multi-region application on Azure?
+
+**Design principles:**
+- Deploy to ≥2 Azure regions in an active-active or active-passive topology.
+- Use **Azure Front Door** for global traffic management and health-based failover.
+- Use **zone-redundant** services within each region (ZRS Storage, AZ-redundant SQL, AZ-redundant AKS).
+- Data layer: geo-replicated database with automated failover groups.
+
+```
+                         ┌─── Azure Front Door (WAF + Global LB) ───┐
+                         │                                           │
+               Region A: East US                         Region B: West Europe
+               ├── App Service (Active)                  ├── App Service (Active/Standby)
+               ├── Azure SQL DB Primary ──────── Geo-replica ──── Azure SQL DB Secondary
+               ├── Cosmos DB (Multi-write)  ←──── Replication ──── Cosmos DB (Multi-write)
+               ├── Redis Cache (Zone-redundant)           ├── Redis Cache
+               └── Storage (ZRS)                         └── Storage (RA-GRS secondary)
+```
+
+```bash
+# Configure SQL auto-failover group (handles DNS failover transparently)
+az sql failover-group create \
+  --name fg-myapp \
+  --server sql-myapp-eastus \
+  --resource-group rg-demo \
+  --partner-server sql-myapp-westeurope \
+  --failover-policy Automatic \
+  --grace-period 1   # hours before automatic failover
+
+# Front Door with health probe and priority routing
+az afd origin-group create \
+  --profile-name afd-myapp \
+  --resource-group rg-demo \
+  --origin-group-name og-webapp \
+  --probe-request-type GET \
+  --probe-protocol Https \
+  --probe-path /health \
+  --probe-interval-in-seconds 30 \
+  --sample-size 4 \
+  --successful-samples-required 3
+
+az afd origin create \
+  --profile-name afd-myapp \
+  --resource-group rg-demo \
+  --origin-group-name og-webapp \
+  --origin-name origin-eastus \
+  --host-name myapp-eastus.azurewebsites.net \
+  --priority 1 \
+  --weight 1000
+
+az afd origin create \
+  --profile-name afd-myapp \
+  --resource-group rg-demo \
+  --origin-group-name og-webapp \
+  --origin-name origin-westeurope \
+  --host-name myapp-westeurope.azurewebsites.net \
+  --priority 2 \
+  --weight 1000
+```
+
+**RTO / RPO targets:**
+
+| Tier | RTO | RPO | Strategy |
+|------|-----|-----|---------|
+| Mission-critical | < 1 min | 0 | Active-active + Cosmos multi-write |
+| Business-critical | < 15 min | < 5 min | Active-passive + SQL failover group |
+| Standard | < 4 hrs | < 1 hr | Backup restore + geo-replicated storage |
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. What is a Landing Zone and how does it implement governance at scale?
+
+An **Azure Landing Zone** is a pre-configured, governed Azure environment composed of management groups, policies, RBAC, networking, identity, and logging baseline — ready for workload deployment. Microsoft\'s Cloud Adoption Framework (CAF) defines the reference architecture.
+
+```
+Root Management Group
+├── Platform MG
+│   ├── Identity Subscription        (Entra Connect, Domain Services)
+│   ├── Management Subscription      (Log Analytics, Sentinel, Azure Monitor)
+│   └── Connectivity Subscription    (Hub VNet, Azure Firewall, ExpressRoute GW)
+└── Landing Zones MG
+    ├── Corp MG                       (no internet egress, VNet peered to hub)
+    │   ├── Subscription: Finance App
+    │   └── Subscription: HR App
+    └── Online MG                     (internet-facing workloads)
+        └── Subscription: E-Commerce
+```
+
+**Policy examples applied at Management Group scope:**
+
+```bash
+# Enforce all storage accounts must use HTTPS only
+az policy assignment create \
+  --name "storage-https-only" \
+  --policy "$(az policy definition list \
+      --query "[?displayName=='Secure transfer to storage accounts should be enabled'].name" \
+      -o tsv)" \
+  --scope "/providers/Microsoft.Management/managementGroups/LandingZones" \
+  --enforcement-mode Default
+
+# Deny public IP creation in Corp landing zone
+az policy definition create \
+  --name "deny-public-ip" \
+  --display-name "Deny Public IP Creation" \
+  --mode All \
+  --rules '{
+    "if": {
+      "field": "type",
+      "equals": "Microsoft.Network/publicIPAddresses"
+    },
+    "then": { "effect": "Deny" }
+  }'
+
+az policy assignment create \
+  --name "no-public-ip-corp" \
+  --policy "deny-public-ip" \
+  --scope "/providers/Microsoft.Management/managementGroups/Corp"
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. How do you architect a Zero Trust network on Azure?
+
+**Zero Trust** assumes breach — verify explicitly, use least-privilege access, and assume all network traffic is potentially hostile, including internal traffic.
+
+**Azure Zero Trust pillars:**
+
+| Pillar | Azure Service | Control |
+|--------|-------------|---------|
+| **Identity** | Microsoft Entra ID + PIM + Conditional Access | MFA, device compliance, risk-based access |
+| **Devices** | Microsoft Intune + Entra ID Join | Device health attestation |
+| **Network** | Azure Firewall + NSG + Private Endpoints | Micro-segmentation, encrypted traffic |
+| **Applications** | App Proxy + APIM + WAF | Authenticated, WAF-protected access |
+| **Data** | Purview + Key Vault + Customer-managed keys | Classify, encrypt, audit |
+| **Infrastructure** | Azure Policy + Defender for Cloud + JIT VM access | Harden posture, audit compliance |
+
+```bash
+# Enable Just-In-Time VM access (Zero Trust for VMs — no always-open RDP/SSH)
+az security jit-policy create \
+  --resource-group rg-demo \
+  --name jit-vm-webserver \
+  --vm-id $(az vm show --name vm-webserver --resource-group rg-demo --query id -o tsv) \
+  --ports '[{
+    "number": 22,
+    "protocol": "TCP",
+    "allowedSourceAddressPrefix": "MY.CORP.IP.RANGE",
+    "maxRequestAccessDuration": "PT3H"
+  }]'
+
+# Enable Defender for Cloud (Posture Management + Threat Protection)
+az security pricing create \
+  --name VirtualMachines \
+  --tier Standard
+
+az security pricing create \
+  --name SqlServers \
+  --tier Standard
+
+# Enforce Private Endpoints — disable public network access on SQL Server
+az sql server update \
+  --name sql-myapp \
+  --resource-group rg-demo \
+  --public-network-access Disabled
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. How do you design a hub-spoke network topology in Azure?
+
+The **hub-spoke** (or hub-and-spoke) topology uses a central **hub VNet** hosting shared services (Azure Firewall, VPN Gateway, Bastion, DNS) peered to multiple **spoke VNets** (one per application or environment). All inter-spoke traffic routes through the hub firewall.
+
+```
+                        Hub VNet (10.0.0.0/16)
+                        ├── snet-firewall   → Azure Firewall (inspect all traffic)
+                        ├── snet-gateway    → VPN/ExpressRoute Gateway
+                        ├── AzureBastionSubnet → Azure Bastion (secure VM access)
+                        └── snet-shared     → DNS, monitoring, shared services
+                               ↑         ↑
+                VNet Peering   │         │   VNet Peering
+                               │         │
+          Spoke A (10.1.0.0/16)         Spoke B (10.2.0.0/16)
+          Finance App                   E-Commerce App
+```
+
+```bash
+# Create hub VNet
+az network vnet create \
+  --name vnet-hub \
+  --resource-group rg-network \
+  --address-prefix 10.0.0.0/16
+
+# Create Azure Firewall subnet (must be named AzureFirewallSubnet)
+az network vnet subnet create \
+  --name AzureFirewallSubnet \
+  --vnet-name vnet-hub \
+  --resource-group rg-network \
+  --address-prefix 10.0.0.0/26
+
+# Create spoke VNet
+az network vnet create \
+  --name vnet-spoke-finance \
+  --resource-group rg-demo \
+  --address-prefix 10.1.0.0/16
+
+# Peer hub → spoke (with gateway transit)
+az network vnet peering create \
+  --name hub-to-finance \
+  --resource-group rg-network \
+  --vnet-name vnet-hub \
+  --remote-vnet vnet-spoke-finance \
+  --allow-gateway-transit \
+  --allow-vnet-access \
+  --allow-forwarded-traffic
+
+# Peer spoke → hub (use remote gateway)
+az network vnet peering create \
+  --name finance-to-hub \
+  --resource-group rg-demo \
+  --vnet-name vnet-spoke-finance \
+  --remote-vnet vnet-hub \
+  --use-remote-gateways \
+  --allow-vnet-access \
+  --allow-forwarded-traffic
+
+# Route all spoke egress through Azure Firewall (UDR)
+az network route-table create \
+  --name rt-spoke-finance \
+  --resource-group rg-demo
+
+az network route-table route create \
+  --route-table-name rt-spoke-finance \
+  --resource-group rg-demo \
+  --name default-to-firewall \
+  --address-prefix 0.0.0.0/0 \
+  --next-hop-type VirtualAppliance \
+  --next-hop-ip-address 10.0.0.4   # Azure Firewall private IP
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. How do you design an event-driven microservices architecture on Azure?
+
+**Event-driven architecture** decouples producers from consumers using an asynchronous message broker. Each microservice reacts to events rather than being called directly, enabling independent scaling and fault isolation.
+
+```
+User Action (HTTP) → API Management
+                          ↓
+                    Order Service (App Service)
+                          ↓ publish event
+                    Azure Service Bus Topic: "orders"
+                    ├── Subscription: inventory-service   → Inventory Service (Function)
+                    ├── Subscription: payment-service     → Payment Service (Container App)
+                    └── Subscription: notification-svc    → Notification Service (Function)
+                                                                      ↓
+                                                             Azure Communication Services (email/SMS)
+
+High-volume streaming (IoT / clickstream) → Azure Event Hubs → Azure Stream Analytics → Cosmos DB
+```
+
+```csharp
+// Publish an order event to Service Bus (producer)
+using Azure.Messaging.ServiceBus;
+
+var client = new ServiceBusClient(
+    "sb-myapp.servicebus.windows.net",
+    new DefaultAzureCredential());
+
+var sender = client.CreateSender("orders");
+
+var orderEvent = new OrderPlacedEvent
+{
+    OrderId    = Guid.NewGuid().ToString(),
+    CustomerId = "C1234",
+    Total      = 299.99m,
+    OccurredAt = DateTimeOffset.UtcNow
+};
+
+await sender.SendMessageAsync(
+    new ServiceBusMessage(JsonSerializer.Serialize(orderEvent))
+    {
+        Subject = "OrderPlaced",
+        ContentType = "application/json",
+        SessionId = orderEvent.CustomerId   // FIFO ordering per customer
+    });
+
+// Consume event (Service Bus trigger — inventory microservice)
+[Function("ProcessInventory")]
+public async Task Run(
+    [ServiceBusTrigger("orders", "inventory-service",
+        Connection = "ServiceBusConnection")] ServiceBusReceivedMessage msg,
+    ServiceBusMessageActions actions)
+{
+    var order = JsonSerializer.Deserialize<OrderPlacedEvent>(msg.Body);
+    await _inventoryService.ReserveItemsAsync(order!);
+    await actions.CompleteMessageAsync(msg);   // remove from queue on success
+}
+```
+
+```bash
+# Create Service Bus namespace, topic, and subscriptions
+az servicebus namespace create \
+  --name sb-myapp \
+  --resource-group rg-demo \
+  --sku Standard
+
+az servicebus topic create \
+  --namespace-name sb-myapp \
+  --resource-group rg-demo \
+  --name orders \
+  --max-size 1024
+
+az servicebus topic subscription create \
+  --namespace-name sb-myapp \
+  --resource-group rg-demo \
+  --topic-name orders \
+  --name inventory-service \
+  --dead-letter-on-message-expiration true \
+  --max-delivery-count 5
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. How do you implement a disaster recovery strategy with RTO < 15 minutes?
+
+**DR strategy for RTO < 15 min (active-passive with automated failover):**
+
+1. **Compute**: Azure App Service / AKS in secondary region (warm standby — min 1 instance running).
+2. **Database**: SQL auto-failover group or Cosmos DB multi-region writes.
+3. **DNS / Traffic**: Azure Front Door health probe detects failure and re-routes within 1-3 minutes.
+4. **Storage**: RA-GRS or GZRS — read endpoint in secondary region available immediately.
+5. **Secrets / Config**: Key Vault in secondary region or access via Private Link from secondary.
+
+```bash
+# SQL Auto-Failover Group — transparent DNS failover, RTO ~30 seconds
+az sql failover-group create \
+  --name fg-myapp \
+  --server sql-myapp-eastus \
+  --resource-group rg-prod \
+  --partner-server sql-myapp-westeurope \
+  --failover-policy Automatic \
+  --grace-period 1
+
+# Manual failover test (non-destructive — switches roles, no data loss)
+az sql failover-group set-primary \
+  --name fg-myapp \
+  --server sql-myapp-westeurope \
+  --resource-group rg-prod
+
+# Connection string uses failover group listener — app code unchanged
+# Server: fg-myapp.database.windows.net  (always points to primary)
+```
+
+```yaml
+# Front Door: health probe detects primary failure, routes to secondary automatically
+# Configure health probe on /health endpoint that returns 200 only when app is healthy
+# Front Door SLA: failover in < 3 minutes when all probes from multiple PoPs fail
+```
+
+**DR Runbook (automated with Azure Automation or Logic App):**
+
+```bash
+# Azure Automation runbook — trigger DR failover
+# Triggered by: Azure Monitor alert OR manual invocation
+az automation runbook create \
+  --resource-group rg-ops \
+  --automation-account-name aa-ops \
+  --name DR-Failover \
+  --type PowerShell
+
+# Test DR: initiate failover drill quarterly
+az sql failover-group set-primary \
+  --name fg-myapp \
+  --server sql-myapp-westeurope \
+  --resource-group rg-prod
+# Validate → fail back
+az sql failover-group set-primary \
+  --name fg-myapp \
+  --server sql-myapp-eastus \
+  --resource-group rg-prod
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. How do you architect a data lake and analytics platform on Azure?
+
+**Modern Data Architecture (Medallion pattern) on Azure:**
+
+```
+External Sources / On-Prem DBs / SaaS APIs
+        ↓  (Azure Data Factory / Event Hubs)
+Bronze Layer  → Raw data, unchanged (Azure Data Lake Storage Gen2)
+        ↓  (Azure Databricks / Synapse Spark)
+Silver Layer  → Cleansed, conformed, deduplicated (ADLS Gen2 - Delta format)
+        ↓  (Databricks / Synapse Analytics)
+Gold Layer    → Aggregated, business-ready tables (Azure Synapse Dedicated Pool / Delta)
+        ↓
+Consumption:
+├── Power BI (dashboards and reports)
+├── Azure Synapse Serverless SQL (ad-hoc analysis)
+├── Cosmos DB (serving layer for APIs)
+└── Azure Machine Learning (model training)
+```
+
+```bash
+# Create Data Lake Storage Gen2 (hierarchical namespace)
+az storage account create \
+  --name adlsmydatalake \
+  --resource-group rg-data \
+  --location eastus \
+  --sku Standard_GZRS \
+  --kind StorageV2 \
+  --enable-hierarchical-namespace true \
+  --min-tls-version TLS1_2
+
+# Create medallion containers
+for layer in bronze silver gold; do
+  az storage fs create \
+    --name $layer \
+    --account-name adlsmydatalake \
+    --auth-mode login
+done
+
+# Create Azure Synapse workspace
+az synapse workspace create \
+  --name synapse-analytics \
+  --resource-group rg-data \
+  --location eastus \
+  --storage-account adlsmydatalake \
+  --file-system gold \
+  --sql-admin-login-user synapseadmin \
+  --sql-admin-login-password "$(openssl rand -base64 16)!"
+
+# Ingest data with ADF pipeline from SQL to Bronze
+az datafactory pipeline create \
+  --factory-name adf-ingest \
+  --resource-group rg-data \
+  --name ingest-orders-bronze \
+  --pipeline @pipeline-sql-to-adls.json
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. How do you implement cost optimization at enterprise scale on Azure?
+
+**Cost optimization is a continuous process across multiple dimensions:**
+
+| Lever | Technique | Typical Saving |
+|-------|-----------|---------------|
+| **Right-sizing** | Advisor recommendations, auto-shutdown dev VMs | 20–40% |
+| **Reserved Instances** | 1- or 3-year commit for steady-state workloads | 30–72% |
+| **Spot VMs** | Use for batch, stateless, fault-tolerant jobs | Up to 90% |
+| **Serverless** | Functions/Consumption vs always-on VMs | 60–80% |
+| **Storage tiering** | Auto lifecycle policies (Hot → Cool → Archive) | 40–60% on blobs |
+| **Azure Hybrid Benefit** | Bring Windows/SQL Server licenses | Up to 40% |
+| **Dev/Test pricing** | Non-prod subscriptions with Visual Studio subs | 40–60% |
+| **Tagging + chargebacks** | Tag all resources; alert per-team budgets | Accountability |
+
+```bash
+# Get Advisor cost recommendations
+az advisor recommendation list \
+  --category Cost \
+  --query "[].{Resource:impactedValue,Impact:impact,Recommendation:shortDescription.solution}" \
+  --output table
+
+# Create a lifecycle management policy (auto-tier blobs)
+az storage account management-policy create \
+  --account-name stproddata2025 \
+  --resource-group rg-demo \
+  --policy '{
+    "rules": [{
+      "name": "auto-tier-policy",
+      "enabled": true,
+      "type": "Lifecycle",
+      "definition": {
+        "filters": { "blobTypes": ["blockBlob"], "prefixMatch": ["logs/"] },
+        "actions": {
+          "baseBlob": {
+            "tierToCool":    { "daysAfterModificationGreaterThan": 30 },
+            "tierToArchive": { "daysAfterModificationGreaterThan": 90 },
+            "delete":        { "daysAfterModificationGreaterThan": 365 }
+          }
+        }
+      }
+    }]
+  }'
+
+# Set budget with alert at 80% and 100% thresholds
+az consumption budget create \
+  --budget-name prod-monthly \
+  --amount 10000 \
+  --category Cost \
+  --time-grain Monthly \
+  --start-date 2025-06-01 \
+  --end-date 2026-06-01 \
+  --notification-threshold 80
+
+# Scope budgets per department using tags
+az consumption budget create \
+  --budget-name team-backend \
+  --amount 2000 \
+  --category Cost \
+  --time-grain Monthly \
+  --start-date 2025-06-01 \
+  --end-date 2026-06-01 \
+  --notification-threshold 90 \
+  --filter '{"tags": {"Team": ["Backend"]}}'
+
+# Apply Azure Hybrid Benefit to existing VM
+az vm update \
+  --name vm-sqlserver \
+  --resource-group rg-demo \
+  --license-type Windows_Server
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. How do you evaluate performance bottlenecks in a production Azure system?
+
+**Systematic performance investigation across tiers:**
+
+```
+Request → Front Door / CDN → App Service / AKS → Database / Cache → Storage
+   ↓             ↓                  ↓                   ↓
+Latency?     Cache miss?       CPU/Memory?         Slow queries?
+             TLS overhead?     Connection pool?     Missing index?
+                               GC pressure?         Lock contention?
+```
+
+```bash
+# 1. Identify slow endpoints from Application Insights (KQL)
+# Run in Log Analytics workspace:
+```
+
+```kusto
+// Top 10 slowest and most called endpoints (P95 latency)
+requests
+| where timestamp >= ago(1h)
+| summarize
+    CallCount   = count(),
+    P50         = percentile(duration, 50),
+    P95         = percentile(duration, 95),
+    P99         = percentile(duration, 99),
+    FailureRate = round(100.0 * countif(success == false) / count(), 2)
+  by name
+| order by P95 desc
+| take 15
+
+// Slow SQL dependency calls
+dependencies
+| where timestamp >= ago(1h)
+| where type == "SQL"
+| where duration > 1000
+| summarize SlowCallCount = count(), AvgDuration = avg(duration) by name, target
+| order by SlowCallCount desc
+```
+
+```bash
+# 2. Check App Service metrics (CPU, memory, HTTP queue)
+az monitor metrics list \
+  --resource $(az webapp show --name mywebapp-demo2025 --resource-group rg-demo --query id -o tsv) \
+  --metric "CpuPercentage,MemoryWorkingSet,HttpResponseTime,Http5xx" \
+  --interval PT1M \
+  --start-time $(date -u -d '-1 hour' '+%Y-%m-%dT%H:%MZ') \
+  --output table
+
+# 3. Enable profiler on App Service (captures CPU flame graphs from production traffic)
+az webapp config appsettings set \
+  --name mywebapp-demo2025 \
+  --resource-group rg-demo \
+  --settings ApplicationInsightsProfiler=1
+
+# 4. Detect missing SQL indexes via Query Performance Insight (KQL on sys tables)
+# Connect to Azure SQL and run:
+# SELECT TOP 20 qs.total_elapsed_time / qs.execution_count AS avg_elapsed,
+#        qs.execution_count, SUBSTRING(st.text, 1, 200) AS query_text
+# FROM sys.dm_exec_query_stats qs
+# CROSS APPLY sys.dm_exec_sql_text(qs.sql_handle) st
+# ORDER BY avg_elapsed DESC
+
+# 5. Scale out App Service to handle load
+az monitor autoscale update \
+  --name autoscale-webapp \
+  --resource-group rg-demo \
+  --min-count 3 \
+  --max-count 20
+
+# 6. Enable Redis cache (cache-aside pattern reduces DB load)
+az redis create \
+  --name redis-myapp \
+  --resource-group rg-demo \
+  --location eastus \
+  --sku Standard \
+  --vm-size c1
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
 
 ## Q. What is the Azure Well-Architected Framework and what are its five pillars?
 
@@ -1640,7 +3490,7 @@ The **Azure Well-Architected Framework (WAF)** is a set of guiding tenets to imp
 | **Performance Efficiency** | Horizontal scaling, caching (Redis), CDN/Front Door, async messaging. |
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. How do you design a highly available multi-region architecture in Azure?
@@ -1678,7 +3528,7 @@ az afd endpoint create \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What is the difference between Azure Service Bus queues, Event Grid, and Event Hubs?
@@ -1689,7 +3539,7 @@ az afd endpoint create \
 | Ordering | Sessions (FIFO) | No ordering | Within partition |
 | Retention | Up to 14 days | 24 hours retry | 1–90 days |
 | Throughput | Millions/sec (Premium) | 10M events/sec | Millions events/sec |
-| Dead-letter | ✅ | ❌ | ❌ |
+| Dead-letter | Yes | No | No |
 | Best for | Workflow, commands, RPC | Reactive triggers (resource events) | Log streaming, telemetry, CDC |
 
 **Subscribe to Blob Storage events via Event Grid:**
@@ -1704,7 +3554,7 @@ az eventgrid event-subscription create \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What are ARM templates and Bicep, and how do they support infrastructure as code?
@@ -1746,7 +3596,7 @@ az deployment group create \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. How do you implement disaster recovery in Azure?
@@ -1776,12 +3626,12 @@ az site-recovery protected-item create \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## # 9. MIGRATION
 
-<br/>
+<br>
 
 ## Q. What is Azure Migrate and how do you use the 6 R\'s to plan a migration?
 
@@ -1811,7 +3661,7 @@ az offazure server site create \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. How do you migrate on-premises VMs to Azure using Azure Migrate?
@@ -1841,7 +3691,7 @@ az site-recovery replication-protected-item planned-failover \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What is Azure Database Migration Service and how do you migrate an on-premises SQL Server to Azure SQL?
@@ -1885,7 +3735,7 @@ az dms project task create \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. When should you use Azure Data Box and how does it compare to AzCopy for data migration?
@@ -1919,7 +3769,7 @@ azcopy jobs show <job-id>
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. How do you use Azure Data Factory vs Azure Database Migration Service for data migration?
@@ -1948,7 +3798,7 @@ az datafactory pipeline create-run \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What is Integration Runtime in Azure Data Factory and what are its types?
@@ -1984,12 +3834,12 @@ az datafactory integration-runtime managed create \
   --compute-properties '{\"location\":\"eastus\",\"nodeSize\":\"Standard_D4_v3\",\"numberOfNodes\":1,\"maxParallelExecutionsPerNode\":4}'
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## # 10. ACCESS MANAGEMENT
 
-<br/>
+<br>
 
 ## Q. What is Microsoft Entra ID and how does it differ from on-premises Active Directory?
 
@@ -2018,7 +3868,7 @@ az ad signed-in-user show --query "userPrincipalName"
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What is Role-Based Access Control (RBAC) in Azure and how do you create custom roles?
@@ -2065,7 +3915,7 @@ az role assignment create \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What is Conditional Access and how do you configure a policy that requires MFA from outside the corporate network?
@@ -2103,7 +3953,7 @@ New-MgIdentityConditionalAccessPolicy -BodyParameter $params
 - **Break-glass accounts** — Exclude at least one emergency admin account to avoid lockout
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What is Privileged Identity Management (PIM) and how does it provide just-in-time access?
@@ -2149,7 +3999,7 @@ New-MgRoleManagementDirectoryRoleAssignmentScheduleRequest -BodyParameter $activ
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What are Managed Identities in Azure and when should you use system-assigned vs user-assigned?
@@ -2197,7 +4047,7 @@ az webapp identity assign \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What are Azure AD B2B and B2C and when do you use each?
@@ -2230,7 +4080,7 @@ az ad b2c tenant create \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What are password hash synchronization and pass-through authentication in Microsoft Entra ID Connect?
@@ -2263,12 +4113,558 @@ Enable-AzureADPassThroughAuthentication -CertificateThumbprint "{thumbprint}"
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## # 11. PERFORMANCE MANAGEMENT
 
-<br/>
+<br>
+
+## Q. How do you implement zero-downtime deployments on Azure App Service?
+
+**Deployment slots** enable blue-green deployments. Deploy to the staging slot, run smoke tests, then swap traffic instantly with zero downtime.
+
+```bash
+# 1. Create staging slot
+az webapp deployment slot create \
+  --name mywebapp-demo2025 \
+  --resource-group rg-demo \
+  --slot staging
+
+# 2. Set slot-sticky settings (don\'t swap with code)
+az webapp config appsettings set \
+  --name mywebapp-demo2025 \
+  --resource-group rg-demo \
+  --slot staging \
+  --slot-settings DB_CONNECTION_STRING="<staging-conn>"
+
+# 3. Deploy new version to staging
+az webapp deploy \
+  --name mywebapp-demo2025 \
+  --resource-group rg-demo \
+  --slot staging \
+  --src-path ./app-v2.zip \
+  --type zip
+
+# 4. Validate staging at: https://mywebapp-demo2025-staging.azurewebsites.net
+
+# 5. Swap staging → production (zero downtime)
+az webapp deployment slot swap \
+  --name mywebapp-demo2025 \
+  --resource-group rg-demo \
+  --slot staging \
+  --target-slot production
+
+# 6. Rollback: swap back if issues
+az webapp deployment slot swap \
+  --name mywebapp-demo2025 \
+  --resource-group rg-demo \
+  --slot production \
+  --target-slot staging
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. What is Azure Kubernetes Service (AKS) and how do you deploy a containerized app?
+
+**AKS** is a managed Kubernetes service where Azure handles the control plane (API server, etcd, scheduler). You manage the node pools (worker VMs), workloads, and networking.
+
+```bash
+# 1. Create ACR and AKS cluster with ACR integration
+az acr create --name acrprod2025 --resource-group rg-demo --sku Basic
+
+az aks create \
+  --name aks-demo \
+  --resource-group rg-demo \
+  --node-count 3 \
+  --node-vm-size Standard_D2s_v3 \
+  --attach-acr acrprod2025 \
+  --enable-managed-identity \
+  --network-plugin azure \
+  --generate-ssh-keys
+
+# 2. Connect kubectl
+az aks get-credentials --name aks-demo --resource-group rg-demo
+
+# 3. Build and push image
+az acr build --registry acrprod2025 --image myapp:v1.0 .
+
+# 4. Deploy application
+kubectl apply -f deployment.yaml
+```
+
+```yaml
+# deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: myapp
+        image: acrprod2025.azurecr.io/myapp:v1.0
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 250m
+            memory: 256Mi
+          limits:
+            cpu: 500m
+            memory: 512Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-svc
+spec:
+  type: LoadBalancer
+  selector:
+    app: myapp
+  ports:
+  - port: 80
+    targetPort: 8080
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. How do you implement RBAC and Conditional Access in Microsoft Entra ID?
+
+**RBAC (Role-Based Access Control)** grants the minimum permissions required (least privilege principle) at the correct scope.
+
+```bash
+# List built-in roles
+az role definition list --query "[].{Name:roleName}" --output table | head -20
+
+# Assign Contributor role to a user on a specific resource group
+az role assignment create \
+  --assignee "dev@contoso.com" \
+  --role "Contributor" \
+  --resource-group rg-demo
+
+# Create a custom role — read-only + restart VM
+cat > vm-restart-role.json << 'EOF'
+{
+  "Name": "VM Restart Operator",
+  "IsCustom": true,
+  "Description": "Can read and restart Azure VMs",
+  "Actions": [
+    "Microsoft.Compute/virtualMachines/read",
+    "Microsoft.Compute/virtualMachines/restart/action",
+    "Microsoft.Compute/virtualMachines/start/action"
+  ],
+  "NotActions": [],
+  "AssignableScopes": ["/subscriptions/<sub-id>"]
+}
+EOF
+
+az role definition create --role-definition @vm-restart-role.json
+```
+
+**Conditional Access policy (require MFA from non-corporate IPs):**
+
+```powershell
+# Using Microsoft Graph PowerShell SDK
+$policy = @{
+  displayName  = "Require MFA outside trusted locations"
+  state        = "enabled"
+  conditions   = @{
+    users        = @{ includeUsers = @("All") }
+    applications = @{ includeApplications = @("All") }
+    locations    = @{
+      includeLocations = @("All")
+      excludeLocations = @("<named-location-id>")  # corporate IP range
+    }
+  }
+  grantControls = @{
+    operator         = "OR"
+    builtInControls  = @("mfa")
+  }
+}
+New-MgIdentityConditionalAccessPolicy -BodyParameter $policy
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. What is Azure Cosmos DB partitioning and how do you choose a partition key?
+
+Cosmos DB distributes data across **logical partitions** using a **partition key**. All queries and writes to the same partition key execute within a single physical partition — efficiently using RU (Request Units). Cross-partition queries fan out to all partitions and consume more RUs.
+
+**Good partition key criteria:**
+- High cardinality (many distinct values)
+- Queries filter or write by this field
+- Evenly distributes reads AND writes
+
+```csharp
+// GOOD: CustomerId as partition key for an orders container
+// Orders are created and queried by customer
+var container = db.GetContainer("orders");
+
+var order = new Order
+{
+    Id     = Guid.NewGuid().ToString(),
+    CustomerId = "C1234",        // partition key
+    Total  = 199.99m,
+    Items  = new[] { new OrderItem("SKU-001", 2, 99.99m) }
+};
+
+// Provide partition key in all operations for best performance
+await container.UpsertItemAsync(order, new PartitionKey(order.CustomerId));
+
+// Efficient query — stays within one partition
+var queryDef = new QueryDefinition("SELECT * FROM c WHERE c.customerId = @cid")
+    .WithParameter("@cid", "C1234");
+
+var results = container.GetItemQueryIterator<Order>(queryDef,
+    requestOptions: new QueryRequestOptions { PartitionKey = new PartitionKey("C1234") });
+
+while (results.HasMoreResults)
+{
+    var page = await results.ReadNextAsync();
+    foreach (var o in page) Console.WriteLine(o.Id);
+}
+```
+
+```bash
+# Create Cosmos DB account + database + container
+az cosmosdb create \
+  --name cosmos-myapp \
+  --resource-group rg-demo \
+  --default-consistency-level Session \
+  --locations regionName=eastus failoverPriority=0
+
+az cosmosdb sql database create \
+  --account-name cosmos-myapp \
+  --resource-group rg-demo \
+  --name mydb
+
+az cosmosdb sql container create \
+  --account-name cosmos-myapp \
+  --resource-group rg-demo \
+  --database-name mydb \
+  --name orders \
+  --partition-key-path "/customerId" \
+  --throughput 400
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. How do you write KQL queries in Azure Monitor Log Analytics?
+
+**KQL (Kusto Query Language)** uses a pipe-based syntax to query tables in Log Analytics. Each pipe operator transforms the previous result set.
+
+```kusto
+// 1. Top 10 slowest API endpoints in the last 1 hour
+requests
+| where timestamp >= ago(1h)
+| where success == false or duration > 2000
+| summarize
+    CallCount   = count(),
+    AvgDuration = avg(duration),
+    P95Duration = percentile(duration, 95)
+  by name
+| top 10 by P95Duration desc
+
+// 2. Error rate by 5-minute bucket
+requests
+| where timestamp >= ago(6h)
+| summarize
+    Total  = count(),
+    Failed = countif(success == false)
+  by bin(timestamp, 5m)
+| extend ErrorRate = round(100.0 * Failed / Total, 2)
+| render timechart
+
+// 3. CPU > 80% for any VM in last 30 min
+Perf
+| where TimeGenerated >= ago(30m)
+| where ObjectName == "Processor" and CounterName == "% Processor Time"
+| where InstanceName == "_Total"
+| summarize AvgCPU = avg(CounterValue) by Computer, bin(TimeGenerated, 5m)
+| where AvgCPU > 80
+| order by TimeGenerated desc
+
+// 4. Count exceptions by type in last 24 hours
+exceptions
+| where timestamp >= ago(24h)
+| summarize ExceptionCount = count() by type, outerMessage
+| order by ExceptionCount desc
+| take 20
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. What is VNet Peering and when would you use a Private Endpoint?
+
+**VNet Peering** connects two VNets so that resources in either VNet communicate using private IPs (low latency, no gateway overhead). Global peering works across regions.
+
+**Private Endpoint** gives an Azure PaaS service (Storage, SQL, Key Vault, Cosmos DB) a private IP address inside your VNet — traffic never leaves the Microsoft backbone network.
+
+```bash
+# Create VNet peering (both directions required)
+az network vnet peering create \
+  --name hub-to-spoke \
+  --resource-group rg-demo \
+  --vnet-name vnet-hub \
+  --remote-vnet vnet-spoke \
+  --allow-vnet-access \
+  --allow-forwarded-traffic
+
+az network vnet peering create \
+  --name spoke-to-hub \
+  --resource-group rg-demo \
+  --vnet-name vnet-spoke \
+  --remote-vnet vnet-hub \
+  --allow-vnet-access \
+  --allow-forwarded-traffic
+
+# Create a Private Endpoint for Azure SQL Database
+az network private-endpoint create \
+  --name pe-sql \
+  --resource-group rg-demo \
+  --vnet-name vnet-hub \
+  --subnet snet-private \
+  --private-connection-resource-id $(az sql server show \
+      --name sql-myapp \
+      --resource-group rg-demo \
+      --query id -o tsv) \
+  --group-id sqlServer \
+  --connection-name sql-private-conn
+
+# Configure private DNS for the private endpoint
+az network private-dns zone create \
+  --resource-group rg-demo \
+  --name "privatelink.database.windows.net"
+
+az network private-dns link vnet create \
+  --resource-group rg-demo \
+  --zone-name "privatelink.database.windows.net" \
+  --name dns-link-hub \
+  --virtual-network vnet-hub \
+  --registration-enabled false
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. How do you implement a multi-stage CI/CD pipeline in Azure DevOps with environment gates?
+
+```yaml
+# azure-pipelines.yml — Build → Deploy to Dev → Deploy to Prod (with approval)
+trigger:
+  branches:
+    include: [main]
+
+variables:
+  buildConfiguration: Release
+  containerRegistry: acrprod2025.azurecr.io
+  imageName: myapp
+
+stages:
+
+  - stage: Build
+    displayName: Build & Push Image
+    jobs:
+      - job: Build
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - task: Docker@2
+            inputs:
+              containerRegistry: acr-service-connection
+              repository: $(imageName)
+              command: buildAndPush
+              tags: |
+                $(Build.BuildId)
+                latest
+
+  - stage: DeployDev
+    displayName: Deploy to Development
+    dependsOn: Build
+    jobs:
+      - deployment: DeployDev
+        environment: development            # environment defined in Azure DevOps
+        pool:
+          vmImage: ubuntu-latest
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: KubernetesManifest@1
+                  inputs:
+                    action: deploy
+                    kubernetesServiceConnection: aks-dev-connection
+                    namespace: dev
+                    manifests: k8s/deployment.yaml
+                    containers: $(containerRegistry)/$(imageName):$(Build.BuildId)
+
+  - stage: DeployProd
+    displayName: Deploy to Production
+    dependsOn: DeployDev
+    jobs:
+      - deployment: DeployProd
+        environment: production             # has manual approval gate configured
+        pool:
+          vmImage: ubuntu-latest
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: KubernetesManifest@1
+                  inputs:
+                    action: deploy
+                    kubernetesServiceConnection: aks-prod-connection
+                    namespace: production
+                    manifests: k8s/deployment.yaml
+                    containers: $(containerRegistry)/$(imageName):$(Build.BuildId)
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. What is data redundancy in Azure Storage and how do LRS, ZRS, GRS differ?
+
+| Option | Acronym | Copies | Survives | Cost |
+|--------|---------|--------|---------|------|
+| Locally Redundant | **LRS** | 3 in one datacenter | Single disk/rack failure | Lowest |
+| Zone-Redundant | **ZRS** | 3 across AZs in one region | Single AZ failure | Medium |
+| Geo-Redundant | **GRS** | 3 LRS + 3 LRS in paired region | Regional outage | Higher |
+| Geo-Zone-Redundant | **GZRS** | 3 ZRS + 3 LRS in paired region | Regional + AZ failure | Highest |
+| Read-Access GRS | **RA-GRS** | Same as GRS + read from secondary | Regional outage with read | Higher |
+
+```bash
+# Create storage account with ZRS (recommended for most production workloads)
+az storage account create \
+  --name stproddata2025 \
+  --resource-group rg-demo \
+  --location eastus \
+  --sku Standard_ZRS \
+  --kind StorageV2 \
+  --min-tls-version TLS1_2 \
+  --allow-blob-public-access false
+
+# Upgrade to GRS for disaster recovery
+az storage account update \
+  --name stproddata2025 \
+  --resource-group rg-demo \
+  --sku Standard_GRS
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. How do you design auto-scaling for an AKS cluster?
+
+AKS supports two layers of auto-scaling:
+- **HPA (Horizontal Pod Autoscaler)** — scales pod replicas based on CPU/memory or custom metrics.
+- **Cluster Autoscaler** — adds or removes VMs (nodes) based on pending pod demand.
+
+```bash
+# Enable cluster autoscaler on node pool
+az aks nodepool update \
+  --cluster-name aks-demo \
+  --resource-group rg-demo \
+  --name nodepool1 \
+  --enable-cluster-autoscaler \
+  --min-count 2 \
+  --max-count 10
+```
+
+```yaml
+# HPA — scale pods when CPU > 60%
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: myapp-hpa
+  namespace: production
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: myapp
+  minReplicas: 2
+  maxReplicas: 20
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 60
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 75
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. How do you troubleshoot a CrashLoopBackOff error in AKS?
+
+**CrashLoopBackOff** means a container starts, crashes, and Kubernetes retries indefinitely. Common causes: wrong environment variables, missing secrets, application startup exceptions, or misconfigured liveness probes.
+
+```bash
+# Step 1: Get pod status
+kubectl get pods -n production
+
+# Step 2: Read events and state
+kubectl describe pod <pod-name> -n production
+# Look for: Exit Code, OOMKilled, Liveness probe failed, Error from image pull
+
+# Step 3: Read application logs from crashed container
+kubectl logs <pod-name> -n production --previous
+
+# Step 4: Check environment variables and secrets
+kubectl get secret myapp-secret -n production -o jsonpath='{.data}' | \
+  python3 -c "import sys,json,base64; [print(k,base64.b64decode(v).decode()) for k,v in json.load(sys.stdin).items()]"
+
+# Step 5: Override entrypoint to debug interactively
+kubectl debug pod/<pod-name> -n production \
+  --image=busybox --target=myapp -- /bin/sh
+
+# Step 6: Common fixes
+# Missing env var → add to deployment.yaml
+kubectl set env deployment/myapp DB_HOST=my-sql-server.database.windows.net -n production
+
+# OOMKilled → increase memory limit
+kubectl set resources deployment/myapp \
+  --limits=memory=512Mi \
+  --requests=memory=256Mi \
+  -n production
+
+# Image pull error → verify ACR attachment
+az aks update --name aks-demo --resource-group rg-demo --attach-acr acrprod2025
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
 
 ## Q. How do you configure autoscaling for Azure App Service and Virtual Machine Scale Sets?
 
@@ -2320,7 +4716,7 @@ az monitor autoscale create \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. How do you use Azure CDN and Azure Front Door to improve global application performance?
@@ -2368,7 +4764,7 @@ az afd origin create \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. How do you use Azure Cache for Redis to improve application performance?
@@ -2418,7 +4814,7 @@ az redis list-keys --name redis-myapp --resource-group rg-prod
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. How do you optimize Azure SQL Database performance using Query Performance Insight and Elastic Pools?
@@ -2462,7 +4858,7 @@ az sql db update \
 - Enable **Intelligent Query Processing** (batch mode, adaptive joins) via compat level 150+
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. How do you right-size Azure VMs and use Azure Advisor recommendations?
@@ -2502,12 +4898,12 @@ az vm auto-shutdown \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## # 12. TROUBLESHOOTING
 
-<br/>
+<br>
 
 ## Q. How do you use Azure Network Watcher to troubleshoot VM connectivity issues?
 
@@ -2557,7 +4953,7 @@ az network watcher test-ip-flow \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. How do you diagnose and fix slow performance in an Azure App Service?
@@ -2606,7 +5002,7 @@ az webapp log tail --name app-mywebapp --resource-group rg-prod
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. How do you troubleshoot an Azure Kubernetes Service (AKS) pod that is failing to start?
@@ -2657,7 +5053,7 @@ kubectl set resources deployment myapp \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. How do you investigate and resolve Azure VM connectivity issues (RDP/SSH)?
@@ -2716,7 +5112,7 @@ az vm run-command invoke \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. How do you troubleshoot failed deployments in Azure using Activity Logs and Deployment history?
@@ -2762,12 +5158,12 @@ AzureActivity
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## # 13. APPLICATION DEVELOPMENT
 
-<br/>
+<br>
 
 ## Q. How do you use Azure App Service deployment slots for zero-downtime blue-green deployments?
 
@@ -2813,7 +5209,7 @@ az webapp deployment slot swap \
 **Slot-sticky settings:** Mark settings as "slot setting" so they don\'t swap with the app (connection strings, app keys specific to each environment).
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. How do you create an Azure Function with HTTP and Timer triggers using the isolated worker model?
@@ -2885,7 +5281,7 @@ func azure functionapp publish func-myapp
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. How do you use Azure Logic Apps to automate workflows between services?
@@ -2942,7 +5338,7 @@ az logic workflow create \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. How do you implement event-driven architecture with Azure Event Grid, Service Bus, and Event Hubs?
@@ -2994,7 +5390,7 @@ az eventhubs eventhub create \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. How do you deploy and manage containerized applications on Azure Kubernetes Service (AKS)?
@@ -3073,12 +5469,12 @@ kubectl rollout undo deployment/myapp -n production
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## # 14. DEVOPS
 
-<br/>
+<br>
 
 ## Q. How do you create a multi-stage Azure DevOps YAML pipeline for a .NET application?
 
@@ -3176,7 +5572,7 @@ stages:
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. How do you use GitHub Actions to deploy an Azure App Service?
@@ -3240,7 +5636,7 @@ jobs:
 **Authentication:** Use **federated credentials (OIDC)** with a service principal — no client secret stored in GitHub secrets. Configure via `az ad app federated-credential create`.
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. How do you implement Infrastructure as Code with Bicep in a DevOps pipeline?
@@ -3310,7 +5706,7 @@ output webAppPrincipalId string = webApp.identity.principalId
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What is Azure Container Registry and how does it integrate with AKS in a DevOps pipeline?
@@ -3362,7 +5758,7 @@ az acr build \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. How do you implement secrets management in Azure DevOps pipelines using Azure Key Vault?
@@ -3413,12 +5809,12 @@ az ad app federated-credential create \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## # 15. COST MANAGEMENT
 
-<br/>
+<br>
 
 ## Q. How do you create budgets and configure cost alerts in Azure Cost Management?
 
@@ -3462,7 +5858,7 @@ az costmanagement query \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What is the difference between Azure Reserved Instances, Savings Plans, and Spot VMs?
@@ -3501,7 +5897,7 @@ az vm list --query "[].{Name:name,LicenseType:licenseType}" --output table
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. How do you use tags and policies to allocate and control Azure costs by team or project?
@@ -3547,7 +5943,7 @@ az costmanagement query \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. How do you use Azure Blob lifecycle management to reduce storage costs?
@@ -3598,7 +5994,7 @@ az storage account management-policy create \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. How do you use Azure Advisor and Cost Management to identify and act on savings opportunities?
@@ -3636,12 +6032,12 @@ az advisor recommendation list \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## # 16. AI SERVICES
 
-<br/>
+<br>
 
 ## Q. What is Azure OpenAI Service and how do you integrate GPT-4o into a .NET application?
 
@@ -3705,7 +6101,7 @@ az cognitiveservices account deployment create \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What is Azure AI Foundry and how does it support building generative AI applications?
@@ -3752,7 +6148,7 @@ print(response.choices[0].message.content)
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What Azure AI services are available and what are their main use cases?
@@ -3791,7 +6187,7 @@ for invoice in result.documents:
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. How do you train and deploy a machine learning model using Azure Machine Learning?
@@ -3853,7 +6249,7 @@ ml_client.online_deployments.begin_create_or_update(deployment).result()
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What is Responsible AI in Azure and what guardrails does Azure OpenAI provide?
@@ -3892,12 +6288,12 @@ for result in response.categories_analysis:
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## # 17. MISCELLANEOUS
 
-<br/>
+<br>
 
 ## Q. What is Azure Policy and how do you enforce governance across subscriptions?
 
@@ -3942,7 +6338,7 @@ az policy state summarize \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What is Azure Arc and how does it enable hybrid and multi-cloud management?
@@ -3987,7 +6383,7 @@ az k8s-configuration flux create \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What is Azure Synapse Analytics and how does it differ from Azure Data Factory?
@@ -4033,7 +6429,7 @@ df_transformed.write \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What is Azure Automation and how do you use Runbooks for scheduled tasks?
@@ -4102,12 +6498,12 @@ az automation schedule create \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## # 18. GENERAL QUESTIONS
 
-<br/>
+<br>
 
 ## Q. What is the difference between IaaS, PaaS, and SaaS in Azure?
 
@@ -4142,7 +6538,7 @@ az webapp create --name app-myapp --runtime "DOTNETCORE:8.0" --plan asp-prod ...
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What are Azure Regions and Availability Zones and why are they important?
@@ -4185,7 +6581,7 @@ az sql db create \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What is Azure Resource Manager and what are the benefits of using ARM templates or Bicep over manual deployments?
@@ -4227,7 +6623,7 @@ az group export \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. How do you choose between Azure Functions and Azure App Service for hosting an application?
@@ -4275,7 +6671,7 @@ az functionapp create \
 ```
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
 ## Q. What are some Azure best practices for security, reliability, cost, and operational excellence?
@@ -4312,5 +6708,5 @@ az functionapp create \
 - Tag all resources with Environment, Team, CostCenter, Project
 
 <div align="right">
-    <b><a href="#">↥ back to top</a></b>
+    <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
