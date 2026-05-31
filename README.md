@@ -121,6 +121,10 @@ The shared responsibility model defines which security tasks are handled by Micr
 
 **Key principle:** Microsoft always owns physical security, hardware, and the hypervisor. The customer always owns their data and identity configuration regardless of service type. For IaaS (VMs), the customer patches the OS. For PaaS (App Service), Microsoft patches the OS and runtime.
 
+<p align="center">
+  <img src="https://learn.microsoft.com/en-us/azure/security/fundamentals/media/shared-responsibility/shared-responsibility.svg" alt="Azure Shared Responsibility Model" width="800px" />
+</p>
+
 <div align="right">
     <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
@@ -327,6 +331,10 @@ az account management-group subscription add \
   --name "mg-production" \
   --subscription "<subscription-id>"
 ```
+
+<p align="center">
+  <img src="https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-setup-guide/media/organize-resources/scope-levels.png" alt="Azure Management Group and Subscription Hierarchy" width="700px" />
+</p>
 
 <div align="right">
     <b><a href="#table-of-contents">↥ back to top</a></b>
@@ -676,6 +684,10 @@ kubectl get pods
 kubectl get service myapp-api-svc
 ```
 
+<p align="center">
+  <img src="https://learn.microsoft.com/en-us/azure/aks/media/concepts-clusters-workloads/control-plane-and-nodes.png" alt="AKS Cluster Architecture" width="750px" />
+</p>
+
 <div align="right">
     <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
@@ -728,6 +740,369 @@ processor.ProcessErrorAsync += args =>
     return Task.CompletedTask;
 };
 await processor.StartProcessingAsync();
+```
+
+<p align="center">
+  <img src="https://learn.microsoft.com/en-us/azure/service-bus-messaging/media/service-bus-messaging-overview/about-service-bus-queue.png" alt="Azure Service Bus Queue Architecture" width="700px" />
+</p>
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. How do Azure Service Bus Topics and Subscriptions work?
+
+**Topics** enable publish-subscribe (fan-out) messaging — one message published to a topic is delivered to **all subscriptions**. Each subscription receives an independent copy and can apply **filter rules** to receive only relevant messages.
+
+```
+Publisher → Topic → Subscription A (all orders)     → Consumer A
+                 → Subscription B (only high-value) → Consumer B
+                 → Subscription C (only US region)  → Consumer C
+```
+
+**Create a topic and subscriptions via CLI:**
+
+```bash
+# Create Service Bus namespace (Standard tier supports topics)
+az servicebus namespace create \
+  --name sb-myapp \
+  --resource-group rg-myapp \
+  --location eastus \
+  --sku Standard
+
+# Create topic
+az servicebus topic create \
+  --namespace-name sb-myapp \
+  --resource-group rg-myapp \
+  --name orders
+
+# Create subscription for all orders (no filter)
+az servicebus topic subscription create \
+  --namespace-name sb-myapp \
+  --resource-group rg-myapp \
+  --topic-name orders \
+  --name inventory-service
+
+# Create subscription with SQL filter — high-value orders only
+az servicebus topic subscription create \
+  --namespace-name sb-myapp \
+  --resource-group rg-myapp \
+  --topic-name orders \
+  --name finance-service
+
+az servicebus topic subscription rule create \
+  --namespace-name sb-myapp \
+  --resource-group rg-myapp \
+  --topic-name orders \
+  --subscription-name finance-service \
+  --name high-value-filter \
+  --filter-sql-expression "OrderTotal > 1000"
+```
+
+**Publish to a topic and receive from a subscription (.NET 8):**
+
+```csharp
+await using var client = new ServiceBusClient(
+    "sb-myapp.servicebus.windows.net",
+    new DefaultAzureCredential());
+
+// Publisher — send to topic
+ServiceBusSender sender = client.CreateSender("orders");
+
+var order = new { OrderId = "ORD-001", CustomerId = "C001", OrderTotal = 1500.00, Region = "US" };
+var message = new ServiceBusMessage(JsonSerializer.SerializeToUtf8Bytes(order))
+{
+    MessageId = Guid.NewGuid().ToString(),
+    ApplicationProperties =
+    {
+        ["OrderTotal"] = 1500.00,   // used for SQL filter evaluation
+        ["Region"]     = "US"
+    }
+};
+await sender.SendMessageAsync(message);
+
+// Subscriber — receive from a specific subscription
+ServiceBusProcessor processor = client.CreateProcessor(
+    topicName: "orders",
+    subscriptionName: "inventory-service",
+    new ServiceBusProcessorOptions { MaxConcurrentCalls = 2 });
+
+processor.ProcessMessageAsync += async args =>
+{
+    var body = args.Message.Body.ToObjectFromJson<dynamic>();
+    Console.WriteLine($"Inventory received order: {body}");
+    await args.CompleteMessageAsync(args.Message);
+};
+processor.ProcessErrorAsync += args =>
+{
+    Console.Error.WriteLine($"Error: {args.Exception.Message}");
+    return Task.CompletedTask;
+};
+await processor.StartProcessingAsync();
+```
+
+<p align="center">
+  <img src="https://learn.microsoft.com/en-us/azure/service-bus-messaging/media/service-bus-messaging-overview/about-service-bus-queue.png" alt="Azure Service Bus Topics and Subscriptions" width="750px" />
+</p>
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. How do you handle message sessions in Azure Service Bus?
+
+**Sessions** guarantee FIFO (first-in, first-out) delivery and exclusive processing for a group of related messages sharing the same `SessionId`. Only one consumer at a time holds the session lock — ensuring ordered, stateful processing.
+
+**Use cases:** order line items that must be processed in sequence, multi-step workflows per customer, stateful saga orchestration.
+
+```bash
+# Create a session-enabled queue
+az servicebus queue create \
+  --namespace-name sb-myapp \
+  --resource-group rg-myapp \
+  --name orders-sequenced \
+  --requires-session true
+```
+
+```csharp
+await using var client = new ServiceBusClient(
+    "sb-myapp.servicebus.windows.net",
+    new DefaultAzureCredential());
+
+// Send session messages (all steps for order ORD-001 share the same SessionId)
+ServiceBusSender sender = client.CreateSender("orders-sequenced");
+
+foreach (var step in new[] { "Created", "PaymentVerified", "Packed", "Shipped" })
+{
+    await sender.SendMessageAsync(new ServiceBusMessage($"Order ORD-001: {step}")
+    {
+        SessionId  = "ORD-001",   // groups messages — guarantees FIFO for this session
+        MessageId  = Guid.NewGuid().ToString(),
+        Subject    = step
+    });
+}
+
+// Receive sessions — SDK locks one session at a time per consumer
+ServiceBusSessionProcessor sessionProcessor = client.CreateSessionProcessor(
+    "orders-sequenced",
+    new ServiceBusSessionProcessorOptions { MaxConcurrentSessions = 4 });
+
+sessionProcessor.ProcessMessageAsync += async args =>
+{
+    // args.SessionId identifies which order this message belongs to
+    Console.WriteLine($"[{args.SessionId}] Processing: {args.Message.Body}");
+
+    // Optionally store/retrieve session state (persistent across messages in the session)
+    var state = await args.GetSessionStateAsync();
+    await args.SetSessionStateAsync(
+        BinaryData.FromObjectAsJson(new { LastStep = args.Message.Subject }));
+
+    await args.CompleteMessageAsync(args.Message);
+};
+sessionProcessor.ProcessErrorAsync += args =>
+{
+    Console.Error.WriteLine(args.Exception.Message);
+    return Task.CompletedTask;
+};
+await sessionProcessor.StartProcessingAsync();
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. How does the Dead-Letter Queue (DLQ) work in Azure Service Bus?
+
+The **Dead-Letter Queue (DLQ)** is a sub-queue automatically created for every queue and subscription. Messages are moved to the DLQ when:
+- **Max delivery count exceeded** — processed and abandoned too many times (default: 10).
+- **Message TTL expired** — if `EnableDeadLetteringOnMessageExpiration` is enabled.
+- **Filter evaluation errors** — subscription filter throws an exception.
+- **Explicitly dead-lettered** — application calls `DeadLetterMessageAsync()`.
+
+```bash
+# Enable dead-lettering on TTL expiry for a queue
+az servicebus queue update \
+  --namespace-name sb-myapp \
+  --resource-group rg-myapp \
+  --name orders-queue \
+  --dead-lettering-on-message-expiration true \
+  --max-delivery-count 5
+```
+
+```csharp
+await using var client = new ServiceBusClient(
+    "sb-myapp.servicebus.windows.net",
+    new DefaultAzureCredential());
+
+// Normal processor — explicitly dead-letter a poison message
+ServiceBusProcessor processor = client.CreateProcessor("orders-queue");
+
+processor.ProcessMessageAsync += async args =>
+{
+    try
+    {
+        var order = args.Message.Body.ToObjectFromJson<Order>();
+
+        if (order.CustomerId is null)
+        {
+            // Explicitly move to DLQ with a reason
+            await args.DeadLetterMessageAsync(
+                args.Message,
+                deadLetterReason: "MissingCustomerId",
+                deadLetterErrorDescription: $"Order {order.OrderId} has no CustomerId");
+            return;
+        }
+
+        await _orderService.ProcessAsync(order);
+        await args.CompleteMessageAsync(args.Message);
+    }
+    catch (Exception ex)
+    {
+        // Abandon — delivery count increments; auto-DLQ after MaxDeliveryCount
+        await args.AbandonMessageAsync(args.Message,
+            new Dictionary<string, object> { ["LastError"] = ex.Message });
+    }
+};
+
+// Read and reprocess DLQ messages
+ServiceBusReceiver dlqReceiver = client.CreateReceiver(
+    "orders-queue",
+    new ServiceBusReceiverOptions
+    {
+        SubQueue = SubQueue.DeadLetter,
+        ReceiveMode = ServiceBusReceiveMode.PeekLock
+    });
+
+var dlqMessages = await dlqReceiver.ReceiveMessagesAsync(maxMessages: 20);
+foreach (var msg in dlqMessages)
+{
+    Console.WriteLine($"DLQ reason: {msg.DeadLetterReason} | {msg.DeadLetterErrorDescription}");
+    // Fix and re-send, or log and complete
+    await dlqReceiver.CompleteMessageAsync(msg);
+}
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. How do you implement scheduled and deferred messages in Azure Service Bus?
+
+**Scheduled messages** are enqueued now but only become available to consumers at a future `ScheduledEnqueueTime`. **Deferred messages** are received but intentionally set aside — they remain in the queue and must be retrieved later by `SequenceNumber`.
+
+```csharp
+await using var client = new ServiceBusClient(
+    "sb-myapp.servicebus.windows.net",
+    new DefaultAzureCredential());
+
+ServiceBusSender sender = client.CreateSender("orders-queue");
+
+// --- Scheduled message: send now, deliver in 2 hours ---
+var reminder = new ServiceBusMessage("Send invoice reminder")
+{
+    MessageId              = Guid.NewGuid().ToString(),
+    ScheduledEnqueueTime   = DateTimeOffset.UtcNow.AddHours(2)
+};
+long sequenceNumber = await sender.ScheduleMessageAsync(reminder, reminder.ScheduledEnqueueTime);
+Console.WriteLine($"Scheduled with sequence: {sequenceNumber}");
+
+// Cancel a scheduled message before it is delivered
+await sender.CancelScheduledMessageAsync(sequenceNumber);
+
+// --- Deferred message: receive, defer, retrieve later ---
+ServiceBusReceiver receiver = client.CreateReceiver("orders-queue");
+
+// Receive a message and defer it (keeps it in queue, invisible to normal receivers)
+ServiceBusReceivedMessage msg = await receiver.ReceiveMessageAsync();
+long deferredSeq = msg.SequenceNumber;
+await receiver.DeferMessageAsync(msg,
+    new Dictionary<string, object> { ["DeferredReason"] = "AwaitingExternalApproval" });
+
+// Later: retrieve the deferred message directly by its sequence number
+ServiceBusReceivedMessage deferred = await receiver.ReceiveDeferredMessageAsync(deferredSeq);
+Console.WriteLine($"Processing deferred: {deferred.Body}");
+await receiver.CompleteMessageAsync(deferred);
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. How do you use Azure Service Bus with Azure Functions?
+
+**Azure Functions** has a built-in `ServiceBusTrigger` binding that invokes a function whenever a message arrives on a queue or topic subscription — no polling loop required.
+
+```csharp
+// Program.cs — isolated worker setup
+var host = new HostBuilder()
+    .ConfigureFunctionsWebApplication()
+    .ConfigureServices(services =>
+    {
+        services.AddApplicationInsightsTelemetryWorkerService();
+        services.ConfigureFunctionsApplicationInsights();
+        services.AddScoped<IOrderService, OrderService>();
+    })
+    .Build();
+await host.RunAsync();
+
+// OrderProcessor.cs — queue trigger
+public class OrderProcessor(IOrderService orderService, ILogger<OrderProcessor> logger)
+{
+    // Trigger on queue message; auto-completes on success, abandons on exception
+    [Function("ProcessOrder")]
+    public async Task Run(
+        [ServiceBusTrigger(
+            queueName: "orders-queue",
+            Connection = "ServiceBusConnection")] // App Setting name
+        ServiceBusReceivedMessage message,
+        ServiceBusMessageActions messageActions)
+    {
+        logger.LogInformation("Processing order {MessageId}", message.MessageId);
+
+        var order = message.Body.ToObjectFromJson<Order>();
+        await orderService.ProcessAsync(order);
+
+        // Explicit complete (use when autoCompleteMessages = false)
+        await messageActions.CompleteMessageAsync(message);
+    }
+}
+
+// TopicSubscriptionProcessor.cs — topic subscription trigger
+public class InvoiceProcessor(ILogger<InvoiceProcessor> logger)
+{
+    [Function("GenerateInvoice")]
+    [ServiceBusOutput("invoices-queue", Connection = "ServiceBusConnection")] // output binding
+    public async Task<string> Run(
+        [ServiceBusTrigger(
+            topicName: "orders",
+            subscriptionName: "finance-service",
+            Connection = "ServiceBusConnection")]
+        ServiceBusReceivedMessage message)
+    {
+        var order = message.Body.ToObjectFromJson<Order>();
+        logger.LogInformation("Generating invoice for order {OrderId}", order.OrderId);
+
+        // Return value is sent to invoices-queue via output binding
+        return JsonSerializer.Serialize(new Invoice { OrderId = order.OrderId, Amount = order.Total });
+    }
+}
+```
+
+```json
+// local.settings.json
+{
+  "Values": {
+    "ServiceBusConnection": "Endpoint=sb://sb-myapp.servicebus.windows.net/;SharedAccessKeyName=..."
+  }
+}
+```
+
+```bash
+# Grant the Function\'s Managed Identity the Service Bus Data Receiver role
+az role assignment create \
+  --assignee $(az functionapp identity show --name func-myapp --resource-group rg-myapp --query principalId -o tsv) \
+  --role "Azure Service Bus Data Receiver" \
+  --scope $(az servicebus namespace show --name sb-myapp --resource-group rg-myapp --query id -o tsv)
 ```
 
 <div align="right">
@@ -826,6 +1201,10 @@ public async Task<Product?> GetProductAsync(int id)
   </outbound>
 </policies>
 ```
+
+<p align="center">
+  <img src="https://learn.microsoft.com/en-us/azure/api-management/media/api-management-key-concepts/api-management-components.png" alt="Azure API Management Components" width="750px" />
+</p>
 
 <div align="right">
     <b><a href="#table-of-contents">↥ back to top</a></b>
@@ -1302,6 +1681,10 @@ az network application-gateway create \
   --routing-rule-type Basic
 ```
 
+<p align="center">
+  <img src="https://learn.microsoft.com/en-us/azure/load-balancer/media/load-balancer-overview/load-balancer.svg" alt="Azure Load Balancer vs Application Gateway" width="750px" />
+</p>
+
 <div align="right">
     <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
@@ -1393,6 +1776,10 @@ az role assignment create \
 - Assign roles to **groups**, not individual users.
 - Prefer built-in roles; use custom roles only when built-ins are insufficient.
 - Use **PIM** for privileged roles — require justification and approval.
+
+<p align="center">
+  <img src="https://learn.microsoft.com/en-us/azure/role-based-access-control/media/overview/rbac-overview.png" alt="Azure Role-Based Access Control (RBAC) Overview" width="750px" />
+</p>
 
 <div align="right">
     <b><a href="#table-of-contents">↥ back to top</a></b>
@@ -1486,6 +1873,10 @@ var blobClient = new BlobServiceClient(
     new Uri("https://mystg.blob.core.windows.net"),
     credential);
 ```
+
+<p align="center">
+  <img src="https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/media/managed-identity-best-practice-recommendations/user-assigned-identities.png" alt="Azure Managed Identities Overview" width="700px" />
+</p>
 
 <div align="right">
     <b><a href="#table-of-contents">↥ back to top</a></b>
@@ -1596,6 +1987,69 @@ az security jit-policy initiate \
     <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
+## Q. How do you perform security and penetration testing on Azure resources?
+
+Microsoft **permits penetration testing** of Azure-hosted resources without prior approval for most standard services (as of 2025), but requires customers to follow the [Azure Penetration Testing Rules of Engagement](https://www.microsoft.com/en-us/msrc/pentest-rules-of-engagement) and not test Microsoft\'s shared infrastructure, DDoS defenses, or other tenants.
+
+**Azure-native security assessment tools:**
+
+| Tool | Purpose |
+|------|---------|
+| **Microsoft Defender for Cloud** | Continuous CSPM — misconfigurations, vulnerabilities, secure score |
+| **Azure Security Benchmark** | Microsoft\'s curated best-practice controls mapped to CIS/NIST |
+| **Microsoft Defender Vulnerability Management** | OS and software CVE scanning for VMs |
+| **Microsoft Sentinel** | SIEM/SOAR — log correlation, threat hunting |
+| **Azure Policy** | Enforce and audit resource configurations at scale |
+
+**Third-party tools commonly used with Azure:**
+- **Nmap / Masscan** — network port scanning of exposed endpoints
+- **OWASP ZAP / Burp Suite** — DAST for web applications hosted on App Service / AKS
+- **Trivy / Grype** — container image vulnerability scanning (integrates with ACR)
+- **Checkov / tfsec** — IaC static analysis for Bicep, Terraform, ARM templates
+
+**Example: Run Trivy against an Azure Container Registry image:**
+
+```bash
+# Authenticate to ACR
+az acr login --name myappacr
+
+# Pull and scan the image locally
+trivy image myappacr.azurecr.io/myapp-api:latest \
+  --severity HIGH,CRITICAL \
+  --exit-code 1
+
+# Or use ACR\'s built-in vulnerability scanning (Microsoft Defender for Containers)
+az acr update --name myappacr --resource-group rg-prod \
+  --allow-trusted-services true
+
+# View scan findings
+az security assessment list \
+  --resource-group rg-prod \
+  --query "[?contains(displayName,'Container')].{Name:displayName, Status:status.code}" \
+  --output table
+```
+
+**Azure Policy — enforce no public IP on VMs (prevent attack surface expansion):**
+
+```bash
+az policy assignment create \
+  --name "deny-public-ip" \
+  --policy "9daedab3-fb2d-461e-b861-71790eead4f6" \
+  --scope "/subscriptions/{sub-id}/resourceGroups/rg-prod"
+```
+
+**Key penetration testing areas for Azure:**
+1. **Identity & Access** — Entra ID misconfiguration, over-privileged service principals, exposed credentials in repos
+2. **Network perimeter** — Open NSG rules, publicly accessible storage accounts, exposed management ports
+3. **Application layer** — OWASP Top 10 against App Service/AKS workloads, APIM policy bypasses
+4. **Container security** — Image vulnerabilities, privileged containers, secrets in environment variables
+5. **Storage** — Publicly accessible Blob containers, lack of SAS token expiry controls
+6. **IaC misconfigurations** — Insecure defaults in ARM/Bicep/Terraform before deployment
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
 ## # 4. AZURE STORAGE
 
 <br>
@@ -1696,6 +2150,10 @@ az storage account management-policy create \
 **Recommendation:**
 - Use **ZRS** for most production workloads in regions with Availability Zones.
 - Use **GZRS** for mission-critical data requiring regional failover.
+
+<p align="center">
+  <img src="https://learn.microsoft.com/en-us/azure/storage/common/media/storage-redundancy/geo-redundant-storage.png" alt="Azure Storage Replication Options" width="700px" />
+</p>
 
 <div align="right">
     <b><a href="#table-of-contents">↥ back to top</a></b>
@@ -1922,6 +2380,10 @@ resource appGateway 'Microsoft.Network/applicationGateways@2023-09-01' = {
 }
 ```
 
+<p align="center">
+  <img src="https://learn.microsoft.com/en-us/azure/application-gateway/media/application-gateway-url-route-overview/figure1-720.png" alt="Azure Application Gateway Architecture" width="750px" />
+</p>
+
 <div align="right">
     <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
@@ -1951,6 +2413,10 @@ az network vnet-gateway create \
   --sku VpnGw2 \
   --no-wait
 ```
+
+<p align="center">
+  <img src="https://learn.microsoft.com/en-us/azure/expressroute/media/expressroute-introduction/expressroute-connection-overview.png" alt="Azure ExpressRoute Connection Overview" width="750px" />
+</p>
 
 <div align="right">
     <b><a href="#table-of-contents">↥ back to top</a></b>
@@ -1989,6 +2455,10 @@ az network bastion create \
 - Session recorded and auditable in Azure Monitor.
 - Standard SKU supports native client (Windows Terminal, PuTTY).
 
+<p align="center">
+  <img src="https://learn.microsoft.com/en-us/azure/bastion/media/bastion-overview/architecture.png" alt="Azure Bastion Architecture" width="750px" />
+</p>
+
 <div align="right">
     <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
@@ -2022,6 +2492,10 @@ az network vnet peering create \
 ```
 
 **Hub-and-spoke topology** — a central hub VNet (with shared services: firewall, VPN gateway, Bastion) peers to multiple spoke VNets (one per application/environment).
+
+<p align="center">
+  <img src="https://learn.microsoft.com/en-us/azure/virtual-network/media/virtual-networks-peering-overview/local-or-remote-gateway-in-peered-virual-network.png" alt="Azure VNet Peering" width="700px" />
+</p>
 
 <div align="right">
     <b><a href="#table-of-contents">↥ back to top</a></b>
@@ -2063,6 +2537,10 @@ az monitor diagnostic-settings create \
   --logs '[{"category":"AppServiceHTTPLogs","enabled":true},{"category":"AppServiceConsoleLogs","enabled":true}]' \
   --metrics '[{"category":"AllMetrics","enabled":true}]'
 ```
+
+<p align="center">
+  <img src="https://learn.microsoft.com/en-us/azure/azure-monitor/media/overview/overview.png" alt="Azure Monitor Overview" width="800px" />
+</p>
 
 <div align="right">
     <b><a href="#table-of-contents">↥ back to top</a></b>
@@ -2290,6 +2768,10 @@ union requests, dependencies, exceptions, traces, customEvents
 | project timestamp, itemType, name, duration, success, message, operation_ParentId
 | order by timestamp asc
 ```
+
+<p align="center">
+  <img src="https://learn.microsoft.com/en-us/azure/azure-monitor/app/media/app-insights-overview/app-insights-overview-screenshot.png" alt="Application Insights Distributed Tracing - Application Map" width="800px" />
+</p>
 
 <div align="right">
     <b><a href="#table-of-contents">↥ back to top</a></b>
@@ -2677,6 +3159,212 @@ az monitor diagnostic-settings create \
     <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
+## Q. How do you add Application Insights to an Angular SPA to capture UI events?
+
+**Application Insights JavaScript SDK** (`@microsoft/applicationinsights-web`) instruments a browser-side Angular application to automatically collect page views, route changes, AJAX/fetch dependency calls, exceptions, and custom events — all correlated to the same Application Insights resource used by your backend.
+
+**Step 1 — Install the SDK**
+
+```bash
+npm install @microsoft/applicationinsights-web
+```
+
+**Step 2 — Create an Application Insights service**
+
+```typescript
+// src/app/core/services/app-insights.service.ts
+import { Injectable } from '@angular/core';
+import { ApplicationInsights, IEventTelemetry, IPageViewTelemetry } from '@microsoft/applicationinsights-web';
+import { environment } from '../../../environments/environment';
+
+@Injectable({ providedIn: 'root' })
+export class AppInsightsService {
+  private appInsights: ApplicationInsights;
+
+  constructor() {
+    this.appInsights = new ApplicationInsights({
+      config: {
+        connectionString: environment.appInsightsConnectionString,
+        enableAutoRouteTracking: true,   // tracks Angular route changes as page views
+        enableCorsCorrelation: true,     // propagates trace headers to backend API calls
+        enableRequestHeaderTracking: true,
+        enableResponseHeaderTracking: true,
+        disableFetchTracking: false,     // track fetch() calls as dependencies
+      },
+    });
+    this.appInsights.loadAppInsights();
+    this.appInsights.trackPageView();   // track initial page load
+  }
+
+  // Track a custom UI event (button click, form submit, etc.)
+  trackEvent(name: string, properties?: { [key: string]: string }): void {
+    const event: IEventTelemetry = { name, properties };
+    this.appInsights.trackEvent(event);
+  }
+
+  // Track a custom page view (useful for modal/dialog "pages")
+  trackPageView(name: string, uri?: string): void {
+    const pageView: IPageViewTelemetry = { name, uri };
+    this.appInsights.trackPageView(pageView);
+  }
+
+  // Track a caught exception
+  trackException(error: Error, severityLevel?: number): void {
+    this.appInsights.trackException({ exception: error, severityLevel });
+  }
+
+  // Attach an authenticated user identity for user-level analytics
+  setAuthenticatedUser(userId: string, accountId?: string): void {
+    this.appInsights.setAuthenticatedUserContext(userId, accountId, true);
+  }
+
+  clearUser(): void {
+    this.appInsights.clearAuthenticatedUserContext();
+  }
+}
+```
+
+**Step 3 — Capture Angular Router navigation as page views**
+
+```typescript
+// src/app/core/services/app-insights-router.service.ts
+import { Injectable } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
+import { AppInsightsService } from './app-insights.service';
+
+@Injectable({ providedIn: 'root' })
+export class AppInsightsRouterService {
+  constructor(private router: Router, private ai: AppInsightsService) {}
+
+  init(): void {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        this.ai.trackPageView(event.urlAfterRedirects, event.urlAfterRedirects);
+      });
+  }
+}
+```
+
+```typescript
+// src/app/app.component.ts
+import { Component, OnInit } from '@angular/core';
+import { AppInsightsRouterService } from './core/services/app-insights-router.service';
+
+@Component({ selector: 'app-root', templateUrl: './app.component.html' })
+export class AppComponent implements OnInit {
+  constructor(private aiRouter: AppInsightsRouterService) {}
+
+  ngOnInit(): void {
+    this.aiRouter.init();  // start tracking route changes
+  }
+}
+```
+
+**Step 4 — Track custom UI events (button clicks, form submissions)**
+
+```typescript
+// src/app/features/checkout/checkout.component.ts
+import { Component } from '@angular/core';
+import { AppInsightsService } from '../../core/services/app-insights.service';
+
+@Component({ selector: 'app-checkout', templateUrl: './checkout.component.html' })
+export class CheckoutComponent {
+  constructor(private ai: AppInsightsService) {}
+
+  onAddToCart(productId: string, category: string): void {
+    // Custom UI event with properties for filtering in AI
+    this.ai.trackEvent('AddToCart', {
+      productId,
+      category,
+      page: 'checkout',
+    });
+  }
+
+  onFormSubmit(): void {
+    this.ai.trackEvent('CheckoutSubmitted', { step: 'payment' });
+  }
+}
+```
+
+**Step 5 — Global error handler to capture uncaught exceptions**
+
+```typescript
+// src/app/core/handlers/global-error.handler.ts
+import { ErrorHandler, Injectable } from '@angular/core';
+import { AppInsightsService } from '../services/app-insights.service';
+
+@Injectable()
+export class GlobalErrorHandler implements ErrorHandler {
+  constructor(private ai: AppInsightsService) {}
+
+  handleError(error: Error): void {
+    this.ai.trackException(error);
+    console.error(error);
+  }
+}
+```
+
+```typescript
+// src/app/app.module.ts  — register the handler
+import { ErrorHandler, NgModule } from '@angular/core';
+import { GlobalErrorHandler } from './core/handlers/global-error.handler';
+
+@NgModule({
+  providers: [
+    { provide: ErrorHandler, useClass: GlobalErrorHandler },
+  ],
+})
+export class AppModule {}
+```
+
+**Step 6 — Environment configuration**
+
+```typescript
+// src/environments/environment.ts
+export const environment = {
+  production: false,
+  appInsightsConnectionString:
+    'InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://eastus-8.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus.livediagnostics.monitor.azure.com/',
+};
+```
+
+> Use the **Connection String** (not the legacy Instrumentation Key alone) — it includes regional ingestion endpoints and is required for Government/Sovereign clouds.
+
+**Query captured UI telemetry in Log Analytics (KQL):**
+
+```kusto
+// Top custom events in the last 24 hours
+customEvents
+| where timestamp > ago(24h)
+| summarize EventCount = count() by name
+| order by EventCount desc
+
+// Page views by route
+pageViews
+| where timestamp > ago(7d)
+| summarize Views = count() by name
+| order by Views desc
+
+// Browser exceptions
+exceptions
+| where timestamp > ago(24h)
+| where client_Type == "Browser"
+| project timestamp, type, outerMessage, client_Browser, client_OS, url
+| order by timestamp desc
+
+// Average page load time per route
+pageViews
+| where timestamp > ago(7d)
+| summarize AvgDuration = avg(duration), P95 = percentile(duration, 95) by name
+| order by P95 desc
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
 ## # 7. DATABASES
 
 <br>
@@ -2824,6 +3512,10 @@ Cosmos DB offers 5 well-defined consistency levels as a slider between strongest
 | **Consistent Prefix** | Reads never see out-of-order writes | Low latency | Social media feeds |
 | **Eventual** | No ordering guarantees | Lowest latency | Metrics, counts |
 
+<p align="center">
+  <img src="https://learn.microsoft.com/en-us/azure/cosmos-db/media/consistency-levels/five-consistency-levels.png" alt="Azure Cosmos DB Consistency Levels" width="700px" />
+</p>
+
 <div align="right">
     <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
@@ -2853,6 +3545,149 @@ az sql db create \
 ```
 
 **Best for:** SaaS multi-tenant applications where each tenant has a dedicated database.
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. How do you model data and choose a partition key in Azure Cosmos DB?
+
+**Data modeling principles:**
+- Cosmos DB is a schema-free JSON document store — embed related data when it is always read/written together; reference (normalize) when data is accessed independently or is large.
+- **Partition key** determines how data is distributed across physical partitions. A poor key creates "hot" partitions and throttles throughput.
+
+**Partition key selection rules:**
+
+| Rule | Explanation |
+|------|-------------|
+| **High cardinality** | Many distinct values — avoids hot partition |
+| **Even distribution** | Writes spread evenly across values |
+| **Appears in most queries** | Enables single-partition (cheap) reads |
+| **Immutable** | Cannot change after insert |
+
+```csharp
+// Good partition keys: userId, tenantId, deviceId, orderId (high cardinality)
+// Bad:  status ("Active"/"Inactive"), country (few values → hot partition)
+
+// Create container with partition key /tenantId
+CosmosClient client = new CosmosClient(
+    accountEndpoint: "https://cosmos-myapp.documents.azure.com:443/",
+    tokenCredential: new DefaultAzureCredential());
+
+Database db = await client.CreateDatabaseIfNotExistsAsync("ecommerce");
+
+ContainerProperties props = new ContainerProperties
+{
+    Id = "orders",
+    PartitionKeyPath = "/tenantId",
+    DefaultTimeToLive = -1   // TTL disabled; set per-item for auto-expiry
+};
+
+Container container = await db.CreateContainerIfNotExistsAsync(props, throughput: 1000);
+
+// Insert a document
+var order = new
+{
+    id        = Guid.NewGuid().ToString(),
+    tenantId  = "tenant-001",     // partition key
+    orderId   = "ORD-42",
+    customerId= "C001",
+    total     = 199.99,
+    status    = "Pending",
+    createdAt = DateTime.UtcNow
+};
+
+await container.UpsertItemAsync(order, new PartitionKey("tenant-001"));
+
+// Efficient single-partition query
+var iterator = container.GetItemQueryIterator<dynamic>(
+    "SELECT * FROM c WHERE c.tenantId = 'tenant-001' AND c.status = 'Pending'");
+
+while (iterator.HasMoreResults)
+{
+    foreach (var item in await iterator.ReadNextAsync())
+        Console.WriteLine(item.orderId);
+}
+```
+
+**Hierarchical partition keys (SDK v3.33+)** — combine up to 3 paths to avoid cross-partition queries in multi-tenant + multi-entity scenarios:
+
+```csharp
+ContainerProperties props = new ContainerProperties("orders", "/tenantId")
+{
+    PartitionKeyDefinition = new PartitionKeyDefinition
+    {
+        Paths = { "/tenantId", "/customerId" },
+        Kind  = PartitionKind.MultiHash
+    }
+};
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. What is the Azure Cosmos DB change feed and how do you use it?
+
+The **change feed** is a persistent, ordered log of all inserts and updates (not deletes by default) to a Cosmos DB container. Consumers can read the feed to trigger real-time downstream processing — without polling the container.
+
+**Use cases:**
+- Real-time event propagation (order created → send notification)
+- Materialized views / projections
+- Data synchronization to Azure Search, Redis, or another container
+- CQRS write-side triggers
+
+**Consuming the change feed with the Change Feed Processor (.NET):**
+
+```csharp
+// Create a lease container (tracks read position per processor instance)
+Container leaseContainer = await db.CreateContainerIfNotExistsAsync(
+    new ContainerProperties("leases", "/id"), throughput: 400);
+
+// Build the change feed processor
+ChangeFeedProcessor processor = container
+    .GetChangeFeedProcessorBuilder<Order>(
+        processorName: "order-notifications",
+        onChangesDelegate: HandleChangesAsync)
+    .WithInstanceName(Environment.MachineName)
+    .WithLeaseContainer(leaseContainer)
+    .WithStartTime(DateTime.MinValue.ToUniversalTime())  // start from beginning
+    .Build();
+
+await processor.StartAsync();
+
+// Handler — called with a batch of changes
+static async Task HandleChangesAsync(
+    ChangeFeedProcessorContext context,
+    IReadOnlyCollection<Order> changes,
+    CancellationToken cancellationToken)
+{
+    foreach (var order in changes)
+    {
+        Console.WriteLine($"Change: {order.OrderId} status={order.Status}");
+        // Dispatch notification, update read model, etc.
+    }
+}
+```
+
+**Azure Functions CosmosDB trigger (simplest approach):**
+
+```csharp
+[Function("CosmosOrderProcessor")]
+public void Run(
+    [CosmosDBTrigger(
+        databaseName: "ecommerce",
+        containerName: "orders",
+        Connection = "CosmosConnection",
+        LeaseContainerName = "leases",
+        CreateLeaseContainerIfNotExists = true)]
+    IReadOnlyList<Order> changes,
+    FunctionContext context)
+{
+    foreach (var order in changes)
+        _logger.LogInformation("Order changed: {OrderId}", order.OrderId);
+}
+```
 
 <div align="right">
     <b><a href="#table-of-contents">↥ back to top</a></b>
@@ -3031,6 +3866,10 @@ az sql server update \
   --public-network-access Disabled
 ```
 
+<p align="center">
+  <img src="https://learn.microsoft.com/en-us/security/zero-trust/media/diagram-zero-trust-security-elements.png" alt="Azure Zero Trust Model" width="750px" />
+</p>
+
 <div align="right">
     <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
@@ -3105,6 +3944,10 @@ az network route-table route create \
   --next-hop-type VirtualAppliance \
   --next-hop-ip-address 10.0.0.4   # Azure Firewall private IP
 ```
+
+<p align="center">
+  <img src="https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/hybrid-networking/images/hub-spoke.png" alt="Hub-Spoke Network Topology in Azure" width="750px" />
+</p>
 
 <div align="right">
     <b><a href="#table-of-contents">↥ back to top</a></b>
@@ -3527,6 +4370,10 @@ az afd endpoint create \
   --endpoint-name myapp-global
 ```
 
+<p align="center">
+  <img src="https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/app-service-web-app/images/multi-region-web-app-diagram.png" alt="Azure Multi-Region High Availability Architecture" width="800px" />
+</p>
+
 <div align="right">
     <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
@@ -3552,6 +4399,10 @@ az eventgrid event-subscription create \
   --endpoint-type webhook \
   --included-event-types "Microsoft.Storage.BlobCreated" "Microsoft.Storage.BlobDeleted"
 ```
+
+<p align="center">
+  <img src="https://learn.microsoft.com/en-us/azure/event-grid/media/overview/functional-model.png" alt="Azure Event Grid Functional Model" width="750px" />
+</p>
 
 <div align="right">
     <b><a href="#table-of-contents">↥ back to top</a></b>
@@ -3659,6 +4510,10 @@ az offazure server site create \
   --resource-group rg-migration \
   --project-name "MyMigrateProject"
 ```
+
+<p align="center">
+  <img src="https://learn.microsoft.com/en-us/azure/migrate/media/migrate-services-overview/migrate-journey.png" alt="Azure Migrate - Discover, Assess, and Migrate" width="750px" />
+</p>
 
 <div align="right">
     <b><a href="#table-of-contents">↥ back to top</a></b>
@@ -3832,6 +4687,156 @@ az datafactory integration-runtime managed create \
   --location eastus \
   --type Managed \
   --compute-properties '{\"location\":\"eastus\",\"nodeSize\":\"Standard_D4_v3\",\"numberOfNodes\":1,\"maxParallelExecutionsPerNode\":4}'
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. What are the main components of Azure Data Factory and how do you build a pipeline?
+
+**Azure Data Factory (ADF)** is a cloud-native ETL/ELT service for building, scheduling, and orchestrating data workflows across 90+ connectors.
+
+**Core components:**
+
+| Component | Description |
+|-----------|-------------|
+| **Pipeline** | Logical container grouping activities into a workflow |
+| **Activity** | A single processing step (Copy, Mapping Data Flow, Lookup, ForEach, etc.) |
+| **Dataset** | Named reference to data in a linked service (e.g., a Blob file, a SQL table) |
+| **Linked Service** | Connection string / credentials to a data store or compute (Azure SQL, Blob, Databricks) |
+| **Integration Runtime (IR)** | Compute infrastructure that executes activities (Azure IR, Self-Hosted IR, Azure-SSIS IR) |
+| **Trigger** | Schedule (tumbling window / recurrence), event (Blob created), or manual |
+
+**Build a Copy pipeline (JSON definition):**
+
+```json
+{
+  "name": "CopyBlobToSql",
+  "properties": {
+    "activities": [
+      {
+        "name": "CopyFromBlobToSQL",
+        "type": "Copy",
+        "inputs":  [{ "referenceName": "SourceBlobDataset",  "type": "DatasetReference" }],
+        "outputs": [{ "referenceName": "SinkSqlDataset",     "type": "DatasetReference" }],
+        "typeProperties": {
+          "source": {
+            "type": "DelimitedTextSource",
+            "storeSettings": { "type": "AzureBlobStorageReadSettings", "recursive": false }
+          },
+          "sink": {
+            "type": "AzureSqlSink",
+            "writeBehavior": "upsert",
+            "upsertSettings": { "useTempDB": true, "keys": ["OrderId"] }
+          },
+          "enableStaging": false,
+          "translator": { "type": "TabularTranslator", "typeConversion": true }
+        }
+      }
+    ],
+    "parameters": {
+      "sourceFolder": { "type": "string", "defaultValue": "raw/orders/" }
+    }
+  }
+}
+```
+
+**Deploy pipeline via CLI:**
+
+```bash
+# Create ADF instance
+az datafactory create \
+  --name adf-myapp \
+  --resource-group rg-data \
+  --location eastus
+
+# Create a linked service (Azure Blob Storage using Managed Identity)
+az datafactory linked-service create \
+  --factory-name adf-myapp \
+  --resource-group rg-data \
+  --name "BlobLinkedService" \
+  --properties '{
+    "type": "AzureBlobStorage",
+    "typeProperties": {
+      "serviceEndpoint": "https://stmyapp.blob.core.windows.net/",
+      "accountKind": "StorageV2"
+    },
+    "connectVia": { "referenceName": "AutoResolveIntegrationRuntime", "type": "IntegrationRuntimeReference" }
+  }'
+
+# Trigger pipeline run manually
+az datafactory pipeline create-run \
+  --factory-name adf-myapp \
+  --resource-group rg-data \
+  --name CopyBlobToSql \
+  --parameters '{"sourceFolder": "raw/orders/2025-05/"}'
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. How do you monitor and troubleshoot Azure Data Factory pipelines?
+
+ADF provides a built-in **Monitor** hub and integrates with Azure Monitor, Log Analytics, and Azure Alerts for operational visibility.
+
+**Monitoring approaches:**
+
+| Approach | Details |
+|----------|---------|
+| **ADF Monitor Hub** | Built-in UI — pipeline runs, activity runs, trigger runs, duration, status |
+| **Azure Monitor Metrics** | Pipeline succeeded/failed/cancelled count, activity run duration |
+| **Log Analytics** | ADF diagnostic logs (ADFPipelineRun, ADFActivityRun) for custom KQL queries |
+| **Azure Alerts** | Alert on pipeline failure, trigger failure, or high duration |
+
+**Send ADF diagnostic logs to Log Analytics:**
+
+```bash
+az monitor diagnostic-settings create \
+  --name adf-logs \
+  --resource $(az datafactory show --name adf-myapp --resource-group rg-data --query id -o tsv) \
+  --workspace $(az monitor log-analytics workspace show --workspace-name law-myapp --resource-group rg-data --query id -o tsv) \
+  --logs '[
+    {"category":"PipelineRuns","enabled":true},
+    {"category":"ActivityRuns","enabled":true},
+    {"category":"TriggerRuns","enabled":true}
+  ]'
+```
+
+**KQL — find failed pipeline runs in the last 24 hours:**
+
+```kusto
+ADFPipelineRun
+| where TimeGenerated >= ago(24h)
+| where Status == "Failed"
+| project TimeGenerated, PipelineName, Status, FailureType, ErrorCode, ErrorMessage
+| order by TimeGenerated desc
+```
+
+**KQL — identify slow Copy activities:**
+
+```kusto
+ADFActivityRun
+| where TimeGenerated >= ago(7d)
+| where ActivityType == "Copy"
+| extend DurationMin = End - Start
+| summarize AvgDuration = avg(DurationMin), MaxDuration = max(DurationMin) by ActivityName
+| order by MaxDuration desc
+```
+
+**Create an alert for pipeline failure:**
+
+```bash
+az monitor metrics alert create \
+  --name "ADF Pipeline Failure Alert" \
+  --resource-group rg-data \
+  --scopes $(az datafactory show --name adf-myapp --resource-group rg-data --query id -o tsv) \
+  --condition "count PipelineFailedRuns > 0" \
+  --window-size 5m \
+  --evaluation-frequency 1m \
+  --action $(az monitor action-group show --name ag-oncall --resource-group rg-data --query id -o tsv)
+```
 
 <div align="right">
     <b><a href="#table-of-contents">↥ back to top</a></b>
@@ -3952,6 +4957,10 @@ New-MgIdentityConditionalAccessPolicy -BodyParameter $params
 - **Access controls** — Grant (require MFA, compliant device, Entra ID joined) or Block
 - **Break-glass accounts** — Exclude at least one emergency admin account to avoid lockout
 
+<p align="center">
+  <img src="https://learn.microsoft.com/en-us/entra/identity/conditional-access/media/overview/conditional-access-central-policy-engine-zero-trust.png" alt="Microsoft Entra Conditional Access Policy Flow" width="750px" />
+</p>
+
 <div align="right">
     <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
@@ -3997,6 +5006,10 @@ $activationRequest = @{
 
 New-MgRoleManagementDirectoryRoleAssignmentScheduleRequest -BodyParameter $activationRequest
 ```
+
+<p align="center">
+  <img src="https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/media/pim-how-to-add-role-to-user/select-role.png" alt="Microsoft Entra Privileged Identity Management" width="750px" />
+</p>
 
 <div align="right">
     <b><a href="#table-of-contents">↥ back to top</a></b>
@@ -4110,6 +5123,150 @@ Start-ADSyncSyncCycle -PolicyType Initial
 
 # Enable Pass-Through Authentication (in the AADConnect wizard or:)
 Enable-AzureADPassThroughAuthentication -CertificateThumbprint "{thumbprint}"
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. How do you configure Multi-Factor Authentication (MFA) in Microsoft Entra ID?
+
+**Microsoft Entra MFA** adds a second verification step beyond password, supporting: Microsoft Authenticator app (push/TOTP), FIDO2 security keys, SMS/voice (legacy), and Windows Hello for Business.
+
+**MFA enforcement options:**
+
+| Method | When to Use |
+|--------|-------------|
+| **Per-user MFA** (legacy) | Small orgs, simple enforcement; not recommended for large deployments |
+| **Conditional Access policy** | Recommended — policy-based enforcement based on user, device, location, risk |
+| **Security Defaults** | Free tier; enables MFA for all users, disables legacy auth |
+| **Identity Protection risk-based MFA** | Trigger MFA only on risky sign-ins (requires Entra ID P2) |
+
+**Create a Conditional Access policy requiring MFA for all users:**
+
+```bash
+# Enable MFA via Conditional Access using Microsoft Graph (PowerShell)
+Connect-MgGraph -Scopes "Policy.ReadWrite.ConditionalAccess"
+
+$policy = @{
+  displayName = "Require MFA for All Users"
+  state = "enabled"
+  conditions = @{
+    users = @{
+      includeUsers = @("All")
+      excludeUsers = @("break-glass-account-object-id")  # always exclude emergency accounts
+    }
+    applications = @{
+      includeApplications = @("All")
+    }
+  }
+  grantControls = @{
+    operator = "OR"
+    builtInControls = @("mfa")
+  }
+}
+
+New-MgIdentityConditionalAccessPolicy -BodyParameter $policy
+```
+
+**Authentication Methods policy (Graph API) — enable Authenticator app:**
+
+```bash
+# Get current authentication methods policy
+az rest --method GET \
+  --url "https://graph.microsoft.com/v1.0/policies/authenticationMethodsPolicy"
+
+# Enable Microsoft Authenticator for all users
+az rest --method PATCH \
+  --url "https://graph.microsoft.com/v1.0/policies/authenticationMethodsPolicy/authenticationMethodConfigurations/MicrosoftAuthenticator" \
+  --body '{"@odata.type":"#microsoft.graph.microsoftAuthenticatorAuthenticationMethodConfiguration","state":"enabled"}'
+```
+
+**Best practices:**
+- Never enforce MFA without a **break-glass (emergency access) account** excluded from all CA policies.
+- Block **legacy authentication protocols** (IMAP, SMTP, POP3) — they cannot complete MFA challenges.
+- Use **named locations** to exclude trusted office IPs from MFA to reduce friction.
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. How do you implement OAuth 2.0 and OpenID Connect authentication with Microsoft Entra ID?
+
+**Microsoft Entra ID** is a full OAuth 2.0 / OpenID Connect (OIDC) authorization server. It issues access tokens (for API authorization) and ID tokens (for user authentication).
+
+**Key flows:**
+
+| Flow | When to Use |
+|------|-------------|
+| **Authorization Code + PKCE** | Web apps, SPAs — user interactive login |
+| **Client Credentials** | Service-to-service (daemon apps, background jobs) |
+| **On-Behalf-Of (OBO)** | Middle-tier API calling a downstream API on behalf of the signed-in user |
+| **Device Code** | CLI tools, IoT devices with no browser |
+
+**Register an app and configure API permissions (CLI):**
+
+```bash
+# Register the API app
+az ad app create \
+  --display-name "MyApp API" \
+  --sign-in-audience "AzureADMyOrg"
+
+# Expose an API scope
+az ad app update \
+  --id <app-id> \
+  --set "api={\"oauth2PermissionScopes\":[{\"adminConsentDescription\":\"Access MyApp API\",\"adminConsentDisplayName\":\"Access MyApp API\",\"id\":\"<scope-guid>\",\"isEnabled\":true,\"type\":\"User\",\"userConsentDescription\":\"Access MyApp API\",\"userConsentDisplayName\":\"Access MyApp\",\"value\":\"access_as_user\"}]}"
+
+# Register the client app and grant permission to the API
+az ad app create --display-name "MyApp Client"
+az ad app permission add \
+  --id <client-app-id> \
+  --api <api-app-id> \
+  --api-permissions "<scope-guid>=Scope"
+
+# Admin consent
+az ad app permission admin-consent --id <client-app-id>
+```
+
+**ASP.NET Core Web API — validate Entra ID bearer tokens:**
+
+```csharp
+// Program.cs
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("RequireScope", policy =>
+        policy.RequireClaim("http://schemas.microsoft.com/identity/claims/scope", "access_as_user"));
+});
+
+// appsettings.json
+// {
+//   "AzureAd": {
+//     "Instance": "https://login.microsoftonline.com/",
+//     "TenantId": "{tenant-id}",
+//     "ClientId": "{api-app-id}",
+//     "Audience": "api://{api-app-id}"
+//   }
+// }
+
+// Controller
+[Authorize(Policy = "RequireScope")]
+[HttpGet("products")]
+public IActionResult GetProducts() => Ok(_catalog.GetAll());
+```
+
+**Client Credentials flow (service-to-service):**
+
+```csharp
+// Acquire token for a downstream API using Managed Identity
+var credential = new DefaultAzureCredential();
+var tokenRequestContext = new TokenRequestContext(new[] { "api://{api-app-id}/.default" });
+var token = await credential.GetTokenAsync(tokenRequestContext);
+
+httpClient.DefaultRequestHeaders.Authorization =
+    new AuthenticationHeaderValue("Bearer", token.Token);
 ```
 
 <div align="right">
@@ -5208,6 +6365,10 @@ az webapp deployment slot swap \
 
 **Slot-sticky settings:** Mark settings as "slot setting" so they don\'t swap with the app (connection strings, app keys specific to each environment).
 
+<p align="center">
+  <img src="https://learn.microsoft.com/en-us/azure/app-service/media/web-sites-staged-publishing/swap-configure-source-target-slots.png" alt="Azure App Service Deployment Slots Swap" width="700px" />
+</p>
+
 <div align="right">
     <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
@@ -5466,6 +6627,169 @@ kubectl rollout status deployment/myapp -n production
 
 # Rollback if issues
 kubectl rollout undo deployment/myapp -n production
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. What are Azure Durable Functions and how do you implement stateful workflows?
+
+**Azure Durable Functions** extends Azure Functions with state, orchestration, and long-running workflow capabilities using the virtual actor pattern. Execution state is automatically checkpointed to Azure Storage — no manual state management needed.
+
+**Durable Function patterns:**
+
+| Pattern | Description | Use Case |
+|---------|-------------|----------|
+| **Function Chaining** | Sequential activity calls with output passed forward | Multi-step ETL |
+| **Fan-Out / Fan-In** | Parallel activities collected into one result | Batch processing |
+| **Async HTTP API** | Long-running operation with status polling endpoint | File processing, AI inference |
+| **Monitor** | Recurring polling until condition met | Wait for external event |
+| **Human Interaction** | Pause workflow awaiting human approval with timeout | Expense approval |
+
+**Example — Fan-Out/Fan-In: process orders in parallel:**
+
+```csharp
+// Orchestrator (runs as a replay-safe coroutine — no side effects!)
+[Function("ProcessOrdersBatch")]
+public static async Task<List<OrderResult>> RunOrchestrator(
+    [OrchestrationTrigger] TaskOrchestrationContext context)
+{
+    // Step 1: Get batch of pending order IDs (activity call)
+    var orderIds = await context.CallActivityAsync<List<string>>("GetPendingOrders", null);
+
+    // Step 2: Fan-out — process all orders in parallel
+    var tasks = orderIds.Select(id =>
+        context.CallActivityAsync<OrderResult>("ProcessSingleOrder", id));
+
+    var results = await Task.WhenAll(tasks);   // Fan-in
+
+    // Step 3: Send summary notification
+    await context.CallActivityAsync("SendBatchSummary", results.Length);
+
+    return results.ToList();
+}
+
+// Activity — runs once, can have side effects
+[Function("ProcessSingleOrder")]
+public static async Task<OrderResult> ProcessOrder(
+    [ActivityTrigger] string orderId,
+    FunctionContext context)
+{
+    var logger = context.GetLogger("ProcessSingleOrder");
+    logger.LogInformation("Processing order {OrderId}", orderId);
+
+    // Call database, external API, etc.
+    return new OrderResult { OrderId = orderId, Status = "Completed" };
+}
+
+// HTTP starter — triggers the orchestration
+[Function("HttpStart")]
+public static async Task<HttpResponseData> HttpStart(
+    [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "orders/process")] HttpRequestData req,
+    [DurableClient] DurableTaskClient client)
+{
+    string instanceId = await client.ScheduleNewOrchestrationInstanceAsync("ProcessOrdersBatch");
+    return await client.CreateCheckStatusResponseAsync(req, instanceId);
+}
+```
+
+**Human interaction pattern (approval workflow):**
+
+```csharp
+[Function("ApprovalWorkflow")]
+public static async Task RunApproval(
+    [OrchestrationTrigger] TaskOrchestrationContext context)
+{
+    var request = context.GetInput<ExpenseRequest>();
+
+    // Send approval email (activity)
+    await context.CallActivityAsync("SendApprovalEmail", request);
+
+    // Wait up to 48 hours for external approval event
+    using var timeoutCts = new CancellationTokenSource();
+    var approvalTask = context.WaitForExternalEvent<bool>("ApprovalReceived");
+    var timeoutTask  = context.CreateTimer(context.CurrentUtcDateTime.AddHours(48), timeoutCts.Token);
+
+    var winner = await Task.WhenAny(approvalTask, timeoutTask);
+
+    if (winner == approvalTask)
+    {
+        bool approved = await approvalTask;
+        await context.CallActivityAsync(approved ? "ApproveExpense" : "RejectExpense", request);
+    }
+    else
+    {
+        await context.CallActivityAsync("EscalateExpense", request);
+    }
+}
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. What is the difference between Azure Logic Apps Standard and Consumption tier?
+
+| Feature | **Consumption** | **Standard** |
+|---------|-----------------|--------------|
+| Hosting | Multi-tenant (shared) | Single-tenant (dedicated App Service Plan or ASE) |
+| Pricing | Per-action execution | Fixed plan + per vCore/hour |
+| VNet integration | Not supported (connectors are public) | Full VNet injection |
+| Deployment | Portal / ARM only | CI/CD via VS Code, GitHub Actions, Bicep |
+| State storage | Azure Storage (managed) | Azure Storage (configurable) |
+| Stateful workflows | Yes | Yes |
+| Stateless workflows | No | Yes (faster, no state persistence) |
+| Built-in connectors | 400+ managed | Built-in (in-process) + managed |
+| Multiple workflows | One workflow per resource | Multiple workflows per resource |
+| Best for | Simple integrations, low volume | Enterprise, private network, high volume |
+
+```bash
+# Create Logic Apps Standard (single-tenant)
+az logicapp create \
+  --name la-myapp-std \
+  --resource-group rg-integration \
+  --plan asp-la-plan \
+  --storage-account stlamyapp \
+  --location eastus
+
+# Create Logic Apps Consumption (multi-tenant) via ARM
+az deployment group create \
+  --resource-group rg-integration \
+  --template-file logicapp-consumption.json \
+  --parameters workflowName=la-myapp-consumption
+```
+
+**Error handling and retry policies in Logic Apps:**
+
+```json
+{
+  "actions": {
+    "CallExternalAPI": {
+      "type": "Http",
+      "inputs": {
+        "method": "POST",
+        "uri": "https://api.partner.com/orders",
+        "body": "@triggerBody()"
+      },
+      "retryPolicy": {
+        "type": "exponential",
+        "count": 4,
+        "interval": "PT10S",
+        "minimumInterval": "PT10S",
+        "maximumInterval": "PT1H"
+      },
+      "runAfter": {}
+    },
+    "HandleError": {
+      "type": "Compose",
+      "inputs": "@{actions('CallExternalAPI').error.message}",
+      "runAfter": {
+        "CallExternalAPI": ["Failed", "TimedOut"]
+      }
+    }
+  }
+}
 ```
 
 <div align="right">
@@ -5806,6 +7130,353 @@ az ad app federated-credential create \
     "subject": "repo:myorg/myrepo:ref:refs/heads/main",
     "audiences": ["api://AzureADTokenExchange"]
   }'
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. What is DevSecOps and how do you implement it in Azure DevOps pipelines?
+
+**DevSecOps** integrates security practices continuously throughout the entire CI/CD pipeline — shifting security left so vulnerabilities are found at development time rather than in production.
+
+**DevSecOps pipeline stages and tooling:**
+
+```
+Code → SAST → Build → Container Scan → Deploy → DAST → Production
+  ↑                                                         ↓
+  └──────────── Continuous Monitoring (Sentinel/Defender) ──┘
+```
+
+| Stage | Activity | Azure / OSS Tool |
+|-------|----------|-----------------|
+| **Pre-commit** | Secret detection | git-secrets, Gitleaks, Microsoft GHAS |
+| **PR / CI** | Static analysis (SAST) | Microsoft Security DevOps (MSDO), SonarQube, Checkmarx |
+| **CI** | Dependency scanning (SCA) | OWASP Dependency-Check, Snyk, Dependabot |
+| **CI** | IaC scanning | Checkov, tfsec, Terrascan |
+| **CI** | Container image scanning | Trivy, Grype, Defender for Containers |
+| **CD** | Dynamic analysis (DAST) | OWASP ZAP, Burp Suite Enterprise |
+| **Production** | Runtime protection | Microsoft Defender for Cloud, Sentinel |
+
+**Azure DevOps pipeline with Microsoft Security DevOps (MSDO):**
+
+```yaml
+# azure-pipelines.yml — DevSecOps pipeline
+trigger:
+  - main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  imageTag: $(Build.BuildId)
+  acrName: myappacr
+
+stages:
+  - stage: SecurityScan
+    displayName: Security Scanning
+    jobs:
+      - job: SAST
+        steps:
+          # Microsoft Security DevOps — runs AntiMalware, Binskim, Checkov, ESLint, TemplateAnalyzer, Terrascan, Trivy
+          - task: MicrosoftSecurityDevOps@1
+            displayName: MSDO Security Scan
+            inputs:
+              categories: 'IaC,code,containers'
+              break: true   # fail pipeline on high-severity findings
+
+          # OWASP Dependency-Check for third-party vulnerabilities
+          - task: dependency-check-build-task@6
+            displayName: OWASP Dependency Check
+            inputs:
+              projectName: myapp
+              scanPath: '$(Build.SourcesDirectory)'
+              format: 'HTML,JUNIT'
+              failOnCVSS: 7   # fail on CVSS >= 7.0
+
+  - stage: Build
+    dependsOn: SecurityScan
+    jobs:
+      - job: BuildAndPush
+        steps:
+          - task: AzureCLI@2
+            displayName: Build and push container image
+            inputs:
+              azureSubscription: azure-service-connection
+              scriptType: bash
+              scriptLocation: inlineScript
+              inlineScript: |
+                az acr build \
+                  --registry $(acrName) \
+                  --image myapp:$(imageTag) \
+                  --file Dockerfile .
+
+          # Scan the built image before promoting
+          - script: |
+              trivy image $(acrName).azurecr.io/myapp:$(imageTag) \
+                --severity HIGH,CRITICAL \
+                --exit-code 1 \
+                --format sarif \
+                --output trivy-results.sarif
+            displayName: Trivy Container Scan
+
+          - task: PublishBuildArtifacts@1
+            inputs:
+              pathToPublish: trivy-results.sarif
+              artifactName: SecurityResults
+
+  - stage: Deploy
+    dependsOn: Build
+    jobs:
+      - deployment: DeployToStaging
+        environment: staging
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: AzureWebAppContainer@1
+                  inputs:
+                    azureSubscription: azure-service-connection
+                    appName: myapp-staging
+                    containers: $(acrName).azurecr.io/myapp:$(imageTag)
+```
+
+**Enable Microsoft Defender for DevOps in Azure DevOps:**
+
+```bash
+# Connect Azure DevOps org to Defender for Cloud
+az security devops azure-dev-ops-org create \
+  --name myorg \
+  --resource-group rg-security \
+  --location eastus
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. How do you implement blue-green and canary deployment strategies using Azure DevOps?
+
+**Deployment strategies** reduce risk by gradually routing traffic to new versions before full rollout.
+
+| Strategy | Mechanism | Risk | Rollback |
+|----------|-----------|------|---------|
+| **Blue-Green** | Two identical environments; switch traffic 100% | Low — instant rollback | Delete/redeploy blue slot |
+| **Canary** | Route a % of traffic to new version; increase incrementally | Very low | Reduce canary weight to 0 |
+| **Rolling** | Replace instances one batch at a time | Medium | Redeploy previous image |
+| **Feature Flags** | Release code dark; toggle features per user/cohort | Very low | Toggle flag off |
+
+**Blue-Green with App Service deployment slots:**
+
+```yaml
+# azure-pipelines.yml
+- stage: Deploy
+  jobs:
+    - deployment: DeployToSlot
+      environment: production
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+              # Deploy to staging slot (blue)
+              - task: AzureWebApp@1
+                displayName: Deploy to staging slot
+                inputs:
+                  azureSubscription: azure-service-connection
+                  appName: myapp-prod
+                  deployToSlotOrASE: true
+                  resourceGroupName: rg-prod
+                  slotName: staging
+                  package: $(Pipeline.Workspace)/drop/*.zip
+
+              # Smoke test the staging slot
+              - script: |
+                  RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" https://myapp-prod-staging.azurewebsites.net/health)
+                  [ "$RESPONSE" == "200" ] || exit 1
+                displayName: Smoke test staging slot
+
+              # Swap slots — zero-downtime promotion to production
+              - task: AzureAppServiceManage@0
+                displayName: Swap slots
+                inputs:
+                  azureSubscription: azure-service-connection
+                  Action: Swap Slots
+                  WebAppName: myapp-prod
+                  ResourceGroupName: rg-prod
+                  SourceSlot: staging
+                  SwapWithProduction: true
+```
+
+**Canary deployment with Azure Container Apps (traffic split):**
+
+```bash
+# Deploy new revision at 10% traffic
+az containerapp revision set-mode \
+  --name myapp \
+  --resource-group rg-prod \
+  --mode multiple
+
+az containerapp update \
+  --name myapp \
+  --resource-group rg-prod \
+  --image myappacr.azurecr.io/myapp:v2.0 \
+  --revision-suffix v2
+
+# Split traffic: 90% to v1, 10% to v2
+az containerapp ingress traffic set \
+  --name myapp \
+  --resource-group rg-prod \
+  --revision-weight myapp--v1=90 myapp--v2=10
+
+# Promote to 100% after validation
+az containerapp ingress traffic set \
+  --name myapp \
+  --resource-group rg-prod \
+  --revision-weight myapp--v2=100
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. What is Azure Load Testing and how do you create and run a load test?
+
+**Azure Load Testing** is a fully managed service for generating high-scale load using Apache JMeter scripts or a URL-based quick test. It spins up managed load agents, runs the test, and provides real-time and post-test analytics integrated with Azure Monitor and Application Insights.
+
+**Key concepts:**
+
+| Concept | Description |
+|---------|-------------|
+| **Test** | A load test configuration referencing a JMeter script, parameters, and engine instances |
+| **Test Run** | One execution of a test — produces metrics and reports |
+| **Engine instances** | Number of parallel JMeter VMs (1 instance ≈ 250 virtual users) |
+| **Test criteria** | Pass/fail thresholds: error rate, response time p90/p99 |
+| **App components** | Azure resources to monitor during the test (App Service, SQL, etc.) |
+
+**Create and run a load test via CLI:**
+
+```bash
+# Install extension
+az extension add --name load
+
+# Create an Azure Load Testing resource
+az load create \
+  --name alt-myapp \
+  --resource-group rg-perf \
+  --location eastus
+
+# Create a test from a JMeter file
+az load test create \
+  --test-id order-api-load-test \
+  --load-test-resource alt-myapp \
+  --resource-group rg-perf \
+  --display-name "Order API Load Test" \
+  --description "Ramp to 500 VU over 5 min, hold 10 min" \
+  --test-plan ./load-tests/order-api.jmx \
+  --engine-instances 2 \
+  --env targetUrl="https://myapp-prod.azurewebsites.net"
+
+# Run the test
+az load test-run create \
+  --test-id order-api-load-test \
+  --test-run-id run-$(date +%Y%m%d-%H%M) \
+  --load-test-resource alt-myapp \
+  --resource-group rg-perf \
+  --display-name "Run $(date)"
+```
+
+**JMeter script — HTTP load test pattern:**
+
+```xml
+<!-- order-api.jmx — key elements -->
+<ThreadGroup>
+  <numThreads>250</numThreads>      <!-- VUs per engine instance -->
+  <rampTime>300</rampTime>          <!-- ramp-up seconds -->
+  <duration>900</duration>          <!-- total test duration -->
+  <HTTPSamplerProxy>
+    <stringProp name="HTTPSampler.domain">${targetUrl}</stringProp>
+    <stringProp name="HTTPSampler.path">/api/orders</stringProp>
+    <stringProp name="HTTPSampler.method">POST</stringProp>
+  </HTTPSamplerProxy>
+</ThreadGroup>
+```
+
+**Integrate load test as a CI/CD gate in Azure DevOps:**
+
+```yaml
+- task: AzureLoadTesting@1
+  displayName: Run load test
+  inputs:
+    azureSubscription: azure-service-connection
+    loadTestConfigFile: load-tests/config.yaml
+    resourceGroup: rg-perf
+    loadTestResource: alt-myapp
+    env: |
+      [
+        { "name": "targetUrl", "value": "https://$(webAppName).azurewebsites.net" }
+      ]
+    # Fail the pipeline if p90 response time > 2 seconds or error rate > 1%
+    passFailCriteria: |
+      [
+        { "clientMetric": "response_time_ms", "aggregate": "p90", "condition": ">", "value": "2000", "action": "continue" },
+        { "clientMetric": "error",            "aggregate": "percentage", "condition": ">", "value": "1",    "action": "continue" }
+      ]
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. What is Azure PaaS and how do you choose the right PaaS service for your workload?
+
+**Azure PaaS (Platform as a Service)** abstracts away OS, runtime, and middleware management — you only deploy and manage application code and data. This reduces operational overhead, enables automatic scaling, and improves time-to-market.
+
+**Azure PaaS classification by workload type:**
+
+| Workload | PaaS Service | When to Choose |
+|----------|-------------|----------------|
+| **Web / REST API** | Azure App Service | Stateless web apps, APIs needing autoscale and deployment slots |
+| **Serverless / event-driven** | Azure Functions | Short-lived tasks, event triggers, scale-to-zero cost model |
+| **Workflow integration** | Azure Logic Apps | Low-code integration across 400+ connectors |
+| **Containerized apps** | Azure Container Apps | Microservices with Dapr, KEDA-driven autoscale, no k8s ops |
+| **Batch / HPC** | Azure Batch | Massively parallel compute jobs |
+| **Relational DB** | Azure SQL Database | Fully managed SQL Server with auto-tune and serverless tier |
+| **NoSQL / global** | Azure Cosmos DB | Globally distributed, multi-model, low-latency at any scale |
+| **Cache** | Azure Cache for Redis | In-memory session cache, leaderboards, pub/sub |
+| **Messaging** | Azure Service Bus | Reliable, ordered enterprise messaging |
+| **Event streaming** | Azure Event Hubs | High-throughput telemetry ingestion |
+| **Data integration** | Azure Data Factory | ETL/ELT pipelines across cloud and on-premises |
+| **Analytics** | Azure Synapse Analytics | Unified data warehouse + Spark analytics |
+| **Search** | Azure AI Search | Full-text and vector search over your data |
+
+**IaaS vs PaaS decision framework:**
+
+```
+Use IaaS (VMs) when:
+  ✔ Full OS control required (custom kernel, drivers)
+  ✔ Lift-and-shift legacy app that cannot run on PaaS
+  ✔ Licensing requires dedicated hardware (Oracle, IBM)
+  ✔ Complex networking that PaaS cannot support
+
+Use PaaS otherwise:
+  ✔ Focus on code/logic, not patching or infrastructure
+  ✔ Need auto-scale, built-in HA, managed backups
+  ✔ Reduce operational overhead and TCO
+  ✔ Standardize on well-supported runtimes (.NET, Node, Python, Java)
+```
+
+**Well-Architected trade-off — PaaS cost model:**
+
+```bash
+# PaaS services can be sized to workload — example: App Service serverless (dynamic SKU)
+az appservice plan create \
+  --name asp-myapp \
+  --resource-group rg-prod \
+  --sku EP1 \         # Elastic Premium: scales to 0 between bursts
+  --is-linux
+
+# Compare: IaaS VM Standard_D4s_v5 = ~$140/month always-on
+# vs Functions Consumption: $0 idle + $0.20/million executions
 ```
 
 <div align="right">
@@ -6185,6 +7856,10 @@ for invoice in result.documents:
     total = invoice.fields.get("InvoiceTotal")
     print(f"Vendor: {vendor.value}, Total: {total.value.amount} {total.value.currency_symbol}")
 ```
+
+<p align="center">
+  <img src="https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/media/overview/analyze-general-document.png" alt="Azure AI Services Overview" width="750px" />
+</p>
 
 <div align="right">
     <b><a href="#table-of-contents">↥ back to top</a></b>
@@ -6706,6 +8381,390 @@ az functionapp create \
 - Enable **Application Insights** for all applications
 - Use **deployment slots** for zero-downtime releases
 - Tag all resources with Environment, Team, CostCenter, Project
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. What are Network Security Groups (NSGs), and can they be applied at the VNet level?
+
+A **Network Security Group (NSG)** is a stateful Layer-4 firewall that contains a list of inbound and outbound security rules. Each rule specifies source/destination IP, port range, protocol, and an Allow/Deny action.
+
+**NSG attachment levels:**
+
+| Level | Effect |
+|-------|--------|
+| **Subnet** | Rules apply to all NICs within that subnet (most common) |
+| **NIC** | Rules apply only to the single VM network interface |
+| **VNet level** | NSGs **cannot** be applied directly to a VNet; apply them to each subnet instead |
+
+> **Key point:** There is no "VNet-level NSG." To achieve VNet-wide filtering, attach an NSG to every subnet in the VNet, or use **Azure Firewall** for centralized network-level control.
+
+**Example — create and attach an NSG to a subnet:**
+
+```bash
+# Create the NSG
+az network nsg create \
+  --name nsg-web \
+  --resource-group rg-prod \
+  --location eastus
+
+# Allow HTTPS inbound from the internet
+az network nsg rule create \
+  --nsg-name nsg-web \
+  --resource-group rg-prod \
+  --name Allow-HTTPS \
+  --priority 100 \
+  --direction Inbound \
+  --protocol Tcp \
+  --source-address-prefixes Internet \
+  --destination-port-ranges 443 \
+  --access Allow
+
+# Deny all other inbound traffic (explicit catch-all)
+az network nsg rule create \
+  --nsg-name nsg-web \
+  --resource-group rg-prod \
+  --name Deny-All-Inbound \
+  --priority 4000 \
+  --direction Inbound \
+  --protocol '*' \
+  --source-address-prefixes '*' \
+  --destination-port-ranges '*' \
+  --access Deny
+
+# Attach the NSG to the subnet (not to the VNet directly)
+az network vnet subnet update \
+  --vnet-name vnet-prod \
+  --resource-group rg-prod \
+  --name snet-web \
+  --network-security-group nsg-web
+
+# Verify effective rules on a VM NIC
+az network nic show-effective-nsg \
+  --name nic-vm-web \
+  --resource-group rg-prod \
+  --output table
+```
+
+**NSG processing order:**
+- Inbound: subnet NSG rules → NIC NSG rules
+- Outbound: NIC NSG rules → subnet NSG rules
+- Lower priority number = evaluated first; first matching rule wins.
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. What is the difference between Azure App Services and Azure Functions?
+
+Both are PaaS offerings for running application code in Azure, but they target different workload patterns:
+
+| Factor | Azure App Service | Azure Functions |
+|--------|------------------|-----------------|
+| Execution model | Continuous, long-running process | Event-driven, short-lived executions |
+| Billing | Per plan/instance (always-on) | Per execution + GB-s (Consumption) |
+| Cold start | None (always warm) | Yes on Consumption plan |
+| State | Stateful (sessions, in-memory cache) | Stateless by default (use Durable Functions for state) |
+| Protocols | HTTP(S), WebSockets, gRPC | HTTP, queues, blobs, timers, Event Grid, Service Bus… |
+| Max execution time | Unlimited | 5 min (Consumption) / unlimited (Premium/Dedicated) |
+| VNet integration | Yes (Standard+ plan) | Yes (Premium plan) |
+| Auto-scaling | Manual or rule-based | Automatic (Consumption/Premium) |
+| Best for | Web apps, REST APIs, background workers | Microservices, event processing, scheduled jobs, webhooks |
+
+**When to choose App Service:**
+- Traditional web application or REST API that needs persistent connections
+- WebSocket support (e.g., SignalR hub)
+- Predictable, steady traffic where always-on cost is acceptable
+- Deployment slots for blue-green releases
+
+**When to choose Azure Functions:**
+- Sporadic or unpredictable workloads (pay only when running)
+- React to events (blob uploaded, queue message, HTTP webhook)
+- Short-lived business logic (< 10 minutes per invocation)
+- Fan-out / parallel processing patterns
+
+```bash
+# App Service — deploy a .NET 8 web API (always running)
+az appservice plan create \
+  --name asp-prod \
+  --resource-group rg-prod \
+  --sku S1 \
+  --is-linux
+
+az webapp create \
+  --name app-myapi \
+  --resource-group rg-prod \
+  --plan asp-prod \
+  --runtime "DOTNETCORE:8.0"
+
+# Azure Functions — deploy an event-driven function (pay-per-use)
+az storage account create \
+  --name stfunctions \
+  --resource-group rg-prod \
+  --sku Standard_LRS
+
+az functionapp create \
+  --name func-processor \
+  --resource-group rg-prod \
+  --storage-account stfunctions \
+  --consumption-plan-location eastus \
+  --runtime dotnet-isolated \
+  --runtime-version 8 \
+  --functions-version 4
+```
+
+```csharp
+// Azure Function: HTTP trigger — invoked only on demand
+[Function("GetOrder")]
+public IActionResult Run(
+    [HttpTrigger(AuthorizationLevel.Function, "get", Route = "orders/{id}")] HttpRequest req,
+    string id)
+{
+    // Executes only when called; billed per invocation
+    return new OkObjectResult(orderService.GetById(id));
+}
+```
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. How would you troubleshoot an Azure Virtual Machine that suddenly fails to start?
+
+**Structured troubleshooting steps:**
+
+**Step 1 — Check the VM power state and allocation status**
+
+```bash
+az vm get-instance-view \
+  --name vm-prod \
+  --resource-group rg-prod \
+  --query "instanceView.statuses[*].displayStatus" \
+  --output tsv
+# Expected: "VM running" — if "VM stopped (deallocated)" or "Provisioning failed", proceed below
+```
+
+**Step 2 — Review Boot Diagnostics (serial console log + screenshot)**
+
+```bash
+# Enable boot diagnostics (requires storage account)
+az vm boot-diagnostics enable \
+  --name vm-prod \
+  --resource-group rg-prod \
+  --storage "https://stbootdiag.blob.core.windows.net/"
+
+# Get the boot diagnostics screenshot and log URI
+az vm boot-diagnostics get-boot-log \
+  --name vm-prod \
+  --resource-group rg-prod
+# Portal: VM blade → Boot diagnostics → Screenshot shows last console state
+```
+
+**Step 3 — Review the Activity Log for error details**
+
+```bash
+az monitor activity-log list \
+  --resource-group rg-prod \
+  --start-time "$(Get-Date -Format 'yyyy-MM-ddTHH:mm:ssZ' -Date (Get-Date).AddHours(-4))" \
+  --status Failed \
+  --query "[].{Time:eventTimestamp,Operation:operationName.value,Error:properties.statusMessage}" \
+  --output table
+```
+
+**Step 4 — Common failure causes and fixes**
+
+| Symptom | Likely cause | Fix |
+|---------|-------------|-----|
+| `SkuNotAvailable` / allocation error | No capacity in that VM size/region | Resize VM or change region/zone |
+| OS disk not found | Disk deleted or detached | Re-attach OS disk from the portal |
+| `NTLDR is missing` / GRUB error | Boot record corruption | Attach OS disk to a repair VM; fix MBR/GRUB |
+| Kernel panic (Linux) | Bad kernel update | Use serial console to boot into recovery mode |
+| `Quota exceeded` | Subscription core quota hit | Request quota increase in Azure portal |
+| NSG blocks traffic | Port 22/3389 blocked | Update NSG rule; use Azure Bastion instead |
+
+**Step 5 — Use Azure Run Command (no SSH/RDP needed)**
+
+```bash
+# Run diagnostics inside the VM without network access
+az vm run-command invoke \
+  --name vm-prod \
+  --resource-group rg-prod \
+  --command-id RunShellScript \
+  --scripts \
+    "systemctl list-units --failed" \
+    "df -h" \
+    "dmesg | tail -50"
+```
+
+**Step 6 — Redeploy the VM to a new host node**
+
+```bash
+# Moves the VM to a healthy host without changing IP/data
+az vm redeploy \
+  --name vm-prod \
+  --resource-group rg-prod
+```
+
+> If none of the above resolves the issue, open an Azure Support ticket and attach the boot diagnostics log and Activity Log errors.
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+## Q. Scenario: "We have an active-passive multi-region web application layout. How do we automate traffic failover if the primary region goes dark, and how do we handle database synchronization?"
+
+**Solution architecture overview:**
+
+```
+Internet
+   │
+   ▼
+Azure Front Door / Traffic Manager          ← health-probe-based failover
+   │                    │
+   ▼                    ▼
+Primary Region       Secondary Region
+(East US — active)  (West US — passive)
+  App Service          App Service
+  Azure SQL            Azure SQL (geo-replica, read-only → promoted on failover)
+  Cosmos DB            Cosmos DB (multi-region write replica)
+```
+
+---
+
+### Traffic Management
+
+Implement **Azure Front Door** (recommended) or **Azure Traffic Manager** with health probes to continuously monitor the primary endpoint. When the primary region fails, traffic is automatically rerouted to the secondary region.
+
+**Azure Front Door with automatic failover (priority routing):**
+
+```bash
+# Create Front Door profile
+az afd profile create \
+  --profile-name afd-myapp \
+  --resource-group rg-global \
+  --sku Standard_AzureFrontDoor
+
+# Create origin group with health probes
+az afd origin-group create \
+  --profile-name afd-myapp \
+  --resource-group rg-global \
+  --origin-group-name og-webapp \
+  --probe-request-type GET \
+  --probe-protocol Https \
+  --probe-path "/health" \
+  --probe-interval-in-seconds 30 \
+  --sample-size 4 \
+  --successful-samples-required 3
+
+# Add primary origin (priority 1)
+az afd origin create \
+  --profile-name afd-myapp \
+  --resource-group rg-global \
+  --origin-group-name og-webapp \
+  --origin-name origin-primary \
+  --host-name app-primary.azurewebsites.net \
+  --origin-host-header app-primary.azurewebsites.net \
+  --priority 1 \
+  --weight 1000 \
+  --enabled-state Enabled
+
+# Add secondary origin (priority 2 — passive, receives traffic only if primary fails)
+az afd origin create \
+  --profile-name afd-myapp \
+  --resource-group rg-global \
+  --origin-group-name og-webapp \
+  --origin-name origin-secondary \
+  --host-name app-secondary.azurewebsites.net \
+  --origin-host-header app-secondary.azurewebsites.net \
+  --priority 2 \
+  --weight 1000 \
+  --enabled-state Enabled
+```
+
+> **How failover works:** Front Door probes the `/health` endpoint every 30 seconds. If the primary fails 4 consecutive probes, it is marked unhealthy and all traffic shifts to the secondary origin automatically — no manual intervention required.
+
+---
+
+### Data Replication
+
+**Relational data — Azure SQL active geo-replication:**
+
+```bash
+# Create geo-replica in secondary region (asynchronous streaming)
+az sql db replica create \
+  --name mydb \
+  --server sql-primary \
+  --resource-group rg-eastus \
+  --partner-server sql-secondary \
+  --partner-resource-group rg-westus
+
+# Check replication lag
+az sql db show \
+  --name mydb \
+  --server sql-secondary \
+  --resource-group rg-westus \
+  --query "replicationLinks"
+
+# Failover: promote secondary to primary (planned — zero data loss)
+az sql db replica set-primary \
+  --name mydb \
+  --server sql-secondary \
+  --resource-group rg-westus
+
+# Failover: force failover (unplanned — possible data loss for last async transactions)
+az sql db replica set-primary \
+  --name mydb \
+  --server sql-secondary \
+  --resource-group rg-westus \
+  --allow-data-loss
+```
+
+> Use **Auto-failover groups** to also fail over the DNS connection string automatically (no app connection string change needed):
+
+```bash
+az sql failover-group create \
+  --name fog-myapp \
+  --server sql-primary \
+  --resource-group rg-eastus \
+  --partner-server sql-secondary \
+  --partner-resource-group rg-westus \
+  --failover-policy Automatic \
+  --grace-period 1   # hours before automatic failover triggers
+```
+
+**NoSQL data — Azure Cosmos DB multi-region replication:**
+
+```bash
+# Add secondary region to Cosmos DB account (automatic replication)
+az cosmosdb update \
+  --name cosmos-myapp \
+  --resource-group rg-global \
+  --locations regionName=eastus failoverPriority=0 isZoneRedundant=true \
+                regionName=westus failoverPriority=1 isZoneRedundant=true
+
+# Enable automatic failover (Cosmos DB promotes secondary on primary outage)
+az cosmosdb update \
+  --name cosmos-myapp \
+  --resource-group rg-global \
+  --enable-automatic-failover true
+
+# Enable multi-region writes (active-active instead of active-passive)
+az cosmosdb update \
+  --name cosmos-myapp \
+  --resource-group rg-global \
+  --enable-multiple-write-locations true
+```
+
+> Cosmos DB replicates data continuously and asynchronously. With **automatic failover enabled**, if the primary region becomes unavailable, Cosmos DB promotes the next region in the failover priority list — typically within minutes.
+
+**Summary of failover automation:**
+
+| Layer | Service | Failover mechanism | RTO |
+|-------|---------|-------------------|-----|
+| Traffic | Azure Front Door | Health probes (30 s interval) | ~1–2 min |
+| Relational DB | Azure SQL Auto-failover group | Automatic after grace period | ~1 h (configurable) |
+| NoSQL DB | Cosmos DB automatic failover | Automatic on region outage | ~15–30 min |
 
 <div align="right">
     <b><a href="#table-of-contents">↥ back to top</a></b>
