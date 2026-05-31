@@ -4,6 +4,19 @@
 
 <br>
 
+## Related Topics
+
+* *[Azure Multiple Choice Questions](azure-mcq.md)*
+* *[Azure AI and ML](https://github.com/learning-zone/ai-and-ml-basics/blob/main/azure-ai.md)*
+* *[.NET Core Basics](https://github.com/learning-zone/css-basics)*
+* *[C# Basics](https://github.com/learning-zone/csharp-basics)*
+* *[C# Unit Testing](https://github.com/learning-zone/csharp-basics/blob/main/csharp-unit-test.md)*
+* *[C# Coding Practice](https://github.com/learning-zone/csharp-basics/blob/main/csharp-programming.md)*
+* *[C# Design Patterns](https://github.com/learning-zone/csharp-basics/blob/main/csharp-dp.md)*
+* *[C# Data Structure and Algorithm](https://github.com/learning-zone/csharp-basics/blob/main/csharp-ds.md)*
+
+<br>
+
 ## Table of Contents
 
 ## L1: Cloud Foundations (Entry-Level / Cloud Practitioner)
